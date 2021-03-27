@@ -30,6 +30,7 @@ public class StartUp extends Application {
             @Override
             public void onResponse(@NotNull Call<Currency> call, @NotNull Response<Currency> response) {
                 Currency currencyData = response.body();
+                assert currencyData != null;
                 currentRates = currencyData.getRates();
             }
 

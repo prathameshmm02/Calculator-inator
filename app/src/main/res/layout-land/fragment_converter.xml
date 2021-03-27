@@ -31,79 +31,83 @@
             <com.google.android.material.chip.Chip
                 android:id="@+id/length"
                 style="@style/Widget.MaterialComponents.Chip.Choice"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/length" />
+                android:layout_width="100dp"
+                android:layout_height="50dp"
+                android:text="@string/length"
+                android:textAlignment="center" />
 
             <com.google.android.material.chip.Chip
                 android:id="@+id/area"
                 style="@style/Widget.MaterialComponents.Chip.Choice"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="100dp"
+                android:layout_height="50dp"
                 android:text="@string/area"
-                app:chipIcon="@drawable/ic_area"
-                app:chipIconVisible="true" />
+                android:textAlignment="center" />
 
             <com.google.android.material.chip.Chip
                 android:id="@+id/mass"
                 style="@style/Widget.MaterialComponents.Chip.Choice"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="100dp"
+                android:layout_height="50dp"
 
-                android:text="@string/mass" />
+                android:text="@string/mass"
+                android:textAlignment="center" />
 
             <com.google.android.material.chip.Chip
                 android:id="@+id/speed"
                 style="@style/Widget.MaterialComponents.Chip.Choice"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="100dp"
+                android:layout_height="50dp"
                 android:text="@string/speed"
-                app:chipIcon="@drawable/ic_speed"
-                app:chipIconVisible="true" />
+                android:textAlignment="center" />
 
             <com.google.android.material.chip.Chip
                 android:id="@+id/angle"
                 style="@style/Widget.MaterialComponents.Chip.Choice"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/angle" />
+                android:layout_width="100dp"
+                android:layout_height="50dp"
+                android:text="@string/angle"
+                android:textAlignment="center" />
 
             <com.google.android.material.chip.Chip
                 android:id="@+id/currency"
                 style="@style/Widget.MaterialComponents.Chip.Choice"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/currency" />
+                android:layout_width="100dp"
+                android:layout_height="50dp"
+                android:text="@string/currency"
+                android:textAlignment="center" />
 
             <com.google.android.material.chip.Chip
                 android:id="@+id/data"
                 style="@style/Widget.MaterialComponents.Chip.Choice"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="100dp"
+                android:layout_height="50dp"
                 android:text="@string/data"
-                app:chipIcon="@drawable/ic_data"
-                app:chipIconVisible="true"/>
+                android:textAlignment="center" />
 
             <com.google.android.material.chip.Chip
                 android:id="@+id/volume"
                 style="@style/Widget.MaterialComponents.Chip.Choice"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/volume" />
+                android:layout_width="100dp"
+                android:layout_height="50dp"
+                android:text="@string/volume"
+                android:textAlignment="center" />
 
             <com.google.android.material.chip.Chip
                 android:id="@+id/time"
                 style="@style/Widget.MaterialComponents.Chip.Choice"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/time" />
+                android:layout_width="100dp"
+                android:layout_height="50dp"
+                android:text="@string/time"
+                android:textAlignment="center" />
 
             <com.google.android.material.chip.Chip
                 android:id="@+id/temperature"
                 style="@style/Widget.MaterialComponents.Chip.Choice"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/temperature" />
+                android:layout_width="100dp"
+                android:layout_height="50dp"
+                android:text="@string/temperature"
+                android:textAlignment="center" />
 
         </com.google.android.material.chip.ChipGroup>
     </HorizontalScrollView>
