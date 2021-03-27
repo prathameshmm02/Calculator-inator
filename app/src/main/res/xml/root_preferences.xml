@@ -1,0 +1,28 @@
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <PreferenceCategory android:title="@string/customize">
+        <SwitchPreference
+            android:key="customBG"
+            android:title="Set Custom Background" />
+        <Preference
+            android:dependency="customBG"
+            android:key="background"
+            android:title="@string/background">
+            <intent
+                android:action="android.intent.action.PICK"
+                android:mimeType="image/*" />
+        </Preference>
+
+        <SeekBarPreference android:dependency="customBG" android:title="Blur Background" android:key="blur" app:min="0" android:max="20">
+        </SeekBarPreference>
+    </PreferenceCategory>
+
+    <Preference android:title="About" android:key="about"/>
+
+    <Preference android:title="Currency API Used">
+        <intent android:action="android.intent.action.VIEW" android:data="https://exchangeratesapi.io/"/>
+    </Preference>
+
+
+</PreferenceScreen>

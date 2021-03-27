@@ -1,0 +1,55 @@
+<resources>
+    <string name="app_name">Calculator</string>
+    <string name="seven">7</string>
+    <string name="eight">8</string>
+    <string name="nine">9</string>
+    <string name="four">4</string>
+    <string name="five">5</string>
+    <string name="six">6</string>
+    <string name="one">1</string>
+    <string name="two">2</string>
+    <string name="three">3</string>
+    <string name="point">.</string>
+    <string name="zero">0</string>
+    <string name="equal">=</string>
+    <string name="add">+</string>
+    <string name="subtract">-</string>
+    <string name="multiply">×</string>
+    <string name="divide">÷</string>
+    <string name="invert">INV</string>
+    <string name="radian">RAD</string>
+    <string name="degree">DEG</string>
+    <string name="percent">%</string>
+    <string name="sin">sin</string>
+    <string name="cos">cos</string>
+    <string name="tan">tan</string>
+    <string name="log">log</string>
+    <string name="root">√</string>
+    <string name="pi">π</string>
+    <string name="euler_num">e</string>
+    <string name="power">^</string>
+    <string name="open_bracket">(</string>
+    <string name="close_bracket">)</string>
+    <string name="factorial">!</string>
+    <string name="natural_log">ln</string>
+    <string name="title_activity_settings">Settings</string>
+
+    <!-- Preference Titles -->
+    <string name="customize">Customize</string>
+
+    <string name="background">Change Background</string>
+    <string name="background_image">Background</string>
+    <string name="length">Length</string>
+    <string name="area">Area</string>
+    <string name="mass">Mass</string>
+    <string name="speed">Speed</string>
+    <string name="angle">Angle</string>
+    <string name="currency">Currency</string>
+    <string name="data">Data</string>
+    <string name="volume">Volume</string>
+    <string name="time">Time</string>
+    <string name="temperature">Temperature</string>
+    <string name="converter">Converter</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+</resources>
