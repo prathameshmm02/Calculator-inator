@@ -28,9 +28,6 @@
             android:label="@string/title_activity_settings"
             android:parentActivityName=".activities.MainActivity" android:theme="@style/Theme.Calculator.ActionBar"/>
 
-        <meta-data
-            android:name="preloaded_fonts"
-            android:resource="@array/preloaded_fonts" />
     </application>
 
 </manifest>

@@ -50,6 +50,10 @@
     <string name="time">Time</string>
     <string name="temperature">Temperature</string>
     <string name="converter">Converter</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="asin">sin⁻¹</string>
+    <string name="acos">cos⁻¹</string>
+    <string name="atan">tan⁻¹</string>
+    <string name="tenRaisedTo">10^</string>
+    <string name="eRaisedTo">e^</string>
+    <string name="square">^2</string>
 </resources>

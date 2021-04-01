@@ -31,7 +31,7 @@
         android:layout_height="130dp"
         android:background="@null"
         android:ems="10"
-        android:fontFamily="@font/montserrat"
+        android:fontFamily="@font/poppins"
         android:gravity="end"
         android:inputType="text"
         android:paddingStart="0dp"
@@ -49,7 +49,7 @@
         android:layout_width="0dp"
         android:layout_height="50dp"
         android:ellipsize="end"
-        android:fontFamily="@font/montserrat"
+        android:fontFamily="@font/poppins"
         android:gravity="center_vertical|end"
         android:maxLines="1"
         android:paddingStart="30dp"
@@ -80,7 +80,7 @@
             layout="@layout/adv_calculator_layout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginStart="50dp" />
+            android:layout_marginStart="50dp"/>
 
     </androidx.slidingpanelayout.widget.SlidingPaneLayout>
 

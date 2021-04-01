@@ -43,7 +43,6 @@ public class MainActivity extends AppCompatActivity {
         viewPager.setAdapter(pagerAdapter);
         viewPager.setPageTransformer(new ZoomOutPageTransformer());
 
-
         calc.setOnClickListener(v -> {
             viewPager.setCurrentItem(0, true);
             calc.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.ic_filled_calculate));

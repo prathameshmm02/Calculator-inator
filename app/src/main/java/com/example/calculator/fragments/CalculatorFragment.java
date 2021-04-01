@@ -1,6 +1,5 @@
 package com.example.calculator.fragments;
 
-import android.annotation.SuppressLint;
 import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
@@ -22,7 +21,6 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
 import androidx.preference.PreferenceManager;
 import androidx.slidingpanelayout.widget.SlidingPaneLayout;
-import androidx.viewpager2.widget.ViewPager2;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
@@ -120,17 +118,12 @@ public class CalculatorFragment extends Fragment implements View.OnClickListener
         setBackground();
         slidingPaneLayout.openPane();
         slidingPaneLayout.setSliderFadeColor(getResources().getColor(android.R.color.transparent));
-
         // Don't show keyboard on focus/click
         input.requestFocus();
         input.setShowSoftInputOnFocus(false);
-
-        //input.setAutoSizeTextTypeWithDefaults(TextView.AUTO_SIZE_TEXT_TYPE_UNIFORM);
-        //output.setAutoSizeTextTypeWithDefaults(TextView.AUTO_SIZE_TEXT_TYPE_UNIFORM);
-
     }
 
-    @SuppressLint({"SetTextI18n", "ClickableViewAccessibility"})
+
     private void addListeners() {
         // Adding OnClick Listener
         button0.setOnClickListener(this);
@@ -166,31 +159,27 @@ public class CalculatorFragment extends Fragment implements View.OnClickListener
             if (isInvert) {
                 isInvert = false;
                 inverseButton.setBackgroundColor(getResources().getColor(android.R.color.transparent));
-                sinButton.setText("sin");
-                cosButton.setText("cos");
-                tanButton.setText("tan");
-                rootButton.setText("√");
-                naturalLogButton.setText("ln");
-                logButton.setText("log");
+                sinButton.setText(R.string.sin);
+                cosButton.setText(R.string.cos);
+                tanButton.setText(R.string.tan);
+                rootButton.setText(R.string.root);
+                naturalLogButton.setText(R.string.natural_log);
+                logButton.setText(R.string.log);
             } else {
-                sinButton.setText("sin⁻¹");
-                cosButton.setText("cos⁻¹");
-                tanButton.setText("tan⁻¹");
-                rootButton.setText("^2");
-                naturalLogButton.setText("e^");
-                logButton.setText("10^");
+                sinButton.setText(R.string.asin);
+                cosButton.setText(R.string.acos);
+                tanButton.setText(R.string.atan);
+                rootButton.setText(R.string.square);
+                naturalLogButton.setText(R.string.eRaisedTo);
+                logButton.setText(R.string.tenRaisedTo);
                 isInvert = true;
                 inverseButton.setBackgroundColor(getResources().getColor(R.color.grey));
             }
         });
         angleButton.setOnClickListener(v -> {
-            if (isDegree) {
-                isDegree = false;
-                angleButton.setText(getResources().getString(R.string.radian));
-            } else {
-                isDegree = true;
-                angleButton.setText(getResources().getString(R.string.degree));
-            }
+            if (isDegree) angleButton.setText(getResources().getString(R.string.radian));
+            else angleButton.setText(getResources().getString(R.string.degree));
+            isDegree = !isDegree;
         });
 
         equalButton.setOnClickListener(v -> {
@@ -282,11 +271,6 @@ public class CalculatorFragment extends Fragment implements View.OnClickListener
             }
         });
 
-        slidingPaneLayout.setOnTouchListener((view, motionEvent) -> {
-            ViewPager2 pager2 = getActivity().findViewById(R.id.pager);
-            if (pager2.getCurrentItem() != 0) return pager2.onTouchEvent(motionEvent);
-            else return slidingPaneLayout.onTouchEvent(motionEvent);
-        });
 
     }
 
@@ -347,21 +331,6 @@ public class CalculatorFragment extends Fragment implements View.OnClickListener
         }
     }
 
-//    @Override
-//    public boolean onCreateOptionsMenu(Menu menu) {
-//        MenuInflater inflater = getMenuInflater();
-//        inflater.inflate(R.menu.app_menu, menu);
-//        return super.onCreateOptionsMenu(menu);
-//    }
-
-
-//    @Override
-//    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-//        if (item.getItemId() == R.id.settingButton) {
-//            startActivity(new Intent(CalculatorFragment.this, SettingsActivity.class));
-//        }
-//        return super.onOptionsItemSelected(item);
-//    }
 
     private void setBackground() {
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(requireContext());
@@ -378,4 +347,9 @@ public class CalculatorFragment extends Fragment implements View.OnClickListener
         }
     }
 
+    @Override
+    public void onStart() {
+        setBackground();
+        super.onStart();
+    }
 }

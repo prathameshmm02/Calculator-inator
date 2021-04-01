@@ -27,7 +27,7 @@
         android:layout_height="130dp"
         android:background="@null"
         android:ems="10"
-        android:fontFamily="@font/montserrat"
+        android:fontFamily="@font/poppins"
         android:gravity="end"
         android:inputType="text"
         android:padding="30dp"
@@ -43,7 +43,7 @@
         android:id="@+id/output"
         android:layout_width="0dp"
         android:layout_height="50dp"
-        android:fontFamily="@font/montserrat"
+        android:fontFamily="@font/poppins"
         android:gravity="center_vertical|end"
 
         android:paddingStart="30dp"

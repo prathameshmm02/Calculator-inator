@@ -10,7 +10,6 @@
         <item name="colorSecondaryVariant">@color/teal_700</item>
         <item name="colorOnSecondary">@color/black</item>
         <!-- Customize your theme here. -->
-        <item name="statusBarBackground">@android:color/transparent</item>
         <item name="android:windowBackground">@color/white</item>
     </style>
 
@@ -23,6 +22,5 @@
         <item name="colorSecondaryVariant">@color/teal_700</item>
         <item name="colorOnSecondary">@color/black</item>
         <!-- Customize your theme here. -->
-        <item name="statusBarBackground">@android:color/transparent</item>
     </style>
 </resources>
