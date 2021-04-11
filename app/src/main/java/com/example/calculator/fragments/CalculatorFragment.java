@@ -27,6 +27,9 @@ import com.bumptech.glide.request.RequestOptions;
 import com.example.calculator.Model.Calculator;
 import com.example.calculator.R;
 
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.math.BigDecimal;
 import java.util.Arrays;
 import java.util.List;
@@ -67,6 +70,9 @@ public class CalculatorFragment extends Fragment implements View.OnClickListener
         view = inflater.inflate(R.layout.fragment_calculator, container, false);
         setUpViews();
         addListeners();
+        this.requireActivity().getSupportFragmentManager().beginTransaction()
+                .replace(R.id.historyContainer, new HistoryFragment())
+                .commit();
         return view;
     }
 
@@ -183,18 +189,24 @@ public class CalculatorFragment extends Fragment implements View.OnClickListener
         });
 
         equalButton.setOnClickListener(v -> {
-            String expr = input.getText().toString();
-            if (operators.contains(expr.charAt(expr.length() - 1))) {
-                return;
+            try{
+                String expr = input.getText().toString();
+                if (operators.contains(expr.charAt(expr.length() - 1))) {
+                    return;
+                }
+                if (!expr.isEmpty()) {
+                    Calculator calc = new Calculator();
+                    BigDecimal result = calc.eval(expr, isDegree);
+                    input.setText(result.stripTrailingZeros().toPlainString());
+                    input.setSelection(input.getText().toString().length());
+                    saveToHistory(expr, result.toPlainString());
+                }
+                output.setText("");
+                input.setSelection(input.getText().length());
+            } catch (Exception e){
+                input.setText(R.string.error_text);
             }
-            if (!expr.isEmpty()) {
-                Calculator calc = new Calculator();
-                BigDecimal result = calc.eval(expr, isDegree);
-                input.setText(result.stripTrailingZeros().toPlainString());
-                input.setSelection(input.getText().toString().length());
-            }
-            output.setText("");
-            input.setSelection(input.getText().length());
+
         });
 
         clearButton.setOnClickListener(v -> {
@@ -260,7 +272,6 @@ public class CalculatorFragment extends Fragment implements View.OnClickListener
             @Override
             public void onPanelOpened(@NonNull View panel) {
                 slideButton.clearAnimation();
-                slideButton.startAnimation(rotateNext);
             }
 
             @Override
@@ -273,61 +284,39 @@ public class CalculatorFragment extends Fragment implements View.OnClickListener
 
 
     }
+    private void saveToHistory(String expression, String answer) {
+        FileWriter writer;
+        File history = new File(requireContext().getFilesDir(), "History.pm");
+        try {
+            if (history.createNewFile()) {
+                writer = new FileWriter(history);
+            } else {
+                writer = new FileWriter(history, true);
+            }
+            writer.write(expression + "\n" + answer + "\n");
+            writer.flush();
+            writer.close();
+        } catch (IOException e) {
+        }
+    }
+
 
     @Override
     public void onClick(View v) {
-        char lastChar = 0;
-        // Casting clicked view button as it is actually a button
-        Button clickedButton = (Button) v;
-        // Getting current cursor position of EditText
-        int currentPosition = input.getSelectionStart();
-        String buttonTextString = clickedButton.getText().toString();
-        char buttonText = clickedButton.getText().toString().charAt(0);
-        String oldInput = input.getText().toString();
-        String newInput;
-        if (!oldInput.isEmpty()) {
-            if (input.getSelectionStart() != 0) {
-                lastChar = oldInput.charAt(currentPosition - 1);
-            }
-            if (extraOperators.contains(buttonTextString)) {
-                newInput = oldInput.substring(0, currentPosition) + buttonTextString + "()" + oldInput.substring(currentPosition);
-                input.setText(newInput);
-            } else if (powOperators.contains(buttonTextString)) {
-                newInput = oldInput.substring(0, currentPosition) + buttonTextString + oldInput.substring(currentPosition);
-                input.setText(newInput);
-            } else {
-                newInput = oldInput.substring(0, currentPosition) + buttonText + oldInput.substring(currentPosition);
-                if (!(operators.contains(buttonText) && (operators.contains(lastChar) || lastChar == '.'))) {
-                    // Inserting clicked button text where the cursor is right now
-                    input.setText(newInput);
-                    input.setSelection(currentPosition + 1);
-                } else if (buttonText == '-' && (lastChar == '×' || lastChar == '÷')) {
-                    input.setText(newInput);
-                    input.setSelection(currentPosition + 1);
-                } else {
-                    return;
-                }
-            }
-        } else {
-            if (extraOperators.contains(buttonTextString)) {
-                String temp = buttonTextString + "()";
-                input.setText(temp);
-            } else if (powOperators.contains(buttonTextString)) {
-                input.setText(buttonTextString);
-            }
-            //Avoiding  '×' '÷' '!' '^', '%' at the start
-            else if (buttonText == '-' || buttonText == 'e' || buttonText == 'π' || buttonText == '(' || buttonText == '√' || numbers.contains(buttonText)) {
-                input.setText(String.valueOf(buttonText));
-                input.setSelection(currentPosition + 1);
-            } else {
-                return;
-            }
+        if (input.getText().toString().equals("Not a Number")) {
+            input.setText("");
         }
-        //Changing Cursor Position
-        if (extraOperators.contains(buttonTextString)) {
-            input.setSelection(currentPosition + buttonTextString.length() + 1);
-        } else if (powOperators.contains(buttonTextString)) {
-            input.setSelection(currentPosition + buttonTextString.length());
+        String buttonText = (String) ((Button) v).getText();
+        int currentPosition = input.getSelectionStart();
+        String oldInput = input.getText().toString();
+        boolean[] validateInput = Calculator.validateInput(currentPosition, buttonText, oldInput);
+        if (validateInput[0] && validateInput[1]) {
+            String buttonText2 = buttonText + "()";
+            input.setText(oldInput.substring(0, currentPosition) + buttonText2 + oldInput.substring(currentPosition));
+            input.setSelection((buttonText2.length() + currentPosition) - 1);
+        } else if (validateInput[0]) {
+            input.setText(oldInput.substring(0, currentPosition) + buttonText + oldInput.substring(currentPosition));
+            input.setSelection(buttonText.length() + currentPosition);
         }
     }
 
@@ -337,13 +326,13 @@ public class CalculatorFragment extends Fragment implements View.OnClickListener
         String path = prefs.getString("background", "null");
         int blurRadius = prefs.getInt("blur", 0);
 
-        if (prefs.getBoolean("customBG", false)) {
-            if (!path.equals("null")) {
-                Glide.with(this)
-                        .load(Uri.parse(path))
-                        .apply(RequestOptions.bitmapTransform(new BlurTransformation(blurRadius, 3)))
-                        .into(backgroundImage);
+        if (prefs.getBoolean("customBG", false) && !path.equals("null")) {
+            if (blurRadius != 0) {
+                Glide.with(this).load(Uri.parse(path)).apply(RequestOptions.bitmapTransform(new BlurTransformation(blurRadius))).into(backgroundImage);
+            } else {
+                Glide.with(this).load(Uri.parse(path)).into(this.backgroundImage);
             }
+
         }
     }
 

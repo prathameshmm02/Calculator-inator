@@ -1,30 +1,26 @@
 package com.example.calculator.activities;
 
-import android.animation.ObjectAnimator;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.ImageButton;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.content.ContextCompat;
-import androidx.viewpager2.widget.ViewPager2;
 
+import com.example.calculator.NonSwipeableViewPager;
 import com.example.calculator.R;
 import com.example.calculator.adpters.ViewPagerAdapter;
-import com.example.calculator.extras.ZoomOutPageTransformer;
 import com.example.calculator.fragments.CalculatorFragment;
 import com.example.calculator.fragments.ConverterFragment;
+import com.google.android.material.tabs.TabLayout;
+
+import java.util.Objects;
 
 public class MainActivity extends AppCompatActivity {
-    ImageButton calc, conv;
-    View indicator, pseudoIndicator;
-    ViewPager2 viewPager;
+    TabLayout tabLayout;
+    NonSwipeableViewPager viewPager;
 
     @SuppressLint("ClickableViewAccessibility")
     @Override
@@ -32,45 +28,35 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         setSupportActionBar(findViewById(R.id.topAppBar));
-        calc = findViewById(R.id.calculator);
-        conv = findViewById(R.id.converter);
-        indicator = findViewById(R.id.indicator);
-        pseudoIndicator = findViewById(R.id.indicator2);
+        tabLayout = findViewById(R.id.tabLayout);
         viewPager = findViewById(R.id.pager);
-        ViewPagerAdapter pagerAdapter = new ViewPagerAdapter(this);
+        ViewPagerAdapter pagerAdapter = new ViewPagerAdapter(getSupportFragmentManager(), 1);
         pagerAdapter.addFragment(new CalculatorFragment());
         pagerAdapter.addFragment(new ConverterFragment());
         viewPager.setAdapter(pagerAdapter);
-        viewPager.setPageTransformer(new ZoomOutPageTransformer());
-
-        calc.setOnClickListener(v -> {
-            viewPager.setCurrentItem(0, true);
-            calc.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.ic_filled_calculate));
-            conv.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.ic_outline_converter));
-            ObjectAnimator animation = ObjectAnimator.ofFloat(indicator, "translationX", 0);
-            animation.setDuration(100);
-            animation.start();
-
-        });
-        conv.setOnClickListener(v -> {
-            int defaultPosition;
-            int[] position = new int[2];
-            pseudoIndicator.getLocationInWindow(position);
-            int nextLocation = position[0];
-            indicator.getLocationInWindow(position);
-            if (viewPager.getCurrentItem() == 0) {
-                defaultPosition = position[0];
-                calc.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.ic_outline_calculator));
-                conv.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.ic_filled_converter));
-                ObjectAnimator animation = ObjectAnimator.ofFloat(indicator, "translationX", nextLocation - defaultPosition);
-                animation.setDuration(100);
-                Log.i("Next", String.valueOf(indicator.getWidth()));
-                animation.start();
+        tabLayout.setupWithViewPager(this.viewPager);
+        Objects.requireNonNull(this.tabLayout.getTabAt(0)).setIcon(R.drawable.ic_filled_calculate);
+        Objects.requireNonNull(this.tabLayout.getTabAt(1)).setIcon(R.drawable.ic_outline_converter);
+        this.tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+            public void onTabSelected(TabLayout.Tab tab) {
+                if (tab.getPosition() == 0) {
+                    tab.setIcon(R.drawable.ic_filled_calculate);
+                } else if (tab.getPosition() == 1) {
+                    tab.setIcon(R.drawable.ic_filled_converter);
+                }
             }
-            viewPager.setCurrentItem(1, true);
 
+            public void onTabUnselected(TabLayout.Tab tab) {
+                if (tab.getPosition() == 0) {
+                    tab.setIcon(R.drawable.ic_outline_calculator);
+                } else if (tab.getPosition() == 1) {
+                    tab.setIcon(R.drawable.ic_outline_converter);
+                }
+            }
+
+            public void onTabReselected(TabLayout.Tab tab) {
+            }
         });
-        viewPager.setUserInputEnabled(false);
     }
 
     @Override
@@ -87,3 +73,5 @@ public class MainActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 }
+
+

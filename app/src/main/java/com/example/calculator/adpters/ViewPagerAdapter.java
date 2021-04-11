@@ -2,20 +2,20 @@ package com.example.calculator.adpters;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentActivity;
-import androidx.viewpager2.adapter.FragmentStateAdapter;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentStatePagerAdapter;
 
 import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class ViewPagerAdapter extends FragmentStateAdapter {
+public class ViewPagerAdapter extends FragmentStatePagerAdapter {
 
     private final List<Fragment> fragmentList = new ArrayList<>();
 
-    public ViewPagerAdapter(@NonNull FragmentActivity fragmentActivity) {
-        super(fragmentActivity);
+    public ViewPagerAdapter(@NonNull @NotNull FragmentManager fm, int behavior) {
+        super(fm, behavior);
     }
 
 
@@ -23,14 +23,16 @@ public class ViewPagerAdapter extends FragmentStateAdapter {
         fragmentList.add(fragment);
     }
 
+
+
     @NotNull
     @Override
-    public Fragment createFragment(int position) {
+    public Fragment getItem(int position) {
         return fragmentList.get(position);
     }
 
     @Override
-    public int getItemCount() {
+    public int getCount() {
         return fragmentList.size();
     }
 }

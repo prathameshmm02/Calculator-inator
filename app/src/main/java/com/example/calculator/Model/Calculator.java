@@ -23,6 +23,49 @@ public class Calculator {
     public Calculator() {
     }
 
+    public static boolean[] validateInput(int currentPosition, String buttonText, String oldInput) {
+        final List<String> operators2 = Arrays.asList("^", "%", "÷", "×", "+", "-");
+        final List<String> extraOperators = Arrays.asList("sin", "cos", "tan", "log", "ln", "sin⁻¹", "cos⁻¹", "tan⁻¹");
+        final List<String> powOperators = Arrays.asList("^2", "e^", "10^");
+        final List<String> numbers2 = Arrays.asList("0", "1", "2", "3", "4", "5", "6", "7", "8", "9");
+        boolean[] validations = new boolean[2];
+        char lastChar = 0;
+        if (!oldInput.isEmpty()) {
+            if (currentPosition != 0) {
+                lastChar = oldInput.charAt(currentPosition - 1);
+            }
+            if (extraOperators.contains(buttonText)) {
+                validations[0] = true;
+                validations[1] = true;
+                return validations;
+            } else if (powOperators.contains(buttonText)) {
+                validations[0] = true;
+                return validations;
+            } else if (!operators2.contains(buttonText) || (!operators2.contains(String.valueOf(lastChar)) && lastChar != '.')) {
+                validations[0] = true;
+                return validations;
+            } else if (!buttonText.equals("-") || (lastChar != 215 && lastChar != 247)) {
+                return validations;
+            } else {
+                validations[0] = true;
+                return validations;
+            }
+        } else if (extraOperators.contains(buttonText)) {
+            validations[0] = true;
+            validations[1] = true;
+            return validations;
+        } else if (powOperators.contains(buttonText)) {
+            validations[0] = true;
+            return validations;
+        } else if (!buttonText.equals("-") && !buttonText.equals("e") && !buttonText.equals("π") && !buttonText.equals("(") && !buttonText.equals("√") && !numbers2.contains(buttonText)) {
+            return validations;
+        } else {
+            validations[0] = true;
+            return validations;
+        }
+    }
+
+
     public BigDecimal solve(String expr, boolean isDegree) {
         List<Character> operatorList = new ArrayList<>();
         List<BigDecimal> operandList = new ArrayList<>();

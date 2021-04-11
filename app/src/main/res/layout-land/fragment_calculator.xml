@@ -80,7 +80,6 @@
         app:layout_constraintTop_toTopOf="@+id/main_guideline" />
 
     <include
-        android:id="@+id/include"
         layout="@layout/adv_calculator_layout"
         android:layout_width="0dp"
         android:layout_height="0dp"

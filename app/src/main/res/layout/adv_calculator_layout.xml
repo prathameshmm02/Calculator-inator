@@ -28,7 +28,6 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TableLayout
-        android:id="@+id/tableLayout2"
         android:layout_width="0dp"
         android:layout_height="match_parent"
 

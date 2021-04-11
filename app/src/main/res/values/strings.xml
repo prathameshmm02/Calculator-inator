@@ -49,11 +49,11 @@
     <string name="volume">Volume</string>
     <string name="time">Time</string>
     <string name="temperature">Temperature</string>
-    <string name="converter">Converter</string>
     <string name="asin">sin⁻¹</string>
     <string name="acos">cos⁻¹</string>
     <string name="atan">tan⁻¹</string>
     <string name="tenRaisedTo">10^</string>
     <string name="eRaisedTo">e^</string>
     <string name="square">^2</string>
+    <string name="error_text">Not a Number</string>
 </resources>

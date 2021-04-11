@@ -19,65 +19,33 @@
             android:layout_height="match_parent"
             android:orientation="horizontal">
 
-            <ImageButton
-                android:id="@+id/calculator"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:layout_gravity="center_vertical"
-                android:layout_marginBottom="5dp"
-                android:layout_weight="1"
-                android:background="@null"
-                android:src="@drawable/ic_filled_calculate"
-                android:tooltipText="Calculator"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/converter"
-                app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <ImageButton
-                android:id="@+id/converter"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:layout_gravity="center_vertical"
-                android:layout_marginBottom="5dp"
-                android:layout_weight="1"
-                android:background="@null"
-                android:src="@drawable/ic_outline_converter"
-                android:tooltipText="Converter"
+            <com.google.android.material.tabs.TabLayout
+                android:id="@+id/tabLayout"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@android:color/transparent"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toEndOf="@+id/calculator"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:tabIndicator="@drawable/circle"
+                app:tabIndicatorAnimationMode="linear"
+                app:tabIndicatorFullWidth="false"
+                app:tabIndicatorHeight="5dp">
 
-            <View
-                android:id="@+id/indicator"
-                android:layout_width="20dp"
-                android:layout_height="5dp"
-                android:background="@drawable/circle"
-                android:backgroundTint="@color/blue"
-                app:layout_constraintEnd_toEndOf="@+id/calculator"
-                app:layout_constraintStart_toStartOf="@+id/calculator"
-                app:layout_constraintTop_toBottomOf="@id/calculator" />
+                <com.google.android.material.tabs.TabItem
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
 
-            <View
-                android:id="@+id/indicator2"
-                android:layout_width="20dp"
-                android:layout_height="5dp"
-                android:background="@drawable/circle"
-                android:backgroundTint="@color/blue"
-                android:visibility="invisible"
-                app:layout_constraintEnd_toEndOf="@+id/converter"
-                app:layout_constraintStart_toStartOf="@+id/converter"
-                app:layout_constraintTop_toBottomOf="@id/converter" />
-
+                <com.google.android.material.tabs.TabItem
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+            </com.google.android.material.tabs.TabLayout>
         </androidx.constraintlayout.widget.ConstraintLayout>
-
     </com.google.android.material.appbar.MaterialToolbar>
 
 
-    <androidx.viewpager2.widget.ViewPager2
+    <com.example.calculator.NonSwipeableViewPager
         android:id="@+id/pager"
         android:layout_width="0dp"
         android:layout_height="0dp"
@@ -86,3 +54,4 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/topAppBar" />
 </androidx.constraintlayout.widget.ConstraintLayout>
+

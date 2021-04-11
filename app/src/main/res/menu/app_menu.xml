@@ -1,9 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
-    <item
-        android:id="@+id/settingButton"
-        android:icon="@drawable/ic_settings"
-        android:title="@string/title_activity_settings"
-        app:showAsAction="ifRoom" />
+    <item android:icon="@drawable/ic_settings" android:id="@+id/settingButton" android:title="@string/title_activity_settings" app:showAsAction="ifRoom"/>
 </menu>
