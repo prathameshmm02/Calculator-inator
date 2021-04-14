@@ -13,6 +13,7 @@
         android:fontFamily="@font/poppins"
         android:gravity="end|center_vertical"
         android:padding="10dp"
+        android:textIsSelectable="true"
         android:textSize="24sp" />
 
     <TextView
@@ -23,6 +24,7 @@
         android:fontFamily="@font/poppins"
         android:gravity="end|center_vertical"
         android:padding="10dp"
+        android:textIsSelectable="true"
         android:textSize="18sp" />
 
     <View

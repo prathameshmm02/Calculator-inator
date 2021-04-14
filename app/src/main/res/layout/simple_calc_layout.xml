@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/parentLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@android:color/transparent">
@@ -22,7 +21,6 @@
         app:layout_constraintGuide_percent="0.75" />
 
     <TableLayout
-        android:id="@+id/tableLayout"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:background="@android:color/transparent"
@@ -37,7 +35,7 @@
             android:layout_weight="1">
 
             <Button
-                android:id="@+id/button_7"
+                android:id="@+id/button7"
                 style="@style/DefaultButton"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
@@ -46,7 +44,7 @@
                 android:text="@string/seven" />
 
             <Button
-                android:id="@+id/button_8"
+                android:id="@+id/button8"
                 style="@style/DefaultButton"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
@@ -55,7 +53,7 @@
                 android:text="@string/eight" />
 
             <Button
-                android:id="@+id/button_9"
+                android:id="@+id/button9"
                 style="@style/DefaultButton"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
@@ -71,7 +69,7 @@
             android:layout_weight="1">
 
             <Button
-                android:id="@+id/button_4"
+                android:id="@+id/button4"
                 style="@style/DefaultButton"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
@@ -80,7 +78,7 @@
                 android:text="@string/four" />
 
             <Button
-                android:id="@+id/button_5"
+                android:id="@+id/button5"
                 style="@style/DefaultButton"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
@@ -89,7 +87,7 @@
                 android:text="@string/five" />
 
             <Button
-                android:id="@+id/button_6"
+                android:id="@+id/button6"
                 style="@style/DefaultButton"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
@@ -105,7 +103,7 @@
             android:layout_weight="1">
 
             <Button
-                android:id="@+id/button_1"
+                android:id="@+id/button1"
                 style="@style/DefaultButton"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
@@ -114,7 +112,7 @@
                 android:text="@string/one" />
 
             <Button
-                android:id="@+id/button_2"
+                android:id="@+id/button2"
                 style="@style/DefaultButton"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
@@ -123,7 +121,7 @@
                 android:text="@string/two" />
 
             <Button
-                android:id="@+id/button_3"
+                android:id="@+id/button3"
                 style="@style/DefaultButton"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
@@ -139,7 +137,7 @@
             android:layout_weight="1">
 
             <Button
-                android:id="@+id/button_point"
+                android:id="@+id/decimalButton"
                 style="@style/DefaultButton"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
@@ -148,7 +146,7 @@
                 android:text="@string/point" />
 
             <Button
-                android:id="@+id/button_0"
+                android:id="@+id/button0"
                 style="@style/DefaultButton"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
@@ -157,7 +155,7 @@
                 android:text="@string/zero" />
 
             <Button
-                android:id="@+id/equal_button"
+                android:id="@+id/equalButton"
                 style="@style/DefaultButton"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
@@ -189,7 +187,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <Button
-            android:id="@+id/clear_button"
+            android:id="@+id/clearButton"
             style="@style/OperationButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -199,7 +197,7 @@
             app:iconGravity="textStart" />
 
         <Button
-            android:id="@+id/divide_button"
+            android:id="@+id/divideButton"
             style="@style/OperationButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -207,7 +205,7 @@
             android:text="@string/divide" />
 
         <Button
-            android:id="@+id/mul_button"
+            android:id="@+id/multButton"
             style="@style/OperationButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -215,7 +213,7 @@
             android:text="@string/multiply" />
 
         <Button
-            android:id="@+id/sub_button"
+            android:id="@+id/subButton"
             style="@style/OperationButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -223,7 +221,7 @@
             android:text="@string/subtract" />
 
         <Button
-            android:id="@+id/add_button"
+            android:id="@+id/addButton"
             style="@style/OperationButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

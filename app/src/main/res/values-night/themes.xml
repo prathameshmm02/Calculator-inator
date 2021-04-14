@@ -24,4 +24,9 @@
         <!-- Customize your theme here. -->
         <item name="statusBarBackground">@android:color/transparent</item>
     </style>
+
+    <style name="ThemeOverlay.Calculator.AppWidgetContainer" parent="">
+        <item name="appWidgetBackgroundColor">@color/light_blue_900</item>
+        <item name="appWidgetTextColor">@color/light_blue_200</item>
+    </style>
 </resources>

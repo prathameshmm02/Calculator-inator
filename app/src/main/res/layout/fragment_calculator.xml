@@ -15,7 +15,7 @@
         app:layout_constraintGuide_percent="0.4" />
 
     <ImageView
-        android:id="@+id/bg_image"
+        android:id="@+id/backgroundImage"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:contentDescription="@string/background_image"
@@ -24,42 +24,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/main_guideline" />
-
-    <com.google.android.material.textfield.TextInputEditText
-        android:id="@+id/input"
-        android:layout_width="0dp"
-        android:layout_height="130dp"
-        android:background="@null"
-        android:ems="10"
-        android:fontFamily="@font/poppins"
-        android:gravity="end"
-        android:inputType="text"
-        android:paddingStart="0dp"
-        android:paddingEnd="30dp"
-        android:textSize="36sp"
-        app:layout_constraintBottom_toTopOf="@+id/main_guideline"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.288" />
-
-    <TextView
-        android:id="@+id/output"
-        android:layout_width="0dp"
-        android:layout_height="50dp"
-        android:ellipsize="end"
-        android:fontFamily="@font/poppins"
-        android:gravity="center_vertical|end"
-        android:maxLines="1"
-        android:paddingStart="30dp"
-        android:paddingEnd="30dp"
-        android:scrollHorizontally="true"
-        android:textSize="24sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/input" />
 
 
     <androidx.slidingpanelayout.widget.SlidingPaneLayout
@@ -84,15 +48,56 @@
 
     </androidx.slidingpanelayout.widget.SlidingPaneLayout>
 
-    <FrameLayout
-        android:id="@+id/historyContainer"
+    <com.inator.calculator.views.DraggablePanel
+        android:id="@+id/draggablePanel"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:animateLayoutChanges="true"
-        app:layout_constraintBottom_toTopOf="@+id/bg_image"
+        android:background="@color/color_background"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toTopOf="@+id/backgroundImage"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent">
+
+        <FrameLayout
+            android:id="@+id/historyContainer"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0"
+            app:layout_constraintBottom_toTopOf="@+id/main_guideline"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="1.0">
+
+        </FrameLayout>
+
+        <include
+            android:id="@+id/input_field"
+            layout="@layout/input_field"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:background="#575757" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.1"
+            android:gravity="bottom|center_vertical|center_horizontal|center"
+            app:layout_constraintBottom_toTopOf="@+id/backgroundImage"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent">
+
+            <View
+                android:layout_width="30dp"
+                android:layout_height="5dp"
+                android:layout_gravity="center"
+                android:background="@drawable/circle"
+                android:backgroundTint="@color/blue" />
+        </LinearLayout>
+    </com.inator.calculator.views.DraggablePanel>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

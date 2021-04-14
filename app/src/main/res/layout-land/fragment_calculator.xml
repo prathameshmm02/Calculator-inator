@@ -1,66 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".fragments.CalculatorFragment">
+    android:layout_height="match_parent">
 
-    <ImageView
-        android:id="@+id/bg_image"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:scaleType="centerCrop"
-        tools:srcCompat="@tools:sample/backgrounds/scenic"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/main_guideline"
-        android:contentDescription="@string/background_image" />
-
-    <com.google.android.material.textfield.TextInputEditText
-        android:id="@+id/input"
-        android:layout_width="0dp"
-        android:layout_height="130dp"
-        android:background="@null"
-        android:ems="10"
-        android:fontFamily="@font/poppins"
-        android:gravity="end"
-        android:inputType="text"
-        android:padding="30dp"
-        android:textSize="36sp"
-        app:layout_constraintBottom_toTopOf="@+id/main_guideline"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.288" />
-
-    <TextView
-        android:id="@+id/output"
-        android:layout_width="0dp"
-        android:layout_height="50dp"
-        android:fontFamily="@font/poppins"
-        android:gravity="center_vertical|end"
-
-        android:paddingStart="30dp"
-        android:paddingEnd="30dp"
-        android:textSize="24sp"
-        android:visibility="gone"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/input" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/main_guideline"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.3" />
+        app:layout_constraintGuide_percent="0.4" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/vert_guideline"
@@ -69,24 +22,36 @@
         android:orientation="vertical"
         app:layout_constraintGuide_percent="0.5" />
 
+    <ImageView
+        android:id="@+id/backgroundImage"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:contentDescription="@string/background_image"
+        android:scaleType="centerCrop"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/main_guideline" />
+
+
     <include
-        android:id="@+id/include2"
         layout="@layout/simple_calc_layout"
         android:layout_width="0dp"
         android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/vert_guideline"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/main_guideline" />
+        app:layout_constraintTop_toTopOf="@+id/main_guideline"
+        app:layout_constraintVertical_bias="0.903" />
 
     <include
         layout="@layout/adv_calculator_layout"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        app:layout_constraintBottom_toBottomOf="@+id/include2"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@id/vert_guideline"
-        app:layout_constraintTop_toTopOf="@id/main_guideline" />
+        app:layout_constraintStart_toStartOf="@+id/vert_guideline"
+        app:layout_constraintTop_toTopOf="@+id/main_guideline" />
 
     <androidx.slidingpanelayout.widget.SlidingPaneLayout
         android:id="@+id/slidingPaneLayout"
@@ -96,7 +61,64 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/main_guideline">
+        app:layout_constraintTop_toTopOf="@id/main_guideline">
 
     </androidx.slidingpanelayout.widget.SlidingPaneLayout>
+
+    <com.inator.calculator.views.DraggablePanel
+        android:id="@+id/draggablePanel"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@color/color_background"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toTopOf="@+id/backgroundImage"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <FrameLayout
+            android:id="@+id/historyContainer"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0"
+            app:layout_constraintBottom_toTopOf="@+id/main_guideline"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="1.0">
+
+        </FrameLayout>
+
+        <include
+            android:id="@+id/input_field"
+            layout="@layout/input_field"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:background="#575757" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.1"
+            android:gravity="bottom|center_vertical|center_horizontal|center"
+            app:layout_constraintBottom_toTopOf="@+id/backgroundImage"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent">
+
+            <View
+                android:layout_width="30dp"
+                android:layout_height="5dp"
+                android:layout_gravity="center"
+                android:background="@drawable/circle"
+                android:backgroundTint="@color/blue" />
+        </LinearLayout>
+    </com.inator.calculator.views.DraggablePanel>
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+

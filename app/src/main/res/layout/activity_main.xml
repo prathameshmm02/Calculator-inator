@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activities.MainActivity">
+    tools:context="com.">
 
     <com.google.android.material.appbar.MaterialToolbar
         android:id="@+id/topAppBar"
@@ -29,7 +29,6 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:tabIndicator="@drawable/circle"
-                app:tabIndicatorAnimationMode="linear"
                 app:tabIndicatorFullWidth="false"
                 app:tabIndicatorHeight="5dp">
 
@@ -45,7 +44,7 @@
     </com.google.android.material.appbar.MaterialToolbar>
 
 
-    <com.example.calculator.NonSwipeableViewPager
+    <com.inator.calculator.views.NonSwipeableViewPager
         android:id="@+id/pager"
         android:layout_width="0dp"
         android:layout_height="0dp"

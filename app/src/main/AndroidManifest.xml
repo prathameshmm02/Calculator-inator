@@ -1,19 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.calculator">
+    package="com.calculator.inator">
 
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.INTERNET" />
 
-
     <application
+        android:name="com.inator.calculator.StartUp"
+        android:allowBackup="false"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.Calculator"
-        android:name=".StartUp">
-        <activity android:name=".activities.MainActivity">
+        android:theme="@style/Theme.Calculator">
+
+        <receiver android:name="com.inator.calculator.widget.CalcWidget">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/calc_widget_info" />
+        </receiver>
+
+        <activity
+            android:name="com.inator.calculator.activities.MainActivity"
+            android:theme="@style/splash_screen"
+            android:windowSoftInputMode="stateHidden">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -21,13 +35,14 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".activities.AboutActivity"
-            android:parentActivityName=".activities.SettingsActivity"  android:theme="@style/Theme.Calculator.ActionBar" />
+            android:name="com.inator.calculator.activities.AboutActivity"
+            android:parentActivityName="com.inator.calculator.activities.SettingsActivity"
+            android:theme="@style/Theme.Calculator.ActionBar" />
         <activity
-            android:name=".activities.SettingsActivity"
+            android:name="com.inator.calculator.activities.SettingsActivity"
             android:label="@string/title_activity_settings"
-            android:parentActivityName=".activities.MainActivity" android:theme="@style/Theme.Calculator.ActionBar"/>
-
+            android:parentActivityName="com.inator.calculator.activities.MainActivity"
+            android:theme="@style/Theme.Calculator.ActionBar" />
     </application>
 
 </manifest>

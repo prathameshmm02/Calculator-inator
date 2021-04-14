@@ -56,4 +56,5 @@
     <string name="eRaisedTo">e^</string>
     <string name="square">^2</string>
     <string name="error_text">Not a Number</string>
+    <string name="backspace">⌫</string>
 </resources>

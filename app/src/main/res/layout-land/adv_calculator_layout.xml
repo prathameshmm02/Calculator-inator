@@ -14,7 +14,7 @@
         app:layout_constraintGuide_percent="0.1" />
 
     <Button
-        android:id="@+id/slide_button"
+        android:id="@+id/slideButton"
         style="@style/DefaultButton"
         android:layout_width="0dp"
         android:layout_height="match_parent"
@@ -44,7 +44,7 @@
             android:layout_weight="1">
 
             <Button
-                android:id="@+id/button_inverse"
+                android:id="@+id/inverseButton"
                 style="@style/DefaultButtonLandscape"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
@@ -52,7 +52,7 @@
                 android:text="@string/invert" />
 
             <Button
-                android:id="@+id/button_angle"
+                android:id="@+id/angleButton"
                 style="@style/DefaultButtonLandscape"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
@@ -60,7 +60,7 @@
                 android:text="@string/degree" />
 
             <Button
-                android:id="@+id/button_percent"
+                android:id="@+id/percentButton"
                 style="@style/DefaultButtonLandscape"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
@@ -74,7 +74,7 @@
             android:layout_weight="1">
 
             <Button
-                android:id="@+id/button_sin"
+                android:id="@+id/sinButton"
                 style="@style/DefaultButtonLandscape"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
@@ -82,7 +82,7 @@
                 android:text="@string/sin" />
 
             <Button
-                android:id="@+id/button_cos"
+                android:id="@+id/cosButton"
                 style="@style/DefaultButtonLandscape"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
@@ -90,7 +90,7 @@
                 android:text="@string/cos" />
 
             <Button
-                android:id="@+id/button_tan"
+                android:id="@+id/tanButton"
                 style="@style/DefaultButtonLandscape"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
@@ -104,7 +104,7 @@
             android:layout_weight="1">
 
             <Button
-                android:id="@+id/button_log_natural"
+                android:id="@+id/naturalLogButton"
                 style="@style/DefaultButtonLandscape"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
@@ -112,7 +112,7 @@
                 android:text="@string/natural_log" />
 
             <Button
-                android:id="@+id/button_log_10"
+                android:id="@+id/log10Button"
                 style="@style/DefaultButtonLandscape"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
@@ -120,7 +120,7 @@
                 android:text="@string/log" />
 
             <Button
-                android:id="@+id/button_root"
+                android:id="@+id/rootButton"
                 style="@style/DefaultButtonLandscape"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
@@ -134,7 +134,7 @@
             android:layout_weight="1">
 
             <Button
-                android:id="@+id/button_pi"
+                android:id="@+id/piButton"
                 style="@style/DefaultButtonLandscape"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
@@ -142,7 +142,7 @@
                 android:text="@string/pi" />
 
             <Button
-                android:id="@+id/button_e"
+                android:id="@+id/eulerNumButton"
                 style="@style/DefaultButtonLandscape"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
@@ -150,7 +150,7 @@
                 android:text="@string/euler_num" />
 
             <Button
-                android:id="@+id/button_power"
+                android:id="@+id/powerButton"
                 style="@style/DefaultButtonLandscape"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
@@ -164,7 +164,7 @@
             android:layout_weight="1">
 
             <Button
-                android:id="@+id/button_open_bracket"
+                android:id="@+id/openBracketButton"
                 style="@style/DefaultButtonLandscape"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
@@ -172,7 +172,7 @@
                 android:text="@string/open_bracket" />
 
             <Button
-                android:id="@+id/button_close_bracket"
+                android:id="@+id/closeBracketButton"
                 style="@style/DefaultButtonLandscape"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
@@ -180,7 +180,7 @@
                 android:text="@string/close_bracket" />
 
             <Button
-                android:id="@+id/button_factorial"
+                android:id="@+id/factorialButton"
                 style="@style/DefaultButtonLandscape"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
