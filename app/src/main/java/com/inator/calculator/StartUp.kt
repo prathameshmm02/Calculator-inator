@@ -1,40 +1,24 @@
 package com.inator.calculator
 
 import android.app.Application
-import android.util.Log
-import com.inator.calculator.Model.Currency
-import com.inator.calculator.Model.JsonPlaceholderApi
-import com.inator.calculator.Model.Rates
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
-import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory
+import androidx.appcompat.app.AppCompatDelegate
+import androidx.fragment.app.viewModels
+import androidx.preference.PreferenceManager
+import com.inator.calculator.viewmodel.ExchangeRatesViewModel
 
 class StartUp : Application() {
     override fun onCreate() {
         super.onCreate()
-        val retrofit = Retrofit.Builder()
-            .baseUrl("https://api.exchangerate-api.com/")
-            .addConverterFactory(GsonConverterFactory.create())
-            .build()
-        val jsonPlaceholderApi = retrofit.create(
-            JsonPlaceholderApi::class.java
-        )
-        val call = jsonPlaceholderApi.currency
-        call!!.enqueue(object : Callback<Currency?> {
-            override fun onResponse(call: Call<Currency?>, response: Response<Currency?>) {
-                val currencyData = response.body()
-                Log.i("response", response.toString())
-                assert(currencyData != null)
-                currentRates = currencyData?.rates
+        val preference = PreferenceManager.getDefaultSharedPreferences(this)
+        AppCompatDelegate.setDefaultNightMode(
+
+            when (preference.getString("app_theme", "0")) {
+                "0" -> AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM
+                "1" -> AppCompatDelegate.MODE_NIGHT_NO
+                else -> AppCompatDelegate.MODE_NIGHT_YES
             }
+        )
 
-            override fun onFailure(call: Call<Currency?>, t: Throwable) {}
-        })
-    }
 
-    companion object {
-        var currentRates: Rates? = null
     }
 }

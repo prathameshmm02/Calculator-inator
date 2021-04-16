@@ -1,8 +1,6 @@
 package com.inator.calculator.Data
 
 import com.inator.calculator.Model.Measure
-import com.inator.calculator.Model.Rates
-import com.inator.calculator.StartUp
 
 object ConvertData {
     private lateinit var length: Measure
@@ -12,34 +10,14 @@ object ConvertData {
     private lateinit var data: Measure
     private lateinit var volume: Measure
     private lateinit var time: Measure
-    private lateinit var currency: Measure
     private lateinit var temperature: Measure
     private lateinit var angle: Measure
 
 
-
     fun getLength(): Measure {
         length = Measure("Length")
-        length.units =
-            arrayOf(
-                "Meter",
-                "Kilometre",
-                "Centimeter",
-                "Foot",
-                "Mile",
-                "Inch",
-                "Yard",
-                "Decimeter",
-                "Millimetre",
-                "Micrometre",
-                "Nanometre",
-                " Picometre",
-                "Nautical Mile",
-                "Lunar Distance",
-                "Astronomical Mile",
-                "Light Year"
-            )
-        
+
+
         length.fromMain = doubleArrayOf(
             1.0,
             0.001,
@@ -65,20 +43,8 @@ object ConvertData {
 
     fun getMass(): Measure {
         mass = Measure("Mass")
-        mass.units = arrayOf(
-                "Kilogram",
-                "Gram",
-                "Tonne",
-                "Pound",
-                "Ounce",
-                "Milligram",
-                "Microgram",
-                "US Ton",
-                "Quintal",
-                "Imperial Ton",
-                "Stone"
-            )
-        
+
+
         mass.fromMain =
             doubleArrayOf(
                 1.0,
@@ -93,25 +59,15 @@ object ConvertData {
                 0.000984207,
                 0.157473119999996608
             )
-        
+
         mass.toMain = calculateToMain(mass)
         return mass
     }
 
     fun getArea(): Measure {
         area = Measure("Area")
-        area.units = (
-            arrayOf(
-                "Square Meter",
-                "Square Kilometre",
-                "Acre",
-                "Hectare",
-                "Square Mile",
-                "Square Yard",
-                "Square Foot",
-                "Square Inch"
-            )
-        )
+
+
         area.fromMain =
             doubleArrayOf(
                 1.0,
@@ -129,16 +85,7 @@ object ConvertData {
 
     fun getAngle(): Measure {
         angle = Measure("Angle")
-        angle.units = (
-            arrayOf(
-                "Degrees",
-                "Radians",
-                "Gradian",
-                "Milliradian",
-                "Minute of Arc",
-                "Second of Arc"
-            )
-        )
+
         angle.fromMain = doubleArrayOf(1.0, Math.PI / 180, 1.11111, 17.4533, 60.0, 3600.0)
         angle.toMain = (calculateToMain(angle))
         return angle
@@ -146,48 +93,20 @@ object ConvertData {
 
     fun getSpeed(): Measure {
         speed = Measure("Speed")
-        speed.units = (
-            arrayOf(
-                "Meter per second",
-                "Kilometer per hour",
-                "Miles per hour",
-                "Foot per second",
-                "Knot"
-            )
-        )
-        speed.fromMain = doubleArrayOf(1.0, 3.6, 0.621371, 0.911344, 0.539957)
+
+        speed.fromMain = doubleArrayOf(
+            1.0,
+            3.6,
+            0.621371,
+            0.911344,
+            0.539957)
         speed.toMain = (calculateToMain(speed))
         return speed
     }
 
     fun getData(): Measure {
         data = Measure("Data")
-        data.units = (
-            arrayOf(
-                "Bit",
-                "Kilobit",
-                "Kibibit",
-                "Megabit",
-                "Mebibit",
-                "Gigabit",
-                "Gibibit",
-                "Terabit",
-                "Tebibit",
-                "Petabit",
-                "Pebibit",
-                "Byte",
-                "Kilobyte",
-                "Kibibyte",
-                "Megabyte",
-                "Mebibyte",
-                "Gigabyte",
-                "Gibibyte",
-                "Terabyte",
-                "Tebibyte",
-                "Petabyte",
-                "Pebibyte"
-            )
-        )
+
         data.fromMain =
             doubleArrayOf(
                 8000000.0,
@@ -220,22 +139,7 @@ object ConvertData {
 
     fun getTime(): Measure {
         time = Measure("Time")
-        time.units = (
-            arrayOf(
-                "Nanosecond",
-                "Microsecond",
-                "Millisecond",
-                "Second",
-                "Minute",
-                "Hour",
-                "Day",
-                "Week",
-                "Month",
-                "Calendar Year",
-                "Decade",
-                "Century"
-            )
-        )
+
         time.fromMain =
             doubleArrayOf(
                 1000000000.0,
@@ -257,29 +161,7 @@ object ConvertData {
 
     fun getVolume(): Measure {
         volume = Measure("Volume")
-        volume.units = (
-            arrayOf(
-                "US liquid gallon",
-                "US liquid quart",
-                "US liquid pint",
-                "US legal cup",
-                "fluid ounce",
-                "US tablespoon",
-                "US teaspoon",
-                "Cubic meter",
-                "Liter",
-                "Milliliter",
-                "Imperial gallon",
-                "imp. quart",
-                "Imperial pint",
-                "Imperial cup",
-                "fluid ounce",
-                "Imperial tablespoon",
-                "Imperial teaspoon",
-                "Cubic foot",
-                "Cubic inch"
-            )
-        )
+
         volume.fromMain =
             doubleArrayOf(
                 264.172,
@@ -308,90 +190,11 @@ object ConvertData {
 
     fun getTemperature(): Measure {
         temperature = Measure("Temperature")
-        temperature.units = (arrayOf("Celsius", "Fahrenheit", "Kelvin"))
         temperature.fromMain = doubleArrayOf()
         temperature.toMain = (calculateToMain(temperature))
         return temperature
     }
 
-    fun getCurrency(): Measure {
-        val rates: Rates = StartUp.currentRates!!
-        currency = Measure("Currency")
-        currency.units = (
-            arrayOf(
-                "AUD - Australian Dollar",
-                "BGN - Bulgarian Lev",
-                "BRL - Brazilian Rea",
-                "CAD - Canadian Dollar",
-                "CHF - Swiss Franc",
-                "CNY - Chinese Yuan",
-                "CZK - Czech Koruna",
-                "DKK - Danish Krone",
-                "GBP - British Pound",
-                "HKD - Hong Kong Dollar",
-                "HRK - Croatian Kuna",
-                "HUF - Hungarian Forint",
-                "IDR - Indonesian Rupiah",
-                "ILS - Israeli New Shekel",
-                "INR - Indian Rupee",
-                "ISK - Icelandic Króna",
-                "JPY - Japanese Yen",
-                "KRW - South Korean Won",
-                "MXN - Mexican Peso",
-                "MYR - Malaysian Ringgit",
-                "NOK - Norwegian Krone",
-                "NZD - New Zealand Dollar",
-                "PHP - Philippine Peso",
-                "PLN - Polish Zloty",
-                "RON - Romanian Leu",
-                "RUB - Russian Ruble",
-                "SEK - Swedish Krona",
-                "SGD - Singapore Dollar",
-                "THB - Thai Baht",
-                "TRY - Turkish Lira",
-                "USD - Us Dollar",
-                "ZAR - South African Rand"
-            )
-        )
-        currency.fromMain =
-            doubleArrayOf(
-                rates.AUD,
-                rates.BGN,
-                rates.BRL,
-                rates.CAD,
-                rates.CHF,
-                rates.CNY,
-                rates.CZK,
-                rates.DKK,
-                rates.GBP,
-                rates.HKD,
-                rates.HRK,
-                rates.HUF,
-                rates.IDR,
-                rates.ILS,
-                rates.INR,
-                rates.ISK,
-                rates.JPY,
-                rates.KRW,
-                rates.MXN,
-                rates.MYR,
-                rates.NOK,
-                rates.NZD,
-                rates.PHP,
-                rates.PLN,
-                rates.RON,
-                rates.RUB,
-                rates.SEK,
-                rates.SGD,
-                rates.THB,
-                rates.TRY,
-                rates.USD.toDouble(),
-                rates.ZAR
-            )
-
-        currency.toMain = (calculateToMain(currency))
-        return currency
-    }
 
     private fun calculateToMain(measure: Measure): DoubleArray {
         val toMain = DoubleArray(measure.fromMain.size)

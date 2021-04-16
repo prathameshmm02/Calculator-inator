@@ -7,8 +7,8 @@ import android.content.ComponentName
 import android.content.Context
 import android.content.Intent
 import android.widget.RemoteViews
-import com.calculator.inator.R
 import com.inator.calculator.Model.Calculator
+import com.inator.calculator.R
 
 class CalcWidget : AppWidgetProvider() {
     private val actions = listOf(

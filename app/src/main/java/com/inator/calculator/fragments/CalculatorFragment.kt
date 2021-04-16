@@ -1,7 +1,6 @@
-package com.inator.calculator.fragments
+﻿package com.inator.calculator.fragments
 
 import android.net.Uri
-import android.os.AsyncTask
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
@@ -12,14 +11,15 @@ import android.view.animation.AnimationUtils
 import android.widget.*
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.preference.PreferenceManager
 import androidx.slidingpanelayout.widget.SlidingPaneLayout
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
-import com.calculator.inator.R
-import com.inator.calculator.History.AppDatabase
 import com.inator.calculator.History.History
+import com.inator.calculator.viewmodel.HistoryViewModel
 import com.inator.calculator.Model.Calculator
+import com.inator.calculator.R
 import com.inator.calculator.views.DraggablePanel
 import jp.wasabeef.glide.transformations.BlurTransformation
 import kotlinx.android.synthetic.main.adv_calculator_layout.*
@@ -35,9 +35,6 @@ class CalculatorFragment : Fragment(), View.OnClickListener {
     val operators = listOf('^', '%', '÷', '×', '+', '-')
     private var isInvert = false
     var isDegree = true
-    private var backgroundImage: ImageView? = null
-    var historyContainer: FrameLayout? = null
-    var inputField: ViewGroup? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -214,32 +211,39 @@ class CalculatorFragment : Fragment(), View.OnClickListener {
 
         draggablePanel.setPanelSlideListener(object : DraggablePanel.PanelSlideListener {
             override fun onPanelSlide(view: View, mDragOffset: Float) {
-                historyContainer?.layoutParams = LinearLayout.LayoutParams(
+                historyContainer.layoutParams = LinearLayout.LayoutParams(
                     ViewGroup.LayoutParams.MATCH_PARENT,
                     0,
                     1 * mDragOffset
                 )
-                inputField?.layoutParams = LinearLayout.LayoutParams(
+                inputField.layoutParams = LinearLayout.LayoutParams(
                     ViewGroup.LayoutParams.MATCH_PARENT,
                     0,
                     0.3f + 0.3f * (1 - mDragOffset)
                 )
+
             }
 
             override fun onPanelOpened(view: View) {
-                historyContainer?.layoutParams =
-                    LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, 0, 1F)
-                inputField?.layoutParams =
-                    LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, 0, 0.3f)
-                inputField?.findViewById<View>(R.id.header)?.visibility = View.VISIBLE
+                if (input.text.isNullOrEmpty()) {
+
+                    inputField.layoutParams =
+                        LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, 0, 0f)
+                } else {
+                    header.visibility = View.VISIBLE
+                    inputField.layoutParams =
+                        LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, 0, 0.3f)
+
+                }
             }
 
             override fun onPanelClosed(view: View) {
                 historyContainer?.layoutParams =
                     LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, 0, 0F)
-                view.findViewById<View>(R.id.input_field).layoutParams =
+                view.findViewById<View>(R.id.inputField).layoutParams =
                     LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, 0, 1F)
-                inputField?.findViewById<View>(R.id.header)?.visibility = View.GONE
+                header.visibility = View.GONE
+
             }
         })
     }
@@ -249,9 +253,8 @@ class CalculatorFragment : Fragment(), View.OnClickListener {
         val date = SimpleDateFormat("dd-MM-yy", Locale.getDefault()).format(calendar.time)
         val time = SimpleDateFormat("HH:mm:ss", Locale.getDefault()).format(calendar.time)
         val history = History(expression, answer, date, time)
-        AsyncTask.execute {
-            AppDatabase.getDatabase(requireContext()).historyDao().insert(history)
-        }
+        val viewModel : HistoryViewModel by viewModels()
+        viewModel.insertHistory(history)
     }
 
     override fun onClick(v: View) {

@@ -44,7 +44,6 @@
     <string name="mass">Mass</string>
     <string name="speed">Speed</string>
     <string name="angle">Angle</string>
-    <string name="currency">Currency</string>
     <string name="data">Data</string>
     <string name="volume">Volume</string>
     <string name="time">Time</string>
@@ -57,4 +56,20 @@
     <string name="square">^2</string>
     <string name="error_text">Not a Number</string>
     <string name="backspace">⌫</string>
+    <string name="calculator">Calculator</string>
+    <string name="converter">Converter</string>
+    <string name="currency">Currency</string>
+    <string name="title_current_input">Current Input</string>
+    <string-array name="units">
+        <item>Length</item>
+        <item>Area</item>
+        <item>Mass</item>
+        <item>Speed</item>
+        <item>Data</item>
+        <item>Volume</item>
+        <item>Time</item>
+        <item>Temperature</item>
+        <item>Angle</item>
+    </string-array>
+    
 </resources>

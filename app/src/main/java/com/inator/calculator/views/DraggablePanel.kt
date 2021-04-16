@@ -3,7 +3,6 @@ package com.inator.calculator.views
 import android.animation.ValueAnimator
 import android.content.Context
 import android.util.AttributeSet
-import android.util.Log
 import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
@@ -33,14 +32,10 @@ class DraggablePanel(context: Context?, attrs: AttributeSet?) : LinearLayout(con
         if (originalHeight == -1) {
             originalHeight = measuredHeight
             diffHeight = fullHeight - originalHeight
-            Log.i("Heights", originalHeight.toString())
-            Log.i("Heights", diffHeight.toString())
         }
         if (fullHeight == -1) {
             fullHeight = (parent as ViewGroup).height
             diffHeight = fullHeight - originalHeight
-            Log.i("Heights", fullHeight.toString())
-            Log.i("Heights", diffHeight.toString())
         }
         super.onLayout(changed, l, t, r, b)
     }
@@ -95,7 +90,7 @@ class DraggablePanel(context: Context?, attrs: AttributeSet?) : LinearLayout(con
                 (height - originalHeight).toFloat() / (fullHeight - originalHeight).toFloat()
             dispatchOnPanelSlide(this)
         }
-        performClick()
+        this.performClick()
         return true
     }
 

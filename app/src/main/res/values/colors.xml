@@ -13,4 +13,5 @@
     <color name="light_blue_600">#FF039BE5</color>
     <color name="light_blue_900">#FF01579B</color>
     <color name="color_background">#FFFFFFFF</color>
+    <color name="color_background_variant">#E6E6E6</color>
 </resources>

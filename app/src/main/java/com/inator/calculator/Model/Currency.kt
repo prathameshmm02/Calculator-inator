@@ -1,22 +1,16 @@
 package com.inator.calculator.Model
 
-import android.content.Context
+import com.google.gson.annotations.SerializedName
+import java.util.*
 
-class Currency {
-    var base: String? = null
-    var date: String? = null
-    var rates: Rates? = null
-    var time_last_updated = 0
-    private var context: Context? = null
 
-    constructor(base: String?, date: String?, rates: Rates?, time_last_updated: Int) {
-        this.base = base
-        this.date = date
-        this.rates = rates
-        this.time_last_updated = time_last_updated
-    }
-
-    constructor(context: Context?) {
-        this.context = context
-    }
-}
+data class Currency(
+    @SerializedName("success")
+    val success: Boolean?,
+    @SerializedName("base")
+    val base: String?,
+    @SerializedName("date")
+    val date: Date?,
+    @SerializedName("rates")
+    val rates: List<Rate>?
+)

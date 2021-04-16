@@ -34,11 +34,20 @@
 
                 <com.google.android.material.tabs.TabItem
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent" />
+                    android:layout_height="match_parent"
+                    android:icon="@drawable/ic_filled_calculate" />
 
                 <com.google.android.material.tabs.TabItem
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent" />
+                    android:layout_height="match_parent"
+
+                    android:icon="@drawable/ic_outline_converter" />
+
+                <com.google.android.material.tabs.TabItem
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+
+                    android:icon="@drawable/ic_outline_currency" />
             </com.google.android.material.tabs.TabLayout>
         </androidx.constraintlayout.widget.ConstraintLayout>
     </com.google.android.material.appbar.MaterialToolbar>

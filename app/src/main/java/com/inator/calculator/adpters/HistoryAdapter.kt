@@ -5,11 +5,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.RecyclerView
-import com.calculator.inator.R
 import com.inator.calculator.History.History
-import com.inator.calculator.fragments.CalculatorFragment
+import com.inator.calculator.R
 import java.util.*
 
 class HistoryAdapter(private val context: Context, private val historyItems: ArrayList<History>) :
@@ -27,6 +25,12 @@ class HistoryAdapter(private val context: Context, private val historyItems: Arr
 
     override fun getItemCount(): Int {
         return historyItems.size
+    }
+
+    fun updateList(list: List<History>) {
+        historyItems.clear()
+        historyItems.addAll(list)
+        notifyDataSetChanged()
     }
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView),

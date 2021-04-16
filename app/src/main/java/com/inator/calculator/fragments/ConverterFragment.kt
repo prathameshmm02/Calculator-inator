@@ -1,5 +1,6 @@
 package com.inator.calculator.fragments
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
@@ -9,19 +10,18 @@ import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.AdapterView.OnItemSelectedListener
 import android.widget.ArrayAdapter
-import android.widget.Toast
 import androidx.fragment.app.Fragment
-import com.calculator.inator.R
 import com.google.android.material.chip.ChipGroup
 import com.inator.calculator.Data.ConvertData
 import com.inator.calculator.Model.Measure
+import com.inator.calculator.R
 import kotlinx.android.synthetic.main.fragment_converter.*
 
 class ConverterFragment : Fragment(), OnItemSelectedListener {
     lateinit var textWatcher1: TextWatcher
     lateinit var textWatcher2: TextWatcher
-    private var unitAdapter: ArrayAdapter<String?>? = null
-    var currentMeasure: Measure? = ConvertData.getLength()
+    var currentMeasure: Measure = ConvertData.getLength()
+    var measureConversion = R.array.length_rates
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -45,6 +45,7 @@ class ConverterFragment : Fragment(), OnItemSelectedListener {
             when (checkedId) {
                 R.id.length -> {
                     currentMeasure = ConvertData.getLength()
+
                 }
                 R.id.mass -> {
                     currentMeasure = ConvertData.getMass()
@@ -70,17 +71,6 @@ class ConverterFragment : Fragment(), OnItemSelectedListener {
                 R.id.temperature -> {
                     currentMeasure = ConvertData.getTemperature()
                 }
-                R.id.currency -> {
-                    try {
-                        currentMeasure = ConvertData.getCurrency()
-                    } catch (e: NullPointerException) {
-                        Toast.makeText(
-                            requireContext(),
-                            "Failed to get Currency Rates! Please check your Internet Connection ;(",
-                            Toast.LENGTH_LONG
-                        ).show()
-                    }
-                }
             }
             setUpSpinnerAdapter()
             textWatcher1.afterTextChanged(editText1.text)
@@ -101,7 +91,7 @@ class ConverterFragment : Fragment(), OnItemSelectedListener {
                 val input = s.toString().toDouble()
                 val selectedOne = unit1.selectedItemPosition
                 val selectedTwo = unit2.selectedItemPosition
-                if (currentMeasure?.name == "Temperature") {
+                if (currentMeasure.name == "Temperature") {
                     toMain = when {
                         unit1.selectedItem.toString() == "Celsius" -> {
                             input
@@ -125,8 +115,8 @@ class ConverterFragment : Fragment(), OnItemSelectedListener {
                         }
                     }
                 } else {
-                    toMain = input * currentMeasure!!.toMain[selectedOne]
-                    fromMain = toMain * currentMeasure!!.fromMain[selectedTwo]
+                    toMain = input * currentMeasure.toMain[selectedOne]
+                    fromMain = toMain * currentMeasure.fromMain[selectedTwo]
                 }
                 editText2.removeTextChangedListener(textWatcher2)
                 val result = fromMain.toString()
@@ -153,7 +143,7 @@ class ConverterFragment : Fragment(), OnItemSelectedListener {
                 val input = s.toString().toDouble()
                 val selectedOne = unit1.selectedItemPosition
                 val selectedTwo = unit2.selectedItemPosition
-                if (currentMeasure?.name == "Temperature") {
+                if (currentMeasure.name == "Temperature") {
                     toMain = when {
                         unit2.selectedItem.toString() == "Celsius" -> {
                             input
@@ -177,8 +167,8 @@ class ConverterFragment : Fragment(), OnItemSelectedListener {
                         }
                     }
                 } else {
-                    toMain = input * currentMeasure!!.toMain[selectedTwo]
-                    fromMain = toMain * currentMeasure!!.fromMain[selectedOne]
+                    toMain = input * currentMeasure.toMain[selectedTwo]
+                    fromMain = toMain * currentMeasure.fromMain[selectedOne]
                 }
                 editText1.removeTextChangedListener(textWatcher1)
                 val result = fromMain.toString()
@@ -196,18 +186,48 @@ class ConverterFragment : Fragment(), OnItemSelectedListener {
         unit2.onItemSelectedListener = this
     }
 
+    @SuppressLint("ResourceType")
     private fun setUpSpinnerAdapter() {
-        unitAdapter =
-            context?.let { ArrayAdapter(it, android.R.layout.simple_spinner_item, currentMeasure!!.units) }
-        unitAdapter!!.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-        unit1.adapter = unitAdapter
-        unit2.adapter = unitAdapter
-        unit2.setSelection(1)
-    }
+
+        context?.let {
+            ArrayAdapter.createFromResource(
+                it,
+                getUnitArray(),
+                android.R.layout.simple_spinner_item
+            ).also { unitAdapter ->
+                    unitAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+                    unit1.adapter = unitAdapter
+                    unit2.adapter = unitAdapter
+                    unit2.setSelection(1)
+                }
+            }
+        }
+
 
     override fun onItemSelected(parent: AdapterView<*>?, view: View, position: Int, id: Long) {
         textWatcher1.afterTextChanged(editText1.text)
     }
 
     override fun onNothingSelected(parent: AdapterView<*>?) {}
+
+    private fun getUnitArray(): Int {
+        return when (currentMeasure.name) {
+            "Length" -> R.array.length_units
+            "Area" -> R.array.area_units
+            "Mass" -> R.array.mass_units
+            "Speed" -> R.array.speed_units
+            "Data" -> R.array.storage_units
+            "Volume" -> R.array.volume_units
+            "Time" -> R.array.time_units
+            "Temperature" -> R.array.temperature_units
+            "Angle" -> R.array.angle_units
+
+            else -> R.array.length_units
+        }
+    }
+
+//    private fun getUnitConversions(): Double{
+//
+//    }
+
 }

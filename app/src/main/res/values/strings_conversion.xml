@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="length_rates">
+        <item>1.0</item>
+        <item>0.001</item>
+        <item>100.0</item>
+        <item>3.28084</item>
+        <item>0.000621371</item>
+        <item>39.3701</item>
+        <item>1.09361</item>
+        <item>10.0</item>
+        <item>1000.0</item>
+        <item>1000000.0</item>
+        <item>1000000000.0</item>
+        <item>1000000000000.0</item>
+        <item>0.000539957</item>
+        <item>0.00000000260201912116327</item>
+        <item>0.00000000000668458712</item>
+        <item>0.00000000000000010570008340246155</item>
+    </string-array>
+
+    <string-array name="mass_rates">
+        <item>1.0</item>
+        <item>1000.0</item>
+        <item>0.001</item>
+        <item>2.20462</item>
+        <item>35.274</item>
+        <item>1000000.0</item>
+        <item>1000000000.0</item>
+        <item>0.00110231</item>
+        <item>0.01</item>
+        <item>0.000984207</item>
+        <item>0.157473119999996608</item>
+    </string-array>
+
+    <string-array name="area_rates">
+        <item>1.0</item>
+        <item>0.000001</item>
+        <item>0.000247105</item>
+        <item>0.0001</item>
+        <item>0.000000386102</item>
+        <item>1.19599</item>
+        <item>1550.0</item>
+        <item>10.7639</item>
+    </string-array>
+
+    <string-array name="angle_rates">
+        <item>1.0</item>
+        <item>0.01745329252</item>
+        <item>1.11111</item>
+        <item>17.4533</item>
+        <item>60.0</item>
+        <item>3600.0</item>
+    </string-array>
+
+    <string-array name="speed_rates">
+        <item>1.0</item>
+        <item>3.6</item>
+        <item>0.621371</item>
+        <item>0.911344</item>
+        <item>0.539957</item>
+    </string-array>
+
+    <string-array name="storage_rates">
+        <item>8000000.0</item>
+        <item>8000.0</item>
+        <item>7812.5</item>
+        <item>8.0</item>
+        <item>7.62939</item>
+        <item>0.008</item>
+        <item>0.007462686567</item>
+        <item>0.000008</item>
+        <item>0.000007275955151</item>
+        <item>0.000000008</item>
+        <item>710.542735736512614</item>
+        <item>1000000.0</item>
+        <item>1000.0</item>
+        <item>976.563</item>
+        <item>1.0</item>
+        <item>0.953674</item>
+        <item>0.001</item>
+        <item>0.000931323</item>
+        <item>0.000001</item>
+        <item>0.000000909495</item>
+        <item>0.000000001</item>
+        <item>0.00000000088817842</item>
+    </string-array>
+
+    <string-array name="time_rates">
+        <item>1000000000.0</item>
+        <item>1000000.0</item>
+        <item>1000.0</item>
+        <item>0.01666666666666667</item>
+        <item>0.00027777777777778</item>
+        <item>0.00001157407407407</item>
+        <item>0.00000165343915344</item>
+        <item>2840.54483227963585</item>
+        <item>0.00000031709791984</item>
+        <item>0.00000003170979198</item>
+        <item>0.00000000317097920</item>
+    </string-array>
+
+    <string-array name="volume_rates">
+        <item>264.172</item>
+        <item>1056.69</item>
+        <item>4166.666667</item>
+        <item>33814.0</item>
+        <item>67628.0</item>
+        <item>202884.0</item>
+        <item>1.0</item>
+        <item>1000.0</item>
+        <item>1000000.0</item>
+        <item>219.969</item>
+        <item>879.877</item>
+        <item>1759.75</item>
+        <item>3519.51</item>
+        <item>35195.1</item>
+        <item>56312.1</item>
+        <item>168936.0</item>
+        <item>35.3147</item>
+        <item>61023.7</item>
+    </string-array>
+
+</resources>

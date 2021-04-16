@@ -8,7 +8,7 @@ android {
     buildToolsVersion "30.0.3"
 
     defaultConfig {
-        applicationId "com.calculator.inator"
+        applicationId "com.inator.calculator"
         minSdkVersion 21
         targetSdkVersion 30
         versionCode 2
@@ -49,6 +49,7 @@ dependencies {
     // Room components
     implementation "androidx.room:room-ktx:$rootProject.roomVersion"
     implementation 'androidx.slidingpanelayout:slidingpanelayout:1.1.0'
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     kapt "androidx.room:room-compiler:$rootProject.roomVersion"
     androidTestImplementation "androidx.room:room-testing:$rootProject.roomVersion"
 

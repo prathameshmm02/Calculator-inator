@@ -57,7 +57,8 @@
         app:layout_constraintBottom_toTopOf="@+id/backgroundImage"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        >
 
         <FrameLayout
             android:id="@+id/historyContainer"
@@ -74,12 +75,11 @@
         </FrameLayout>
 
         <include
-            android:id="@+id/input_field"
+            android:id="@+id/inputField"
             layout="@layout/input_field"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="1"
-            android:background="#575757" />
+            android:layout_weight="1" />
 
         <LinearLayout
             android:layout_width="match_parent"

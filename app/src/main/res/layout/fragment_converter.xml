@@ -51,14 +51,6 @@
                 android:textAlignment="center" />
 
             <com.google.android.material.chip.Chip
-                android:id="@+id/currency"
-                style="@style/Widget.MaterialComponents.Chip.Choice"
-                android:layout_width="100dp"
-                android:layout_height="50dp"
-                android:text="@string/currency"
-                android:textAlignment="center" />
-
-            <com.google.android.material.chip.Chip
                 android:id="@+id/speed"
                 style="@style/Widget.MaterialComponents.Chip.Choice"
                 android:layout_width="100dp"
