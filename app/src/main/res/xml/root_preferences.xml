@@ -8,39 +8,16 @@
             android:key="app_theme"
             android:summary="%s"
             android:title="Theme"
-            app:useSimpleSummaryProvider="true"
-            app:defaultValue="0"/>
+            app:defaultValue="0"
+            app:useSimpleSummaryProvider="true" />
     </PreferenceCategory>
-    <PreferenceCategory android:title="@string/customize">
-        <SwitchPreference
-            android:key="customBG"
-            android:title="Set Custom Background" />
-        <Preference
-            android:dependency="customBG"
-            android:key="background"
-            android:title="@string/background">
+    <PreferenceCategory android:title="About">
+
+        <Preference android:title="Currency API Used">
             <intent
-                android:action="android.intent.action.PICK"
-                android:mimeType="image/*" />
+                android:action="android.intent.action.VIEW"
+                android:data="https://exchangerate.host/" />
         </Preference>
-
-        <SeekBarPreference
-            android:dependency="customBG"
-            android:key="blur"
-            android:max="20"
-            android:title="Blur Background"
-            app:min="0" />
     </PreferenceCategory>
-
-    <Preference
-        android:key="about"
-        android:title="About" />
-
-    <Preference android:title="Currency API Used">
-        <intent
-            android:action="android.intent.action.VIEW"
-            android:data="https://exchangeratesapi.io/" />
-    </Preference>
-
 
 </PreferenceScreen>

@@ -8,8 +8,7 @@
         android:id="@+id/historyRecyclerView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_gravity="bottom"
-        android:foregroundGravity="bottom">
+        android:layout_marginBottom="30dp">
 
     </androidx.recyclerview.widget.RecyclerView>
 

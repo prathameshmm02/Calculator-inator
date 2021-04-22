@@ -60,6 +60,9 @@
     <string name="converter">Converter</string>
     <string name="currency">Currency</string>
     <string name="title_current_input">Current Input</string>
+    <string name="flag_image">Flag Image</string>
+    <string name="interchange">Interchange</string>
+    <string name="refresh">Refresh</string>
     <string-array name="units">
         <item>Length</item>
         <item>Area</item>
@@ -71,5 +74,5 @@
         <item>Temperature</item>
         <item>Angle</item>
     </string-array>
-    
+
 </resources>

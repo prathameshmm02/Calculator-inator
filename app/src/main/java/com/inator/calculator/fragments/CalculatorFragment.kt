@@ -1,40 +1,38 @@
 ﻿package com.inator.calculator.fragments
 
-import android.net.Uri
+import android.animation.ValueAnimator
 import android.os.Bundle
-import android.text.Editable
-import android.text.TextWatcher
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.animation.AnimationUtils
+import android.view.animation.DecelerateInterpolator
 import android.widget.*
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.preference.PreferenceManager
 import androidx.slidingpanelayout.widget.SlidingPaneLayout
-import com.bumptech.glide.Glide
-import com.bumptech.glide.request.RequestOptions
-import com.inator.calculator.History.History
-import com.inator.calculator.viewmodel.HistoryViewModel
-import com.inator.calculator.Model.Calculator
 import com.inator.calculator.R
+import com.inator.calculator.repository.CalculatorOld
+import com.inator.calculator.viewmodel.CalculatorInputViewModel
+import com.inator.calculator.viewmodel.HistoryViewModel
 import com.inator.calculator.views.DraggablePanel
-import jp.wasabeef.glide.transformations.BlurTransformation
-import kotlinx.android.synthetic.main.adv_calculator_layout.*
 import kotlinx.android.synthetic.main.fragment_calculator.*
-import kotlinx.android.synthetic.main.input_field.*
-import kotlinx.android.synthetic.main.simple_calc_layout.*
-import java.math.BigDecimal
-import java.text.SimpleDateFormat
+import kotlinx.android.synthetic.main.fragment_history.*
+import kotlinx.android.synthetic.main.layout_adv_calculator.*
+import kotlinx.android.synthetic.main.layout_app_bar_history.*
+import kotlinx.android.synthetic.main.layout_input_field.*
+import kotlinx.android.synthetic.main.layout_simple_calc.*
 import java.util.*
+
 
 class CalculatorFragment : Fragment(), View.OnClickListener {
 
-    val operators = listOf('^', '%', '÷', '×', '+', '-')
-    private var isInvert = false
-    var isDegree = true
+
+    private val historyViewModel: HistoryViewModel by viewModels()
+    private val calcViewModel: CalculatorInputViewModel by viewModels()
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -51,17 +49,61 @@ class CalculatorFragment : Fragment(), View.OnClickListener {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         setUpViews()
         addListeners()
+        addObservers()
         super.onViewCreated(view, savedInstanceState)
     }
 
+    private fun addObservers() {
+        historyViewModel.clickedHistory.observe(viewLifecycleOwner, {
+            draggablePanel.smoothPanelClose(200)
+            input.setText(it.expr)
+            output.text = it.answer
+        })
+        calcViewModel.inputLiveData.observe(viewLifecycleOwner, {
+            input.setText(it)
+            Log.i(input.selectionStart.toString(), input.selectionEnd.toString())
+            calcViewModel.calculateOutput()
+        })
+        calcViewModel.outputLiveData.observe(viewLifecycleOwner, {
+            output.text = it
+        })
+        calcViewModel.cursorLiveData.observe(viewLifecycleOwner, {
+            input.setSelection(it)
+        })
+        calcViewModel.isDegreeLiveData.observe(viewLifecycleOwner, {
+            if (it) angleButton.text =
+                resources.getString(R.string.radian) else angleButton.text =
+                resources.getString(R.string.degree)
+        })
+        calcViewModel.isInverseLiveData.observe(viewLifecycleOwner, {
+            if (it) {
+                val color = ContextCompat.getColor(requireContext(), R.color.grey)
+                inverseButton.setBackgroundColor(color)
+                sinButton.setText(R.string.asin)
+                cosButton.setText(R.string.acos)
+                tanButton.setText(R.string.atan)
+                rootButton.setText(R.string.square)
+                naturalLogButton.setText(R.string.eRaisedTo)
+                log10Button.setText(R.string.tenRaisedTo)
+            } else {
+                val color = ContextCompat.getColor(requireContext(), android.R.color.transparent)
+                inverseButton.setBackgroundColor(color)
+                sinButton.setText(R.string.sin)
+                cosButton.setText(R.string.cos)
+                tanButton.setText(R.string.tan)
+                rootButton.setText(R.string.root)
+                naturalLogButton.setText(R.string.natural_log)
+                log10Button.setText(R.string.log)
+            }
+        })
+
+    }
+
+
     private fun setUpViews() {
-        // This was the most boring part of my life ;)
-        setBackground()
         slidingPaneLayout.openPane()
-        context?.let {
-            val color = ContextCompat.getColor(it, android.R.color.transparent)
-            slidingPaneLayout.sliderFadeColor = color
-        }
+        val color = ContextCompat.getColor(requireContext(), android.R.color.transparent)
+        slidingPaneLayout.sliderFadeColor = color
 
         // Don't show keyboard on focus/click
         input.showSoftInputOnFocus = false
@@ -69,119 +111,136 @@ class CalculatorFragment : Fragment(), View.OnClickListener {
     }
 
     private fun addListeners() {
-        // Adding OnClick Listener
-        button0.setOnClickListener(this)
-        button1.setOnClickListener(this)
-        button2.setOnClickListener(this)
-        button3.setOnClickListener(this)
-        button4.setOnClickListener(this)
-        button5.setOnClickListener(this)
-        button6.setOnClickListener(this)
-        button7.setOnClickListener(this)
-        button8.setOnClickListener(this)
-        button9.setOnClickListener(this)
-        addButton.setOnClickListener(this)
-        subButton.setOnClickListener(this)
-        multButton.setOnClickListener(this)
-        divideButton.setOnClickListener(this)
-        decimalButton.setOnClickListener(this)
-        percentButton.setOnClickListener(this)
-        sinButton.setOnClickListener(this)
-        cosButton.setOnClickListener(this)
-        tanButton.setOnClickListener(this)
-        naturalLogButton.setOnClickListener(this)
-        log10Button.setOnClickListener(this)
-        rootButton.setOnClickListener(this)
-        piButton.setOnClickListener(this)
-        eulerNumButton.setOnClickListener(this)
-        powerButton.setOnClickListener(this)
-        openBracketButton.setOnClickListener(this)
-        closeBracketButton.setOnClickListener(this)
-        factorialButton.setOnClickListener(this)
-        inverseButton.setOnClickListener {
-            isInvert = !isInvert
-            if (isInvert) {
-                context?.let {
-                    val color = ContextCompat.getColor(it, android.R.color.transparent)
-                    inverseButton.setBackgroundColor(color)
-                }
+        // Adding OnClick Listener+
+        //Handling Numbers
+        button0.setOnClickListener {
+            calcViewModel.numClicked('0')
+        }
+        button1.setOnClickListener {
+            calcViewModel.numClicked('1')
+        }
+        button2.setOnClickListener {
+            calcViewModel.numClicked('2')
+        }
+        button3.setOnClickListener {
+            calcViewModel.numClicked('3')
+        }
+        button4.setOnClickListener {
+            calcViewModel.numClicked('4')
+        }
+        button5.setOnClickListener {
+            calcViewModel.numClicked('5')
+        }
+        button6.setOnClickListener {
+            calcViewModel.numClicked('6')
+        }
+        button7.setOnClickListener {
+            calcViewModel.numClicked('7')
+        }
+        button8.setOnClickListener {
+            calcViewModel.numClicked('8')
+        }
+        button9.setOnClickListener {
+            calcViewModel.numClicked('9')
+        }
+        //They are numbers after all
+        piButton.setOnClickListener {
+            calcViewModel.numClicked('π')
+        }
+        eulerNumButton.setOnClickListener {
+            calcViewModel.numClicked('e')
+        }
 
-                sinButton.setText(R.string.sin)
-                cosButton.setText(R.string.cos)
-                tanButton.setText(R.string.tan)
-                rootButton.setText(R.string.root)
-                naturalLogButton.setText(R.string.natural_log)
-                log10Button.setText(R.string.log)
-            } else {
-                sinButton.setText(R.string.asin)
-                cosButton.setText(R.string.acos)
-                tanButton.setText(R.string.atan)
-                rootButton.setText(R.string.square)
-                naturalLogButton.setText(R.string.eRaisedTo)
-                log10Button.setText(R.string.tenRaisedTo)
-                context?.let {
-                    val color = ContextCompat.getColor(it, R.color.grey)
-                    inverseButton.setBackgroundColor(color)
-                }
-            }
+
+        //Handling Operations
+        addButton.setOnClickListener {
+            calcViewModel.operClicked('+')
+        }
+
+        subButton.setOnClickListener {
+            calcViewModel.operClicked('-')
+        }
+        multButton.setOnClickListener {
+            calcViewModel.operClicked('×')
+        }
+        divideButton.setOnClickListener {
+            calcViewModel.operClicked('÷')
+        }
+        percentButton.setOnClickListener {
+            calcViewModel.operClicked('%')
+        }
+        powerButton.setOnClickListener {
+            calcViewModel.operClicked('^')
+        }
+
+        //Handling Decimal
+        decimalButton.setOnClickListener {
+            calcViewModel.decimalClicked()
+        }
+
+        //Handling Functions
+        sinButton.setOnClickListener {
+            calcViewModel.funClicked((it as Button).text)
+        }
+        cosButton.setOnClickListener {
+            calcViewModel.funClicked((it as Button).text)
+        }
+        tanButton.setOnClickListener {
+            calcViewModel.funClicked((it as Button).text)
+        }
+        naturalLogButton.setOnClickListener {
+            calcViewModel.funClicked((it as Button).text)
+        }
+        log10Button.setOnClickListener {
+            calcViewModel.funClicked((it as Button).text)
+        }
+        rootButton.setOnClickListener {
+            calcViewModel.otherClicked(
+                (it as Button).text
+            )
+        }
+
+        openBracketButton.setOnClickListener {
+            calcViewModel.otherClicked('(')
+        }
+        closeBracketButton.setOnClickListener {
+            calcViewModel.otherClicked(')')
+        }
+        factorialButton.setOnClickListener {
+            calcViewModel.otherClicked('!')
+        }
+        inverseButton.setOnClickListener {
+            calcViewModel.inverseClicked()
         }
         angleButton.setOnClickListener {
-            if (isDegree) angleButton.text =
-                resources.getString(R.string.radian) else angleButton.text =
-                resources.getString(R.string.degree)
-            isDegree = !isDegree
+            calcViewModel.angleClicked()
         }
         equalButton.setOnClickListener {
-            val expr = input.text.toString()
-            var result = BigDecimal.ZERO
-            try {
-                if (operators.contains(expr[expr.length - 1])) {
-                    return@setOnClickListener
-                }
-                if (expr.isNotEmpty()) {
-                    val calc = Calculator()
-                    result = calc.eval(expr, isDegree)
-                    input.setText(result.stripTrailingZeros().toPlainString())
-                    input.setSelection(input.text.toString().length)
-                }
-                output.text = ""
-                input.text?.length?.let { it1 -> input.setSelection(it1) }
-            } catch (e: Exception) {
-                input.setText(R.string.error_text)
-            }
-            saveToHistory(expr, result.toPlainString())
+            calcViewModel.equalClicked()
         }
         clearButton.setOnClickListener {
             val position = input.selectionStart
             if (!(input.text.toString().isEmpty() || input.selectionStart == 0)) {
                 input.text?.delete(position - 1, position)
             }
+            calcViewModel.backspaceClicked(input.selectionStart, input.selectionEnd)
+            Log.i(input.selectionStart.toString(), input.selectionEnd.toString())
         }
+
         clearButton.setOnLongClickListener {
-            input.setText("")
-            output.text = ""
-            true
+            calcViewModel.clearAll()
+            return@setOnLongClickListener true
         }
-        input.addTextChangedListener(object : TextWatcher {
-            override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {}
-            override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {}
-            override fun afterTextChanged(s: Editable) {
-                val expr = s.toString()
-                try {
-                    if (expr.isEmpty()) {
-                        output.text = ""
-                    } else if (!operators.contains(expr[expr.length - 1])) {
-                        val calc = Calculator()
-                        val result = calc.eval(expr, isDegree)
-                        output.text = result.stripTrailingZeros().toPlainString()
-                    }
-                } catch (e: Exception) {
-                    output.text = ""
-                }
-            }
-        })
 
+        input.setOnClickListener {
+            calcViewModel.setCursor(input.selectionStart)
+        }
+        input.setOnLongClickListener {
 
+            calcViewModel.setCursor(input.selectionStart)
+            return@setOnLongClickListener false
+        }
+        /*     ***     Visual Stuff     ***     */
         slideButton.setOnClickListener {
             if (slidingPaneLayout.isOpen) {
                 slidingPaneLayout.closePane()
@@ -216,46 +275,84 @@ class CalculatorFragment : Fragment(), View.OnClickListener {
                     0,
                     1 * mDragOffset
                 )
-                inputField.layoutParams = LinearLayout.LayoutParams(
-                    ViewGroup.LayoutParams.MATCH_PARENT,
-                    0,
-                    0.3f + 0.3f * (1 - mDragOffset)
-                )
-
-            }
-
-            override fun onPanelOpened(view: View) {
                 if (input.text.isNullOrEmpty()) {
-
-                    inputField.layoutParams =
-                        LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, 0, 0f)
+                    inputField.layoutParams = LinearLayout.LayoutParams(
+                        ViewGroup.LayoutParams.MATCH_PARENT,
+                        0,
+                        0f + 0.3f * (1 - mDragOffset)
+                    )
                 } else {
-                    header.visibility = View.VISIBLE
-                    inputField.layoutParams =
-                        LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, 0, 0.3f)
-
+                    inputField.layoutParams = LinearLayout.LayoutParams(
+                        ViewGroup.LayoutParams.MATCH_PARENT,
+                        0,
+                        0.3f + 0.3f * (1 - mDragOffset)
+                    )
                 }
             }
 
-            override fun onPanelClosed(view: View) {
-                historyContainer?.layoutParams =
-                    LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, 0, 0F)
-                view.findViewById<View>(R.id.inputField).layoutParams =
-                    LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, 0, 1F)
-                header.visibility = View.GONE
+            override fun onPanelOpened(view: View) {
+                val currentWeight = (inputField.layoutParams as LinearLayout.LayoutParams).weight
 
+
+                val animator: ValueAnimator
+                if (input.text.isNullOrEmpty()) {
+                    animator = ValueAnimator.ofFloat(currentWeight, 0.0f)
+                } else {
+                    animator = ValueAnimator.ofFloat(currentWeight, 0.3f)
+                    header.visibility = View.VISIBLE
+                }
+                animator.addUpdateListener {
+                    inputField.layoutParams =
+                        LinearLayout.LayoutParams(
+                            ViewGroup.LayoutParams.MATCH_PARENT,
+                            0,
+                            it.animatedValue as Float
+                        )
+                }
+                animator.duration = 300
+                animator.interpolator = DecelerateInterpolator()
+                animator.start()
+                historyViewModel.setHistoryOpen(true)
+            }
+
+            override fun onPanelClosed(view: View) {
+                val currentWeightInput =
+                    (inputField.layoutParams as LinearLayout.LayoutParams).weight
+                val currentWeightHistory =
+                    (historyContainer.layoutParams as LinearLayout.LayoutParams).weight
+
+                val inputAnimator = ValueAnimator.ofFloat(currentWeightInput, 1.0f)
+                val historyAnimator = ValueAnimator.ofFloat(currentWeightHistory, 0.0f)
+                inputAnimator.addUpdateListener {
+                    inputField.layoutParams =
+                        LinearLayout.LayoutParams(
+                            ViewGroup.LayoutParams.MATCH_PARENT,
+                            0,
+                            it.animatedValue as Float
+                        )
+
+                }
+                historyAnimator.addUpdateListener {
+                    historyContainer.layoutParams =
+                        LinearLayout.LayoutParams(
+                            ViewGroup.LayoutParams.MATCH_PARENT,
+                            0,
+                            it.animatedValue as Float
+                        )
+
+                }
+                inputAnimator.duration = 300
+                historyAnimator.duration = 300
+                inputAnimator.interpolator = DecelerateInterpolator()
+                historyAnimator.interpolator = DecelerateInterpolator()
+                inputAnimator.start()
+                historyAnimator.start()
+                header.visibility = View.GONE
+                historyViewModel.setHistoryOpen(false)
             }
         })
     }
 
-    private fun saveToHistory(expression: String, answer: String) {
-        val calendar = Calendar.getInstance()
-        val date = SimpleDateFormat("dd-MM-yy", Locale.getDefault()).format(calendar.time)
-        val time = SimpleDateFormat("HH:mm:ss", Locale.getDefault()).format(calendar.time)
-        val history = History(expression, answer, date, time)
-        val viewModel : HistoryViewModel by viewModels()
-        viewModel.insertHistory(history)
-    }
 
     override fun onClick(v: View) {
         if (input.text.toString() == "Not a Number") {
@@ -265,7 +362,7 @@ class CalculatorFragment : Fragment(), View.OnClickListener {
         val currentPosition = input.selectionStart
         val oldInput = input.text.toString()
         val validateInput: BooleanArray =
-            Calculator.validateInput(currentPosition, buttonText, oldInput)
+            CalculatorOld.validateInput(currentPosition, buttonText, oldInput)
         if (validateInput[0] && validateInput[1]) {
             val buttonText2 = "$buttonText()"
             val output = oldInput.substring(0, currentPosition) + buttonText2 + oldInput.substring(
@@ -279,38 +376,12 @@ class CalculatorFragment : Fragment(), View.OnClickListener {
             )
             input.setText(output)
             input.setSelection(buttonText.length + currentPosition)
+
         }
     }
-
-    private fun setBackground() {
-        val prefs = PreferenceManager.getDefaultSharedPreferences(requireContext())
-        val path = prefs.getString("background", "null")
-        val blurRadius = prefs.getInt("blur", 0)
-        if (prefs.getBoolean("customBG", false) && path != "null") {
-            if (blurRadius != 0) {
-                backgroundImage?.let {
-                    Glide.with(this)
-                        .load(Uri.parse(path))
-                        .apply(RequestOptions.bitmapTransform(BlurTransformation(blurRadius)))
-                        .into(it)
-                }
-            } else {
-                backgroundImage?.let {
-                    Glide.with(this)
-                        .load(Uri.parse(path))
-                        .into(it)
-                }
-            }
-        }
-    }
-
-    override fun onStart() {
-        setBackground()
-        super.onStart()
-    }
-//
-//    fun setInputText(expression: String?) {
-//        input.setText(expression)
-//    }
 
 }
+
+
+
+

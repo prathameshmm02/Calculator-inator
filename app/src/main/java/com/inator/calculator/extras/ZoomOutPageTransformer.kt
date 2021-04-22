@@ -1,11 +1,11 @@
 package com.inator.calculator.extras
 
 import android.view.View
-import androidx.viewpager2.widget.ViewPager2
+import androidx.viewpager.widget.ViewPager
 import kotlin.math.abs
 
 //This Code is kanged from https://developer.android.com/training/animation/screen-slide-2#zoom-out
-class ZoomOutPageTransformer : ViewPager2.PageTransformer {
+class ZoomOutPageTransformer : ViewPager.PageTransformer {
     override fun transformPage(view: View, position: Float) {
         val pageWidth = view.width
         val pageHeight = view.height

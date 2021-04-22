@@ -36,12 +36,12 @@
         app:layout_constraintTop_toTopOf="@id/main_guideline">
 
         <include
-            layout="@layout/simple_calc_layout"
+            layout="@layout/layout_simple_calc"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
 
         <include
-            layout="@layout/adv_calculator_layout"
+            layout="@layout/layout_adv_calculator"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginStart="50dp" />
@@ -53,12 +53,12 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:background="@color/color_background"
+        android:elevation="10dp"
         android:orientation="vertical"
         app:layout_constraintBottom_toTopOf="@+id/backgroundImage"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        >
+        app:layout_constraintTop_toTopOf="parent">
 
         <FrameLayout
             android:id="@+id/historyContainer"
@@ -76,15 +76,14 @@
 
         <include
             android:id="@+id/inputField"
-            layout="@layout/input_field"
+            layout="@layout/layout_input_field"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1" />
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="0.1"
+            android:layout_height="30dp"
             android:gravity="bottom|center_vertical|center_horizontal|center"
             app:layout_constraintBottom_toTopOf="@+id/backgroundImage"
             app:layout_constraintEnd_toEndOf="parent"
@@ -94,7 +93,7 @@
                 android:layout_width="30dp"
                 android:layout_height="5dp"
                 android:layout_gravity="center"
-                android:background="@drawable/circle"
+                android:background="@drawable/bg_round_corners_large"
                 android:backgroundTint="@color/blue" />
         </LinearLayout>
     </com.inator.calculator.views.DraggablePanel>

@@ -7,8 +7,8 @@ import android.content.ComponentName
 import android.content.Context
 import android.content.Intent
 import android.widget.RemoteViews
-import com.inator.calculator.Model.Calculator
 import com.inator.calculator.R
+import com.inator.calculator.repository.CalculatorOld
 
 class CalcWidget : AppWidgetProvider() {
     private val actions = listOf(
@@ -38,7 +38,7 @@ class CalcWidget : AppWidgetProvider() {
         appWidgetIds: IntArray
     ) {
         for (widgetId in appWidgetIds) {
-            remoteViews = RemoteViews(context.packageName, R.layout.calc_widget)
+            remoteViews = RemoteViews(context.packageName, R.layout.widget_simple_calc)
             setUpIntent(context, remoteViews, "ZERO", R.id.widget_button_0)
             setUpIntent(context, remoteViews, "ONE", R.id.widget_button_1)
             setUpIntent(context, remoteViews, "TWO", R.id.widget_button_2)
@@ -73,7 +73,7 @@ class CalcWidget : AppWidgetProvider() {
                 }
             } else if (action == "EQUAL") {
                 setAllClear(context, true)
-                val result = input?.let { Calculator().eval(it, true) }
+                val result = input?.let { CalculatorOld().eval(it, true) }
                 result!!.toPlainString()
             } else {
                 setAllClear(context, false)
@@ -83,7 +83,7 @@ class CalcWidget : AppWidgetProvider() {
             val appWidgetIds =
                 appWidgetManager.getAppWidgetIds(ComponentName(context, CalcWidget::class.java))
             for (widgetId in appWidgetIds) {
-                remoteViews = RemoteViews(context.packageName, R.layout.calc_widget)
+                remoteViews = RemoteViews(context.packageName, R.layout.widget_simple_calc)
                 remoteViews.setTextViewText(R.id.output_widget, input)
                 if (getAllClear(context)) {
                     remoteViews.setTextViewText(R.id.clear_button_widget, "C")

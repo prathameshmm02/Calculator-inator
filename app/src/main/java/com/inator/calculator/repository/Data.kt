@@ -3,12 +3,13 @@ package com.inator.calculator.repository
 import android.content.Context
 import android.content.Context.MODE_PRIVATE
 import android.content.SharedPreferences
-import android.util.Log
-import com.google.gson.Gson
+import androidx.appcompat.app.AppCompatDelegate
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import com.google.gson.GsonBuilder
-import com.inator.calculator.Model.Currency
-import com.inator.calculator.Model.JsonPlaceholderApi
-import com.inator.calculator.Model.Rate
+import com.inator.calculator.model.Currency
+import com.inator.calculator.model.JsonPlaceholderApi
+import com.inator.calculator.model.Rate
 import com.inator.calculator.util.CurrencyDeserializer
 import retrofit2.Call
 import retrofit2.Callback
@@ -35,8 +36,8 @@ class Data(context: Context) {
 
     private val preferenceRates: SharedPreferences =
         context.getSharedPreferences("Exchange-Rates", MODE_PRIVATE)
-    private var isSuccess: Boolean = false
 
+    private var isFetching: MutableLiveData<Boolean> = MutableLiveData(false)
 
     private fun saveExchangeRates(currency: Currency) {
         preferenceRates.apply {
@@ -45,7 +46,7 @@ class Data(context: Context) {
             editor.putString("_base", currency.base)
             editor.putString(
                 "_date",
-                SimpleDateFormat("yyyy-MM-DD", Locale.getDefault()).format(currency.date!!)
+                SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(currency.date!!)
             )
             currency.rates?.forEach {
                 editor.putFloat(it.code, it.value)
@@ -54,8 +55,14 @@ class Data(context: Context) {
         }
     }
 
-    fun fetchExchangeRates(): Boolean {
-        val gson: Gson = GsonBuilder()
+    fun getIsFetching(): LiveData<Boolean> {
+        return isFetching
+    }
+
+    fun fetchExchangeRates() {
+
+        isFetching.postValue(true)
+        val gson = GsonBuilder()
             .setPrettyPrinting()
             .registerTypeAdapter(Currency::class.java, CurrencyDeserializer())
             .create()
@@ -63,24 +70,20 @@ class Data(context: Context) {
             .baseUrl("https://api.exchangerate.host")
             .addConverterFactory(GsonConverterFactory.create(gson))
             .build()
-
         val jsonPlaceholderApi = retrofit.create(JsonPlaceholderApi::class.java)
 
         val call = jsonPlaceholderApi.currency
 
-        call?.enqueue(object : Callback<Currency?> {
+        call.enqueue(object : Callback<Currency?> {
             override fun onResponse(call: Call<Currency?>, response: Response<Currency?>) {
-                response.body()?.let { saveExchangeRates(it) }
-                Log.i("dfj", "sd")
-                isSuccess = true
+                saveExchangeRates(response.body()!!)
+                isFetching.postValue(false)
             }
 
             override fun onFailure(call: Call<Currency?>, t: Throwable) {
-                Log.i("dfj", "fd", t)
-                isSuccess = false
+                isFetching.postValue(false)
             }
         })
-        return isSuccess
     }
 
     fun getExchangeRatesFromPreferences(): Currency? {
@@ -108,4 +111,15 @@ class Data(context: Context) {
                     .toList()
             )
     }
+
+    fun setTheme(theme: String) {
+        AppCompatDelegate.setDefaultNightMode(
+            when (theme) {
+                "0" -> AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM
+                "1" -> AppCompatDelegate.MODE_NIGHT_NO
+                else -> AppCompatDelegate.MODE_NIGHT_YES
+            }
+        )
+    }
+
 }

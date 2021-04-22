@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="color_background">#FF000000</color>
-    <color name="color_background_variant">#202020</color>
+    <color name="color_background_variant">#353535</color>
+    <color name="shadow_color">#4D505050</color>
+
 </resources>

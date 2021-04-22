@@ -5,14 +5,23 @@
     android:layout_height="match_parent"
     tools:context="com.inator.calculator.fragments.CurrencyFragment">
 
-    <Spinner
+    <ProgressBar
+        android:id="@+id/progressBar"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="0dp"
+        android:layout_height="5dp"
+        android:indeterminate="true"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <com.inator.calculator.views.SearchableSpinner
         android:id="@+id/currencySpinner1"
         style="@android:style/Widget.Material.Spinner"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_margin="30dp"
-        android:layout_marginTop="60dp"
-        android:layout_marginEnd="2dp"
+        android:spinnerMode="dialog"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -24,7 +33,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
-        android:layout_marginTop="60dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/currencySpinner1">
@@ -40,16 +48,17 @@
             android:textSize="36sp" />
     </com.google.android.material.textfield.TextInputLayout>
 
-    <Spinner
+    <com.inator.calculator.views.SearchableSpinner
         android:id="@+id/currencySpinner2"
         style="@android:style/Widget.Material.Spinner"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_margin="30dp"
-        android:layout_marginTop="60dp"
+        android:spinnerMode="dialog"
+        app:layout_constraintBottom_toTopOf="@+id/textInputLayout"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/fab" />
+        app:layout_constraintTop_toBottomOf="@+id/change" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/textInputLayout"
@@ -57,9 +66,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
-        android:layout_marginTop="60dp"
         app:layout_constraintTop_toBottomOf="@+id/currencySpinner2"
-        tools:layout_editor_absoluteX="10dp">
+        tools:layout_editor_absoluteX="9dp">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/input2"
@@ -73,13 +81,28 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/fab"
+        android:id="@+id/change"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="40dp"
         android:src="@drawable/ic_reverse"
+        app:backgroundTint="?attr/colorPrimary"
+        app:layout_constraintBottom_toTopOf="@+id/currencySpinner2"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textInputLayout2" />
+        app:layout_constraintTop_toBottomOf="@+id/textInputLayout2"
+        android:contentDescription="@string/interchange"/>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/refreshButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="20dp"
+        android:src="@drawable/ic_refresh"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:contentDescription="@string/refresh" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

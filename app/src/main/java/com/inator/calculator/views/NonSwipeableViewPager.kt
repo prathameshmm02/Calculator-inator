@@ -1,5 +1,6 @@
 package com.inator.calculator.views
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.util.AttributeSet
 import android.view.MotionEvent
@@ -22,6 +23,7 @@ class NonSwipeableViewPager : ViewPager {
         return false
     }
 
+    @SuppressLint("ClickableViewAccessibility")
     override fun onTouchEvent(event: MotionEvent): Boolean {
         return false
     }
@@ -35,6 +37,7 @@ class NonSwipeableViewPager : ViewPager {
             e.printStackTrace()
         }
     }
+
 
     class MyScroller(context: Context?) : Scroller(context, DecelerateInterpolator()) {
         override fun startScroll(startX: Int, startY: Int, dx: Int, dy: Int, duration: Int) {

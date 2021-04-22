@@ -28,14 +28,14 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:tabIndicator="@drawable/circle"
+                app:tabIndicator="@drawable/bg_round_corners_large"
                 app:tabIndicatorFullWidth="false"
                 app:tabIndicatorHeight="5dp">
 
                 <com.google.android.material.tabs.TabItem
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:icon="@drawable/ic_filled_calculate" />
+                    android:icon="@drawable/ic_filled_calculator" />
 
                 <com.google.android.material.tabs.TabItem
                     android:layout_width="match_parent"

@@ -1,6 +1,5 @@
 package com.inator.calculator.fragments
 
-import android.annotation.SuppressLint
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
@@ -11,207 +10,139 @@ import android.widget.AdapterView
 import android.widget.AdapterView.OnItemSelectedListener
 import android.widget.ArrayAdapter
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import com.google.android.material.chip.ChipGroup
-import com.inator.calculator.Data.ConvertData
-import com.inator.calculator.Model.Measure
 import com.inator.calculator.R
+import com.inator.calculator.viewmodel.ConverterInputViewModel
 import kotlinx.android.synthetic.main.fragment_converter.*
 
-class ConverterFragment : Fragment(), OnItemSelectedListener {
-    lateinit var textWatcher1: TextWatcher
-    lateinit var textWatcher2: TextWatcher
-    var currentMeasure: Measure = ConvertData.getLength()
-    var measureConversion = R.array.length_rates
+class ConverterFragment : Fragment() {
+    private lateinit var textWatcher1: TextWatcher
+    private lateinit var textWatcher2: TextWatcher
+    private val converterInputViewModel: ConverterInputViewModel by viewModels()
+    private var hasSetSavedSpinners = false
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
         // Inflate the layout for this fragment
-        currentMeasure = ConvertData.getLength()
 
         return inflater.inflate(R.layout.fragment_converter, container, false)
 
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        setUpSpinners()
+        setUpViews()
         super.onViewCreated(view, savedInstanceState)
     }
 
 
-    private fun setUpSpinners() {
+    private fun setUpViews() {
+        chipGroup.check(converterInputViewModel.getSavedMeasure())
         chipGroup.setOnCheckedChangeListener { _: ChipGroup?, checkedId: Int ->
             when (checkedId) {
                 R.id.length -> {
-                    currentMeasure = ConvertData.getLength()
-
+                    converterInputViewModel.setMeasure("Length")
                 }
                 R.id.mass -> {
-                    currentMeasure = ConvertData.getMass()
+                    converterInputViewModel.setMeasure("Mass")
                 }
                 R.id.area -> {
-                    currentMeasure = ConvertData.getArea()
+                    converterInputViewModel.setMeasure("Area")
                 }
                 R.id.speed -> {
-                    currentMeasure = ConvertData.getSpeed()
+                    converterInputViewModel.setMeasure("Speed")
                 }
                 R.id.angle -> {
-                    currentMeasure = ConvertData.getAngle()
+                    converterInputViewModel.setMeasure("Angle")
                 }
                 R.id.data -> {
-                    currentMeasure = ConvertData.getData()
+                    converterInputViewModel.setMeasure("Data")
                 }
                 R.id.time -> {
-                    currentMeasure = ConvertData.getTime()
+                    converterInputViewModel.setMeasure("Time")
                 }
                 R.id.volume -> {
-                    currentMeasure = ConvertData.getVolume()
+                    converterInputViewModel.setMeasure("Volume")
                 }
                 R.id.temperature -> {
-                    currentMeasure = ConvertData.getTemperature()
+                    converterInputViewModel.setMeasure("Temperature")
                 }
             }
-            setUpSpinnerAdapter()
-            textWatcher1.afterTextChanged(editText1.text)
         }
-        setUpSpinnerAdapter()
         textWatcher1 = object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {}
             override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {}
             override fun afterTextChanged(s: Editable) {
-                val toMain: Double
-                val fromMain: Double
-                if (s.toString().isEmpty()) {
-                    editText2.removeTextChangedListener(textWatcher2)
-                    editText2.setText("0")
-                    editText2.addTextChangedListener(textWatcher2)
-                    return
-                }
-                val input = s.toString().toDouble()
-                val selectedOne = unit1.selectedItemPosition
-                val selectedTwo = unit2.selectedItemPosition
-                if (currentMeasure.name == "Temperature") {
-                    toMain = when {
-                        unit1.selectedItem.toString() == "Celsius" -> {
-                            input
-                        }
-                        unit1.selectedItem.toString() == "Fahrenheit" -> {
-                            (input - 32) * (5 / 9.0)
-                        }
-                        else -> {
-                            input - 273.15
-                        }
-                    }
-                    fromMain = when {
-                        unit2.selectedItem.toString() == "Celsius" -> {
-                            toMain
-                        }
-                        unit2.selectedItem.toString() == "Fahrenheit" -> {
-                            toMain * (9 / 5.0) + 32
-                        }
-                        else -> {
-                            toMain + 273.15
-                        }
-                    }
-                } else {
-                    toMain = input * currentMeasure.toMain[selectedOne]
-                    fromMain = toMain * currentMeasure.fromMain[selectedTwo]
-                }
-                editText2.removeTextChangedListener(textWatcher2)
-                val result = fromMain.toString()
-                if (fromMain.toString().endsWith(".0")) {
-                    editText2.setText(result.substring(0, result.length - 2))
-                } else {
-                    editText2.setText(fromMain.toString())
-                }
-                editText2.addTextChangedListener(textWatcher2)
+                converterInputViewModel.setInput1(s.toString())
             }
         }
         textWatcher2 = object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {}
             override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {}
             override fun afterTextChanged(s: Editable) {
-                val toMain: Double
-                val fromMain: Double
-                if (s.toString().isEmpty()) {
-                    editText1.removeTextChangedListener(textWatcher1)
-                    editText1.setText("0")
-                    editText1.addTextChangedListener(textWatcher1)
-                    return
-                }
-                val input = s.toString().toDouble()
-                val selectedOne = unit1.selectedItemPosition
-                val selectedTwo = unit2.selectedItemPosition
-                if (currentMeasure.name == "Temperature") {
-                    toMain = when {
-                        unit2.selectedItem.toString() == "Celsius" -> {
-                            input
-                        }
-                        unit2.selectedItem.toString() == "Fahrenheit" -> {
-                            (input - 32) * (5 / 9.0)
-                        }
-                        else -> {
-                            input - 273.15
-                        }
-                    }
-                    fromMain = when {
-                        unit1.selectedItem.toString() == "Celsius" -> {
-                            toMain
-                        }
-                        unit1.selectedItem.toString() == "Fahrenheit" -> {
-                            toMain * (9 / 5.0) + 32
-                        }
-                        else -> {
-                            toMain + 273.15
-                        }
-                    }
-                } else {
-                    toMain = input * currentMeasure.toMain[selectedTwo]
-                    fromMain = toMain * currentMeasure.fromMain[selectedOne]
-                }
-                editText1.removeTextChangedListener(textWatcher1)
-                val result = fromMain.toString()
-                if (fromMain.toString().endsWith(".0")) {
-                    editText1.setText(result.substring(0, result.length - 2))
-                } else {
-                    editText1.setText(fromMain.toString())
-                }
-                editText1.addTextChangedListener(textWatcher1)
+
+                converterInputViewModel.setInput2(s.toString())
             }
         }
         editText1.addTextChangedListener(textWatcher1)
         editText2.addTextChangedListener(textWatcher2)
-        unit1.onItemSelectedListener = this
-        unit2.onItemSelectedListener = this
-    }
-
-    @SuppressLint("ResourceType")
-    private fun setUpSpinnerAdapter() {
-
-        context?.let {
-            ArrayAdapter.createFromResource(
-                it,
-                getUnitArray(),
-                android.R.layout.simple_spinner_item
-            ).also { unitAdapter ->
-                    unitAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-                    unit1.adapter = unitAdapter
-                    unit2.adapter = unitAdapter
-                    unit2.setSelection(1)
-                }
+        unit1.onItemSelectedListener = object : OnItemSelectedListener {
+            override fun onItemSelected(
+                parent: AdapterView<*>?,
+                view: View?,
+                position: Int,
+                id: Long
+            ) {
+                converterInputViewModel.setSpinner1(position)
             }
+
+            override fun onNothingSelected(parent: AdapterView<*>?) {}
+
+        }
+        unit2.onItemSelectedListener = object : OnItemSelectedListener {
+            override fun onItemSelected(
+                parent: AdapterView<*>?,
+                view: View?,
+                position: Int,
+                id: Long
+            ) {
+                converterInputViewModel.setSpinner2(position)
+
+            }
+
+            override fun onNothingSelected(parent: AdapterView<*>?) {
+
+            }
+
         }
 
 
-    override fun onItemSelected(parent: AdapterView<*>?, view: View, position: Int, id: Long) {
-        textWatcher1.afterTextChanged(editText1.text)
+
+        converterInputViewModel.getOutputDirect().observe(viewLifecycleOwner, {
+            editText2.removeTextChangedListener(textWatcher2)
+            editText2.setText(it)
+            editText2.addTextChangedListener(textWatcher2)
+
+        })
+        converterInputViewModel.getOutputReverse().observe(viewLifecycleOwner, {
+            editText1.removeTextChangedListener(textWatcher1)
+            editText1.setText(it)
+            editText1.addTextChangedListener(textWatcher1)
+        })
+        converterInputViewModel.getMeasure().observe(
+            viewLifecycleOwner, {
+                setUpSpinnerAdapter(it)
+            }
+        )
+
     }
 
-    override fun onNothingSelected(parent: AdapterView<*>?) {}
 
-    private fun getUnitArray(): Int {
-        return when (currentMeasure.name) {
+    private fun setUpSpinnerAdapter(string: String) {
+
+        val unitArray = when (string) {
             "Length" -> R.array.length_units
             "Area" -> R.array.area_units
             "Mass" -> R.array.mass_units
@@ -221,13 +152,32 @@ class ConverterFragment : Fragment(), OnItemSelectedListener {
             "Time" -> R.array.time_units
             "Temperature" -> R.array.temperature_units
             "Angle" -> R.array.angle_units
-
             else -> R.array.length_units
+        }
+        ArrayAdapter.createFromResource(
+            requireContext(),
+            unitArray,
+            android.R.layout.simple_spinner_item
+        ).also { unitAdapter ->
+            unitAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+            unit1.adapter = unitAdapter
+            unit2.adapter = unitAdapter
+            setSavedSpinners()
+
         }
     }
 
-//    private fun getUnitConversions(): Double{
-//
-//    }
+    private fun setSavedSpinners() {
+        if (!hasSetSavedSpinners) {
+            unit1.setSelection(converterInputViewModel.getSavedSpinner1())
+            unit2.setSelection(converterInputViewModel.getSavedSpinner2())
+            hasSetSavedSpinners = true
+        } else {
+            unit1.setSelection(0)
+            unit2.setSelection(1)
+        }
+
+    }
+
 
 }

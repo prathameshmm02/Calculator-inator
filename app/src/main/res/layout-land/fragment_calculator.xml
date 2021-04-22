@@ -34,7 +34,7 @@
 
 
     <include
-        layout="@layout/simple_calc_layout"
+        layout="@layout/layout_simple_calc"
         android:layout_width="0dp"
         android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -44,7 +44,7 @@
         app:layout_constraintVertical_bias="0.903" />
 
     <include
-        layout="@layout/adv_calculator_layout"
+        layout="@layout/layout_adv_calculator"
         android:layout_width="0dp"
         android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -91,7 +91,7 @@
 
         <include
             android:id="@+id/inputField"
-            layout="@layout/input_field"
+            layout="@layout/layout_input_field"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
@@ -110,7 +110,7 @@
                 android:layout_width="30dp"
                 android:layout_height="5dp"
                 android:layout_gravity="center"
-                android:background="@drawable/circle"
+                android:background="@drawable/bg_round_corners_large"
                 android:backgroundTint="@color/blue" />
         </LinearLayout>
     </com.inator.calculator.views.DraggablePanel>

@@ -3,8 +3,8 @@ package com.inator.calculator.util
 import com.google.gson.JsonDeserializationContext
 import com.google.gson.JsonDeserializer
 import com.google.gson.JsonElement
-import com.inator.calculator.Model.Currency
-import com.inator.calculator.Model.Rate
+import com.inator.calculator.model.Currency
+import com.inator.calculator.model.Rate
 import java.lang.reflect.Type
 import java.util.*
 
