@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.inator.calculator.History.History
+import com.inator.calculator.model.History
 import com.inator.calculator.R
 import com.inator.calculator.adapters.HistoryAdapter
 import com.inator.calculator.adapters.HistoryItemClickListener

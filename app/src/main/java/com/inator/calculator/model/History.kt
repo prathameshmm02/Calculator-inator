@@ -1,4 +1,4 @@
-package com.inator.calculator.History
+package com.inator.calculator.model
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity

@@ -6,7 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.inator.calculator.History.History
+import com.inator.calculator.model.History
 import com.inator.calculator.R
 import java.util.*
 

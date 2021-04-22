@@ -1,10 +1,11 @@
-package com.inator.calculator.History
+package com.inator.calculator.repository
 
 import androidx.lifecycle.LiveData
 import androidx.room.Dao
 import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.Query
+import com.inator.calculator.model.History
 
 @Dao
 interface HistoryDao {

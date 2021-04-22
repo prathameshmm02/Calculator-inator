@@ -6,7 +6,7 @@ import androidx.core.text.isDigitsOnly
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import com.inator.calculator.History.History
+import com.inator.calculator.model.History
 import com.inator.calculator.R
 import com.inator.calculator.repository.EvaluateString
 import java.math.BigDecimal

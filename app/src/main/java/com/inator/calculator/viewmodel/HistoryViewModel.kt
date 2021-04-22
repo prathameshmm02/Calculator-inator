@@ -6,8 +6,8 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
-import com.inator.calculator.History.AppDatabase
-import com.inator.calculator.History.History
+import com.inator.calculator.repository.AppDatabase
+import com.inator.calculator.model.History
 import com.inator.calculator.repository.HistoryRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
