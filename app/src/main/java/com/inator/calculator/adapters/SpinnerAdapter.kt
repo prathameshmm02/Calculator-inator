@@ -14,7 +14,6 @@ class SpinnerAdapter(context: Context, resource: Int, private var objects: List<
     ArrayAdapter<Rate>(context, resource, objects) {
 
 
-
     override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
         return getCustomView(position, convertView, parent, 0)
     }

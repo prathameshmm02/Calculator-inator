@@ -34,11 +34,11 @@
     <string name="natural_log">ln</string>
     <string name="title_activity_settings">Settings</string>
 
-    <!-- Preference Titles -->
-    <string name="customize">Customize</string>
 
-    <string name="background">Change Background</string>
-    <string name="background_image">Background</string>
+    <string name="delete_message">"Your Calculation History will be deleted. Do you want to proceed?"</string>
+
+    <!-- Preference Titles -->
+    <string name="title_appearance">Appearance</string>
     <string name="length">Length</string>
     <string name="area">Area</string>
     <string name="mass">Mass</string>
@@ -63,6 +63,13 @@
     <string name="flag_image">Flag Image</string>
     <string name="interchange">Interchange</string>
     <string name="refresh">Refresh</string>
+    <string name="delete_history">Delete History</string>
+    <string name="history">History</string>
+    <string name="delete_title">Delete History</string>
+    <string name="title_theme">Theme</string>
+    <string name="title_about">About</string>
+    <string name="message_currency">Currency API Used</string>
+    <string name="message_no_history">No History</string>
     <string-array name="units">
         <item>Length</item>
         <item>Area</item>

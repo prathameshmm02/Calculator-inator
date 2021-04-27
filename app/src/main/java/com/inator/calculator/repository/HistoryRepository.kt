@@ -9,7 +9,7 @@ class HistoryRepository(private val historyDao: HistoryDao) {
         historyDao.insert(history)
     }
 
-    suspend fun delete(history: History) {
-        historyDao.delete(history)
+    suspend fun deleteAll() {
+        historyDao.deleteAll()
     }
 }

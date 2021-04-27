@@ -1,12 +1,12 @@
 package com.inator.calculator.repository
 
-import android.util.Log
 import java.math.BigDecimal
 import java.math.BigInteger
 import java.math.MathContext
 import java.math.RoundingMode
 import java.util.*
 import kotlin.math.*
+
 //  Older Implementation of Math String Evaluator. Not that good has some mistakes
 class CalculatorOld {
     private val operators = listOf('^', '%', '÷', '×', '+', '-')
@@ -29,9 +29,6 @@ class CalculatorOld {
             if (numbers.contains(current)) {
                 num += current
             } else if (current == '√' || current == '!') {
-                if (current == '√') {
-
-                }
                 operatorList.add(current)
             } else if (current == 'π') {
 
@@ -131,7 +128,6 @@ class CalculatorOld {
             }
         }
 
-        Log.i(operandList.toString(), operatorList.toString())
         // Solving (Actually)
         for (operator in operators) {
 
@@ -177,7 +173,6 @@ class CalculatorOld {
                 operandList.removeAt(index)
                 operandList.add(index, answer)
             }
-            Log.i(operandList.toString(), operatorList.toString())
         }
         return operandList[0].multiply(rounder).setScale(0, RoundingMode.HALF_UP).divide(rounder)
     }
@@ -207,7 +202,6 @@ class CalculatorOld {
                 } else {
                     expr.substring(0, index) + result.toString() + expr.substring(i + 1)
                 }
-                Log.i("Expr", expr)
             }
             if (i == expr.length - 1 && !indices.isEmpty()) {
                 index = indices.pop()

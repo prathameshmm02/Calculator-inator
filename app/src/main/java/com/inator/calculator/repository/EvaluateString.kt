@@ -1,16 +1,17 @@
 package com.inator.calculator.repository
 
+
+import android.util.Log
 import java.math.BigDecimal
 import java.math.BigInteger
-import java.math.MathContext
 import java.util.*
 import kotlin.math.*
 
+
 object EvaluateString {
-    //Implementing multiplications
     //private val expression = Regex("[[0-9]+\\.?[0-9]+[\\^%÷×+\\-]]*[0-9]+\\.?[0-9]")
     private val numRegex = "-?[0-9]+\\.?[0-9]*".toRegex()
-    private val binaryOperators = listOf('^', '%', '÷', '×', '+', '-')
+    private val binaryOperators = listOf('^', '÷', '×', '+', '-')
     fun evaluate(expression: String, isDegree: Boolean): BigDecimal {
         val tokens = expression.toCharArray()
 
@@ -19,31 +20,49 @@ object EvaluateString {
 
         // Stack for Operators: 'ops'
         val ops = Stack<Pair<Char, Int>>()
+
         //Stack for brackets
         val brackets = Stack<Int>()
+
         var i = 0
         while (i < tokens.size) {
-            // Current token is a
-            // whitespace, skip it
-            if (tokens[i] == ' ') {
-                i++
-                continue
-            }
+            Log.i("i", i.toString())
+            Log.i("ovaps", ops.toString())
+            Log.i("values", values.toString())
 
-            // Current token is a number,
+            // Current token is a number, check for next numbers
             // push it to stack for numbers
             when {
                 tokens[i] in '0'..'9' -> {
                     val match = numRegex.find(expression.substring(i, expression.length))!!
-                    values.push(match.value.toBigDecimal())
+                    var prev: Char? = null
+                    var prev2: Char? = null
+                    if (i > 0) {
+                        prev = tokens[i - 1]
+                    }
+                    if (i > 1) {
+                        prev2 = tokens[i - 2]
+                    }
+                    if (prev == '-' && prev2 == null) {
+                        values.push(-match.value.toBigDecimal())
+                        ops.pop()
+                    } else if (prev == '-' && binaryOperators.contains(prev2))
+                        values.push(-match.value.toBigDecimal())
+                    else
+                        values.push(match.value.toBigDecimal())
 
                     i += match.range.last - match.range.first
-
+                    i++
+                    if (i == tokens.size) {
+                        break
+                    }
+                    //Just handling 4e or 5sin(90) cases
+                    if (!(binaryOperators.contains(tokens[i]) || tokens[i] == '!' || tokens[i] == '%')) {
+                        ops.push(Pair('×', i - 1))
+                    }
+                    i--
                 }
                 tokens[i] == '(' -> {
-                    if (tokens[i - 1].isDigit() || tokens[i - 1] == 'π' || tokens[i - 1] == 'e') {
-                        ops.push(Pair('×', i))
-                    }
                     brackets.push(i)
                 }
                 tokens[i] == ')' -> {
@@ -62,6 +81,13 @@ object EvaluateString {
                     // token, which is an operator.
                     // Apply operator on top of 'ops'
                     // to top two elements in values stack
+                    if (i > 0) {
+                        val prev = tokens[i - 1]
+                        if (tokens[i] == '-' && binaryOperators.contains(prev)) {
+                            i++
+                            continue
+                        }
+                    }
                     while (!ops.empty() &&
                         hasPrecedence(
                             tokens[i],
@@ -79,24 +105,37 @@ object EvaluateString {
                     ops.push(Pair(tokens[i], i))
                 }
                 tokens[i] == '!' -> {
-                    values.push(factorial(values.pop()).toBigDecimal())
+                    values.push(factorial(values.pop().toBigInteger()))
+
+                }
+                tokens[i] == '%' -> {
+                    values.push(values.pop().divide(BigDecimal.valueOf(100)))
                 }
                 tokens[i] == 'π' -> {
-                    if (tokens[i - 1].isDigit() || tokens[i - 1] == 'π' || tokens[i - 1] == 'e') {
-                        ops.push(Pair('×', i))
-                    }
                     values.push(BigDecimal.valueOf(Math.PI))
+                    i++
+                    if (i == tokens.size) {
+                        break
+                    }
+                    if (!(binaryOperators.contains(tokens[i]) || tokens[i] == '!' || tokens[i] == '%' || tokens[i].isDigit())) {
+                        ops.push(Pair('×', i - 1))
+                    }
+                    i--
                 }
                 tokens[i] == 'e' -> {
-                    if (tokens[i - 1].isDigit() || tokens[i - 1] == 'π' || tokens[i - 1] == 'e') {
-                        ops.push(Pair('×', i))
-                    }
                     values.push(BigDecimal.valueOf(Math.E))
+                    i++
+                    if (i == tokens.size) {
+                        break
+                    }
+                    //Just handling 4e or 5sin(90) cases
+                    if (!(binaryOperators.contains(tokens[i]) || tokens[i] == '!' || tokens[i] == '%' || tokens[i].isDigit())) {
+                        ops.push(Pair('×', i - 1))
+                    }
+                    i--
+
                 }
                 expression.startsWith("sin⁻¹", i) -> {
-                    if (tokens[i - 1].isDigit() || tokens[i - 1] == 'π' || tokens[i - 1] == 'e') {
-                        ops.push(Pair('×', i))
-                    }
                     val closeIndex =
                         i + getIndexOfCloseBrack(expression.substring(i, expression.length))
                     //Get Actual Angle if there is an expression inside of a function bracket
@@ -107,9 +146,6 @@ object EvaluateString {
 
                 }
                 expression.startsWith("sin", i) -> {
-                    if (tokens[i - 1].isDigit() || tokens[i - 1] == 'π' || tokens[i - 1] == 'e') {
-                        ops.push(Pair('×', i))
-                    }
                     val closeIndex =
                         i + getIndexOfCloseBrack(expression.substring(i, expression.length))
                     val value = evaluate(expression.substring(i + 4, closeIndex), isDegree)
@@ -118,9 +154,6 @@ object EvaluateString {
 
                 }
                 expression.startsWith("cos⁻¹", i) -> {
-                    if (tokens[i - 1].isDigit() || tokens[i - 1] == 'π' || tokens[i - 1] == 'e') {
-                        ops.push(Pair('×', i))
-                    }
                     val closeIndex =
                         i + getIndexOfCloseBrack(expression.substring(i, expression.length))
                     val value = evaluate(expression.substring(i + 6, closeIndex), isDegree)
@@ -129,9 +162,6 @@ object EvaluateString {
 
                 }
                 expression.startsWith("cos", i) -> {
-                    if (tokens[i - 1].isDigit() || tokens[i - 1] == 'π' || tokens[i - 1] == 'e') {
-                        ops.push(Pair('×', i))
-                    }
                     val closeIndex =
                         i + getIndexOfCloseBrack(expression.substring(i, expression.length))
                     val value = evaluate(expression.substring(i + 4, closeIndex), isDegree)
@@ -141,32 +171,25 @@ object EvaluateString {
 
                 }
                 expression.startsWith("tan⁻¹", i) -> {
-                    if (tokens[i - 1].isDigit() || tokens[i - 1] == 'π' || tokens[i - 1] == 'e') {
-                        ops.push(Pair('×', i))
-                    }
                     val closeIndex =
                         i + getIndexOfCloseBrack(expression.substring(i, expression.length))
                     val value = evaluate(expression.substring(i + 6, closeIndex), isDegree)
                     values.push(convertAngle(atan(value.toDouble()), isDegree))
+
                     i = closeIndex + 1
 
                 }
                 expression.startsWith("tan", i) -> {
-                    if (tokens[i - 1].isDigit() || tokens[i - 1] == 'π' || tokens[i - 1] == 'e') {
-                        ops.push(Pair('×', i))
-                    }
                     val closeIndex =
                         i + getIndexOfCloseBrack(expression.substring(i, expression.length))
                     val value = evaluate(expression.substring(i + 4, closeIndex), isDegree)
                     values.push(BigDecimal.valueOf(tan(convertAngle(value, isDegree))))
 
+
                     i = closeIndex + 1
 
                 }
                 expression.startsWith("log", i) -> {
-                    if (tokens[i - 1].isDigit() || tokens[i - 1] == 'π' || tokens[i - 1] == 'e') {
-                        ops.push(Pair('×', i))
-                    }
                     val closeIndex =
                         i + getIndexOfCloseBrack(expression.substring(i, expression.length))
                     val value = evaluate(expression.substring(i + 4, closeIndex), isDegree)
@@ -175,20 +198,15 @@ object EvaluateString {
 
                 }
                 expression.startsWith("ln", i) -> {
-                    if (tokens[i - 1].isDigit() || tokens[i - 1] == 'π' || tokens[i - 1] == 'e') {
-                        ops.push(Pair('×', i))
-                    }
                     val closeIndex =
                         i + getIndexOfCloseBrack(expression.substring(i, expression.length))
                     val value = evaluate(expression.substring(i + 3, closeIndex), isDegree)
                     values.push(BigDecimal.valueOf(ln(value.toDouble())))
+
                     i = closeIndex + 1
 
                 }
                 tokens[i] == '√' -> {
-                    if (tokens[i - 1].isDigit() || tokens[i - 1] == 'π' || tokens[i - 1] == 'e') {
-                        ops.push(Pair('×', i))
-                    }
                     i++
                     when {
                         tokens[i] == '(' -> {
@@ -203,21 +221,35 @@ object EvaluateString {
                             values.push(BigDecimal.valueOf(sqrt(value.toDouble())))
                             i = closeIndex + 1
                         }
-                        tokens[i].isDigit() -> {
-                            val match = numRegex.find(expression.substring(i, expression.length))!!
-                            values.push(sqrt(match.value.toDouble()).toBigDecimal())
-                            i += match.range.last - match.range.first
+                        tokens[i].isLetter() && tokens[i] != 'e' && tokens[i] != 'π' -> {
+                            val closeIndex = i + getIndexOfCloseBrack(
+                                expression.substring(
+                                    expression.indexOf(
+                                        '(',
+                                        i
+                                    )
+                                )
+                            )
+                            val value = evaluate(expression.substring(i, closeIndex), isDegree)
+                            values.push(BigDecimal.valueOf(sqrt(value.toDouble())))
+                            i = closeIndex + 1
                         }
-                        tokens[i] == 'e' -> {
-                            values.push(sqrt(E).toBigDecimal())
-                        }
-                        tokens[i] == 'π' -> {
-                            values.push(sqrt(PI).toBigDecimal())
+                        else -> {
+                            var closeIndex = 0
+                            for (index in i until tokens.size) {
+                                if (binaryOperators.contains(tokens[index])) {
+                                    closeIndex = i + index
+                                    break
+                                }
+                            }
+                            if (closeIndex == 0) closeIndex = tokens.size
+                            val value = evaluate(expression.substring(i, closeIndex), isDegree)
+                            values.push(BigDecimal.valueOf(sqrt(value.toDouble())))
+                            i = closeIndex + 1
                         }
                     }
                 }
             }
-
             i++
         }
 
@@ -238,8 +270,8 @@ object EvaluateString {
     }
 
     // Returns true if 'op2' has higher
-// or same precedence as 'op1',
-// otherwise returns false.
+    // or same precedence as 'op1',
+    // otherwise returns false.
     private fun hasPrecedence(
         op1: Char, op2: Char
     ): Boolean {
@@ -249,7 +281,6 @@ object EvaluateString {
     private fun getPrecedence(op: Char): Int {
         return when (op) {
             '^' -> 4
-            '%' -> 3
             '÷' -> 3
             '×' -> 2
             '+' -> 1
@@ -266,17 +297,14 @@ object EvaluateString {
         b: BigDecimal, a: BigDecimal
     ): BigDecimal {
         when (op) {
-            '+' -> return a.add(b)
-            '-' -> return a.subtract(b)
-            '×' -> return a.multiply(b)
+            '+' -> return a + b
+            '-' -> return a - b
+            '×' -> return a * b
             '÷' -> {
                 if (b == BigDecimal.ZERO) throw UnsupportedOperationException(
                     "Cannot divide by zero"
                 )
-                return a.divide(b, MathContext.DECIMAL64)
-            }
-            '%' -> {
-                return a.multiply(b).divide(BigDecimal(100), MathContext.DECIMAL64)
+                return a / b
             }
             '^' -> {
                 return a.toDouble().pow(b.toDouble()).toBigDecimal()
@@ -285,12 +313,12 @@ object EvaluateString {
         return BigDecimal.ZERO
     }
 
-    private fun factorial(number: BigDecimal): BigInteger {
+    private fun factorial(number: BigInteger): BigDecimal {
         var fact = BigInteger.ONE
         for (factor in 2..number.toLong()) {
-            fact = fact.multiply(BigInteger.valueOf(factor))
+            fact = fact.multiply(factor.toBigInteger())
         }
-        return fact
+        return fact.toBigDecimal()
     }
 
 
@@ -315,9 +343,9 @@ object EvaluateString {
 
     private fun convertAngle(angle: Double, isDegree: Boolean): BigDecimal {
         return if (isDegree) {
-            Math.toRadians(angle).toBigDecimal()
+            BigDecimal.valueOf(Math.toRadians(angle))
         } else {
-            angle.toBigDecimal()
+            BigDecimal.valueOf(angle)
         }
     }
 
@@ -328,6 +356,4 @@ object EvaluateString {
             angle.toDouble()
         }
     }
-
-
 }

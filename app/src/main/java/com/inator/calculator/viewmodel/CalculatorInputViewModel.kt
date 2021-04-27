@@ -1,20 +1,20 @@
 package com.inator.calculator.viewmodel
 
 import android.app.Application
-import android.util.Log
+import android.content.Context
 import androidx.core.text.isDigitsOnly
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import com.inator.calculator.model.History
 import com.inator.calculator.R
+import com.inator.calculator.model.History
 import com.inator.calculator.repository.EvaluateString
 import java.math.BigDecimal
 import java.text.SimpleDateFormat
 import java.util.*
 
 class CalculatorInputViewModel(application: Application) : AndroidViewModel(application) {
-    private val operators = listOf('^', '%', '÷', '×', '+', '-')
+    private val operators = listOf('^', '÷', '×', '+', '-')
     private val numRegex = "-?[0-9]+\\.?[0-9]*".toRegex()
     private val historyViewModel = HistoryViewModel(application)
 
@@ -33,6 +33,8 @@ class CalculatorInputViewModel(application: Application) : AndroidViewModel(appl
     private val isInverseMutableLiveData = MutableLiveData(false)
     val isInverseLiveData: LiveData<Boolean> = isInverseMutableLiveData
 
+    private var isDecimal = false
+
     fun setCursor(position: Int) {
         cursorMutableLiveData.value = position
     }
@@ -46,7 +48,11 @@ class CalculatorInputViewModel(application: Application) : AndroidViewModel(appl
     }
 
     fun decimalClicked() {
-        insert(".")
+        if (!isDecimal) {
+            isDecimal = true
+            insert(".")
+        }
+
     }
 
     fun funClicked(funName: CharSequence) {
@@ -76,7 +82,6 @@ class CalculatorInputViewModel(application: Application) : AndroidViewModel(appl
                     currentInput.removeRange(selectionStart, selectionEnd + 1)
                 cursorMutableLiveData.value =
                     cursorMutableLiveData.value
-                Log.i("removed", " fgdg")
             } else {
                 inputMutableLiveData.value =
                     currentInput.removeRange(selectionStart, selectionEnd)
@@ -96,54 +101,63 @@ class CalculatorInputViewModel(application: Application) : AndroidViewModel(appl
         isInverseMutableLiveData.value = !isInverseMutableLiveData.value!!
     }
 
-    fun equalClicked()/*if we do have to save to history*/ {
+    fun equalClicked(context: Context)  /*if we do have to save to history*/ {
         val currentInput = inputLiveData.value!!
-        lateinit var result: BigDecimal
+        var result: BigDecimal = BigDecimal.ZERO
         try {
             if (operators.contains(currentInput[currentInput.length - 1])) {
                 return
             }
             if (currentInput.isNotEmpty()) {
-                result = EvaluateString.evaluate(inputLiveData.value!!, isDegreeLiveData.value!!)
-                inputMutableLiveData.value = result.stripTrailingZeros().toPlainString()
+                result =
+                    EvaluateString.evaluate(inputLiveData.value!!, isDegreeLiveData.value!!)
+                inputMutableLiveData.value = result.stripTrailingZeros().toString()
+                cursorMutableLiveData.value = inputMutableLiveData.value!!.length
 
             }
             outputMutableLiveData.value = ""
-            if (!currentInput.matches(numRegex)){
-                saveToHistory(currentInput, result.toPlainString())
+            if (!currentInput.matches(numRegex)) {
+                saveToHistory(currentInput, result.stripTrailingZeros().toPlainString())
             }
 
         } catch (e: Exception) {
-            inputMutableLiveData.value = R.string.error_text.toString()
+            inputMutableLiveData.value = context.resources.getString(R.string.error_text)
         }
 
     }
 
     fun calculateOutput() {
         val currentInput = inputLiveData.value!!
-        lateinit var result: BigDecimal
+        val result: BigDecimal
         try {
+            if (currentInput.matches(numRegex)) {
+                return
+            }
             if (currentInput.isNotEmpty()) {
-                result = EvaluateString.evaluate(inputLiveData.value!!, isDegreeLiveData.value!!)
+                result =
+                    EvaluateString.evaluate(inputLiveData.value!!, isDegreeLiveData.value!!)
                 outputMutableLiveData.value = result.stripTrailingZeros().toPlainString()
             } else {
                 outputMutableLiveData.value = ""
             }
         } catch (e: Exception) {
+            e.printStackTrace()
         }
     }
 
 
     private fun saveToHistory(expression: String, answer: String) {
         val calendar = Calendar.getInstance()
-        val date = SimpleDateFormat("dd-MM-yy", Locale.getDefault()).format(calendar.time)
-        val time = SimpleDateFormat("HH:mm:ss", Locale.getDefault()).format(calendar.time)
-        val history = History(expression, answer, date, time)
+        val date = SimpleDateFormat("dd MMM", Locale.getDefault()).format(calendar.time)
+        val history = History(expression, answer, date)
         historyViewModel.insertHistory(history)
     }
 
     private fun insert(input: String) {
         val expression = inputMutableLiveData.value
+        if (!input.isDigitsOnly() && input != ".") {
+            isDecimal = false
+        }
         if (expression.isNullOrEmpty() || cursorMutableLiveData.value == 0) {
             if (!(input == "×" || input == "÷" || input == "^2" || input == "!" || input == "%" || input == "^" || input == ")")) {
                 inputMutableLiveData.value = input
@@ -156,14 +170,19 @@ class CalculatorInputViewModel(application: Application) : AndroidViewModel(appl
             if (cursorPosition == 0) {
                 add(input)
             } else {
-
                 val lastChar = expression[cursorPosition - 1]
                 if (input.isDigitsOnly()) {
                     add(input)
-                    return
-                }
-                if (operators.contains(input[0])) {
+                } else if (operators.contains(input[0])) {
                     if (operators.contains(lastChar)) {
+                        if (cursorPosition > 2) {
+                            if (operators.contains(expression[cursorPosition - 2]) && lastChar == '-') {
+                                return
+                            }
+                        }
+                        if (lastChar == '-' && input == "-") {
+                            return
+                        }
                         if ((lastChar != '+' && input == "-") && !(lastChar == '-' && input == "+")) {
                             add(input)
                         } else {
@@ -173,8 +192,7 @@ class CalculatorInputViewModel(application: Application) : AndroidViewModel(appl
                         add(input)
                     }
 
-                }
-                else {
+                } else {
                     add(input)
                 }
             }
@@ -183,8 +201,6 @@ class CalculatorInputViewModel(application: Application) : AndroidViewModel(appl
     }
 
     private fun add(input: String) {
-        Log.i("Added", "A")
-
         val expression = inputMutableLiveData.value!!
         val cursorPosition = cursorMutableLiveData.value!!
         if (cursorPosition == expression.length) {
@@ -196,12 +212,10 @@ class CalculatorInputViewModel(application: Application) : AndroidViewModel(appl
                     cursorPosition
                 )
         }
-
         cursorMutableLiveData.value = cursorMutableLiveData.value?.plus(input.length)
     }
 
     private fun replace(input: String) {
-        Log.i("Replaced", "R")
         val expression = inputMutableLiveData.value!!
         val cursorPosition = cursorMutableLiveData.value!!
         if (cursorPosition == expression.length) {

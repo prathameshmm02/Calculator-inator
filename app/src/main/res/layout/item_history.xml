@@ -2,20 +2,36 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="100dp"
+    android:layout_height="wrap_content"
 
     android:background="?attr/colorOnPrimary"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:weightSum="1">
+
+    <TextView
+        android:id="@+id/date_header"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.2"
+        android:paddingStart="20dp"
+        android:paddingEnd="20dp"
+        android:textColor="@color/text_color"
+        android:textSize="@dimen/font_size_small"
+        tools:text="03-06-2002" />
 
     <TextView
         android:id="@+id/expression"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         android:layout_gravity="end"
-        android:layout_weight="1"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_weight="0.4"
         android:fontFamily="@font/poppins"
         android:gravity="end|center_vertical"
-        android:padding="10dp"
+        android:paddingStart="10dp"
+        android:paddingEnd="10dp"
+        android:textColor="@color/text_color"
         android:textIsSelectable="true"
         android:textSize="24sp"
         tools:text="2+2" />
@@ -23,9 +39,11 @@
     <TextView
         android:id="@+id/answer"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         android:layout_gravity="end"
-        android:layout_weight="1"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_weight="0.4"
         android:fontFamily="@font/poppins"
         android:gravity="end|center_vertical"
         android:padding="10dp"
@@ -34,10 +52,14 @@
         tools:text="4" />
 
     <View
+        android:id="@+id/divider"
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:layout_weight="0"
         android:background="?android:attr/listDivider"
-        android:layout_marginStart="20dp"
-        android:layout_marginEnd="20dp" />
+        android:visibility="gone" />
+
+    <Space
+        android:id="@+id/spacer"
+        android:layout_width="match_parent"
+        android:layout_height="20dp" />
 </LinearLayout>

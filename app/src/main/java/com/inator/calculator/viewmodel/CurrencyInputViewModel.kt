@@ -12,19 +12,19 @@ class CurrencyInputViewModel(application: Application) : AndroidViewModel(applic
     private val preferenceRepository = PreferenceRepository.getInstance(application)
 
     private val outputDirect: MutableLiveData<String> by lazy {
-        MutableLiveData("0")
+        MutableLiveData("")
     }
 
     private val outputReverse: MutableLiveData<String> by lazy {
-        MutableLiveData("0")
+        MutableLiveData("")
     }
 
     private val currentInput1: MutableLiveData<String> by lazy {
 
-        MutableLiveData("0")
+        MutableLiveData("")
     }
     private val currentInput2: MutableLiveData<String> by lazy {
-        MutableLiveData("0")
+        MutableLiveData("")
     }
     private val spinnerFrom: MutableLiveData<Rate> by lazy {
         MutableLiveData()
@@ -117,6 +117,7 @@ class CurrencyInputViewModel(application: Application) : AndroidViewModel(applic
     fun getSavedSpinner1(): String? {
         return preferenceRepository.getCurrencySpinner1()
     }
+
     fun getSavedSpinner2(): String? {
         return preferenceRepository.getCurrencySpinner2()
     }

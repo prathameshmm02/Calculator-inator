@@ -122,6 +122,10 @@ class DraggablePanel(context: Context?, attrs: AttributeSet?) : LinearLayout(con
         dispatchOnPanelClosed(this)
     }
 
+    fun isOpen(): Boolean {
+        return isOpen
+    }
+
     fun setPanelSlideListener(listener: PanelSlideListener?) {
         mPanelSlideListener = listener
     }

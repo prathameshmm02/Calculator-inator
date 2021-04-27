@@ -75,8 +75,16 @@ class CurrencyFragment : Fragment() {
                         it.rates
                     )
                     //Getting Last States
-                    currencySpinner1.setSelection((currencySpinner1.adapter as SpinnerAdapter).getPosition(currencyInputViewModel.getSavedSpinner1()!!))
-                    currencySpinner2.setSelection((currencySpinner2.adapter as SpinnerAdapter).getPosition(currencyInputViewModel.getSavedSpinner2()!!))
+                    currencySpinner1.setSelection(
+                        (currencySpinner1.adapter as SpinnerAdapter).getPosition(
+                            currencyInputViewModel.getSavedSpinner1()!!
+                        )
+                    )
+                    currencySpinner2.setSelection(
+                        (currencySpinner2.adapter as SpinnerAdapter).getPosition(
+                            currencyInputViewModel.getSavedSpinner2()!!
+                        )
+                    )
                 }
             }
         )

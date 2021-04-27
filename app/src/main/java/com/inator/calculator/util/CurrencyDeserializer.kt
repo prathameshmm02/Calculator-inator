@@ -14,7 +14,7 @@ class CurrencyDeserializer : JsonDeserializer<Currency> {
         typeOfT: Type?,
         context: JsonDeserializationContext?
     ): Currency {
-        if (json == null || context ==null){
+        if (json == null || context == null) {
             throw Exception("Error")
         }
         val obj = json.asJsonObject

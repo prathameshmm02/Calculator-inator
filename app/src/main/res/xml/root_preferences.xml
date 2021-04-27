@@ -1,19 +1,19 @@
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <PreferenceCategory android:title="Appearance">
+    <PreferenceCategory android:title="@string/title_appearance">
         <ListPreference
             android:entries="@array/themes_entries"
             android:entryValues="@array/themes_alias"
             android:key="app_theme"
             android:summary="%s"
-            android:title="Theme"
+            android:title="@string/title_theme"
             app:defaultValue="0"
             app:useSimpleSummaryProvider="true" />
     </PreferenceCategory>
-    <PreferenceCategory android:title="About">
+    <PreferenceCategory android:title="@string/title_about">
 
-        <Preference android:title="Currency API Used">
+        <Preference android:title="@string/message_currency">
             <intent
                 android:action="android.intent.action.VIEW"
                 android:data="https://exchangerate.host/" />

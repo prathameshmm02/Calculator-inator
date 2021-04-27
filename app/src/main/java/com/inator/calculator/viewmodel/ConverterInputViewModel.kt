@@ -19,18 +19,18 @@ class ConverterInputViewModel(application: Application) : AndroidViewModel(appli
     }
 
     private val outputDirect: MutableLiveData<String> by lazy {
-        MutableLiveData("0")
+        MutableLiveData("")
     }
 
     private val outputReverse: MutableLiveData<String> by lazy {
-        MutableLiveData("0")
+        MutableLiveData("")
     }
 
     private val currentInput1: MutableLiveData<String> by lazy {
-        MutableLiveData("0")
+        MutableLiveData("")
     }
     private val currentInput2: MutableLiveData<String> by lazy {
-        MutableLiveData("0")
+        MutableLiveData("")
     }
     private val spinnerFrom: MutableLiveData<Int> by lazy {
         MutableLiveData(0)

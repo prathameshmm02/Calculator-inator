@@ -5,7 +5,7 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="blue">#FF4285F4</color>
-    <color name="grey">#80353535</color>
+    <color name="grey">#808080</color>
     <color name="dark_blue">#2559AF</color>
     <color name="light_blue">#578DE6</color>
     <color name="light_blue_50">#FFE1F5FE</color>
@@ -14,5 +14,5 @@
     <color name="light_blue_900">#FF01579B</color>
     <color name="color_background">#FFFFFFFF</color>
     <color name="color_background_variant">#E6E6E6</color>
-    <color name="shadow_color">#4D353535</color>
+    <color name="text_color">#000000</color>
 </resources>

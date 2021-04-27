@@ -21,7 +21,7 @@
         android:background="@null"
         android:fontFamily="@font/poppins"
         android:gravity="center_vertical|end"
-        android:inputType="text"
+        android:lines="1"
         android:scrollHorizontally="true"
         android:paddingStart="0dp"
         android:paddingEnd="30dp"
@@ -40,5 +40,6 @@
         android:paddingStart="30dp"
         android:paddingEnd="30dp"
         android:scrollHorizontally="true"
-        android:textSize="24sp" />
+        android:textSize="24sp"
+        android:visibility="gone" />
 </LinearLayout>

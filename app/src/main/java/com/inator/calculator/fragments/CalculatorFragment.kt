@@ -1,8 +1,9 @@
 ﻿package com.inator.calculator.fragments
 
 import android.animation.ValueAnimator
+import android.annotation.SuppressLint
 import android.os.Bundle
-import android.util.Log
+import android.util.TypedValue
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,28 +12,26 @@ import android.view.animation.DecelerateInterpolator
 import android.widget.*
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.slidingpanelayout.widget.SlidingPaneLayout
 import com.inator.calculator.R
-import com.inator.calculator.repository.CalculatorOld
 import com.inator.calculator.viewmodel.CalculatorInputViewModel
 import com.inator.calculator.viewmodel.HistoryViewModel
 import com.inator.calculator.views.DraggablePanel
 import kotlinx.android.synthetic.main.fragment_calculator.*
 import kotlinx.android.synthetic.main.fragment_history.*
 import kotlinx.android.synthetic.main.layout_adv_calculator.*
-import kotlinx.android.synthetic.main.layout_app_bar_history.*
 import kotlinx.android.synthetic.main.layout_input_field.*
 import kotlinx.android.synthetic.main.layout_simple_calc.*
 import java.util.*
 
 
-class CalculatorFragment : Fragment(), View.OnClickListener {
+class CalculatorFragment : Fragment() {
 
 
-    private val historyViewModel: HistoryViewModel by viewModels()
+    private val historyViewModel: HistoryViewModel by activityViewModels()
     private val calcViewModel: CalculatorInputViewModel by viewModels()
-
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -46,6 +45,7 @@ class CalculatorFragment : Fragment(), View.OnClickListener {
         return inflater.inflate(R.layout.fragment_calculator, container, false)
     }
 
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         setUpViews()
         addListeners()
@@ -55,13 +55,12 @@ class CalculatorFragment : Fragment(), View.OnClickListener {
 
     private fun addObservers() {
         historyViewModel.clickedHistory.observe(viewLifecycleOwner, {
-            draggablePanel.smoothPanelClose(200)
+            draggablePanel.smoothPanelClose(300)
             input.setText(it.expr)
             output.text = it.answer
         })
         calcViewModel.inputLiveData.observe(viewLifecycleOwner, {
             input.setText(it)
-            Log.i(input.selectionStart.toString(), input.selectionEnd.toString())
             calcViewModel.calculateOutput()
         })
         calcViewModel.outputLiveData.observe(viewLifecycleOwner, {
@@ -100,10 +99,18 @@ class CalculatorFragment : Fragment(), View.OnClickListener {
     }
 
 
+    @SuppressLint("RestrictedApi")
     private fun setUpViews() {
         slidingPaneLayout.openPane()
         val color = ContextCompat.getColor(requireContext(), android.R.color.transparent)
         slidingPaneLayout.sliderFadeColor = color
+
+
+        //Setting AutoResize For TextView
+        slidingPaneLayout.sliderFadeColor = color
+
+        //Setting AutoResize For TextView
+        output.setAutoSizeTextTypeUniformWithConfiguration(10, 24, 1, TypedValue.COMPLEX_UNIT_SP)
 
         // Don't show keyboard on focus/click
         input.showSoftInputOnFocus = false
@@ -156,7 +163,6 @@ class CalculatorFragment : Fragment(), View.OnClickListener {
         addButton.setOnClickListener {
             calcViewModel.operClicked('+')
         }
-
         subButton.setOnClickListener {
             calcViewModel.operClicked('-')
         }
@@ -216,7 +222,7 @@ class CalculatorFragment : Fragment(), View.OnClickListener {
             calcViewModel.angleClicked()
         }
         equalButton.setOnClickListener {
-            calcViewModel.equalClicked()
+            calcViewModel.equalClicked(requireContext())
         }
         clearButton.setOnClickListener {
             val position = input.selectionStart
@@ -224,7 +230,6 @@ class CalculatorFragment : Fragment(), View.OnClickListener {
                 input.text?.delete(position - 1, position)
             }
             calcViewModel.backspaceClicked(input.selectionStart, input.selectionEnd)
-            Log.i(input.selectionStart.toString(), input.selectionEnd.toString())
         }
 
         clearButton.setOnLongClickListener {
@@ -270,16 +275,16 @@ class CalculatorFragment : Fragment(), View.OnClickListener {
 
         draggablePanel.setPanelSlideListener(object : DraggablePanel.PanelSlideListener {
             override fun onPanelSlide(view: View, mDragOffset: Float) {
-                historyContainer.layoutParams = LinearLayout.LayoutParams(
-                    ViewGroup.LayoutParams.MATCH_PARENT,
-                    0,
-                    1 * mDragOffset
-                )
                 if (input.text.isNullOrEmpty()) {
                     inputField.layoutParams = LinearLayout.LayoutParams(
                         ViewGroup.LayoutParams.MATCH_PARENT,
                         0,
                         0f + 0.3f * (1 - mDragOffset)
+                    )
+                    historyContainer.layoutParams = LinearLayout.LayoutParams(
+                        ViewGroup.LayoutParams.MATCH_PARENT,
+                        0,
+                        1.0f * mDragOffset
                     )
                 } else {
                     inputField.layoutParams = LinearLayout.LayoutParams(
@@ -287,13 +292,16 @@ class CalculatorFragment : Fragment(), View.OnClickListener {
                         0,
                         0.3f + 0.3f * (1 - mDragOffset)
                     )
+                    historyContainer.layoutParams = LinearLayout.LayoutParams(
+                        ViewGroup.LayoutParams.MATCH_PARENT,
+                        0,
+                        0.7f * mDragOffset
+                    )
                 }
             }
 
             override fun onPanelOpened(view: View) {
                 val currentWeight = (inputField.layoutParams as LinearLayout.LayoutParams).weight
-
-
                 val animator: ValueAnimator
                 if (input.text.isNullOrEmpty()) {
                     animator = ValueAnimator.ofFloat(currentWeight, 0.0f)
@@ -308,6 +316,11 @@ class CalculatorFragment : Fragment(), View.OnClickListener {
                             0,
                             it.animatedValue as Float
                         )
+                    historyContainer.layoutParams = LinearLayout.LayoutParams(
+                        ViewGroup.LayoutParams.MATCH_PARENT,
+                        0,
+                        1.0f - it.animatedValue as Float
+                    )
                 }
                 animator.duration = 300
                 animator.interpolator = DecelerateInterpolator()
@@ -354,33 +367,9 @@ class CalculatorFragment : Fragment(), View.OnClickListener {
     }
 
 
-    override fun onClick(v: View) {
-        if (input.text.toString() == "Not a Number") {
-            input.setText("")
-        }
-        val buttonText = (v as Button).text as String
-        val currentPosition = input.selectionStart
-        val oldInput = input.text.toString()
-        val validateInput: BooleanArray =
-            CalculatorOld.validateInput(currentPosition, buttonText, oldInput)
-        if (validateInput[0] && validateInput[1]) {
-            val buttonText2 = "$buttonText()"
-            val output = oldInput.substring(0, currentPosition) + buttonText2 + oldInput.substring(
-                currentPosition
-            )
-            input.setText(output)
-            input.setSelection(buttonText2.length + currentPosition - 1)
-        } else if (validateInput[0]) {
-            val output = oldInput.substring(0, currentPosition) + buttonText + oldInput.substring(
-                currentPosition
-            )
-            input.setText(output)
-            input.setSelection(buttonText.length + currentPosition)
-
-        }
-    }
-
 }
+
+
 
 
 

@@ -14,12 +14,7 @@ class History(
 
     @ColumnInfo(name = "Date")
     var date: String,
-
-    @ColumnInfo(name = "Time")
-    var time: String
-
 ) {
     @PrimaryKey(autoGenerate = true)
     var eid = 0
-
 }

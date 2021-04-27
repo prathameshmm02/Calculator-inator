@@ -29,7 +29,11 @@ class SearchableSpinner : AppCompatSpinner, OnItemClickListener<Rate> {
         init()
     }
 
-    constructor (context: Context, attrs: AttributeSet, defStyleAttr: Int) : super(context, attrs, defStyleAttr) {
+    constructor (context: Context, attrs: AttributeSet, defStyleAttr: Int) : super(
+        context,
+        attrs,
+        defStyleAttr
+    ) {
         this.mContext = context
         init()
     }
@@ -50,7 +54,8 @@ class SearchableSpinner : AppCompatSpinner, OnItemClickListener<Rate> {
                 val fm = findActivity(mContext)?.supportFragmentManager
                 if (fm != null) {
                     // give currently selected position to dialog
-                    spinnerDialog.arguments = Bundle().apply { putInt("position", selectedItemPosition) }
+                    spinnerDialog.arguments =
+                        Bundle().apply { putInt("position", selectedItemPosition) }
                     spinnerDialog.show(fm, null)
                 }
                 true
@@ -63,7 +68,8 @@ class SearchableSpinner : AppCompatSpinner, OnItemClickListener<Rate> {
 
     override fun setAdapter(adapter: SpinnerAdapter?) {
         super.setAdapter(adapter)
-        spinnerDialog.listAdapter = SearchableSpinnerDialog.Adapter(context,
+        spinnerDialog.listAdapter = SearchableSpinnerDialog.Adapter(
+            context,
             adapter as com.inator.calculator.adapters.SpinnerAdapter?
         )
     }

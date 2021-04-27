@@ -11,6 +11,10 @@
         <item name="colorOnSecondary">@color/black</item>
         <!-- Customize your theme here. -->
         <item name="android:windowBackground">@color/black</item>
+        <item name="windowActionBar">false</item>
+        <item name="fontFamily">@font/poppins</item>
+
+
     </style>
 
     <style name="Theme.Calculator.ActionBar" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
@@ -23,10 +27,14 @@
         <item name="colorOnSecondary">@color/black</item>
         <!-- Customize your theme here. -->
         <item name="statusBarBackground">@android:color/transparent</item>
+        <item name="fontFamily">@font/poppins</item>
+
     </style>
 
     <style name="ThemeOverlay.Calculator.AppWidgetContainer" parent="">
         <item name="appWidgetBackgroundColor">@color/light_blue_900</item>
         <item name="appWidgetTextColor">@color/light_blue_200</item>
+        <item name="fontFamily">@font/poppins</item>
+
     </style>
 </resources>
