@@ -1,13 +1,10 @@
-# Calculator
-Calculator & Converter for Android
+# Calculator-inator
+Calculator & Converter for Android inspired from Google's Calculator App
 
-Calculator App based on Google's Calculator App
-
-Calculator :
+Features :
 Basic & Advanced Calculator with logarithmic and trigonometric functions.
-
-Converter : 
-Length, Area, Mass, Speed, Data, Volume, Time, Temperature, Angle & Currency Converter.
+Length, Area, Mass, Speed, Data, Volume, Time, Temperature, Angle 
+Live Currency Converter.
 
 Screenshots:
 <br>
