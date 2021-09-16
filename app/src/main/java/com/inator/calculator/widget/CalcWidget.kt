@@ -69,12 +69,12 @@ class CalcWidget : AppWidgetProvider() {
                     ""
                 } else {
                     setAllClear(context, false)
-                    input!!.substring(0, input.length - 1)
+                    input?.substring(0, input.length - 1)
                 }
             } else if (action == "EQUAL") {
                 setAllClear(context, true)
                 val result = input?.let { EvaluateString.evaluate(it, true) }
-                result!!.toPlainString()
+                result?.toPlainString()
             } else {
                 setAllClear(context, false)
                 input + inputs[actions.indexOf(action)]

@@ -165,14 +165,14 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun hideDelete() {
-        _menu!!.findItem(R.id.deleteHistory).isVisible = false
+        _menu?.findItem(R.id.deleteHistory)?.isVisible = false
     }
 
     override fun onBackPressed() {
         if (historyViewModel.isHistoryOpen.value == true) {
             draggablePanel.smoothPanelClose(300)
         } else {
-            this.finish()
+            super.onBackPressed()
         }
     }
 
