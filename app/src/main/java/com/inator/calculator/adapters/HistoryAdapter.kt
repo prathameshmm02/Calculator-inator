@@ -76,8 +76,7 @@ class HistoryAdapter(
         }
 
         init {
-            expression.setOnClickListener(this)
-            answer.setOnClickListener(this)
+            itemView.setOnClickListener(this)
         }
     }
 }

@@ -41,7 +41,6 @@ class HistoryFragment : Fragment(), HistoryItemClickListener {
             }
             historyAdapter = HistoryAdapter(context, historyItems, this@HistoryFragment)
             adapter = historyAdapter
-
         }
 
         viewModel.allHistory.observe(viewLifecycleOwner) { list ->
@@ -49,7 +48,6 @@ class HistoryFragment : Fragment(), HistoryItemClickListener {
             historyAdapter?.updateList(list)
         }
     }
-
 
     override fun onItemClicked(history: History) {
         viewModel.setClickedExpression(history)

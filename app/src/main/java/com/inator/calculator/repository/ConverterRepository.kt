@@ -39,7 +39,6 @@ class ConverterRepository(context: Context) {
 
         //Converting String Array to Double Array
         return values.map { it.toDouble() }
-
     }
 
     fun evaluateTemperature(
@@ -74,5 +73,4 @@ class ConverterRepository(context: Context) {
             }
         }.toString()
     }
-
 }

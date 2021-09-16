@@ -5,7 +5,6 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
-import android.view.View
 import androidx.activity.viewModels
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
@@ -33,45 +32,9 @@ class MainActivity : AppCompatActivity() {
         setTheme(R.style.Theme_Calculator)
         setContentView(R.layout.activity_main)
         setSupportActionBar(topAppBar)
-        historyViewModel.isHistoryOpen.observe(this, {
-            if (it) {
-                if (!historyBar.isVisible) {
-                    setSupportActionBar(historyBar)
-                    ObjectAnimator.ofFloat(historyBar, "alpha", 0f, 1f).apply {
-                        duration = 250
-                        start()
-                    }
-                    ObjectAnimator.ofFloat(topAppBar, "alpha", 1f, 0f).apply {
-                        duration = 250
-                        doOnEnd {
-                            historyBar.visibility = View.VISIBLE
-                            supportActionBar?.setDisplayHomeAsUpEnabled(true)
-                            showDelete()
-                        }
-                        start()
-                    }
-                }
-            } else {
-                setSupportActionBar(topAppBar)
-                ObjectAnimator.ofFloat(historyBar, "alpha", 1f, 0f).apply {
-                    duration = 250
-                    start()
-                }
-                ObjectAnimator.ofFloat(topAppBar, "alpha", 0f, 1f).apply {
-                    duration = 250
-                    doOnEnd {
-                        historyBar.visibility = View.GONE
-                        supportActionBar?.setDisplayHomeAsUpEnabled(false)
-                        hideDelete()
-                    }
-                    start()
-                }
-
-            }
-        })
+        setupHistoryPanel()
         setUpViews()
     }
-
 
     private fun setUpViews() {
         val pagerAdapter = ViewPagerAdapter(supportFragmentManager, 1)
@@ -160,6 +123,44 @@ class MainActivity : AppCompatActivity() {
 
     private fun hideDelete() {
         _menu?.findItem(R.id.deleteHistory)?.isVisible = false
+    }
+
+    private fun setupHistoryPanel() {
+        historyViewModel.isHistoryOpen.observe(this, {
+            if (it) {
+                setSupportActionBar(historyBar)
+                if (!historyBar.isVisible) {
+                    ObjectAnimator.ofFloat(historyBar, "alpha", 0f, 1f).apply {
+                        duration = 250
+                        start()
+                    }
+                    ObjectAnimator.ofFloat(topAppBar, "alpha", 1f, 0f).apply {
+                        duration = 250
+                        doOnEnd {
+                            historyBar.isVisible = true
+                            supportActionBar?.setDisplayHomeAsUpEnabled(true)
+                            showDelete()
+                        }
+                        start()
+                    }
+                }
+            } else {
+                setSupportActionBar(topAppBar)
+                ObjectAnimator.ofFloat(historyBar, "alpha", 1f, 0f).apply {
+                    duration = 250
+                    start()
+                }
+                ObjectAnimator.ofFloat(topAppBar, "alpha", 0f, 1f).apply {
+                    duration = 250
+                    doOnEnd {
+                        historyBar.isVisible = false
+                        supportActionBar?.setDisplayHomeAsUpEnabled(false)
+                        hideDelete()
+                    }
+                    start()
+                }
+            }
+        })
     }
 
     override fun onBackPressed() {
