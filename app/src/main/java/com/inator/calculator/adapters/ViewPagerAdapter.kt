@@ -1,13 +1,11 @@
 package com.inator.calculator.adapters
 
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentManager
-import androidx.fragment.app.FragmentStatePagerAdapter
+import androidx.fragment.app.FragmentActivity
+import androidx.viewpager2.adapter.FragmentStateAdapter
 import java.util.*
 
-class ViewPagerAdapter(fm: FragmentManager, behavior: Int) :
-
-    FragmentStatePagerAdapter(fm, behavior) {
+class ViewPagerAdapter(fa: FragmentActivity) : FragmentStateAdapter(fa) {
 
     private val fragmentList: MutableList<Fragment> = ArrayList()
 
@@ -15,11 +13,11 @@ class ViewPagerAdapter(fm: FragmentManager, behavior: Int) :
         fragmentList.add(fragment)
     }
 
-    override fun getItem(position: Int): Fragment {
+    override fun createFragment(position: Int): Fragment {
         return fragmentList[position]
     }
 
-    override fun getCount(): Int {
+    override fun getItemCount(): Int {
         return fragmentList.size
     }
 }

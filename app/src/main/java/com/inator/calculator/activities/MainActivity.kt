@@ -21,6 +21,9 @@ import com.inator.calculator.fragments.CurrencyFragment
 import com.inator.calculator.viewmodel.HistoryViewModel
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_calculator.*
+import com.google.android.material.tabs.TabLayoutMediator
+import com.google.android.material.tabs.TabLayoutMediator.TabConfigurationStrategy
+
 
 class MainActivity : AppCompatActivity() {
 
@@ -37,18 +40,23 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun setUpViews() {
-        val pagerAdapter = ViewPagerAdapter(supportFragmentManager, 1)
+        val pagerAdapter = ViewPagerAdapter(this)
         pagerAdapter.apply {
             addFragment(CalculatorFragment())
             addFragment(ConverterFragment())
             addFragment(CurrencyFragment())
         }
-        pager.adapter = pagerAdapter
-        pager.offscreenPageLimit = 2
-        pager.setPageTransformer(true, ZoomOutPageTransformer())
+        pager.apply {
+            adapter = pagerAdapter
+            offscreenPageLimit = 2
+            setPageTransformer(ZoomOutPageTransformer())
+            isUserInputEnabled = false
+        }
 
         tabLayout.apply {
-            setupWithViewPager(pager)
+            TabLayoutMediator(
+                tabLayout, pager
+            ) { _: TabLayout.Tab, _: Int -> }.attach()
 
             getTabAt(0)?.setIcon(R.drawable.ic_filled_calculator)
             getTabAt(1)?.setIcon(R.drawable.ic_outline_converter)
