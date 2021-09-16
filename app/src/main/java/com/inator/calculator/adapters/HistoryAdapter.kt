@@ -14,16 +14,11 @@ class HistoryAdapter(
     private val context: Context,
     private val historyItems: ArrayList<History>,
     private val listener: HistoryItemClickListener
-
 ) :
     RecyclerView.Adapter<HistoryAdapter.ViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(context).inflate(R.layout.item_history, parent, false)
-        val viewHolder = ViewHolder(view)
-        view.setOnClickListener {
-            listener.onItemClicked(historyItems[viewHolder.adapterPosition])
-        }
-        return viewHolder
+        return ViewHolder(view)
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {

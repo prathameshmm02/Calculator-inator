@@ -13,7 +13,8 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Calculator">
 
-        <receiver android:name=".widget.CalcWidget">
+        <receiver android:name=".widget.CalcWidget"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
             </intent-filter>
@@ -26,7 +27,8 @@
         <activity
             android:name=".activities.MainActivity"
             android:theme="@style/splash_screen"
-            android:windowSoftInputMode="stateHidden">
+            android:windowSoftInputMode="stateHidden"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />

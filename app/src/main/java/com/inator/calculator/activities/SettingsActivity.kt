@@ -17,10 +17,8 @@ class SettingsActivity : AppCompatActivity() {
 
     @RequiresApi(Build.VERSION_CODES.M)
     override fun onCreate(savedInstanceState: Bundle?) {
-
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_settings)
-
         if (savedInstanceState == null) {
             supportFragmentManager
                 .beginTransaction()
@@ -42,13 +40,11 @@ class SettingsActivity : AppCompatActivity() {
             val appTheme: ListPreference? = findPreference("app_theme")
 
             appTheme?.onPreferenceChangeListener =
-                Preference.OnPreferenceChangeListener { _, newValue -> // do whatever you want with new value
+                Preference.OnPreferenceChangeListener { _, newValue ->
                     Data.getInstance(requireContext()).setTheme(newValue.toString())
                     true
                 }
         }
-
-
     }
 }
 

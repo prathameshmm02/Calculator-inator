@@ -1,7 +1,5 @@
 package com.inator.calculator.activities
 
-import android.animation.Animator
-import android.animation.AnimatorListenerAdapter
 import android.animation.ObjectAnimator
 import android.content.Intent
 import android.os.Bundle
@@ -11,6 +9,7 @@ import android.view.View
 import androidx.activity.viewModels
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.animation.doOnEnd
 import androidx.core.view.isVisible
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayout.OnTabSelectedListener
@@ -44,18 +43,14 @@ class MainActivity : AppCompatActivity() {
                     }
                     ObjectAnimator.ofFloat(topAppBar, "alpha", 1f, 0f).apply {
                         duration = 250
-                        addListener(object : AnimatorListenerAdapter() {
-                            override fun onAnimationEnd(animation: Animator) {
-                                historyBar.visibility = View.VISIBLE
-                                supportActionBar?.setDisplayHomeAsUpEnabled(true)
-                                showDelete()
-                            }
-                        })
+                        doOnEnd {
+                            historyBar.visibility = View.VISIBLE
+                            supportActionBar?.setDisplayHomeAsUpEnabled(true)
+                            showDelete()
+                        }
                         start()
                     }
                 }
-
-
             } else {
                 setSupportActionBar(topAppBar)
                 ObjectAnimator.ofFloat(historyBar, "alpha", 1f, 0f).apply {
@@ -64,13 +59,11 @@ class MainActivity : AppCompatActivity() {
                 }
                 ObjectAnimator.ofFloat(topAppBar, "alpha", 0f, 1f).apply {
                     duration = 250
-                    addListener(object : AnimatorListenerAdapter() {
-                        override fun onAnimationEnd(animation: Animator) {
-                            historyBar.visibility = View.GONE
-                            supportActionBar?.setDisplayHomeAsUpEnabled(false)
-                            hideDelete()
-                        }
-                    })
+                    doOnEnd {
+                        historyBar.visibility = View.GONE
+                        supportActionBar?.setDisplayHomeAsUpEnabled(false)
+                        hideDelete()
+                    }
                     start()
                 }
 
@@ -147,17 +140,18 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun createDialog() {
-        val alertDialog = AlertDialog.Builder(this).create()
-        alertDialog.setMessage(resources.getString(R.string.delete_message))
-        alertDialog.setTitle(resources.getString(R.string.delete_title))
-        alertDialog.setIcon(R.drawable.ic_delete_history)
-        alertDialog.setButton(AlertDialog.BUTTON_POSITIVE, "Ok") { _, _ ->
-            historyViewModel.deleteAllHistory()
+        AlertDialog.Builder(this).create().apply {
+            setMessage(resources.getString(R.string.delete_message))
+            setTitle(resources.getString(R.string.delete_title))
+            setIcon(R.drawable.ic_delete_history)
+            setButton(AlertDialog.BUTTON_POSITIVE, "Ok") { _, _ ->
+                historyViewModel.deleteAllHistory()
+                setButton(AlertDialog.BUTTON_NEGATIVE, "Cancel") { _, _ ->
+                    dismiss()
+                }
+                show()
+            }
         }
-        alertDialog.setButton(AlertDialog.BUTTON_NEGATIVE, "Cancel") { _, _ ->
-            alertDialog.dismiss()
-        }
-        alertDialog.show()
     }
 
     private fun showDelete() {
@@ -175,5 +169,4 @@ class MainActivity : AppCompatActivity() {
             super.onBackPressed()
         }
     }
-
 }
