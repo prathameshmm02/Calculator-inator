@@ -1,19 +1,13 @@
 package com.inator.calculator.fragments
 
-import android.annotation.SuppressLint
-import android.os.Build
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
-import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
-import androidx.annotation.RequiresApi
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
-import androidx.recyclerview.widget.RecyclerView.SimpleOnItemTouchListener
 import com.inator.calculator.R
 import com.inator.calculator.adapters.HistoryAdapter
 import com.inator.calculator.adapters.HistoryItemClickListener
@@ -36,10 +30,8 @@ class HistoryFragment : Fragment(), HistoryItemClickListener {
         return inflater.inflate(R.layout.fragment_history, container, false)
     }
 
-    @RequiresApi(Build.VERSION_CODES.M)
-    @SuppressLint("ClickableViewAccessibility")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-
+        super.onViewCreated(view, savedInstanceState)
         historyRecyclerView.apply {
             setHasFixedSize(false)
             val linearLayoutManager = LinearLayoutManager(context)
@@ -53,14 +45,9 @@ class HistoryFragment : Fragment(), HistoryItemClickListener {
         }
 
         viewModel.allHistory.observe(viewLifecycleOwner) { list ->
-            if (list.isEmpty()) {
-                noHistory.visibility = View.VISIBLE
-            } else {
-                noHistory.visibility = View.INVISIBLE
-            }
+            noHistory.isVisible = list.isEmpty()
             historyAdapter?.updateList(list)
         }
-        super.onViewCreated(view, savedInstanceState)
     }
 
 

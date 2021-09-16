@@ -36,7 +36,6 @@ class MainActivity : AppCompatActivity() {
         setSupportActionBar(topAppBar)
         historyViewModel.isHistoryOpen.observe(this, {
             if (it) {
-
                 if (!historyBar.isVisible) {
                     setSupportActionBar(historyBar)
                     ObjectAnimator.ofFloat(historyBar, "alpha", 0f, 1f).apply {
@@ -162,15 +161,11 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun showDelete() {
-        if (_menu != null) {
-            _menu!!.findItem(R.id.deleteHistory).isVisible = true
-        }
+        _menu?.findItem(R.id.deleteHistory)?.isVisible = true
     }
 
     private fun hideDelete() {
-        if (_menu != null) {
-            _menu!!.findItem(R.id.deleteHistory).isVisible = false
-        }
+        _menu!!.findItem(R.id.deleteHistory).isVisible = false
     }
 
     override fun onBackPressed() {
