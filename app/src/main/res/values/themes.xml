@@ -15,7 +15,7 @@
         <item name="fontFamily">@font/poppins</item>
     </style>
 
-    <style name="Theme.Calculator.ActionBar" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
+    <style name="Theme.Calculator.ActionBar" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <!-- Primary brand color. -->
         <item name="colorPrimary">@color/blue</item>
         <item name="colorPrimaryVariant">@color/dark_blue</item>
@@ -27,13 +27,12 @@
         <item name="fontFamily">@font/poppins</item>
 
         <!-- Customize your theme here. -->
-
+        <item name="android:statusBarColor">@color/color_background_variant</item>
     </style>
 
     <style name="ThemeOverlay.Calculator.AppWidgetContainer" parent="">
         <item name="appWidgetBackgroundColor">@color/light_blue_600</item>
         <item name="appWidgetTextColor">@color/light_blue_50</item>
         <item name="fontFamily">@font/poppins</item>
-
     </style>
 </resources>
