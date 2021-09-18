@@ -5,7 +5,6 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
-import android.view.View
 import androidx.activity.viewModels
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
@@ -22,6 +21,9 @@ import com.inator.calculator.fragments.CurrencyFragment
 import com.inator.calculator.viewmodel.HistoryViewModel
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_calculator.*
+import com.google.android.material.tabs.TabLayoutMediator
+import com.google.android.material.tabs.TabLayoutMediator.TabConfigurationStrategy
+
 
 class MainActivity : AppCompatActivity() {
 
@@ -33,59 +35,28 @@ class MainActivity : AppCompatActivity() {
         setTheme(R.style.Theme_Calculator)
         setContentView(R.layout.activity_main)
         setSupportActionBar(topAppBar)
-        historyViewModel.isHistoryOpen.observe(this, {
-            if (it) {
-                if (!historyBar.isVisible) {
-                    setSupportActionBar(historyBar)
-                    ObjectAnimator.ofFloat(historyBar, "alpha", 0f, 1f).apply {
-                        duration = 250
-                        start()
-                    }
-                    ObjectAnimator.ofFloat(topAppBar, "alpha", 1f, 0f).apply {
-                        duration = 250
-                        doOnEnd {
-                            historyBar.visibility = View.VISIBLE
-                            supportActionBar?.setDisplayHomeAsUpEnabled(true)
-                            showDelete()
-                        }
-                        start()
-                    }
-                }
-            } else {
-                setSupportActionBar(topAppBar)
-                ObjectAnimator.ofFloat(historyBar, "alpha", 1f, 0f).apply {
-                    duration = 250
-                    start()
-                }
-                ObjectAnimator.ofFloat(topAppBar, "alpha", 0f, 1f).apply {
-                    duration = 250
-                    doOnEnd {
-                        historyBar.visibility = View.GONE
-                        supportActionBar?.setDisplayHomeAsUpEnabled(false)
-                        hideDelete()
-                    }
-                    start()
-                }
-
-            }
-        })
+        setupHistoryPanel()
         setUpViews()
     }
 
-
     private fun setUpViews() {
-        val pagerAdapter = ViewPagerAdapter(supportFragmentManager, 1)
+        val pagerAdapter = ViewPagerAdapter(this)
         pagerAdapter.apply {
             addFragment(CalculatorFragment())
             addFragment(ConverterFragment())
             addFragment(CurrencyFragment())
         }
-        pager.adapter = pagerAdapter
-        pager.offscreenPageLimit = 2
-        pager.setPageTransformer(true, ZoomOutPageTransformer())
+        pager.apply {
+            adapter = pagerAdapter
+            offscreenPageLimit = 2
+            setPageTransformer(ZoomOutPageTransformer())
+            isUserInputEnabled = false
+        }
 
         tabLayout.apply {
-            setupWithViewPager(pager)
+            TabLayoutMediator(
+                tabLayout, pager
+            ) { _: TabLayout.Tab, _: Int -> }.attach()
 
             getTabAt(0)?.setIcon(R.drawable.ic_filled_calculator)
             getTabAt(1)?.setIcon(R.drawable.ic_outline_converter)
@@ -160,6 +131,44 @@ class MainActivity : AppCompatActivity() {
 
     private fun hideDelete() {
         _menu?.findItem(R.id.deleteHistory)?.isVisible = false
+    }
+
+    private fun setupHistoryPanel() {
+        historyViewModel.isHistoryOpen.observe(this, {
+            if (it) {
+                setSupportActionBar(historyBar)
+                if (!historyBar.isVisible) {
+                    ObjectAnimator.ofFloat(historyBar, "alpha", 0f, 1f).apply {
+                        duration = 250
+                        start()
+                    }
+                    ObjectAnimator.ofFloat(topAppBar, "alpha", 1f, 0f).apply {
+                        duration = 250
+                        doOnEnd {
+                            historyBar.isVisible = true
+                            supportActionBar?.setDisplayHomeAsUpEnabled(true)
+                            showDelete()
+                        }
+                        start()
+                    }
+                }
+            } else {
+                setSupportActionBar(topAppBar)
+                ObjectAnimator.ofFloat(historyBar, "alpha", 1f, 0f).apply {
+                    duration = 250
+                    start()
+                }
+                ObjectAnimator.ofFloat(topAppBar, "alpha", 0f, 1f).apply {
+                    duration = 250
+                    doOnEnd {
+                        historyBar.isVisible = false
+                        supportActionBar?.setDisplayHomeAsUpEnabled(false)
+                        hideDelete()
+                    }
+                    start()
+                }
+            }
+        })
     }
 
     override fun onBackPressed() {

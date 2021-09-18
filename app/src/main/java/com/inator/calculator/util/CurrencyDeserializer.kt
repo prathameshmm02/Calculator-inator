@@ -32,7 +32,5 @@ class CurrencyDeserializer : JsonDeserializer<Currency> {
             Rate(code, value)
         }
         return Currency(success, base, date, ratesList)
-
     }
-
 }

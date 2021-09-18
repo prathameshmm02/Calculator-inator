@@ -241,11 +241,10 @@ class CalculatorFragment : Fragment() {
             calcViewModel.setCursor(input.selectionStart)
         }
         input.setOnLongClickListener {
-
             calcViewModel.setCursor(input.selectionStart)
             return@setOnLongClickListener false
         }
-        /*     ***     Visual Stuff     ***     */
+        /*      Visual Stuff       */
         slideButton.setOnClickListener {
             if (slidingPaneLayout.isOpen) {
                 slidingPaneLayout.closePane()
@@ -365,12 +364,4 @@ class CalculatorFragment : Fragment() {
             }
         })
     }
-
-
 }
-
-
-
-
-
-
