@@ -48,7 +48,7 @@ class HistoryAdapter(
         }
     }
 
-    private fun shouldCreateDivider(position: Int):Boolean{
+    private fun shouldCreateDivider(position: Int): Boolean {
         return if (position + 1 == historyItems.size) {
             true
         } else {

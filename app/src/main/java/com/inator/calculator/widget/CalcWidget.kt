@@ -8,7 +8,9 @@ import android.content.Context
 import android.content.Intent
 import android.widget.RemoteViews
 import com.inator.calculator.R
-import com.inator.calculator.repository.EvaluateString
+import com.inator.calculator.repository.toExpression
+import com.inator.calculator.repository.toSimpleString
+import org.mariuszgromada.math.mxparser.Expression
 
 class CalcWidget : AppWidgetProvider() {
     private val actions = listOf(
@@ -73,8 +75,8 @@ class CalcWidget : AppWidgetProvider() {
                 }
             } else if (action == "EQUAL") {
                 setAllClear(context, true)
-                val result = input?.let { EvaluateString.evaluate(it, true) }
-                result?.toPlainString()
+                val result = input?.let { Expression(it.toExpression()).calculate() }
+                result?.toSimpleString()
             } else {
                 setAllClear(context, false)
                 input + inputs[actions.indexOf(action)]

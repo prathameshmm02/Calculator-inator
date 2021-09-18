@@ -8,8 +8,9 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.inator.calculator.R
 import com.inator.calculator.model.History
-import com.inator.calculator.repository.EvaluateString
-import java.math.BigDecimal
+import com.inator.calculator.repository.toExpression
+import com.inator.calculator.repository.toSimpleString
+import org.mariuszgromada.math.mxparser.Expression
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -88,9 +89,7 @@ class CalculatorInputViewModel(application: Application) : AndroidViewModel(appl
                 cursorMutableLiveData.value =
                     cursorMutableLiveData.value?.minus(selectionEnd - selectionStart)
             }
-
         }
-
     }
 
     fun angleClicked() {
@@ -103,21 +102,21 @@ class CalculatorInputViewModel(application: Application) : AndroidViewModel(appl
 
     fun equalClicked(context: Context)  /*if we do have to save to history*/ {
         val currentInput = inputLiveData.value!!
-        var result: BigDecimal = BigDecimal.ZERO
+        var result = 0.0
         try {
             if (operators.contains(currentInput[currentInput.length - 1])) {
                 return
             }
             if (currentInput.isNotEmpty()) {
                 result =
-                    EvaluateString.evaluate(inputLiveData.value!!, isDegreeLiveData.value!!)
-                inputMutableLiveData.value = result.stripTrailingZeros().toString()
+                    Expression(inputLiveData.value!!.toExpression()).calculate()
+                inputMutableLiveData.value = result.toSimpleString()
                 cursorMutableLiveData.value = inputMutableLiveData.value!!.length
 
             }
             outputMutableLiveData.value = ""
             if (!currentInput.matches(numRegex)) {
-                saveToHistory(currentInput, result.stripTrailingZeros().toPlainString())
+                saveToHistory(currentInput, result.toString())
             }
 
         } catch (e: Exception) {
@@ -128,15 +127,17 @@ class CalculatorInputViewModel(application: Application) : AndroidViewModel(appl
 
     fun calculateOutput() {
         val currentInput = inputLiveData.value!!
-        val result: BigDecimal
+        val result: Double
         try {
             if (currentInput.matches(numRegex)) {
                 return
             }
             if (currentInput.isNotEmpty()) {
                 result =
-                    EvaluateString.evaluate(inputLiveData.value!!, isDegreeLiveData.value!!)
-                outputMutableLiveData.value = result.stripTrailingZeros().toPlainString()
+                    Expression(inputLiveData.value!!.toExpression()).calculate()
+                if (result.toSimpleString() != "NaN") {
+                    outputMutableLiveData.value = result.toSimpleString()
+                }
             } else {
                 outputMutableLiveData.value = ""
             }

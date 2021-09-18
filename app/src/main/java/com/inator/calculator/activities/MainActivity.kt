@@ -12,6 +12,7 @@ import androidx.core.animation.doOnEnd
 import androidx.core.view.isVisible
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayout.OnTabSelectedListener
+import com.google.android.material.tabs.TabLayoutMediator
 import com.inator.calculator.R
 import com.inator.calculator.adapters.ViewPagerAdapter
 import com.inator.calculator.extras.ZoomOutPageTransformer
@@ -21,8 +22,6 @@ import com.inator.calculator.fragments.CurrencyFragment
 import com.inator.calculator.viewmodel.HistoryViewModel
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_calculator.*
-import com.google.android.material.tabs.TabLayoutMediator
-import com.google.android.material.tabs.TabLayoutMediator.TabConfigurationStrategy
 
 
 class MainActivity : AppCompatActivity() {
