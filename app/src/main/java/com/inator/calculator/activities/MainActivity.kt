@@ -1,15 +1,17 @@
 package com.inator.calculator.activities
 
-import android.animation.ObjectAnimator
+import android.animation.ValueAnimator
 import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
+import android.view.View
+import android.view.animation.DecelerateInterpolator
 import android.view.inputmethod.InputMethodManager
+import android.widget.LinearLayout
 import androidx.activity.viewModels
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.animation.doOnEnd
 import androidx.core.content.getSystemService
 import androidx.core.view.isVisible
 import com.google.android.material.tabs.TabLayout
@@ -17,13 +19,18 @@ import com.google.android.material.tabs.TabLayout.OnTabSelectedListener
 import com.google.android.material.tabs.TabLayoutMediator
 import com.inator.calculator.R
 import com.inator.calculator.adapters.ViewPagerAdapter
+import com.inator.calculator.extensions.hide
+import com.inator.calculator.extensions.show
+import com.inator.calculator.extensions.updateWeight
 import com.inator.calculator.extras.ZoomOutPageTransformer
 import com.inator.calculator.fragments.CalculatorFragment
 import com.inator.calculator.fragments.ConverterFragment
 import com.inator.calculator.fragments.CurrencyFragment
 import com.inator.calculator.viewmodel.HistoryViewModel
+import com.inator.calculator.views.DraggablePanel
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_calculator.*
+import kotlinx.android.synthetic.main.layout_input_field.*
 
 
 class MainActivity : AppCompatActivity() {
@@ -36,7 +43,9 @@ class MainActivity : AppCompatActivity() {
         setTheme(R.style.Theme_Calculator)
         setContentView(R.layout.activity_main)
         setSupportActionBar(topAppBar)
-        setupHistoryPanel()
+        window.decorView.post {
+            setupHistoryPanel()
+        }
         setUpViews()
     }
 
@@ -141,45 +150,80 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun setupHistoryPanel() {
-        historyViewModel.isHistoryOpen.observe(this, {
-            if (it) {
+        draggablePanel.smoothPanelClose(0)
+        draggablePanel.setPanelSlideListener(object : DraggablePanel.PanelSlideListener {
+            override fun onPanelSlide(view: View, mDragOffset: Float) {
+                if (input.text.isNullOrEmpty()) {
+                    inputField.updateWeight(0f + 0.3f * (1 - mDragOffset))
+                    historyContainer.updateWeight(1.0f * mDragOffset)
+                } else {
+                    inputField.updateWeight(0.3f + 0.3f * (1 - mDragOffset))
+                    historyContainer.updateWeight(0.7f * mDragOffset)
+                }
+            }
+
+            override fun onPanelOpened(view: View) {
+                val currentWeight = (inputField.layoutParams as LinearLayout.LayoutParams).weight
+                val animator: ValueAnimator
+                if (input.text.isNullOrEmpty()) {
+                    animator = ValueAnimator.ofFloat(currentWeight, 0.0f)
+                } else {
+                    animator = ValueAnimator.ofFloat(currentWeight, 0.3f)
+                    header.visibility = View.VISIBLE
+                }
+                animator.addUpdateListener {
+                    inputField.updateWeight(it.animatedValue as Float)
+                    historyContainer.updateWeight(1.0f - it.animatedValue as Float)
+                }
+                animator.duration = 300
+                animator.interpolator = DecelerateInterpolator()
+                animator.start()
                 setSupportActionBar(historyBar)
                 if (!historyBar.isVisible) {
-                    ObjectAnimator.ofFloat(historyBar, "alpha", 0f, 1f).apply {
-                        duration = 250
-                        start()
-                    }
-                    ObjectAnimator.ofFloat(topAppBar, "alpha", 1f, 0f).apply {
-                        duration = 250
-                        doOnEnd {
-                            historyBar.isVisible = true
-                            supportActionBar?.setDisplayHomeAsUpEnabled(true)
-                            showDelete()
-                        }
-                        start()
+                    historyBar.show()
+                    topAppBar.hide {
+                        historyBar.isVisible = true
+                        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+                        showDelete()
                     }
                 }
-            } else {
+            }
+
+            override fun onPanelClosed(view: View) {
+                val currentWeightInput =
+                    (inputField.layoutParams as LinearLayout.LayoutParams).weight
+                val currentWeightHistory =
+                    (historyContainer.layoutParams as LinearLayout.LayoutParams).weight
+
+                ValueAnimator.ofFloat(currentWeightInput, 1.0f).apply {
+                    addUpdateListener {
+                        inputField.updateWeight(it.animatedValue as Float)
+
+                    }
+                    duration = 300
+                    start()
+                }
+                ValueAnimator.ofFloat(currentWeightHistory, 0.0f).apply {
+                    addUpdateListener {
+                        historyContainer.updateWeight(it.animatedValue as Float)
+                    }
+                    duration = 300
+                    start()
+                }
+                header.visibility = View.GONE
                 setSupportActionBar(topAppBar)
-                ObjectAnimator.ofFloat(historyBar, "alpha", 1f, 0f).apply {
-                    duration = 250
-                    start()
-                }
-                ObjectAnimator.ofFloat(topAppBar, "alpha", 0f, 1f).apply {
-                    duration = 250
-                    doOnEnd {
-                        historyBar.isVisible = false
-                        supportActionBar?.setDisplayHomeAsUpEnabled(false)
-                        hideDelete()
-                    }
-                    start()
+                historyBar.hide()
+                topAppBar.show {
+                    historyBar.isVisible = false
+                    supportActionBar?.setDisplayHomeAsUpEnabled(false)
+                    hideDelete()
                 }
             }
         })
     }
 
     override fun onBackPressed() {
-        if (historyViewModel.isHistoryOpen.value == true) {
+        if (draggablePanel.isOpen()) {
             draggablePanel.smoothPanelClose(300)
         } else {
             super.onBackPressed()

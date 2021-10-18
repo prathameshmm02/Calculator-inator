@@ -1,6 +1,5 @@
 ﻿package com.inator.calculator.fragments
 
-import android.animation.ValueAnimator
 import android.annotation.SuppressLint
 import android.os.Bundle
 import android.util.TypedValue
@@ -8,7 +7,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.animation.AnimationUtils
-import android.view.animation.DecelerateInterpolator
 import android.widget.*
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
@@ -18,7 +16,6 @@ import androidx.slidingpanelayout.widget.SlidingPaneLayout
 import com.inator.calculator.R
 import com.inator.calculator.viewmodel.CalculatorInputViewModel
 import com.inator.calculator.viewmodel.HistoryViewModel
-import com.inator.calculator.views.DraggablePanel
 import kotlinx.android.synthetic.main.fragment_calculator.*
 import kotlinx.android.synthetic.main.fragment_history.*
 import kotlinx.android.synthetic.main.layout_adv_calculator.*
@@ -99,10 +96,6 @@ class CalculatorFragment : Fragment() {
     private fun setUpViews() {
         slidingPaneLayout.openPane()
         val color = ContextCompat.getColor(requireContext(), android.R.color.transparent)
-        slidingPaneLayout.sliderFadeColor = color
-
-
-        //Setting AutoResize For TextView
         slidingPaneLayout.sliderFadeColor = color
 
         //Setting AutoResize For TextView
@@ -264,99 +257,6 @@ class CalculatorFragment : Fragment() {
             override fun onPanelClosed(panel: View) {
                 slideButton.clearAnimation()
                 slideButton.startAnimation(rotateFirst)
-            }
-        })
-
-
-        draggablePanel.setPanelSlideListener(object : DraggablePanel.PanelSlideListener {
-            override fun onPanelSlide(view: View, mDragOffset: Float) {
-                if (input.text.isNullOrEmpty()) {
-                    inputField.layoutParams = LinearLayout.LayoutParams(
-                        ViewGroup.LayoutParams.MATCH_PARENT,
-                        0,
-                        0f + 0.3f * (1 - mDragOffset)
-                    )
-                    historyContainer.layoutParams = LinearLayout.LayoutParams(
-                        ViewGroup.LayoutParams.MATCH_PARENT,
-                        0,
-                        1.0f * mDragOffset
-                    )
-                } else {
-                    inputField.layoutParams = LinearLayout.LayoutParams(
-                        ViewGroup.LayoutParams.MATCH_PARENT,
-                        0,
-                        0.3f + 0.3f * (1 - mDragOffset)
-                    )
-                    historyContainer.layoutParams = LinearLayout.LayoutParams(
-                        ViewGroup.LayoutParams.MATCH_PARENT,
-                        0,
-                        0.7f * mDragOffset
-                    )
-                }
-            }
-
-            override fun onPanelOpened(view: View) {
-                val currentWeight = (inputField.layoutParams as LinearLayout.LayoutParams).weight
-                val animator: ValueAnimator
-                if (input.text.isNullOrEmpty()) {
-                    animator = ValueAnimator.ofFloat(currentWeight, 0.0f)
-                } else {
-                    animator = ValueAnimator.ofFloat(currentWeight, 0.3f)
-                    header.visibility = View.VISIBLE
-                }
-                animator.addUpdateListener {
-                    inputField.layoutParams =
-                        LinearLayout.LayoutParams(
-                            ViewGroup.LayoutParams.MATCH_PARENT,
-                            0,
-                            it.animatedValue as Float
-                        )
-                    historyContainer.layoutParams = LinearLayout.LayoutParams(
-                        ViewGroup.LayoutParams.MATCH_PARENT,
-                        0,
-                        1.0f - it.animatedValue as Float
-                    )
-                }
-                animator.duration = 300
-                animator.interpolator = DecelerateInterpolator()
-                animator.start()
-                historyViewModel.setHistoryOpen(true)
-            }
-
-            override fun onPanelClosed(view: View) {
-                val currentWeightInput =
-                    (inputField.layoutParams as LinearLayout.LayoutParams).weight
-                val currentWeightHistory =
-                    (historyContainer.layoutParams as LinearLayout.LayoutParams).weight
-
-                val inputAnimator = ValueAnimator.ofFloat(currentWeightInput, 1.0f)
-                val historyAnimator = ValueAnimator.ofFloat(currentWeightHistory, 0.0f)
-                inputAnimator.addUpdateListener {
-                    inputField.layoutParams =
-                        LinearLayout.LayoutParams(
-                            ViewGroup.LayoutParams.MATCH_PARENT,
-                            0,
-                            it.animatedValue as Float
-                        )
-
-                }
-                historyAnimator.addUpdateListener {
-                    historyContainer.layoutParams =
-                        LinearLayout.LayoutParams(
-                            ViewGroup.LayoutParams.MATCH_PARENT,
-                            0,
-                            it.animatedValue as Float
-                        )
-
-                }
-                inputAnimator.duration = 300
-                historyAnimator.duration = 300
-                inputAnimator.interpolator = DecelerateInterpolator()
-                historyAnimator.interpolator = DecelerateInterpolator()
-                inputAnimator.start()
-                historyAnimator.start()
-                header.visibility = View.GONE
-                historyViewModel.setHistoryOpen(false)
             }
         })
     }

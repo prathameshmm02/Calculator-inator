@@ -15,13 +15,8 @@ class HistoryViewModel(application: Application) : AndroidViewModel(application)
     private val repository: HistoryRepository
     val allHistory: LiveData<List<History>>
 
-    // Is History Panel Open
-    private val mutableIsHistoryOpen = MutableLiveData(false)
-    val isHistoryOpen: LiveData<Boolean> = mutableIsHistoryOpen
-
     private val mutableClickedHistory: MutableLiveData<History> = MutableLiveData()
     val clickedHistory: LiveData<History> = mutableClickedHistory
-
 
     init {
         val dao = AppDatabase.getDatabase(application).getHistoryDao()
@@ -37,13 +32,7 @@ class HistoryViewModel(application: Application) : AndroidViewModel(application)
         repository.deleteAll()
     }
 
-    fun setHistoryOpen(boolean: Boolean) {
-        mutableIsHistoryOpen.value = boolean
-    }
-
-
     fun setClickedExpression(history: History) {
         mutableClickedHistory.value = history
     }
-
 }
