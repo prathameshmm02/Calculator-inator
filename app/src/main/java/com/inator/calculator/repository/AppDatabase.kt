@@ -21,7 +21,6 @@ abstract class AppDatabase : RoomDatabase() {
                     "history_database"
                 ).build()
                 INSTANCE = instance
-                // return instance
                 instance
             }
         }
