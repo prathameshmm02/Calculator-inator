@@ -6,7 +6,6 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
-import android.view.animation.DecelerateInterpolator
 import android.view.inputmethod.InputMethodManager
 import android.widget.LinearLayout
 import androidx.activity.viewModels
@@ -19,9 +18,7 @@ import com.google.android.material.tabs.TabLayout.OnTabSelectedListener
 import com.google.android.material.tabs.TabLayoutMediator
 import com.inator.calculator.R
 import com.inator.calculator.adapters.ViewPagerAdapter
-import com.inator.calculator.extensions.hide
-import com.inator.calculator.extensions.show
-import com.inator.calculator.extensions.updateWeight
+import com.inator.calculator.extensions.*
 import com.inator.calculator.extras.ZoomOutPageTransformer
 import com.inator.calculator.fragments.CalculatorFragment
 import com.inator.calculator.fragments.ConverterFragment
@@ -78,6 +75,7 @@ class MainActivity : AppCompatActivity() {
                     when (tab.position) {
                         0 -> {
                             tab.setIcon(R.drawable.ic_filled_calculator)
+                            // Hide keyboard
                             getSystemService<InputMethodManager>()?.hideSoftInputFromWindow(
                                 this@apply.windowToken,
                                 0
@@ -91,13 +89,17 @@ class MainActivity : AppCompatActivity() {
                 }
 
                 override fun onTabUnselected(tab: TabLayout.Tab) {
-                    when (tab.position) {
-                        0 -> tab.setIcon(R.drawable.ic_outline_calculator)
+                    tab.setIcon(
+                        when (tab.position) {
+                            0 -> R.drawable.ic_outline_calculator
 
-                        1 -> tab.setIcon(R.drawable.ic_outline_converter)
+                            1 -> R.drawable.ic_outline_converter
 
-                        2 -> tab.setIcon(R.drawable.ic_outline_currency)
-                    }
+                            2 -> R.drawable.ic_outline_currency
+
+                            else -> R.drawable.ic_outline_calculator
+                        }
+                    )
                 }
 
                 override fun onTabReselected(tab: TabLayout.Tab?) {}
@@ -133,11 +135,11 @@ class MainActivity : AppCompatActivity() {
             setIcon(R.drawable.ic_delete_history)
             setButton(AlertDialog.BUTTON_POSITIVE, "Ok") { _, _ ->
                 historyViewModel.deleteAllHistory()
-                setButton(AlertDialog.BUTTON_NEGATIVE, "Cancel") { _, _ ->
-                    dismiss()
-                }
-                show()
             }
+            setButton(AlertDialog.BUTTON_NEGATIVE, "Cancel") { _, _ ->
+                dismiss()
+            }
+            show()
         }
     }
 
@@ -150,7 +152,6 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun setupHistoryPanel() {
-        draggablePanel.smoothPanelClose(0)
         draggablePanel.setPanelSlideListener(object : DraggablePanel.PanelSlideListener {
             override fun onPanelSlide(view: View, mDragOffset: Float) {
                 if (input.text.isNullOrEmpty()) {
@@ -164,19 +165,16 @@ class MainActivity : AppCompatActivity() {
 
             override fun onPanelOpened(view: View) {
                 val currentWeight = (inputField.layoutParams as LinearLayout.LayoutParams).weight
-                val animator: ValueAnimator
-                if (input.text.isNullOrEmpty()) {
-                    animator = ValueAnimator.ofFloat(currentWeight, 0.0f)
+                val animator = if (input.text.isNullOrEmpty()) {
+                    ValueAnimator.ofFloat(currentWeight, 0.0f)
                 } else {
-                    animator = ValueAnimator.ofFloat(currentWeight, 0.3f)
                     header.visibility = View.VISIBLE
+                    ValueAnimator.ofFloat(currentWeight, 0.3f)
                 }
                 animator.addUpdateListener {
                     inputField.updateWeight(it.animatedValue as Float)
                     historyContainer.updateWeight(1.0f - it.animatedValue as Float)
                 }
-                animator.duration = 300
-                animator.interpolator = DecelerateInterpolator()
                 animator.start()
                 setSupportActionBar(historyBar)
                 if (!historyBar.isVisible) {
@@ -190,27 +188,10 @@ class MainActivity : AppCompatActivity() {
             }
 
             override fun onPanelClosed(view: View) {
-                val currentWeightInput =
-                    (inputField.layoutParams as LinearLayout.LayoutParams).weight
-                val currentWeightHistory =
-                    (historyContainer.layoutParams as LinearLayout.LayoutParams).weight
+                inputField.animateWeight(inputField.weight(), 1.0F)
+                historyContainer.animateWeight(historyContainer.weight(), 0.0F)
 
-                ValueAnimator.ofFloat(currentWeightInput, 1.0f).apply {
-                    addUpdateListener {
-                        inputField.updateWeight(it.animatedValue as Float)
-
-                    }
-                    duration = 300
-                    start()
-                }
-                ValueAnimator.ofFloat(currentWeightHistory, 0.0f).apply {
-                    addUpdateListener {
-                        historyContainer.updateWeight(it.animatedValue as Float)
-                    }
-                    duration = 300
-                    start()
-                }
-                header.visibility = View.GONE
+                header.isVisible = false
                 setSupportActionBar(topAppBar)
                 historyBar.hide()
                 topAppBar.show {

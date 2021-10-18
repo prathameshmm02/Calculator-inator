@@ -67,4 +67,3 @@
         app:layout_scrollFlags="scroll|enterAlways|snap"
         app:title="@string/history" />
 </androidx.constraintlayout.widget.ConstraintLayout>
-
