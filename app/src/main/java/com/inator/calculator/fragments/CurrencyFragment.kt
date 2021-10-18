@@ -47,11 +47,6 @@ class CurrencyFragment : Fragment() {
             if (todayDate.time - lastUpdatedDate!!.time < MILLIS_PER_DAY) getExchangeRates()
         }
 
-
-
-
-
-
         exchangeRatesViewModel.isFetching(requireContext())
             .observe(viewLifecycleOwner, {
                 if (it) {
@@ -153,7 +148,6 @@ class CurrencyFragment : Fragment() {
             override fun afterTextChanged(s: Editable?) {
                 currencyInputViewModel.setInput1(s.toString())
             }
-
         }
         val textWatcher2 = object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
@@ -166,7 +160,6 @@ class CurrencyFragment : Fragment() {
         }
         input1.addTextChangedListener(textWatcher1)
         input2.addTextChangedListener(textWatcher2)
-
 
         currencyInputViewModel.getOutputDirect().observe(
             viewLifecycleOwner, {

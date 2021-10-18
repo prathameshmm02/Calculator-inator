@@ -2,6 +2,7 @@
 
 import android.animation.ValueAnimator
 import android.annotation.SuppressLint
+import android.content.Context
 import android.os.Bundle
 import android.util.TypedValue
 import android.view.LayoutInflater
@@ -9,6 +10,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.animation.AnimationUtils
 import android.view.animation.DecelerateInterpolator
+import android.view.inputmethod.InputMethodManager
 import android.widget.*
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
@@ -28,8 +30,6 @@ import java.util.*
 
 
 class CalculatorFragment : Fragment() {
-
-
     private val historyViewModel: HistoryViewModel by activityViewModels()
     private val calcViewModel: CalculatorInputViewModel by viewModels()
 
@@ -41,10 +41,8 @@ class CalculatorFragment : Fragment() {
         requireActivity().supportFragmentManager.beginTransaction()
             .replace(R.id.historyContainer, HistoryFragment())
             .commit()
-
         return inflater.inflate(R.layout.fragment_calculator, container, false)
     }
-
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         setUpViews()

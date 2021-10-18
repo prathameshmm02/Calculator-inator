@@ -5,7 +5,10 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
+import android.view.inputmethod.InputMethodManager
 import androidx.activity.viewModels
+import androidx.core.content.getSystemService
+
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.animation.doOnEnd
@@ -65,7 +68,13 @@ class MainActivity : AppCompatActivity() {
 
                 override fun onTabSelected(tab: TabLayout.Tab) {
                     when (tab.position) {
-                        0 -> tab.setIcon(R.drawable.ic_filled_calculator)
+                        0 -> {
+                            tab.setIcon(R.drawable.ic_filled_calculator)
+                            getSystemService<InputMethodManager>()?.hideSoftInputFromWindow(
+                                this@apply.windowToken,
+                                0
+                            )
+                        }
 
                         1 -> tab.setIcon(R.drawable.ic_filled_converter)
 
