@@ -3,12 +3,15 @@
 import android.annotation.SuppressLint
 import android.os.Bundle
 import android.util.TypedValue
+import android.view.KeyEvent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.animation.AnimationUtils
+import android.view.inputmethod.InputMethodManager
 import android.widget.*
 import androidx.core.content.ContextCompat
+import androidx.core.content.ContextCompat.getSystemService
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
@@ -21,6 +24,7 @@ import kotlinx.android.synthetic.main.fragment_history.*
 import kotlinx.android.synthetic.main.layout_adv_calculator.*
 import kotlinx.android.synthetic.main.layout_input_field.*
 import kotlinx.android.synthetic.main.layout_simple_calc.*
+import org.mariuszgromada.math.mxparser.mXparser
 import java.util.*
 
 
@@ -61,11 +65,6 @@ class CalculatorFragment : Fragment() {
         })
         calcViewModel.cursorLiveData.observe(viewLifecycleOwner, {
             input.setSelection(it)
-        })
-        calcViewModel.isDegreeLiveData.observe(viewLifecycleOwner, {
-            if (it) angleButton.text =
-                resources.getString(R.string.radian) else angleButton.text =
-                resources.getString(R.string.degree)
         })
         calcViewModel.isInverseLiveData.observe(viewLifecycleOwner, {
             if (it) {
@@ -190,9 +189,11 @@ class CalculatorFragment : Fragment() {
             calcViewModel.funClicked((it as Button).text)
         }
         rootButton.setOnClickListener {
-            calcViewModel.otherClicked(
-                (it as Button).text
-            )
+            if ((it as Button).text.toString() == "√") {
+                calcViewModel.funClicked("sqrt")
+            } else {
+                calcViewModel.otherClicked(it.text)
+            }
         }
 
         openBracketButton.setOnClickListener {
@@ -208,17 +209,23 @@ class CalculatorFragment : Fragment() {
             calcViewModel.inverseClicked()
         }
         angleButton.setOnClickListener {
-            calcViewModel.angleClicked()
+            if (mXparser.checkIfRadiansMode()) {
+                mXparser.setDegreesMode()
+                angleButton.text = resources.getString(R.string.radian)
+
+            } else {
+                mXparser.setRadiansMode()
+                angleButton.text =
+                        resources.getString(R.string.degree)
+            }
+
         }
         equalButton.setOnClickListener {
             calcViewModel.equalClicked(requireContext())
         }
         clearButton.setOnClickListener {
-            val position = input.selectionStart
-            if (!(input.text.toString().isEmpty() || input.selectionStart == 0)) {
-                input.text?.delete(position - 1, position)
-            }
-            calcViewModel.backspaceClicked(input.selectionStart, input.selectionEnd)
+            input.dispatchKeyEvent(KeyEvent(KeyEvent.ACTION_DOWN, KeyEvent.KEYCODE_DEL))
+            calcViewModel.backspaceClicked(input.text.toString(), input.selectionEnd)
         }
 
         clearButton.setOnLongClickListener {
@@ -259,5 +266,11 @@ class CalculatorFragment : Fragment() {
                 slideButton.startAnimation(rotateFirst)
             }
         })
+    }
+
+    override fun onResume() {
+        super.onResume()
+        val imm: InputMethodManager? = getSystemService(requireContext(), InputMethodManager::class.java)
+        imm?.hideSoftInputFromWindow(requireView().windowToken, 0)
     }
 }

@@ -1,12 +1,10 @@
 package com.inator.calculator.views
 
-import android.content.ContentValues.TAG
 import android.content.Context
 import android.graphics.Paint
 import android.graphics.Rect
 import android.graphics.Typeface
 import android.util.AttributeSet
-import android.util.Log
 import android.util.TypedValue
 import androidx.appcompat.widget.AppCompatEditText
 
@@ -51,8 +49,6 @@ class CustomEditText : AppCompatEditText {
             val bounds = Rect()
             val myString = text.toString()
             paint.getTextBounds(myString, 0, myString.length, bounds)
-            Log.d(TAG, "width: " + bounds.width().toString() + " height: " + bounds.height())
-            Log.d(TAG, "width: $width")
             while (bounds.width() - 150 > width) {
                 setTextSize(
                     TypedValue.COMPLEX_UNIT_SP,

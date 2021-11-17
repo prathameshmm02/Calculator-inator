@@ -28,9 +28,6 @@ class CalculatorInputViewModel(application: Application) : AndroidViewModel(appl
     private val outputMutableLiveData = MutableLiveData("")
     val outputLiveData: LiveData<String> = outputMutableLiveData
 
-    private val isDegreeMutableLiveData = MutableLiveData(true)
-    val isDegreeLiveData: LiveData<Boolean> = isDegreeMutableLiveData
-
     private val isInverseMutableLiveData = MutableLiveData(false)
     val isInverseLiveData: LiveData<Boolean> = isInverseMutableLiveData
 
@@ -74,26 +71,9 @@ class CalculatorInputViewModel(application: Application) : AndroidViewModel(appl
         cursorMutableLiveData.value = 0
     }
 
-    fun backspaceClicked(selectionStart: Int, selectionEnd: Int) {
-        cursorMutableLiveData.value = selectionEnd
-        val currentInput = inputMutableLiveData.value
-        if (!currentInput.isNullOrEmpty()) {
-            if (selectionStart == selectionEnd) {
-                inputMutableLiveData.value =
-                    currentInput.removeRange(selectionStart, selectionEnd + 1)
-                cursorMutableLiveData.value =
-                    cursorMutableLiveData.value
-            } else {
-                inputMutableLiveData.value =
-                    currentInput.removeRange(selectionStart, selectionEnd)
-                cursorMutableLiveData.value =
-                    cursorMutableLiveData.value?.minus(selectionEnd - selectionStart)
-            }
-        }
-    }
-
-    fun angleClicked() {
-        isDegreeMutableLiveData.value = !isDegreeMutableLiveData.value!!
+    fun backspaceClicked(expression: String, selectionStart: Int) {
+        inputMutableLiveData.value = expression
+        cursorMutableLiveData.value = selectionStart
     }
 
     fun inverseClicked() {
@@ -111,8 +91,6 @@ class CalculatorInputViewModel(application: Application) : AndroidViewModel(appl
                 result =
                     Expression(inputLiveData.value!!.toExpression()).calculate()
                 inputMutableLiveData.value = result.toSimpleString()
-                cursorMutableLiveData.value = inputMutableLiveData.value!!.length
-
             }
             outputMutableLiveData.value = ""
             if (!currentInput.matches(numRegex)) {
