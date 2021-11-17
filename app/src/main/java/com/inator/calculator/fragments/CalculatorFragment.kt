@@ -212,13 +212,12 @@ class CalculatorFragment : Fragment() {
             if (mXparser.checkIfRadiansMode()) {
                 mXparser.setDegreesMode()
                 angleButton.text = resources.getString(R.string.radian)
-
             } else {
                 mXparser.setRadiansMode()
                 angleButton.text =
                         resources.getString(R.string.degree)
             }
-
+            calcViewModel.calculateOutput()
         }
         equalButton.setOnClickListener {
             calcViewModel.equalClicked(requireContext())
