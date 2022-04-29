@@ -1,35 +1,37 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    <style name="Theme.Calculator" parent="Theme.MaterialComponents.Light.NoActionBar">
-        <!-- Primary brand color. -->
-        <item name="colorPrimary">@color/blue</item>
-        <item name="colorPrimaryVariant">@color/dark_blue</item>
-        <item name="colorOnPrimary">@color/white</item>
-        <!-- Secondary brand color. -->
-        <item name="colorSecondary">@color/teal_200</item>
-        <item name="colorSecondaryVariant">@color/teal_700</item>
-        <item name="colorOnSecondary">@color/black</item>
-        <!-- Customize your theme here. -->
+    <style name="Theme.Calculator" parent="Theme.Material3.Light.NoActionBar">
+        <item name="colorPrimary">@color/color_light_primary</item>
+        <item name="colorOnPrimary">@color/color_light_onPrimary</item>
+        <item name="colorPrimaryContainer">@color/color_light_primaryContainer</item>
+        <item name="colorOnPrimaryContainer">@color/color_light_onPrimaryContainer</item>
+        <item name="colorSecondary">@color/color_light_secondary</item>
+        <item name="colorOnSecondary">@color/color_light_onSecondary</item>
+        <item name="colorSecondaryContainer">@color/color_light_secondaryContainer</item>
+        <item name="colorOnSecondaryContainer">@color/color_light_onSecondaryContainer</item>
+        <item name="colorTertiary">@color/color_light_tertiary</item>
+        <item name="colorOnTertiary">@color/color_light_onTertiary</item>
+        <item name="colorTertiaryContainer">@color/color_light_tertiaryContainer</item>
+        <item name="colorOnTertiaryContainer">@color/color_light_onTertiaryContainer</item>
+        <item name="colorError">@color/color_light_error</item>
+        <item name="colorErrorContainer">@color/color_light_errorContainer</item>
+        <item name="colorOnError">@color/color_light_onError</item>
+        <item name="colorOnErrorContainer">@color/color_light_onErrorContainer</item>
+        <item name="android:colorBackground">@color/color_light_background</item>
+        <item name="colorOnBackground">@color/color_light_onBackground</item>
+        <item name="colorSurface">@color/color_light_surface</item>
+        <item name="colorOnSurface">@color/color_light_onSurface</item>
+        <item name="colorSurfaceVariant">@color/color_light_surfaceVariant</item>
+        <item name="colorOnSurfaceVariant">@color/color_light_onSurfaceVariant</item>
+        <item name="colorOutline">@color/color_light_outline</item>
+        <item name="colorOnSurfaceInverse">@color/color_light_inverseOnSurface</item>
+        <item name="colorSurfaceInverse">@color/color_light_inverseSurface</item>
+        <item name="colorPrimaryInverse">@color/color_light_primaryInverse</item>
+
         <item name="android:windowBackground">@color/white</item>
         <item name="android:statusBarColor">@android:color/transparent</item>
         <item name="android:windowLightStatusBar" tools:targetApi="m">true</item>
         <item name="fontFamily">@font/poppins</item>
-    </style>
-
-    <style name="Theme.Calculator.ActionBar" parent="Theme.MaterialComponents.DayNight.NoActionBar">
-        <!-- Primary brand color. -->
-        <item name="colorPrimary">@color/blue</item>
-        <item name="colorPrimaryVariant">@color/dark_blue</item>
-        <item name="colorOnPrimary">@color/white</item>
-        <!-- Secondary brand color. -->
-        <item name="colorSecondary">@color/teal_200</item>
-        <item name="colorSecondaryVariant">@color/teal_700</item>
-        <item name="colorOnSecondary">@color/black</item>
-        <item name="fontFamily">@font/poppins</item>
-
-        <!-- Customize your theme here. -->
-        <item name="android:statusBarColor">@android:color/transparent</item>
-        <item name="android:windowLightStatusBar" tools:targetApi="m">true</item>
     </style>
 
     <style name="ThemeOverlay.Calculator.AppWidgetContainer" parent="">

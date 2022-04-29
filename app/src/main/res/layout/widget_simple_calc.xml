@@ -16,7 +16,6 @@
         android:layout_height="wrap_content"
         android:background="@drawable/bg_round_corners_small"
         android:backgroundTint="#404040"
-        android:fontFamily="@font/poppins"
         android:gravity="end"
         android:paddingStart="0dp"
         android:paddingTop="30dp"

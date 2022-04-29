@@ -3,8 +3,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-
-    android:background="?attr/colorOnPrimary"
     android:orientation="vertical"
     android:weightSum="1">
 
@@ -27,7 +25,6 @@
         android:layout_marginStart="20dp"
         android:layout_marginEnd="20dp"
         android:layout_weight="0.4"
-        android:fontFamily="@font/poppins"
         android:gravity="end|center_vertical"
         android:paddingStart="10dp"
         android:paddingEnd="10dp"
@@ -44,7 +41,6 @@
         android:layout_marginStart="20dp"
         android:layout_marginEnd="20dp"
         android:layout_weight="0.4"
-        android:fontFamily="@font/poppins"
         android:gravity="end|center_vertical"
         android:padding="10dp"
         android:textIsSelectable="true"

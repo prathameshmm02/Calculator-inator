@@ -27,74 +27,74 @@
 
             <com.google.android.material.chip.Chip
                 android:id="@+id/length"
-                style="@style/Widget.MaterialComponents.Chip.Choice"
-                android:layout_width="100dp"
-                android:layout_height="50dp"
+                style="@style/Widget.Material3.Chip.Filter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:text="@string/length"
                 android:textAlignment="center" />
 
             <com.google.android.material.chip.Chip
                 android:id="@+id/area"
-                style="@style/Widget.MaterialComponents.Chip.Choice"
-                android:layout_width="100dp"
-                android:layout_height="50dp"
+                style="@style/Widget.Material3.Chip.Filter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:text="@string/area"
                 android:textAlignment="center" />
 
             <com.google.android.material.chip.Chip
                 android:id="@+id/mass"
-                style="@style/Widget.MaterialComponents.Chip.Choice"
-                android:layout_width="100dp"
-                android:layout_height="50dp"
+                style="@style/Widget.Material3.Chip.Filter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
 
                 android:text="@string/mass"
                 android:textAlignment="center" />
 
             <com.google.android.material.chip.Chip
                 android:id="@+id/speed"
-                style="@style/Widget.MaterialComponents.Chip.Choice"
-                android:layout_width="100dp"
-                android:layout_height="50dp"
+                style="@style/Widget.Material3.Chip.Filter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:text="@string/speed"
                 android:textAlignment="center" />
 
             <com.google.android.material.chip.Chip
                 android:id="@+id/angle"
-                style="@style/Widget.MaterialComponents.Chip.Choice"
-                android:layout_width="100dp"
-                android:layout_height="50dp"
+                style="@style/Widget.Material3.Chip.Filter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:text="@string/angle"
                 android:textAlignment="center" />
 
             <com.google.android.material.chip.Chip
                 android:id="@+id/data"
-                style="@style/Widget.MaterialComponents.Chip.Choice"
-                android:layout_width="100dp"
-                android:layout_height="50dp"
+                style="@style/Widget.Material3.Chip.Filter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:text="@string/data"
                 android:textAlignment="center" />
 
             <com.google.android.material.chip.Chip
                 android:id="@+id/volume"
-                style="@style/Widget.MaterialComponents.Chip.Choice"
-                android:layout_width="100dp"
-                android:layout_height="50dp"
+                style="@style/Widget.Material3.Chip.Filter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:text="@string/volume"
                 android:textAlignment="center" />
 
             <com.google.android.material.chip.Chip
                 android:id="@+id/time"
-                style="@style/Widget.MaterialComponents.Chip.Choice"
-                android:layout_width="100dp"
-                android:layout_height="50dp"
+                style="@style/Widget.Material3.Chip.Filter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:text="@string/time"
                 android:textAlignment="center" />
 
             <com.google.android.material.chip.Chip
                 android:id="@+id/temperature"
-                style="@style/Widget.MaterialComponents.Chip.Choice"
-                android:layout_width="100dp"
-                android:layout_height="50dp"
+                style="@style/Widget.Material3.Chip.Filter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:text="@string/temperature"
                 android:textAlignment="center" />
 
@@ -121,7 +121,7 @@
             android:layout_marginBottom="20dp" />
 
         <com.google.android.material.textfield.TextInputLayout
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
@@ -130,7 +130,7 @@
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/editText1"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+                style="@style/Widget.Material3.TextInputLayout.OutlinedBox.Dense"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/poppins"
@@ -148,7 +148,7 @@
             android:layout_marginBottom="20dp" />
 
         <com.google.android.material.textfield.TextInputLayout
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
@@ -157,7 +157,7 @@
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/editText2"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+                style="@style/Widget.Material3.TextInputLayout.OutlinedBox.Dense"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/poppins"

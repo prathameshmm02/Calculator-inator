@@ -50,9 +50,9 @@ class DraggablePanel(context: Context?, attrs: AttributeSet?) : LinearLayout(con
             initialX = x
             initialY = y
         } else if (action == MotionEvent.ACTION_UP) {
-            val x = event.x
+            //val x = event.x
             val y = event.y
-            val dx = x - initialX
+            //val dx = x - initialX
             val dy = y - initialY
             if (isOpen) {
                 if (-dy > diffHeight * centerPoint) {
@@ -70,9 +70,9 @@ class DraggablePanel(context: Context?, attrs: AttributeSet?) : LinearLayout(con
                 }
             }
         } else if (action == MotionEvent.ACTION_MOVE) {
-            val x = event.x
+            //val x = event.x
             val y = event.y
-            val dx = x - initialX
+            //val dx = x - initialX
             val dy = y - initialY
             if (isOpen) {
                 if (y > initialY) {

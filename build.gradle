@@ -31,10 +31,6 @@ ext {
     coreTestingVersion = '2.1.0'
     coroutines = '1.6.1'
     lifecycleVersion = '2.4.1'
-    materialVersion = '1.5.0'
+    materialVersion = '1.6.0-rc01'
     roomVersion = '2.4.2'
-    // testing
-    junitVersion = '4.13.2'
-    espressoVersion = '3.3.0'
-    androidxJunitVersion = '1.1.2'
 }

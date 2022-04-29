@@ -37,7 +37,7 @@
             android:name=".activities.SettingsActivity"
             android:label="@string/title_activity_settings"
             android:parentActivityName=".activities.MainActivity"
-            android:theme="@style/Theme.Calculator.ActionBar" />
+            android:theme="@style/Theme.Calculator" />
     </application>
 
 </manifest>

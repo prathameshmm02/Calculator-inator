@@ -11,7 +11,6 @@ import android.widget.AdapterView.OnItemSelectedListener
 import android.widget.ArrayAdapter
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import com.google.android.material.chip.ChipGroup
 import com.inator.calculator.R
 import com.inator.calculator.viewmodel.ConverterInputViewModel
 import kotlinx.android.synthetic.main.fragment_converter.*
@@ -40,8 +39,8 @@ class ConverterFragment : Fragment() {
 
     private fun setUpViews() {
 
-        chipGroup.setOnCheckedChangeListener { _: ChipGroup?, checkedId: Int ->
-            when (checkedId) {
+        chipGroup.setOnCheckedStateChangeListener { _, checkedIds  ->
+            when (checkedIds[0]) {
                 R.id.length -> {
                     converterInputViewModel.setMeasure("Length")
                 }

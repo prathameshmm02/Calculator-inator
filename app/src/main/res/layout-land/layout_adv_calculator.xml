@@ -3,11 +3,11 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/blue">
+    android:background="?colorPrimary">
 
     <Button
         android:id="@+id/slideButton"
-        style="@style/DefaultButton"
+        style="@style/AdvButton"
         android:layout_width="0dp"
         android:layout_height="match_parent"
         android:background="@android:color/transparent"
@@ -35,7 +35,7 @@
 
             <Button
                 android:id="@+id/inverseButton"
-                style="@style/DefaultButtonLandscape"
+                style="@style/AdvButtonLandscape"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
@@ -43,7 +43,7 @@
 
             <Button
                 android:id="@+id/angleButton"
-                style="@style/DefaultButtonLandscape"
+                style="@style/AdvButtonLandscape"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
@@ -51,7 +51,7 @@
 
             <Button
                 android:id="@+id/percentButton"
-                style="@style/DefaultButtonLandscape"
+                style="@style/AdvButtonLandscape"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
@@ -65,7 +65,7 @@
 
             <Button
                 android:id="@+id/sinButton"
-                style="@style/DefaultButtonLandscape"
+                style="@style/AdvButtonLandscape"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
@@ -73,7 +73,7 @@
 
             <Button
                 android:id="@+id/cosButton"
-                style="@style/DefaultButtonLandscape"
+                style="@style/AdvButtonLandscape"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
@@ -81,7 +81,7 @@
 
             <Button
                 android:id="@+id/tanButton"
-                style="@style/DefaultButtonLandscape"
+                style="@style/AdvButtonLandscape"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
@@ -95,7 +95,7 @@
 
             <Button
                 android:id="@+id/naturalLogButton"
-                style="@style/DefaultButtonLandscape"
+                style="@style/AdvButtonLandscape"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
@@ -103,7 +103,7 @@
 
             <Button
                 android:id="@+id/log10Button"
-                style="@style/DefaultButtonLandscape"
+                style="@style/AdvButtonLandscape"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
@@ -111,7 +111,7 @@
 
             <Button
                 android:id="@+id/rootButton"
-                style="@style/DefaultButtonLandscape"
+                style="@style/AdvButtonLandscape"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
@@ -125,7 +125,7 @@
 
             <Button
                 android:id="@+id/piButton"
-                style="@style/DefaultButtonLandscape"
+                style="@style/AdvButtonLandscape"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
@@ -133,7 +133,7 @@
 
             <Button
                 android:id="@+id/eulerNumButton"
-                style="@style/DefaultButtonLandscape"
+                style="@style/AdvButtonLandscape"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
@@ -141,7 +141,7 @@
 
             <Button
                 android:id="@+id/powerButton"
-                style="@style/DefaultButtonLandscape"
+                style="@style/AdvButtonLandscape"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
@@ -155,7 +155,7 @@
 
             <Button
                 android:id="@+id/openBracketButton"
-                style="@style/DefaultButtonLandscape"
+                style="@style/AdvButtonLandscape"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
@@ -163,7 +163,7 @@
 
             <Button
                 android:id="@+id/closeBracketButton"
-                style="@style/DefaultButtonLandscape"
+                style="@style/AdvButtonLandscape"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
@@ -171,7 +171,7 @@
 
             <Button
                 android:id="@+id/factorialButton"
-                style="@style/DefaultButtonLandscape"
+                style="@style/AdvButtonLandscape"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="1"

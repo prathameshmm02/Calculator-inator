@@ -37,7 +37,7 @@
         android:id="@+id/draggablePanel"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:background="@color/color_background"
+        android:background="?colorSurface"
         android:elevation="@dimen/elevation_panel"
         android:orientation="vertical"
         app:layout_constraintBottom_toTopOf="@+id/slidingPaneLayout"
@@ -79,7 +79,7 @@
                 android:layout_height="@dimen/height_drag_icon"
                 android:layout_gravity="center"
                 android:background="@drawable/bg_round_corners_large"
-                android:backgroundTint="@color/blue" />
+                android:backgroundTint="?colorPrimary" />
         </LinearLayout>
     </com.inator.calculator.views.DraggablePanel>
 

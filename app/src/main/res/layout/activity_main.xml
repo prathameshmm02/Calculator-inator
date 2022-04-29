@@ -54,7 +54,7 @@
 
     <com.google.android.material.appbar.MaterialToolbar
         android:id="@+id/historyBar"
-        style="@style/Widget.MaterialComponents.Toolbar"
+        style="@style/Widget.Material3.Toolbar"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:visibility="gone"
