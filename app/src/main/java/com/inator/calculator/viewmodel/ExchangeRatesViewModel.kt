@@ -21,6 +21,9 @@ class ExchangeRatesViewModel(application: Application) : AndroidViewModel(applic
     }
 
     fun fetchExchangeRates(context: Context) {
-        Data.getInstance(context).fetchExchangeRates()
+        Data.getInstance(context).fetchExchangeRates { success->
+            isFetching(context)
+            if (success) getExchangeRates(context)
+        }
     }
 }

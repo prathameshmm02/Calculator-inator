@@ -58,7 +58,7 @@ class Data(context: Context) {
         return isFetching
     }
 
-    fun fetchExchangeRates() {
+    fun fetchExchangeRates(doOnComplete: (success: Boolean) -> Unit) {
         isFetching.postValue(true)
         val gson = GsonBuilder()
             .setPrettyPrinting()
@@ -76,10 +76,12 @@ class Data(context: Context) {
             override fun onResponse(call: Call<Currency?>, response: Response<Currency?>) {
                 saveExchangeRates(response.body()!!)
                 isFetching.postValue(false)
+                doOnComplete(true)
             }
 
             override fun onFailure(call: Call<Currency?>, t: Throwable) {
-                isFetching.postValue(false)
+                isFetching.postValue(false) 
+                doOnComplete (false)
             }
         })
     }
