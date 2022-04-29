@@ -11,35 +11,19 @@ import com.inator.calculator.model.Rate
 
 //Thanks to sal0max for his awesome Searchable Spinner
 // Check out his app https://github.com/sal0max/currencies
-class SearchableSpinner : AppCompatSpinner, OnItemClickListener<Rate> {
+class SearchableSpinner @JvmOverloads constructor(
+    context: Context,
+    attrs: AttributeSet? = null,
+    defStyleAttr: Int = -1
+) : AppCompatSpinner(context, attrs, defStyleAttr), OnItemClickListener<Rate> {
 
-    private val mContext: Context
-    private lateinit var spinnerDialog: SearchableSpinnerDialog
+    private val mContext = context
+    private var spinnerDialog = SearchableSpinnerDialog()
 
     private var dialogTitle: String? = null
     private var dialogCloseText: String? = null
 
-    constructor(context: Context) : super(context) {
-        this.mContext = context
-        init()
-    }
-
-    constructor(context: Context, attrs: AttributeSet) : super(context, attrs) {
-        this.mContext = context
-        init()
-    }
-
-    constructor (context: Context, attrs: AttributeSet, defStyleAttr: Int) : super(
-        context,
-        attrs,
-        defStyleAttr
-    ) {
-        this.mContext = context
-        init()
-    }
-
-    private fun init() {
-        spinnerDialog = SearchableSpinnerDialog()
+    init {
         spinnerDialog.setTitle(dialogTitle)
         spinnerDialog.setDismissText(dialogCloseText)
         spinnerDialog.mClickListener = this

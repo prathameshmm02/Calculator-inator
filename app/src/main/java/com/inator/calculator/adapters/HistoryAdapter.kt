@@ -4,11 +4,9 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.inator.calculator.R
+import com.inator.calculator.databinding.ItemHistoryBinding
 import com.inator.calculator.model.History
-import java.util.*
 
 class HistoryAdapter(
     private val context: Context,
@@ -17,20 +15,22 @@ class HistoryAdapter(
 ) :
     RecyclerView.Adapter<HistoryAdapter.ViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val view = LayoutInflater.from(context).inflate(R.layout.item_history, parent, false)
-        return ViewHolder(view)
+        return ViewHolder(ItemHistoryBinding.inflate(LayoutInflater.from(context), parent, false))
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val history = historyItems[position]
-        holder.expression.text = history.expr
-        holder.answer.text = history.answer
-        if (shouldCreateHeader(position)) {
-            holder.header.text = history.date
+        holder.binding.run {
+            expression.text = history.expr
+            answer.text = history.answer
+            if (shouldCreateHeader(position)) {
+                dateHeader.text = history.date
+            }
+            if (shouldCreateDivider(position)) {
+                divider.visibility = View.VISIBLE
+            }
         }
-        if (shouldCreateDivider(position)) {
-            holder.divider.visibility = View.VISIBLE
-        }
+
     }
 
     override fun getItemCount(): Int {
@@ -64,12 +64,8 @@ class HistoryAdapter(
         notifyDataSetChanged()
     }
 
-    inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView),
+    inner class ViewHolder(val binding: ItemHistoryBinding) : RecyclerView.ViewHolder(binding.root),
         View.OnClickListener {
-        val answer: TextView = itemView.findViewById(R.id.answer)
-        val expression: TextView = itemView.findViewById(R.id.expression)
-        val header: TextView = itemView.findViewById(R.id.date_header)
-        val divider: View = itemView.findViewById(R.id.divider)
 
         override fun onClick(v: View?) {
             listener.onItemClicked(historyItems[adapterPosition])

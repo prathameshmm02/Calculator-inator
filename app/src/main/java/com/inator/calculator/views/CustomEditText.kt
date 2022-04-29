@@ -9,25 +9,12 @@ import android.util.TypedValue
 import androidx.appcompat.widget.AppCompatEditText
 
 
-class CustomEditText : AppCompatEditText {
-    private val mContext: Context
+class CustomEditText @JvmOverloads constructor(
+    context: Context,
+    attrs: AttributeSet? = null,
+    defStyleAttr: Int = -1
+) : AppCompatEditText(context, attrs, defStyleAttr) {
     private val initialSize = 30F
-
-    constructor(context: Context) : super(context) {
-        this.mContext = context
-    }
-
-    constructor(context: Context, attrs: AttributeSet) : super(context, attrs) {
-        this.mContext = context
-    }
-
-    constructor (context: Context, attrs: AttributeSet, defStyleAttr: Int) : super(
-        context,
-        attrs,
-        defStyleAttr
-    ) {
-        this.mContext = context
-    }
 
     override fun onTextChanged(
         text: CharSequence?,
@@ -57,7 +44,6 @@ class CustomEditText : AppCompatEditText {
                 paint.textSize = textSize
                 paint.getTextBounds(myString, 0, myString.length, bounds)
             }
-
         }
         super.onTextChanged(text, start, lengthBefore, lengthAfter)
     }
