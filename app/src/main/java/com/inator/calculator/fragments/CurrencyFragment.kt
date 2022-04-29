@@ -48,41 +48,41 @@ class CurrencyFragment : Fragment() {
         }
 
         exchangeRatesViewModel.isFetching(requireContext())
-            .observe(viewLifecycleOwner, {
+            .observe(viewLifecycleOwner) {
                 if (it) {
                     progressBar.visibility = View.VISIBLE
                 } else {
                     progressBar.visibility = View.GONE
                 }
-            })
+            }
 
         exchangeRatesViewModel.getExchangeRates(requireContext()).observe(
-            viewLifecycleOwner, {
-                if (it?.rates != null) {
-                    currencySpinner1.adapter = SpinnerAdapter(
-                        requireContext(),
-                        android.R.layout.simple_spinner_item,
-                        it.rates
+            viewLifecycleOwner
+        ) {
+            if (it?.rates != null) {
+                currencySpinner1.adapter = SpinnerAdapter(
+                    requireContext(),
+                    android.R.layout.simple_spinner_item,
+                    it.rates
+                )
+                currencySpinner2.adapter = SpinnerAdapter(
+                    requireContext(),
+                    android.R.layout.simple_spinner_item,
+                    it.rates
+                )
+                //Getting Last States
+                currencySpinner1.setSelection(
+                    (currencySpinner1.adapter as SpinnerAdapter).getPosition(
+                        currencyInputViewModel.getSavedSpinner1()!!
                     )
-                    currencySpinner2.adapter = SpinnerAdapter(
-                        requireContext(),
-                        android.R.layout.simple_spinner_item,
-                        it.rates
+                )
+                currencySpinner2.setSelection(
+                    (currencySpinner2.adapter as SpinnerAdapter).getPosition(
+                        currencyInputViewModel.getSavedSpinner2()!!
                     )
-                    //Getting Last States
-                    currencySpinner1.setSelection(
-                        (currencySpinner1.adapter as SpinnerAdapter).getPosition(
-                            currencyInputViewModel.getSavedSpinner1()!!
-                        )
-                    )
-                    currencySpinner2.setSelection(
-                        (currencySpinner2.adapter as SpinnerAdapter).getPosition(
-                            currencyInputViewModel.getSavedSpinner2()!!
-                        )
-                    )
-                }
+                )
             }
-        )
+        }
 
         setUpViews()
         super.onViewCreated(view, savedInstanceState)
@@ -162,19 +162,19 @@ class CurrencyFragment : Fragment() {
         input2.addTextChangedListener(textWatcher2)
 
         currencyInputViewModel.getOutputDirect().observe(
-            viewLifecycleOwner, {
-                input2.removeTextChangedListener(textWatcher2)
-                input2.setText(it)
-                input2.addTextChangedListener(textWatcher2)
-            }
-        )
+            viewLifecycleOwner
+        ) {
+            input2.removeTextChangedListener(textWatcher2)
+            input2.setText(it)
+            input2.addTextChangedListener(textWatcher2)
+        }
         currencyInputViewModel.getOutputReverse().observe(
-            viewLifecycleOwner, {
-                input1.removeTextChangedListener(textWatcher1)
-                input1.setText(it)
-                input1.addTextChangedListener(textWatcher1)
-            }
-        )
+            viewLifecycleOwner
+        ) {
+            input1.removeTextChangedListener(textWatcher1)
+            input1.setText(it)
+            input1.addTextChangedListener(textWatcher1)
+        }
     }
 
     private fun getExchangeRates() {

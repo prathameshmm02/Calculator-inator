@@ -116,22 +116,22 @@ class ConverterFragment : Fragment() {
 
 
 
-        converterInputViewModel.getOutputDirect().observe(viewLifecycleOwner, {
+        converterInputViewModel.getOutputDirect().observe(viewLifecycleOwner) {
             editText2.removeTextChangedListener(textWatcher2)
             editText2.setText(it)
             editText2.addTextChangedListener(textWatcher2)
 
-        })
-        converterInputViewModel.getOutputReverse().observe(viewLifecycleOwner, {
+        }
+        converterInputViewModel.getOutputReverse().observe(viewLifecycleOwner) {
             editText1.removeTextChangedListener(textWatcher1)
             editText1.setText(it)
             editText1.addTextChangedListener(textWatcher1)
-        })
+        }
         converterInputViewModel.getMeasure().observe(
-            viewLifecycleOwner, {
-                setUpSpinnerAdapter(it)
-            }
-        )
+            viewLifecycleOwner
+        ) {
+            setUpSpinnerAdapter(it)
+        }
 
     }
 

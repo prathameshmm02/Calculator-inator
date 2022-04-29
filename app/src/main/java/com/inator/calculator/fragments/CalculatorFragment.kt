@@ -9,7 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.animation.AnimationUtils
 import android.view.inputmethod.InputMethodManager
-import android.widget.*
+import android.widget.Button
 import androidx.core.content.ContextCompat
 import androidx.core.content.ContextCompat.getSystemService
 import androidx.fragment.app.Fragment
@@ -20,12 +20,10 @@ import com.inator.calculator.R
 import com.inator.calculator.viewmodel.CalculatorInputViewModel
 import com.inator.calculator.viewmodel.HistoryViewModel
 import kotlinx.android.synthetic.main.fragment_calculator.*
-import kotlinx.android.synthetic.main.fragment_history.*
 import kotlinx.android.synthetic.main.layout_adv_calculator.*
 import kotlinx.android.synthetic.main.layout_input_field.*
 import kotlinx.android.synthetic.main.layout_simple_calc.*
 import org.mariuszgromada.math.mxparser.mXparser
-import java.util.*
 
 
 class CalculatorFragment : Fragment() {
@@ -51,22 +49,22 @@ class CalculatorFragment : Fragment() {
     }
 
     private fun addObservers() {
-        historyViewModel.clickedHistory.observe(viewLifecycleOwner, {
+        historyViewModel.clickedHistory.observe(viewLifecycleOwner) {
             draggablePanel.smoothPanelClose(300)
             input.setText(it.expr)
             output.text = it.answer
-        })
-        calcViewModel.inputLiveData.observe(viewLifecycleOwner, {
+        }
+        calcViewModel.inputLiveData.observe(viewLifecycleOwner) {
             input.setText(it)
             calcViewModel.calculateOutput()
-        })
-        calcViewModel.outputLiveData.observe(viewLifecycleOwner, {
+        }
+        calcViewModel.outputLiveData.observe(viewLifecycleOwner) {
             output.text = it
-        })
-        calcViewModel.cursorLiveData.observe(viewLifecycleOwner, {
+        }
+        calcViewModel.cursorLiveData.observe(viewLifecycleOwner) {
             input.setSelection(it)
-        })
-        calcViewModel.isInverseLiveData.observe(viewLifecycleOwner, {
+        }
+        calcViewModel.isInverseLiveData.observe(viewLifecycleOwner) {
             if (it) {
                 val color = ContextCompat.getColor(requireContext(), R.color.grey)
                 inverseButton.setBackgroundColor(color)
@@ -86,7 +84,7 @@ class CalculatorFragment : Fragment() {
                 naturalLogButton.setText(R.string.natural_log)
                 log10Button.setText(R.string.log)
             }
-        })
+        }
 
     }
 
@@ -94,8 +92,6 @@ class CalculatorFragment : Fragment() {
     @SuppressLint("RestrictedApi")
     private fun setUpViews() {
         slidingPaneLayout.openPane()
-        val color = ContextCompat.getColor(requireContext(), android.R.color.transparent)
-        slidingPaneLayout.sliderFadeColor = color
 
         //Setting AutoResize For TextView
         output.setAutoSizeTextTypeUniformWithConfiguration(10, 24, 1, TypedValue.COMPLEX_UNIT_SP)
@@ -249,7 +245,7 @@ class CalculatorFragment : Fragment() {
         }
 
 
-        slidingPaneLayout.setPanelSlideListener(object : SlidingPaneLayout.PanelSlideListener {
+        slidingPaneLayout.addPanelSlideListener(object : SlidingPaneLayout.PanelSlideListener {
             val move = AnimationUtils.loadAnimation(context, R.anim.move)
             val rotateFirst = AnimationUtils.loadAnimation(context, R.anim.rotate_first)
             override fun onPanelSlide(panel: View, slideOffset: Float) {

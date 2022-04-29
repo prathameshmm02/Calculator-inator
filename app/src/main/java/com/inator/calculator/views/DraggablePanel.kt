@@ -1,6 +1,7 @@
 package com.inator.calculator.views
 
 import android.animation.ValueAnimator
+import android.annotation.SuppressLint
 import android.content.Context
 import android.util.AttributeSet
 import android.view.MotionEvent
@@ -40,6 +41,7 @@ class DraggablePanel(context: Context?, attrs: AttributeSet?) : LinearLayout(con
         super.onLayout(changed, l, t, r, b)
     }
 
+    @SuppressLint("ClickableViewAccessibility")
     override fun onTouchEvent(event: MotionEvent): Boolean {
         val action = event.actionMasked
         if (action == MotionEvent.ACTION_DOWN) {
@@ -94,7 +96,7 @@ class DraggablePanel(context: Context?, attrs: AttributeSet?) : LinearLayout(con
         return true
     }
 
-    fun smoothPanelOpen(duration: Int) {
+    private fun smoothPanelOpen(duration: Int) {
         val animator = ValueAnimator.ofInt(height, fullHeight)
         animator.addUpdateListener {
             layoutParams = ConstraintLayout.LayoutParams(
@@ -149,7 +151,7 @@ class DraggablePanel(context: Context?, attrs: AttributeSet?) : LinearLayout(con
         sendAccessibilityEvent(AccessibilityEvent.TYPE_WINDOW_STATE_CHANGED)
     }
 
-    fun dispatchOnPanelClosed(view: View) {
+    private fun dispatchOnPanelClosed(view: View) {
         if (mPanelSlideListener != null) {
             mPanelSlideListener!!.onPanelClosed(view)
         }

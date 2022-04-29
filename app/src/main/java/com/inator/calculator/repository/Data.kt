@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.Context.MODE_PRIVATE
 import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatDelegate
+import androidx.core.content.edit
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.google.gson.GsonBuilder
@@ -40,18 +41,16 @@ class Data(context: Context) {
     private var isFetching: MutableLiveData<Boolean> = MutableLiveData(false)
 
     private fun saveExchangeRates(currency: Currency) {
-        preferenceRates.apply {
-            val editor = edit()
-            editor.clear()
-            editor.putString("_base", currency.base)
-            editor.putString(
+        preferenceRates.edit {
+            clear()
+            putString("_base", currency.base)
+            putString(
                 "_date",
                 SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(currency.date!!)
             )
             currency.rates?.forEach {
-                editor.putFloat(it.code, it.value)
+                putFloat(it.code, it.value)
             }
-            editor.apply()
         }
     }
 
@@ -60,7 +59,6 @@ class Data(context: Context) {
     }
 
     fun fetchExchangeRates() {
-
         isFetching.postValue(true)
         val gson = GsonBuilder()
             .setPrettyPrinting()
@@ -87,7 +85,6 @@ class Data(context: Context) {
     }
 
     fun getExchangeRatesFromPreferences(): Currency? {
-
         return if (preferenceRates.getString(
                 "_base",
                 null
