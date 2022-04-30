@@ -3,43 +3,32 @@ package com.inator.calculator.fragments
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.AdapterView.OnItemSelectedListener
 import android.widget.ArrayAdapter
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.inator.calculator.R
+import com.inator.calculator.databinding.FragmentConverterBinding
 import com.inator.calculator.viewmodel.ConverterInputViewModel
-import kotlinx.android.synthetic.main.fragment_converter.*
 
-class ConverterFragment : Fragment() {
+class ConverterFragment : Fragment(R.layout.fragment_converter) {
     private lateinit var textWatcher1: TextWatcher
     private lateinit var textWatcher2: TextWatcher
     private val converterInputViewModel: ConverterInputViewModel by viewModels()
     private var hasSetSavedSpinners = false
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
-        // Inflate the layout for this fragment
-
-        return inflater.inflate(R.layout.fragment_converter, container, false)
-
-    }
+    private var _binding: FragmentConverterBinding? = null
+    private val binding get() = _binding!!
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        _binding = FragmentConverterBinding.bind(view)
         setUpViews()
-        super.onViewCreated(view, savedInstanceState)
     }
 
-
     private fun setUpViews() {
-
-        chipGroup.setOnCheckedStateChangeListener { _, checkedIds  ->
+        binding.chipGroup.setOnCheckedStateChangeListener { _, checkedIds ->
             when (checkedIds[0]) {
                 R.id.length -> {
                     converterInputViewModel.setMeasure("Length")
@@ -70,7 +59,7 @@ class ConverterFragment : Fragment() {
                 }
             }
         }
-        chipGroup.check(converterInputViewModel.getSavedMeasure())
+        binding.chipGroup.check(converterInputViewModel.getSavedMeasure())
         textWatcher1 = object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {}
             override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {}
@@ -85,9 +74,9 @@ class ConverterFragment : Fragment() {
                 converterInputViewModel.setInput2(s.toString())
             }
         }
-        editText1.addTextChangedListener(textWatcher1)
-        editText2.addTextChangedListener(textWatcher2)
-        unit1.onItemSelectedListener = object : OnItemSelectedListener {
+        binding.editText1.addTextChangedListener(textWatcher1)
+        binding.editText2.addTextChangedListener(textWatcher2)
+        binding.unit1.onItemSelectedListener = object : OnItemSelectedListener {
             override fun onItemSelected(
                 parent: AdapterView<*>?,
                 view: View?,
@@ -100,7 +89,7 @@ class ConverterFragment : Fragment() {
             override fun onNothingSelected(parent: AdapterView<*>?) {}
 
         }
-        unit2.onItemSelectedListener = object : OnItemSelectedListener {
+        binding.unit2.onItemSelectedListener = object : OnItemSelectedListener {
             override fun onItemSelected(
                 parent: AdapterView<*>?,
                 view: View?,
@@ -116,15 +105,18 @@ class ConverterFragment : Fragment() {
 
 
         converterInputViewModel.getOutputDirect().observe(viewLifecycleOwner) {
-            editText2.removeTextChangedListener(textWatcher2)
-            editText2.setText(it)
-            editText2.addTextChangedListener(textWatcher2)
-
+            binding.editText2.apply {
+                removeTextChangedListener(textWatcher2)
+                setText(it)
+                addTextChangedListener(textWatcher2)
+            }
         }
         converterInputViewModel.getOutputReverse().observe(viewLifecycleOwner) {
-            editText1.removeTextChangedListener(textWatcher1)
-            editText1.setText(it)
-            editText1.addTextChangedListener(textWatcher1)
+            binding.editText1.apply {
+                removeTextChangedListener(textWatcher2)
+                setText(it)
+                addTextChangedListener(textWatcher2)
+            }
         }
         converterInputViewModel.getMeasure().observe(
             viewLifecycleOwner
@@ -155,8 +147,8 @@ class ConverterFragment : Fragment() {
             android.R.layout.simple_spinner_item
         ).also { unitAdapter ->
             unitAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-            unit1.adapter = unitAdapter
-            unit2.adapter = unitAdapter
+            binding.unit1.adapter = unitAdapter
+            binding.unit2.adapter = unitAdapter
             setSavedSpinners()
 
         }
@@ -164,15 +156,17 @@ class ConverterFragment : Fragment() {
 
     private fun setSavedSpinners() {
         if (!hasSetSavedSpinners) {
-            unit1.setSelection(converterInputViewModel.getSavedSpinner1())
-            unit2.setSelection(converterInputViewModel.getSavedSpinner2())
+            binding.unit1.setSelection(converterInputViewModel.getSavedSpinner1())
+            binding.unit2.setSelection(converterInputViewModel.getSavedSpinner2())
             hasSetSavedSpinners = true
         } else {
-            unit1.setSelection(0)
-            unit2.setSelection(1)
+            binding.unit1.setSelection(0)
+            binding.unit2.setSelection(1)
         }
-
     }
 
-
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+    }
 }

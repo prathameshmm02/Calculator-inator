@@ -8,16 +8,18 @@ import androidx.preference.Preference
 import androidx.preference.PreferenceFragmentCompat
 import androidx.preference.PreferenceManager
 import com.inator.calculator.R
+import com.inator.calculator.databinding.ActivityMainBinding
+import com.inator.calculator.databinding.ActivitySettingsBinding
 import com.inator.calculator.repository.Data
-import kotlinx.android.synthetic.main.activity_settings.*
 
 class SettingsActivity : AppCompatActivity() {
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        val binding = ActivitySettingsBinding.inflate(layoutInflater)
         setContentView(R.layout.activity_settings)
-        setSupportActionBar(toolbar)
+        setSupportActionBar(binding.toolbar)
         if (savedInstanceState == null) {
             supportFragmentManager
                 .beginTransaction()

@@ -32,7 +32,6 @@
     <TableLayout
         android:layout_width="0dp"
         android:layout_height="match_parent"
-
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@id/main_guideline"
@@ -52,7 +51,8 @@
                 android:fontFamily="@font/poppins"
                 android:text="@string/invert"
                 android:textColor="?attr/colorOnPrimary"
-                android:textSize="24sp" />
+                android:textSize="24sp"
+                style="?android:attr/buttonBarButtonStyle" />
 
             <Button
                 android:id="@+id/angleButton"

@@ -9,32 +9,30 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.animation.AnimationUtils
 import android.widget.AdapterView
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.inator.calculator.R
 import com.inator.calculator.adapters.SpinnerAdapter
+import com.inator.calculator.databinding.FragmentCurrencyBinding
 import com.inator.calculator.viewmodel.CurrencyInputViewModel
 import com.inator.calculator.viewmodel.ExchangeRatesViewModel
-import kotlinx.android.synthetic.main.fragment_currency.*
 import java.text.SimpleDateFormat
 import java.util.*
 
 
-class CurrencyFragment : Fragment() {
+class CurrencyFragment : Fragment(R.layout.fragment_currency) {
     private val exchangeRatesViewModel: ExchangeRatesViewModel by viewModels()
     private val currencyInputViewModel: CurrencyInputViewModel by viewModels()
     private val MILLIS_PER_DAY = 86400000
 
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_currency, container, false)
-    }
+    private var _binding: FragmentCurrencyBinding? = null
+    private val binding get() = _binding!!
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        _binding = FragmentCurrencyBinding.bind(view)
+
         val sharedPrefs = context?.getSharedPreferences("Exchange-Rates", Context.MODE_PRIVATE)
         val todayDate = Calendar.getInstance().time
         val lastUpdatedDateString = sharedPrefs?.getString("_date", "null")
@@ -49,35 +47,31 @@ class CurrencyFragment : Fragment() {
 
         exchangeRatesViewModel.isFetching(requireContext())
             .observe(viewLifecycleOwner) {
-                if (it) {
-                    progressBar.visibility = View.VISIBLE
-                } else {
-                    progressBar.visibility = View.GONE
-                }
+                binding.progressBar.isVisible = it
             }
 
         exchangeRatesViewModel.getExchangeRates(requireContext()).observe(
             viewLifecycleOwner
         ) {
             if (it?.rates != null) {
-                currencySpinner1.adapter = SpinnerAdapter(
+                binding.currencySpinner1.adapter = SpinnerAdapter(
                     requireContext(),
                     android.R.layout.simple_spinner_item,
                     it.rates
                 )
-                currencySpinner2.adapter = SpinnerAdapter(
+                binding.currencySpinner2.adapter = SpinnerAdapter(
                     requireContext(),
                     android.R.layout.simple_spinner_item,
                     it.rates
                 )
                 //Getting Last States
-                currencySpinner1.setSelection(
-                    (currencySpinner1.adapter as SpinnerAdapter).getPosition(
+                binding.currencySpinner1.setSelection(
+                    (binding.currencySpinner1.adapter as SpinnerAdapter).getPosition(
                         currencyInputViewModel.getSavedSpinner1()!!
                     )
                 )
-                currencySpinner2.setSelection(
-                    (currencySpinner2.adapter as SpinnerAdapter).getPosition(
+                binding.currencySpinner2.setSelection(
+                    (binding.currencySpinner2.adapter as SpinnerAdapter).getPosition(
                         currencyInputViewModel.getSavedSpinner2()!!
                     )
                 )
@@ -90,56 +84,58 @@ class CurrencyFragment : Fragment() {
 
 
     private fun setUpViews() {
-        change.setOnClickListener {
-            val otherSelected = currencySpinner1.selectedItemPosition
-            val moveUpAnimation = AnimationUtils.loadAnimation(context, R.anim.move_up)
-            val moveDownAnimation = AnimationUtils.loadAnimation(context, R.anim.move_down)
-            currencySpinner1.startAnimation(moveDownAnimation)
-            currencySpinner2.startAnimation(moveUpAnimation)
-            currencySpinner1.setSelection(currencySpinner2.selectedItemPosition)
-            currencySpinner2.setSelection(otherSelected)
-            currencySpinner1.startAnimation(moveUpAnimation)
-            currencySpinner2.startAnimation(moveDownAnimation)
+        binding.change.setOnClickListener {
+            binding.run {
+                val otherSelected = currencySpinner1.selectedItemPosition
+                val moveUpAnimation = AnimationUtils.loadAnimation(context, R.anim.move_up)
+                val moveDownAnimation = AnimationUtils.loadAnimation(context, R.anim.move_down)
+                currencySpinner1.startAnimation(moveDownAnimation)
+                currencySpinner2.startAnimation(moveUpAnimation)
+                currencySpinner1.setSelection(currencySpinner2.selectedItemPosition)
+                currencySpinner2.setSelection(otherSelected)
+                currencySpinner1.startAnimation(moveUpAnimation)
+                currencySpinner2.startAnimation(moveDownAnimation)
+            }
         }
-        refreshButton.setOnClickListener {
+        binding.refreshButton.setOnClickListener {
             getExchangeRates()
         }
 
+        binding.currencySpinner1.onItemSelectedListener =
+            object : AdapterView.OnItemSelectedListener {
+                override fun onNothingSelected(parent: AdapterView<*>?) {}
 
-        currencySpinner1.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
-            override fun onNothingSelected(parent: AdapterView<*>?) {}
-
-            override fun onItemSelected(
-                parent: AdapterView<*>?,
-                view: View?,
-                position: Int,
-                id: Long
-            ) {
-                currencyInputViewModel.setSpinner1(
-                    (parent?.adapter as SpinnerAdapter).getItem(
-                        position
+                override fun onItemSelected(
+                    parent: AdapterView<*>?,
+                    view: View?,
+                    position: Int,
+                    id: Long
+                ) {
+                    currencyInputViewModel.setSpinner1(
+                        (parent?.adapter as SpinnerAdapter).getItem(
+                            position
+                        )
                     )
-                )
+                }
             }
 
+        binding.currencySpinner2.onItemSelectedListener =
+            object : AdapterView.OnItemSelectedListener {
+                override fun onNothingSelected(parent: AdapterView<*>?) {}
 
-        }
-        currencySpinner2.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
-            override fun onNothingSelected(parent: AdapterView<*>?) {}
-
-            override fun onItemSelected(
-                parent: AdapterView<*>?,
-                view: View?,
-                position: Int,
-                id: Long
-            ) {
-                currencyInputViewModel.setSpinner2(
-                    (parent?.adapter as SpinnerAdapter).getItem(
-                        position
+                override fun onItemSelected(
+                    parent: AdapterView<*>?,
+                    view: View?,
+                    position: Int,
+                    id: Long
+                ) {
+                    currencyInputViewModel.setSpinner2(
+                        (parent?.adapter as SpinnerAdapter).getItem(
+                            position
+                        )
                     )
-                )
+                }
             }
-        }
 
         val textWatcher1 = object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
@@ -158,26 +154,35 @@ class CurrencyFragment : Fragment() {
             }
 
         }
-        input1.addTextChangedListener(textWatcher1)
-        input2.addTextChangedListener(textWatcher2)
+        binding.input1.addTextChangedListener(textWatcher1)
+        binding.input2.addTextChangedListener(textWatcher2)
 
         currencyInputViewModel.getOutputDirect().observe(
             viewLifecycleOwner
         ) {
-            input2.removeTextChangedListener(textWatcher2)
-            input2.setText(it)
-            input2.addTextChangedListener(textWatcher2)
+            binding.input2.apply {
+                removeTextChangedListener(textWatcher2)
+                setText(it)
+                addTextChangedListener(textWatcher2)
+            }
         }
         currencyInputViewModel.getOutputReverse().observe(
             viewLifecycleOwner
         ) {
-            input1.removeTextChangedListener(textWatcher1)
-            input1.setText(it)
-            input1.addTextChangedListener(textWatcher1)
+            binding.input1.apply {
+                removeTextChangedListener(textWatcher1)
+                setText(it)
+                addTextChangedListener(textWatcher1)
+            }
         }
     }
 
     private fun getExchangeRates() {
         exchangeRatesViewModel.fetchExchangeRates(requireContext())
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 }

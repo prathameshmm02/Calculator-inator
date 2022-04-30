@@ -21,11 +21,13 @@
         app:layout_constraintTop_toTopOf="@id/main_guideline">
 
         <include
+            android:id="@+id/simple_calc"
             layout="@layout/layout_simple_calc"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
 
         <include
+            android:id="@+id/adv_calc"
             layout="@layout/layout_adv_calculator"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
