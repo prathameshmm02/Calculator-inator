@@ -8,7 +8,6 @@ import androidx.preference.Preference
 import androidx.preference.PreferenceFragmentCompat
 import androidx.preference.PreferenceManager
 import com.inator.calculator.R
-import com.inator.calculator.databinding.ActivityMainBinding
 import com.inator.calculator.databinding.ActivitySettingsBinding
 import com.inator.calculator.repository.Data
 
