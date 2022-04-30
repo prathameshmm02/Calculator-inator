@@ -62,11 +62,6 @@ dependencies {
     // UI
     implementation "androidx.constraintlayout:constraintlayout:$rootProject.constraintLayoutVersion"
     implementation "com.google.android.material:material:$rootProject.materialVersion"
-    implementation ( group: 'androidx.slidingpanelayout', name: 'slidingpanelayout') {
-        version{
-            strictly "[1.1.0]"
-        }
-    }
 
     implementation 'com.squareup.retrofit2:retrofit:2.9.0'
     implementation 'com.squareup.retrofit2:converter-gson:2.9.0'

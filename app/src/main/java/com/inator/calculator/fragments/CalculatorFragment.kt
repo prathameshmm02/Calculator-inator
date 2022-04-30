@@ -21,7 +21,6 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.slidingpanelayout.widget.SlidingPaneLayout
-import com.google.android.material.color.MaterialColors
 import com.inator.calculator.R
 import com.inator.calculator.activities.MainActivity
 import com.inator.calculator.databinding.FragmentCalculatorBinding
@@ -56,276 +55,261 @@ class CalculatorFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        setUpViews()
-        addListeners()
-        addObservers()
-        setupHistoryPanel()
+        with(binding) {
+            setUpViews()
+            addListeners()
+            addObservers()
+            setupHistoryPanel()
+        }
+
+
         requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner, true) {
             if (binding.draggablePanel.isOpen()) {
                 binding.draggablePanel.smoothPanelClose(300)
-            } else if (!binding.slidingPaneLayout.isOpen) {
-                binding.slidingPaneLayout.openPane()
             }
         }
     }
 
-    private fun setupHistoryPanel() {
-        binding.run {
-            draggablePanel.setPanelSlideListener(object : DraggablePanel.PanelSlideListener {
-                override fun onPanelSlide(view: View, mDragOffset: Float) {
-                    if (input.text.isNullOrEmpty()) {
-                        inputField.updateWeight(0f + 0.3f * (1 - mDragOffset))
-                        historyContainer.updateWeight(1.0f * mDragOffset)
-                    } else {
-                        root.updateWeight(0.3f + 0.3f * (1 - mDragOffset))
-                        historyContainer.updateWeight(0.7f * mDragOffset)
-                    }
+    private fun Binding.setupHistoryPanel() {
+        draggablePanel.setPanelSlideListener(object : DraggablePanel.PanelSlideListener {
+            override fun onPanelSlide(view: View, mDragOffset: Float) {
+                if (input.text.isNullOrEmpty()) {
+                    inputField.updateWeight(0f + 0.3f * (1 - mDragOffset))
+                    historyContainer.updateWeight(1.0f * mDragOffset)
+                } else {
+                    inputField.updateWeight(0.3f + 0.3f * (1 - mDragOffset))
+                    historyContainer.updateWeight(0.7f * mDragOffset)
                 }
+            }
 
-                override fun onPanelOpened(view: View) {
-                    val currentWeight =
-                        (inputField.layoutParams as LinearLayout.LayoutParams).weight
-                    val animator = if (input.text.isNullOrEmpty()) {
-                        ValueAnimator.ofFloat(currentWeight, 0.0f)
-                    } else {
-                        header.visibility = View.VISIBLE
-                        ValueAnimator.ofFloat(currentWeight, 0.3f)
-                    }
-                    animator.addUpdateListener {
-                        inputField.updateWeight(it.animatedValue as Float)
-                        historyContainer.updateWeight(1.0f - it.animatedValue as Float)
-                    }
-                    animator.start()
-                    mainActivity.apply {
-                        setSupportActionBar(historyBar)
-                        if (!historyBar.isVisible) {
-                            historyBar.show()
-                            topAppBar.hide {
-                                historyBar.isVisible = true
-                                supportActionBar?.setDisplayHomeAsUpEnabled(true)
-                            }
+            override fun onPanelOpened(view: View) {
+                val currentWeight =
+                    (inputField.layoutParams as LinearLayout.LayoutParams).weight
+                val animator = if (input.text.isNullOrEmpty()) {
+                    ValueAnimator.ofFloat(currentWeight, 0.0f)
+                } else {
+                    header.isVisible = true
+                    ValueAnimator.ofFloat(currentWeight, 0.3f)
+                }
+                animator.addUpdateListener {
+                    inputField.updateWeight(it.animatedValue as Float)
+                    historyContainer.updateWeight(1.0f - it.animatedValue as Float)
+                }
+                animator.start()
+                mainActivity.apply {
+                    setSupportActionBar(historyBar)
+                    if (!historyBar.isVisible) {
+                        historyBar.show()
+                        topAppBar.hide {
+                            historyBar.isVisible = true
+                            supportActionBar?.setDisplayHomeAsUpEnabled(true)
                         }
                     }
-
                 }
 
-                override fun onPanelClosed(view: View) {
-                    inputField.animateWeight(inputField.weight(), 1.0F)
-                    historyContainer.animateWeight(historyContainer.weight(), 0.0F)
+            }
 
-                    inputField.isVisible = false
-                    mainActivity.apply {
-                        setSupportActionBar(topAppBar)
-                        historyBar.hide()
-                        topAppBar.show {
-                            historyBar.isVisible = false
-                            supportActionBar?.setDisplayHomeAsUpEnabled(false)
-                        }
+            override fun onPanelClosed(view: View) {
+                inputField.animateWeight(inputField.weight(), 1.0F)
+                historyContainer.animateWeight(historyContainer.weight(), 0.0F)
+
+                header.isVisible = false
+                mainActivity.apply {
+                    setSupportActionBar(topAppBar)
+                    historyBar.hide()
+                    topAppBar.show {
+                        historyBar.isVisible = false
+                        supportActionBar?.setDisplayHomeAsUpEnabled(false)
                     }
-
                 }
-            })
-        }
+
+            }
+        })
     }
 
-    private fun addObservers() {
+    private fun Binding.addObservers() {
         historyViewModel.clickedHistory.observe(viewLifecycleOwner) {
-            binding.run {
-                draggablePanel.smoothPanelClose(300)
-                input.setText(it.expr)
-                output.text = it.answer
-            }
+            draggablePanel.smoothPanelClose(300)
+            input.setText(it.expr)
+            output.text = it.answer
         }
-        binding.run {
-            calcViewModel.inputLiveData.observe(viewLifecycleOwner) {
-                input.setText(it)
-                calcViewModel.calculateOutput()
-            }
-            calcViewModel.outputLiveData.observe(viewLifecycleOwner) {
-                output.text = it
-            }
-            calcViewModel.cursorLiveData.observe(viewLifecycleOwner) {
-                input.setSelection(it)
-            }
+        calcViewModel.inputLiveData.observe(viewLifecycleOwner) {
+            input.setText(it)
+            calcViewModel.calculateOutput()
+        }
+        calcViewModel.outputLiveData.observe(viewLifecycleOwner) {
+            output.text = it
+        }
+        calcViewModel.cursorLiveData.observe(viewLifecycleOwner) {
+            input.setSelection(it)
         }
 
         calcViewModel.isInverseLiveData.observe(viewLifecycleOwner) {
-            binding.run {
-                if (it) {
-                    val color = ContextCompat.getColor(requireContext(), R.color.grey)
-                    inverseButton.setBackgroundColor(color)
-                    sinButton.setText(R.string.asin)
-                    cosButton.setText(R.string.acos)
-                    tanButton.setText(R.string.atan)
-                    rootButton.setText(R.string.square)
-                    naturalLogButton.setText(R.string.eRaisedTo)
-                    log10Button.setText(R.string.tenRaisedTo)
-                } else {
-                    val color =
-                        ContextCompat.getColor(requireContext(), android.R.color.transparent)
-                    inverseButton.setBackgroundColor(color)
-                    sinButton.setText(R.string.sin)
-                    cosButton.setText(R.string.cos)
-                    tanButton.setText(R.string.tan)
-                    rootButton.setText(R.string.root)
-                    naturalLogButton.setText(R.string.natural_log)
-                    log10Button.setText(R.string.log)
-                }
+            if (it) {
+                val color = ContextCompat.getColor(requireContext(), R.color.grey)
+                inverseButton.setBackgroundColor(color)
+                sinButton.setText(R.string.asin)
+                cosButton.setText(R.string.acos)
+                tanButton.setText(R.string.atan)
+                rootButton.setText(R.string.square)
+                naturalLogButton.setText(R.string.eRaisedTo)
+                log10Button.setText(R.string.tenRaisedTo)
+            } else {
+                inverseButton.setBackgroundColor(Color.TRANSPARENT)
+                sinButton.setText(R.string.sin)
+                cosButton.setText(R.string.cos)
+                tanButton.setText(R.string.tan)
+                rootButton.setText(R.string.root)
+                naturalLogButton.setText(R.string.natural_log)
+                log10Button.setText(R.string.log)
             }
         }
     }
 
     @SuppressLint("RestrictedApi")
-    private fun setUpViews() {
-        binding.run {
-            binding.slidingPaneLayout.sliderFadeColor = MaterialColors.getColor(requireContext(), R.attr.colorPrimary, Color.BLUE)
-            binding.slidingPaneLayout.openPane()
+    private fun Binding.setUpViews() {
 
-            //Setting AutoResize For TextView
-            output.setAutoSizeTextTypeUniformWithConfiguration(
-                10,
-                24,
-                1,
-                TypedValue.COMPLEX_UNIT_SP
-            )
+        //Setting AutoResize For TextView
+        output.setAutoSizeTextTypeUniformWithConfiguration(
+            10,
+            24,
+            1,
+            TypedValue.COMPLEX_UNIT_SP
+        )
 
-            // Don't show keyboard on focus/click
-            input.showSoftInputOnFocus = false
-            input.requestFocus()
-        }
-
+        // Don't show keyboard on focus/click
+        input.showSoftInputOnFocus = false
+        input.requestFocus()
     }
 
-    private fun addListeners() {
-        binding.run {
-            // Adding OnClick Listener+
-            //Handling Numbers
-            button0.setOnClickListener {
-                calcViewModel.numClicked('0')
-            }
-            button1.setOnClickListener {
-                calcViewModel.numClicked('1')
-            }
-            button2.setOnClickListener {
-                calcViewModel.numClicked('2')
-            }
-            button3.setOnClickListener {
-                calcViewModel.numClicked('3')
-            }
-            button4.setOnClickListener {
-                calcViewModel.numClicked('4')
-            }
-            button5.setOnClickListener {
-                calcViewModel.numClicked('5')
-            }
-            button6.setOnClickListener {
-                calcViewModel.numClicked('6')
-            }
-            button7.setOnClickListener {
-                calcViewModel.numClicked('7')
-            }
-            button8.setOnClickListener {
-                calcViewModel.numClicked('8')
-            }
-            button9.setOnClickListener {
-                calcViewModel.numClicked('9')
-            }
-            //They are numbers after all
-            piButton.setOnClickListener {
-                calcViewModel.numClicked('π')
-            }
-            eulerNumButton.setOnClickListener {
-                calcViewModel.numClicked('e')
-            }
+    private fun Binding.addListeners() {
+        // Adding OnClick Listener+
+        //Handling Numbers
+        button0.setOnClickListener {
+            calcViewModel.numClicked('0')
+        }
+        button1.setOnClickListener {
+            calcViewModel.numClicked('1')
+        }
+        button2.setOnClickListener {
+            calcViewModel.numClicked('2')
+        }
+        button3.setOnClickListener {
+            calcViewModel.numClicked('3')
+        }
+        button4.setOnClickListener {
+            calcViewModel.numClicked('4')
+        }
+        button5.setOnClickListener {
+            calcViewModel.numClicked('5')
+        }
+        button6.setOnClickListener {
+            calcViewModel.numClicked('6')
+        }
+        button7.setOnClickListener {
+            calcViewModel.numClicked('7')
+        }
+        button8.setOnClickListener {
+            calcViewModel.numClicked('8')
+        }
+        button9.setOnClickListener {
+            calcViewModel.numClicked('9')
+        }
+        //They are numbers after all
+        piButton.setOnClickListener {
+            calcViewModel.numClicked('π')
+        }
+        eulerNumButton.setOnClickListener {
+            calcViewModel.numClicked('e')
+        }
 
 
-            //Handling Operations
-            addButton.setOnClickListener {
-                calcViewModel.operClicked('+')
-            }
-            subButton.setOnClickListener {
-                calcViewModel.operClicked('-')
-            }
-            multButton.setOnClickListener {
-                calcViewModel.operClicked('×')
-            }
-            divideButton.setOnClickListener {
-                calcViewModel.operClicked('÷')
-            }
-            percentButton.setOnClickListener {
-                calcViewModel.operClicked('%')
-            }
-            powerButton.setOnClickListener {
-                calcViewModel.operClicked('^')
-            }
+        //Handling Operations
+        addButton.setOnClickListener {
+            calcViewModel.operClicked('+')
+        }
+        subButton.setOnClickListener {
+            calcViewModel.operClicked('-')
+        }
+        multButton.setOnClickListener {
+            calcViewModel.operClicked('×')
+        }
+        divideButton.setOnClickListener {
+            calcViewModel.operClicked('÷')
+        }
+        percentButton.setOnClickListener {
+            calcViewModel.operClicked('%')
+        }
+        powerButton.setOnClickListener {
+            calcViewModel.operClicked('^')
+        }
 
-            //Handling Decimal
-            decimalButton.setOnClickListener {
-                calcViewModel.decimalClicked()
-            }
+        //Handling Decimal
+        decimalButton.setOnClickListener {
+            calcViewModel.decimalClicked()
+        }
 
-            //Handling Functions
-            sinButton.setOnClickListener {
-                calcViewModel.funClicked((it as Button).text)
-            }
-            cosButton.setOnClickListener {
-                calcViewModel.funClicked((it as Button).text)
-            }
-            tanButton.setOnClickListener {
-                calcViewModel.funClicked((it as Button).text)
-            }
-            naturalLogButton.setOnClickListener {
-                calcViewModel.funClicked((it as Button).text)
-            }
-            log10Button.setOnClickListener {
-                calcViewModel.funClicked((it as Button).text)
-            }
-            rootButton.setOnClickListener {
-                if ((it as Button).text.toString() == "√") {
-                    calcViewModel.funClicked("sqrt")
-                } else {
-                    calcViewModel.otherClicked(it.text)
-                }
-            }
-
-            openBracketButton.setOnClickListener {
-                calcViewModel.otherClicked('(')
-            }
-            closeBracketButton.setOnClickListener {
-                calcViewModel.otherClicked(')')
-            }
-            factorialButton.setOnClickListener {
-                calcViewModel.otherClicked('!')
-            }
-            inverseButton.setOnClickListener {
-                calcViewModel.inverseClicked()
-            }
-            angleButton.setOnClickListener {
-                if (mXparser.checkIfRadiansMode()) {
-                    mXparser.setDegreesMode()
-                    angleButton.text = resources.getString(R.string.radian)
-                } else {
-                    mXparser.setRadiansMode()
-                    angleButton.text =
-                        resources.getString(R.string.degree)
-                }
-                calcViewModel.calculateOutput()
-            }
-            equalButton.setOnClickListener {
-                calcViewModel.equalClicked(requireContext())
-            }
-            clearButton.setOnClickListener {
-                input.dispatchKeyEvent(KeyEvent(KeyEvent.ACTION_DOWN, KeyEvent.KEYCODE_DEL))
-                calcViewModel.backspaceClicked(input.text.toString(), input.selectionEnd)
-            }
-
-            clearButton.setOnLongClickListener {
-                calcViewModel.clearAll()
-                return@setOnLongClickListener true
+        //Handling Functions
+        sinButton.setOnClickListener {
+            calcViewModel.funClicked((it as Button).text)
+        }
+        cosButton.setOnClickListener {
+            calcViewModel.funClicked((it as Button).text)
+        }
+        tanButton.setOnClickListener {
+            calcViewModel.funClicked((it as Button).text)
+        }
+        naturalLogButton.setOnClickListener {
+            calcViewModel.funClicked((it as Button).text)
+        }
+        log10Button.setOnClickListener {
+            calcViewModel.funClicked((it as Button).text)
+        }
+        rootButton.setOnClickListener {
+            if ((it as Button).text.toString() == "√") {
+                calcViewModel.funClicked("sqrt")
+            } else {
+                calcViewModel.otherClicked(it.text)
             }
         }
 
-        binding.input.apply {
+        openBracketButton.setOnClickListener {
+            calcViewModel.otherClicked('(')
+        }
+        closeBracketButton.setOnClickListener {
+            calcViewModel.otherClicked(')')
+        }
+        factorialButton.setOnClickListener {
+            calcViewModel.otherClicked('!')
+        }
+        inverseButton.setOnClickListener {
+            calcViewModel.inverseClicked()
+        }
+        angleButton.setOnClickListener {
+            if (mXparser.checkIfRadiansMode()) {
+                mXparser.setDegreesMode()
+                angleButton.text = resources.getString(R.string.radian)
+            } else {
+                mXparser.setRadiansMode()
+                angleButton.text =
+                    resources.getString(R.string.degree)
+            }
+            calcViewModel.calculateOutput()
+        }
+        equalButton.setOnClickListener {
+            calcViewModel.equalClicked(requireContext())
+        }
+        clearButton.setOnClickListener {
+            input.dispatchKeyEvent(KeyEvent(KeyEvent.ACTION_DOWN, KeyEvent.KEYCODE_DEL))
+            calcViewModel.backspaceClicked(input.text.toString(), input.selectionEnd)
+        }
+
+        clearButton.setOnLongClickListener {
+            calcViewModel.clearAll()
+            return@setOnLongClickListener true
+        }
+
+        input.apply {
             setOnClickListener {
                 calcViewModel.setCursor(selectionStart)
             }
@@ -335,31 +319,29 @@ class CalculatorFragment : Fragment() {
             }
         }
 
-        binding.apply {
-            /* Visual Stuff  */
-            binding.slideButton.setOnClickListener {
-                if (slidingPaneLayout.isOpen) {
-                    slidingPaneLayout.closePane()
-                } else {
-                    slidingPaneLayout.openPane()
-                }
+        /* Visual Stuff  */
+        slideButton.setOnClickListener {
+            if (slidingPaneLayout.isOpen) {
+                slidingPaneLayout.closePane()
+            } else {
+                slidingPaneLayout.openPane()
             }
 
 
-            slidingPaneLayout.setPanelSlideListener(object : SlidingPaneLayout.PanelSlideListener {
+            slidingPaneLayout.addPanelSlideListener(object : SlidingPaneLayout.PanelSlideListener {
                 val move = AnimationUtils.loadAnimation(context, R.anim.move)
                 val rotateFirst = AnimationUtils.loadAnimation(context, R.anim.rotate_first)
                 override fun onPanelSlide(panel: View, slideOffset: Float) {
-                    binding.slideButton.startAnimation(move)
+                    slideButton.startAnimation(move)
                 }
 
                 override fun onPanelOpened(panel: View) {
-                    binding.slideButton.clearAnimation()
+                    slideButton.clearAnimation()
                 }
 
                 override fun onPanelClosed(panel: View) {
-                    binding.slideButton.clearAnimation()
-                    binding.slideButton.startAnimation(rotateFirst)
+                    slideButton.clearAnimation()
+                    slideButton.startAnimation(rotateFirst)
                 }
             })
         }
@@ -372,6 +354,10 @@ class CalculatorFragment : Fragment() {
         imm?.hideSoftInputFromWindow(requireView().windowToken, 0)
     }
 
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+    }
 
     inner class Binding(binding: FragmentCalculatorBinding) {
         val root = binding.root
