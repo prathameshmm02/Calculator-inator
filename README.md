@@ -9,7 +9,6 @@ Live Currency Converter.
 Screenshots:
 <br>
 <br>
-<img src="/app/assets/BasicCalculator.png" height="500px"/>
-<img src="/app/assets/Advanced Calculator.png" height="500px"/>
-
-<img src="/app/assets/Converter.png" height="500px"/>
+<img src="/screenshots/BasicCalculator.png" height="500"/>
+<img src="/screenshots/Advanced Calculator.png" height="500"/>
+<img src="/screenshots/Converter.png" height="500"/>
