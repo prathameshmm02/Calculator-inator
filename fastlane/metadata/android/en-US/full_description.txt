@@ -1,0 +1,3 @@
+<i>Calculator-inator</i> is a Calculator & Converter for Android inspired from Google's Calculator App.
+
+<b>The app features:</b> Basic & Advanced Calculator with logarithmic and trigonometric functions. Length, Area, Mass, Speed, Data, Volume, Time, Temperature, Angle Live Currency Converter.

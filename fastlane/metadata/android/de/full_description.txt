@@ -1,0 +1,3 @@
+<i>Calculator-inator</i> ist ein Taschenrechner und Umrechner für Android, der von Google's Calculator App inspiriert wurde.
+
+Die App bietet u. a. folgende <b>Features:</b> Einfacher & erweiterter Taschenrechner mit logarithmischen und trigonometrischen Funktionen; Umrechnungen von Längen-, Flächen-, Massen-Werten, Geschwindigkeit, Daten, Volumen, Zeit, Temperatur, Winkelmaßen; Live Währungs-Umrechner.
