@@ -47,7 +47,7 @@ class CalculatorFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         // Inflate the layout for this fragment
-        requireActivity().supportFragmentManager.beginTransaction()
+        childFragmentManager.beginTransaction()
             .replace(R.id.historyContainer, historyFragment)
             .commit()
         _binding = Binding(FragmentCalculatorBinding.inflate(layoutInflater, container, false))
