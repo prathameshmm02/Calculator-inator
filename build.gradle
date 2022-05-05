@@ -7,7 +7,7 @@ buildscript {
         coroutinesVersion = '1.6.1'
         kotlin_version = '1.6.21'
         lifecycleVersion = '2.4.1'
-        materialVersion = '1.7.0-alpha01'
+        materialVersion = '1.6.0'
         roomVersion = '2.4.2'
     }
     repositories {

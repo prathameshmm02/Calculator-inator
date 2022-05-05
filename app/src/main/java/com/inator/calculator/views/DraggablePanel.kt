@@ -10,7 +10,6 @@ import android.view.ViewGroup
 import android.view.accessibility.AccessibilityEvent
 import android.view.animation.DecelerateInterpolator
 import android.widget.LinearLayout
-import androidx.constraintlayout.widget.ConstraintLayout
 
 class DraggablePanel(context: Context?, attrs: AttributeSet?) : LinearLayout(context, attrs) {
     private var isOpen = false
@@ -78,48 +77,46 @@ class DraggablePanel(context: Context?, attrs: AttributeSet?) : LinearLayout(con
                 if (y > initialY) {
                     return true
                 } else if (fullHeight + dy > originalHeight) {
-                    layoutParams = ConstraintLayout.LayoutParams(width, (fullHeight + dy).toInt())
+                    layoutParams = ViewGroup.LayoutParams(width, (fullHeight + dy).toInt())
                 }
             } else {
                 if (y < initialY) {
                     return true
                 } else if (originalHeight + dy < fullHeight) {
-                    layoutParams =
-                        ConstraintLayout.LayoutParams(width, (originalHeight + dy).toInt())
+                    layoutParams = ViewGroup.LayoutParams(width, (originalHeight + dy).toInt())
                 }
             }
             dragOffset =
                 (height - originalHeight).toFloat() / (fullHeight - originalHeight).toFloat()
             dispatchOnPanelSlide(this)
         }
-        this.performClick()
+        performClick()
         return true
     }
 
     private fun smoothPanelOpen(duration: Int) {
-        val animator = ValueAnimator.ofInt(height, fullHeight)
-        animator.addUpdateListener {
-            layoutParams = ConstraintLayout.LayoutParams(
-                width, (animator.animatedValue as Int)
-            )
+        ValueAnimator.ofInt(height, fullHeight).apply {
+            addUpdateListener {
+                layoutParams = ViewGroup.LayoutParams(width, (animatedValue as Int))
+            }
+            this.duration = duration.toLong()
+            interpolator = DecelerateInterpolator()
+            start()
         }
-        animator.duration = duration.toLong()
-        animator.interpolator = DecelerateInterpolator()
-        animator.start()
+
         dragOffset = 1.0f
         dispatchOnPanelOpened(this)
     }
 
     fun smoothPanelClose(duration: Int) {
-        val animator = ValueAnimator.ofInt(height, originalHeight)
-        animator.addUpdateListener {
-            layoutParams = ConstraintLayout.LayoutParams(
-                width, (animator.animatedValue as Int)
-            )
+        ValueAnimator.ofInt(height, originalHeight).apply {
+            addUpdateListener {
+                layoutParams = ViewGroup.LayoutParams(width, (animatedValue as Int))
+            }
+            this.duration = duration.toLong()
+            interpolator = DecelerateInterpolator()
+            start()
         }
-        animator.duration = duration.toLong()
-        animator.interpolator = DecelerateInterpolator()
-        animator.start()
         dragOffset = 0.0f
         dispatchOnPanelClosed(this)
     }

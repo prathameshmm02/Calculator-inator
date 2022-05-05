@@ -1,5 +1,7 @@
 package com.inator.calculator.repository
 
+import java.math.BigDecimal
+
 fun String.toExpression(): String {
     return replace('×', '*')
             .replace('÷', '/')
@@ -12,6 +14,16 @@ fun String.toExpression(): String {
 
 fun Double.toSimpleString(): String {
     var result = toString()
+    result.indexOf(".0").let {
+        if (it != -1) {
+            result = result.substring(0, it)
+        }
+    }
+    return result
+}
+
+fun BigDecimal.toSimpleString(): String {
+    var result = toPlainString()
     result.indexOf(".0").let {
         if (it != -1) {
             result = result.substring(0, it)

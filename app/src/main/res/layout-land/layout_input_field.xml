@@ -12,7 +12,7 @@
         android:textSize="20sp"
         android:visibility="gone" />
 
-    <com.inator.calculator.views.CustomEditText
+    <com.google.android.material.textfield.TextInputEditText
         android:id="@+id/input"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -23,7 +23,6 @@
         android:paddingStart="0dp"
         android:paddingEnd="30dp"
         android:textSize="36sp" />
-
 
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/output"

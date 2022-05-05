@@ -26,6 +26,8 @@ class HistoryAdapter(
             answer.text = history.answer
             if (shouldCreateHeader(position)) {
                 dateHeader.text = history.date
+            } else {
+                dateHeader.isVisible = false
             }
             if (shouldCreateDivider(position)) {
                 divider.isVisible = true
@@ -73,7 +75,11 @@ class HistoryAdapter(
         }
 
         init {
-            itemView.setOnClickListener(this)
+            binding.run {
+                root.setOnClickListener(this@ViewHolder)
+                answer.setOnClickListener(this@ViewHolder)
+                expression.setOnClickListener(this@ViewHolder)
+            }
         }
     }
 }

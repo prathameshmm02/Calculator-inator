@@ -5,10 +5,7 @@ import android.annotation.SuppressLint
 import android.graphics.Color
 import android.os.Bundle
 import android.util.TypedValue
-import android.view.KeyEvent
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import android.view.animation.AnimationUtils
 import android.view.inputmethod.InputMethodManager
 import android.widget.Button
@@ -16,6 +13,7 @@ import android.widget.LinearLayout
 import androidx.activity.addCallback
 import androidx.core.content.ContextCompat
 import androidx.core.content.getSystemService
+import androidx.core.view.MenuProvider
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
@@ -61,12 +59,22 @@ class CalculatorFragment : Fragment() {
             addObservers()
             setupHistoryPanel()
         }
-
         requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner, true) {
             if (binding.draggablePanel.isOpen()) {
                 binding.draggablePanel.smoothPanelClose(300)
             }
         }
+        mainActivity.addMenuProvider(object : MenuProvider {
+            override fun onCreateMenu(menu: Menu, menuInflater: MenuInflater) {}
+
+            override fun onMenuItemSelected(menuItem: MenuItem): Boolean {
+                if (menuItem.itemId == android.R.id.home) {
+                    binding.draggablePanel.smoothPanelClose(300)
+                    return true
+                }
+                return false
+            }
+        })
     }
 
     private fun Binding.setupHistoryPanel() {
@@ -222,7 +230,6 @@ class CalculatorFragment : Fragment() {
             calcViewModel.numClicked('e')
         }
 
-
         //Handling Operations
         addButton.setOnClickListener {
             calcViewModel.operClicked('+')
@@ -350,7 +357,7 @@ class CalculatorFragment : Fragment() {
     override fun onResume() {
         super.onResume()
         val imm: InputMethodManager? = requireContext().getSystemService()
-        imm?.hideSoftInputFromWindow(requireView().windowToken, 0)
+        imm?.hideSoftInputFromWindow(binding.input.windowToken, 0)
     }
 
     override fun onDestroyView() {
