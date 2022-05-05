@@ -22,8 +22,6 @@ import java.util.*
 class CurrencyFragment : Fragment(R.layout.fragment_currency) {
     private val exchangeRatesViewModel: ExchangeRatesViewModel by viewModels()
     private val currencyInputViewModel: CurrencyInputViewModel by viewModels()
-    private val MILLIS_PER_DAY = 86400000
-
 
     private var _binding: FragmentCurrencyBinding? = null
     private val binding get() = _binding!!
@@ -182,5 +180,9 @@ class CurrencyFragment : Fragment(R.layout.fragment_currency) {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    companion object {
+        private const val MILLIS_PER_DAY = 86400000
     }
 }

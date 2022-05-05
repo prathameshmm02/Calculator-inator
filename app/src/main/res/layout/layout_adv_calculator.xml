@@ -48,7 +48,6 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:background="@drawable/bg_round_corners_large"
-                android:fontFamily="@font/poppins"
                 android:text="@string/invert"
                 android:textColor="?attr/colorOnPrimary"
                 android:textSize="24sp"

@@ -46,7 +46,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:fontFamily="@font/poppins"
                     android:text="@string/seven"
                     android:textSize="18sp" />
 
@@ -56,7 +55,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:fontFamily="@font/poppins"
                     android:text="@string/eight"
                     android:textSize="18sp" />
 
@@ -66,7 +64,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:fontFamily="@font/poppins"
                     android:text="@string/nine"
                     android:textSize="18sp" />
 
@@ -84,7 +81,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:fontFamily="@font/poppins"
                     android:text="@string/four"
                     android:textSize="18sp" />
 
@@ -94,7 +90,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:fontFamily="@font/poppins"
                     android:text="@string/five"
                     android:textSize="18sp" />
 
@@ -104,7 +99,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:fontFamily="@font/poppins"
                     android:text="@string/six"
                     android:textSize="18sp" />
 
@@ -122,7 +116,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:fontFamily="@font/poppins"
                     android:text="@string/one"
                     android:textSize="18sp" />
 
@@ -132,7 +125,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:fontFamily="@font/poppins"
                     android:text="@string/two"
                     android:textSize="18sp" />
 
@@ -142,7 +134,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:fontFamily="@font/poppins"
                     android:text="@string/three"
                     android:textSize="18sp" />
 
@@ -160,7 +151,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:fontFamily="@font/poppins"
                     android:text="@string/point"
                     android:textSize="18sp" />
 
@@ -170,7 +160,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:fontFamily="@font/poppins"
                     android:text="@string/zero"
                     android:textSize="18sp" />
 
@@ -180,7 +169,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:fontFamily="@font/poppins"
                     android:text="@string/equal"
                     android:textSize="18sp" />
 
@@ -204,7 +192,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:fontFamily="@font/poppins"
                 android:text="@string/backspace"
                 android:textSize="18sp" />
 
@@ -214,7 +201,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:fontFamily="@font/poppins"
                 android:text="@string/divide"
                 android:textSize="18sp" />
 
@@ -224,7 +210,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:fontFamily="@font/poppins"
                 android:text="@string/multiply"
                 android:textSize="18sp" />
 
@@ -234,7 +219,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:fontFamily="@font/poppins"
                 android:text="@string/subtract"
                 android:textSize="18sp" />
 
@@ -244,7 +228,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:fontFamily="@font/poppins"
                 android:text="@string/add"
                 android:textSize="18sp" />
 
