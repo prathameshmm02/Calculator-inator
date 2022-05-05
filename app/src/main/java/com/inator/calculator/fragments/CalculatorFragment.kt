@@ -62,7 +62,6 @@ class CalculatorFragment : Fragment() {
             setupHistoryPanel()
         }
 
-
         requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner, true) {
             if (binding.draggablePanel.isOpen()) {
                 binding.draggablePanel.smoothPanelClose(300)

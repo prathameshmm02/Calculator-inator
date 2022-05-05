@@ -93,14 +93,13 @@ class CalculatorInputViewModel(application: Application) : AndroidViewModel(appl
                 inputMutableLiveData.value = result.toSimpleString()
             }
             outputMutableLiveData.value = ""
+            cursorMutableLiveData.value = inputMutableLiveData.value?.length ?: 0
             if (!currentInput.matches(numRegex)) {
                 saveToHistory(currentInput, result.toString())
             }
-
         } catch (e: Exception) {
             inputMutableLiveData.value = context.resources.getString(R.string.error_text)
         }
-
     }
 
     fun calculateOutput() {
