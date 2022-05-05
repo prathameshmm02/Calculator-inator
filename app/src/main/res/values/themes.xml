@@ -31,12 +31,12 @@
         <item name="android:windowBackground">@color/white</item>
         <item name="android:statusBarColor">@android:color/transparent</item>
         <item name="android:windowLightStatusBar" tools:targetApi="m">true</item>
-        <item name="fontFamily">@font/poppins</item>
+        <item name="fontFamily">@font/manrope</item>
     </style>
 
     <style name="ThemeOverlay.Calculator.AppWidgetContainer" parent="">
         <item name="appWidgetBackgroundColor">@color/light_blue_600</item>
         <item name="appWidgetTextColor">@color/light_blue_50</item>
-        <item name="fontFamily">@font/poppins</item>
+        <item name="fontFamily">@font/manrope</item>
     </style>
 </resources>
