@@ -24,14 +24,14 @@
             android:id="@+id/simple_calc"
             layout="@layout/layout_simple_calc"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="match_parent"
+            android:layout_marginEnd="@dimen/margin_adv_calc"/>
 
         <include
             android:id="@+id/adv_calc"
             layout="@layout/layout_adv_calculator"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginStart="@dimen/margin_adv_calc" />
+            android:layout_height="match_parent" />
 
     </androidx.slidingpanelayout.widget.SlidingPaneLayout>
 

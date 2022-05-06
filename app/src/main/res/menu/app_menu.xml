@@ -10,5 +10,6 @@
         android:id="@+id/deleteHistory"
         android:icon="@drawable/ic_delete_history"
         android:title="@string/delete_history"
+        android:visible="false"
         app:showAsAction="never" />
 </menu>

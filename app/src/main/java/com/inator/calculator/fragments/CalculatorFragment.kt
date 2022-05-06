@@ -62,6 +62,10 @@ class CalculatorFragment : Fragment() {
         requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner, true) {
             if (binding.draggablePanel.isOpen()) {
                 binding.draggablePanel.smoothPanelClose(300)
+                remove()
+            } else if (binding.slidingPaneLayout.isOpen) {
+                binding.slidingPaneLayout.closePane()
+                remove()
             }
         }
         mainActivity.addMenuProvider(object : MenuProvider {
@@ -75,6 +79,14 @@ class CalculatorFragment : Fragment() {
                 return false
             }
         })
+    }
+
+    private val menuProvider = object: MenuProvider {
+        override fun onCreateMenu(menu: Menu, menuInflater: MenuInflater) {
+            menu.findItem(R.id.deleteHistory).isVisible = true
+        }
+
+        override fun onMenuItemSelected(menuItem: MenuItem) = false
     }
 
     private fun Binding.setupHistoryPanel() {
@@ -112,8 +124,9 @@ class CalculatorFragment : Fragment() {
                             supportActionBar?.setDisplayHomeAsUpEnabled(true)
                         }
                     }
-                }
 
+                    addMenuProvider(menuProvider)
+                }
             }
 
             override fun onPanelClosed(view: View) {
@@ -128,8 +141,9 @@ class CalculatorFragment : Fragment() {
                         historyBar.isVisible = false
                         supportActionBar?.setDisplayHomeAsUpEnabled(false)
                     }
-                }
 
+                    removeMenuProvider(menuProvider)
+                }
             }
         })
     }

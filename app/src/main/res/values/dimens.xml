@@ -9,7 +9,7 @@
     <dimen name="font_size_large">30sp</dimen>
     <dimen name="font_size_huge_a__">36sp</dimen>
     <dimen name="height_tab_indicator">5dp</dimen>
-    <dimen name="margin_adv_calc">50dp</dimen>
+    <dimen name="margin_adv_calc">30dp</dimen>
     <dimen name="height_drag_area">30dp</dimen>
     <dimen name="width_drag_icon">30dp</dimen>
     <dimen name="width_drag_icon_land">50dp</dimen>
