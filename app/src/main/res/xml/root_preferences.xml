@@ -8,8 +8,7 @@
             android:key="app_theme"
             android:summary="%s"
             android:title="@string/title_theme"
-            app:defaultValue="0"
-            app:useSimpleSummaryProvider="true" />
+            app:defaultValue="0" />
     </PreferenceCategory>
     <PreferenceCategory android:title="@string/title_about">
 
