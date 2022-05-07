@@ -1,0 +1,7 @@
+Please uninstall and reinstall the app
+Added Material you support
+Fixed a lot of bugs
+Fixed a crash after changing the app theme
+Development: Migrate to ViewBinding
+Development: Using MxParser
+Development: Updated dependencies
