@@ -84,7 +84,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="40dp"
-        android:src="@drawable/ic_reverse"
+        android:src="@drawable/ic_swap"
         style="@style/Widget.Material3.FloatingActionButton.Surface"
         app:layout_constraintBottom_toTopOf="@+id/currencySpinner2"
         app:layout_constraintEnd_toEndOf="parent"

@@ -6,7 +6,6 @@ import android.view.Menu
 import android.view.MenuItem
 import android.view.inputmethod.InputMethodManager
 import androidx.activity.viewModels
-import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.getSystemService
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
@@ -26,7 +25,7 @@ import com.inator.calculator.viewmodel.HistoryViewModel
 class MainActivity : AppCompatActivity() {
 
     private val historyViewModel: HistoryViewModel by viewModels()
-    private lateinit var binding : ActivityMainBinding
+    private lateinit var binding: ActivityMainBinding
 
     val topAppBar get() = binding.topAppBar
     val historyBar get() = binding.historyBar
@@ -108,28 +107,28 @@ class MainActivity : AppCompatActivity() {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
-            R.id.settingButton -> {
+            R.id.action_settings -> {
                 startActivity(Intent(this, SettingsActivity::class.java))
             }
-            R.id.deleteHistory -> {
-                createDialog()
+            R.id.delete_history -> {
+                showDeleteDialog()
             }
         }
         return super.onOptionsItemSelected(item)
     }
 
-    private fun createDialog() {
-        MaterialAlertDialogBuilder(this).create().apply {
-            setMessage(resources.getString(R.string.delete_message))
-            setTitle(resources.getString(R.string.delete_title))
-            setIcon(R.drawable.ic_delete_history)
-            setButton(AlertDialog.BUTTON_POSITIVE, "Ok") { _, _ ->
+    private fun showDeleteDialog() {
+        MaterialAlertDialogBuilder(this)
+            .setMessage(resources.getString(R.string.delete_message))
+            .setTitle(resources.getString(R.string.delete_title))
+            .setIcon(R.drawable.ic_delete_history)
+            .setPositiveButton(android.R.string.ok) { _, _ ->
                 historyViewModel.deleteAllHistory()
             }
-            setButton(AlertDialog.BUTTON_NEGATIVE, "Cancel") { _, _ ->
-                dismiss()
+            .setNegativeButton(R.string.cancel) { dialog, _ ->
+                dialog.dismiss()
             }
-            show()
-        }
+            .create()
+            .show()
     }
 }

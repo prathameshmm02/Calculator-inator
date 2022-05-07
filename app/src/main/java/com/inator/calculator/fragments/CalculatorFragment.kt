@@ -84,7 +84,11 @@ class CalculatorFragment : Fragment() {
 
     private val menuProvider = object : MenuProvider {
         override fun onCreateMenu(menu: Menu, menuInflater: MenuInflater) {
-            menu.findItem(R.id.deleteHistory).isVisible = true
+            menu.findItem(R.id.delete_history).apply{
+                isVisible = true
+                setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS)
+            }
+            menu.findItem(R.id.action_settings).setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS)
         }
 
         override fun onMenuItemSelected(menuItem: MenuItem) = false

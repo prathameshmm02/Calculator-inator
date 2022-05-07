@@ -28,17 +28,17 @@
             <com.google.android.material.tabs.TabItem
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:icon="@drawable/ic_filled_calculator" />
+                android:icon="@drawable/ic_calculator_filled" />
 
             <com.google.android.material.tabs.TabItem
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:icon="@drawable/ic_outline_converter" />
+                android:icon="@drawable/ic_converter_outline" />
 
             <com.google.android.material.tabs.TabItem
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:icon="@drawable/ic_outline_currency" />
+                android:icon="@drawable/ic_currency_outline" />
         </com.google.android.material.tabs.TabLayout>
     </com.google.android.material.appbar.MaterialToolbar>
 
