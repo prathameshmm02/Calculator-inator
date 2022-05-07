@@ -1,4 +1,4 @@
-<resources xmlns:tools="http://schemas.android.com/tools">
+<resources>
     <!-- Base application theme. -->
     <style name="Theme.Calculator" parent="Theme.Material3.DayNight.NoActionBar">
         <item name="colorPrimary">@color/color_dark_primary</item>
@@ -28,7 +28,7 @@
         <item name="colorSurfaceInverse">@color/color_dark_inverseSurface</item>
         <item name="colorPrimaryInverse">@color/color_dark_primaryInverse</item>
 
-        <item name="android:windowBackground">@color/white</item>
+        <item name="android:windowBackground">?colorSurface</item>
         <item name="android:statusBarColor">@android:color/transparent</item>
         <item name="fontFamily">@font/manrope</item>
     </style>

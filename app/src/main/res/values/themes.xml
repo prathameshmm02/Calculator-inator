@@ -28,7 +28,7 @@
         <item name="colorSurfaceInverse">@color/color_light_inverseSurface</item>
         <item name="colorPrimaryInverse">@color/color_light_primaryInverse</item>
 
-        <item name="android:windowBackground">@color/white</item>
+        <item name="android:windowBackground">?colorSurface</item>
         <item name="android:statusBarColor">@android:color/transparent</item>
         <item name="android:windowLightStatusBar" tools:targetApi="m">true</item>
         <item name="fontFamily">@font/manrope</item>
