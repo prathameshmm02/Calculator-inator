@@ -9,18 +9,17 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.Filter
-import android.widget.ListView
-import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.DialogFragment
-import com.inator.calculator.R
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.inator.calculator.adapters.SpinnerAdapter
+import com.inator.calculator.databinding.ViewSearchableSpinnerBinding
 import com.inator.calculator.model.Rate
 
 class SearchableSpinnerDialog : DialogFragment(), SearchView.OnQueryTextListener {
 
-    private var mSearchView: SearchView? = null
-    private var mListView: ListView? = null
+    private var _binding: ViewSearchableSpinnerBinding? = null
+    private val binding get() = _binding!!
 
     private var mDialogTitle: String? = null
     private var mDismissText: String? = null
@@ -31,45 +30,45 @@ class SearchableSpinnerDialog : DialogFragment(), SearchView.OnQueryTextListener
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         val layoutInflater = LayoutInflater.from(activity)
-        val rootView = layoutInflater.inflate(R.layout.view_searchable_spinner, null)
+        _binding = ViewSearchableSpinnerBinding.inflate(layoutInflater)
 
         // listView
-        mListView = rootView.findViewById(R.id.listView)
-        mListView?.divider = null
-        mListView?.adapter = listAdapter
-        mListView?.isTextFilterEnabled = true
-        mListView?.setOnItemClickListener { _, _, position, _ ->
-            mClickListener.onSearchableItemClicked(
-                listAdapter?.getItem(position),
-                listAdapter?.findOriginalPosition(position) ?: -1
-            )
-            dismiss()
+        binding.listView.apply {
+            divider = null
+            adapter = listAdapter
+            isTextFilterEnabled = true
+            setOnItemClickListener { _, _, position, _ ->
+                mClickListener.onSearchableItemClicked(
+                    listAdapter?.getItem(position),
+                    listAdapter?.findOriginalPosition(position) ?: -1
+                )
+                dismiss()
+            }
+            // get selected item from spinner and move the lists top position to it
+            arguments?.getInt("position")?.let { setSelection(it) }
         }
-        // get selected item from spinner and move the lists top position to it
-        arguments?.getInt("position")?.let { mListView?.setSelection(it) }
+
         // searchView
-        mSearchView = rootView.findViewById(R.id.search)
-        mSearchView?.setOnQueryTextListener(this)
-        mSearchView?.clearFocus()
-
-        // build dialog
-        val alertBuilder = AlertDialog.Builder(requireActivity())
-        alertBuilder.setView(rootView)
-        // title
-        alertBuilder.setTitle(mDialogTitle)
-        // close button
-        val dismissText =
-            if (mDismissText.isNullOrBlank()) getString(android.R.string.cancel) else mDismissText
-        alertBuilder.setNegativeButton(dismissText, null)
-
+        binding.search.apply {
+            setOnQueryTextListener(this@SearchableSpinnerDialog)
+            clearFocus()
+        }
         // restore state
         if (savedInstanceState != null) {
             @Suppress("UNCHECKED_CAST")
             mClickListener =
                 savedInstanceState.getSerializable("clickListener") as OnItemClickListener<Rate>
-            mListView?.onRestoreInstanceState(savedInstanceState.getParcelable("listView.state"))
+            binding.listView.onRestoreInstanceState(savedInstanceState.getParcelable("listView.state"))
         }
-        return alertBuilder.create()
+
+        return MaterialAlertDialogBuilder(requireActivity())
+            .setView(binding.root)
+            .setTitle(mDialogTitle)
+            .setNegativeButton(
+                if (mDismissText.isNullOrBlank()) getString(android.R.string.cancel) else mDismissText,
+                null
+            )
+            .create()
     }
 
     override fun onQueryTextChange(query: String?): Boolean {
@@ -78,13 +77,13 @@ class SearchableSpinnerDialog : DialogFragment(), SearchView.OnQueryTextListener
     }
 
     override fun onQueryTextSubmit(query: String?): Boolean {
-        mSearchView?.clearFocus()
+        binding.search.clearFocus()
         return true
     }
 
     override fun onSaveInstanceState(outState: Bundle) {
         outState.putSerializable("clickListener", mClickListener)
-        outState.putParcelable("listView.state", mListView?.onSaveInstanceState())
+        outState.putParcelable("listView.state", binding.listView.onSaveInstanceState())
         super.onSaveInstanceState(outState)
     }
 

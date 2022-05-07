@@ -7,6 +7,7 @@ import androidx.preference.Preference
 import androidx.preference.PreferenceFragmentCompat
 import com.inator.calculator.R
 import com.inator.calculator.databinding.ActivitySettingsBinding
+import com.inator.calculator.prefs.dialogs.MaterialListPreferenceDialogFragment
 import com.inator.calculator.repository.Data
 
 class SettingsActivity : AppCompatActivity() {
@@ -38,6 +39,23 @@ class SettingsActivity : AppCompatActivity() {
                     Data.getInstance(requireContext()).setTheme(newValue.toString())
                     true
                 }
+        }
+
+        override fun onDisplayPreferenceDialog(preference: Preference) {
+            if (preference is ListPreference) {
+                showListPreferenceDialog(preference)
+            } else {
+                super.onDisplayPreferenceDialog(preference)
+            }
+        }
+
+        private fun showListPreferenceDialog(preference: ListPreference) {
+            val dialogFragment = MaterialListPreferenceDialogFragment.newInstance(preference.key)
+            dialogFragment.setTargetFragment(this, 0)
+            dialogFragment.show(
+                parentFragmentManager,
+                "androidx.preference.PreferenceFragment.DIALOG"
+            )
         }
     }
 }

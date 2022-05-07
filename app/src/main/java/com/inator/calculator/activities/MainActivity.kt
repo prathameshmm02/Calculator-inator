@@ -59,16 +59,16 @@ class MainActivity : AppCompatActivity() {
                 this, binding.pager
             ) { _: TabLayout.Tab, _: Int -> }.attach()
 
-            getTabAt(0)?.setIcon(R.drawable.ic_filled_calculator)
-            getTabAt(1)?.setIcon(R.drawable.ic_outline_converter)
-            getTabAt(2)?.setIcon(R.drawable.ic_outline_currency)
+            getTabAt(0)?.setIcon(R.drawable.ic_calculator_filled)
+            getTabAt(1)?.setIcon(R.drawable.ic_converter_outline)
+            getTabAt(2)?.setIcon(R.drawable.ic_currency_outline)
 
             addOnTabSelectedListener(object : OnTabSelectedListener {
 
                 override fun onTabSelected(tab: TabLayout.Tab) {
                     when (tab.position) {
                         0 -> {
-                            tab.setIcon(R.drawable.ic_filled_calculator)
+                            tab.setIcon(R.drawable.ic_calculator_filled)
                             // Hide keyboard
                             getSystemService<InputMethodManager>()?.hideSoftInputFromWindow(
                                 this@apply.windowToken,
@@ -76,22 +76,22 @@ class MainActivity : AppCompatActivity() {
                             )
                         }
 
-                        1 -> tab.setIcon(R.drawable.ic_filled_converter)
+                        1 -> tab.setIcon(R.drawable.ic_converter_filled)
 
-                        2 -> tab.setIcon(R.drawable.ic_filled_currency)
+                        2 -> tab.setIcon(R.drawable.ic_currency_filled)
                     }
                 }
 
                 override fun onTabUnselected(tab: TabLayout.Tab) {
                     tab.setIcon(
                         when (tab.position) {
-                            0 -> R.drawable.ic_outline_calculator
+                            0 -> R.drawable.ic_calculator_outline
 
-                            1 -> R.drawable.ic_outline_converter
+                            1 -> R.drawable.ic_converter_outline
 
-                            2 -> R.drawable.ic_outline_currency
+                            2 -> R.drawable.ic_currency_outline
 
-                            else -> R.drawable.ic_outline_calculator
+                            else -> R.drawable.ic_calculator_outline
                         }
                     )
                 }
