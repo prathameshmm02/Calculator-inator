@@ -4,12 +4,13 @@ import java.math.BigDecimal
 
 fun String.toExpression(): String {
     return replace('×', '*')
-            .replace('÷', '/')
-            .replace("π", "pi")
-            .replace("sin⁻¹", "asin")
-            .replace("cos⁻¹", "acos")
-            .replace("tan⁻¹", "atan")
-            .maybeAppendClosedBrackets()
+        .replace('÷', '/')
+        .replace("π", "pi")
+        .replace("sin⁻¹", "asin")
+        .replace("cos⁻¹", "acos")
+        .replace("tan⁻¹", "atan")
+        .replace("log", "log10")
+        .maybeAppendClosedBrackets()
 }
 
 fun Double.toSimpleString(): String {
@@ -41,14 +42,13 @@ private fun String.maybeAppendClosedBrackets(): String {
     for (i in 0 until length) {
         if (this[i] == '(') {
             open++
-        }
-        else if (this[i] == ')') {
+        } else if (this[i] == ')') {
             close++
         }
     }
-    if (open-close > 0) {
+    if (open - close > 0) {
         for (j in 0 until open - close) expression += ")"
-    } else if (close-open > 0) {
+    } else if (close - open > 0) {
         for (j in 0 until close - open) expression = "($expression"
     }
 
