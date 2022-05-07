@@ -44,14 +44,13 @@
 
             <Button
                 android:id="@+id/inverseButton"
+                style="@style/AdvButtonLandscape"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
+                android:layout_margin="4dp"
                 android:layout_weight="1"
                 android:background="@drawable/bg_round_corners_large"
-                android:text="@string/invert"
-                android:textColor="?attr/colorOnPrimary"
-                android:textSize="24sp"
-                style="?android:attr/buttonBarButtonStyle" />
+                android:text="@string/invert" />
 
             <Button
                 android:id="@+id/angleButton"

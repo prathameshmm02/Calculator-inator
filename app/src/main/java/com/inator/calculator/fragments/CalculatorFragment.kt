@@ -2,6 +2,7 @@
 
 import android.animation.ValueAnimator
 import android.annotation.SuppressLint
+import android.content.res.ColorStateList
 import android.graphics.Color
 import android.os.Bundle
 import android.util.TypedValue
@@ -11,7 +12,6 @@ import android.view.inputmethod.InputMethodManager
 import android.widget.Button
 import android.widget.LinearLayout
 import androidx.activity.addCallback
-import androidx.core.content.ContextCompat
 import androidx.core.content.getSystemService
 import androidx.core.view.MenuProvider
 import androidx.core.view.isVisible
@@ -19,6 +19,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.slidingpanelayout.widget.SlidingPaneLayout
+import com.google.android.material.color.MaterialColors
 import com.inator.calculator.R
 import com.inator.calculator.activities.MainActivity
 import com.inator.calculator.databinding.FragmentCalculatorBinding
@@ -81,7 +82,7 @@ class CalculatorFragment : Fragment() {
         })
     }
 
-    private val menuProvider = object: MenuProvider {
+    private val menuProvider = object : MenuProvider {
         override fun onCreateMenu(menu: Menu, menuInflater: MenuInflater) {
             menu.findItem(R.id.deleteHistory).isVisible = true
         }
@@ -167,8 +168,10 @@ class CalculatorFragment : Fragment() {
 
         calcViewModel.isInverseLiveData.observe(viewLifecycleOwner) {
             if (it) {
-                val color = ContextCompat.getColor(requireContext(), R.color.grey)
-                inverseButton.setBackgroundColor(color)
+                val colorPrimary = MaterialColors.getColor(requireView(), R.attr.colorPrimary)
+                val colorOnPrimary = MaterialColors.getColor(requireView(), R.attr.colorOnPrimary)
+                inverseButton.backgroundTintList = ColorStateList.valueOf(colorOnPrimary)
+                inverseButton.setTextColor(colorPrimary)
                 sinButton.setText(R.string.asin)
                 cosButton.setText(R.string.acos)
                 tanButton.setText(R.string.atan)
@@ -176,7 +179,9 @@ class CalculatorFragment : Fragment() {
                 naturalLogButton.setText(R.string.eRaisedTo)
                 log10Button.setText(R.string.tenRaisedTo)
             } else {
-                inverseButton.setBackgroundColor(Color.TRANSPARENT)
+                inverseButton.backgroundTintList = ColorStateList.valueOf(Color.TRANSPARENT)
+                val colorOnPrimary = MaterialColors.getColor(requireView(), R.attr.colorOnPrimary)
+                inverseButton.setTextColor(colorOnPrimary)
                 sinButton.setText(R.string.sin)
                 cosButton.setText(R.string.cos)
                 tanButton.setText(R.string.tan)
@@ -280,10 +285,18 @@ class CalculatorFragment : Fragment() {
             calcViewModel.funClicked((it as Button).text)
         }
         naturalLogButton.setOnClickListener {
-            calcViewModel.funClicked((it as Button).text)
+            if ((it as Button).text.toString() == "ln") {
+                calcViewModel.funClicked(it.text)
+            } else {
+                calcViewModel.otherClicked(it.text)
+            }
         }
         log10Button.setOnClickListener {
-            calcViewModel.funClicked((it as Button).text)
+            if ((it as Button).text.toString() == "log") {
+                calcViewModel.funClicked(it.text)
+            } else {
+                calcViewModel.otherClicked(it.text)
+            }
         }
         rootButton.setOnClickListener {
             if ((it as Button).text.toString() == "√") {
