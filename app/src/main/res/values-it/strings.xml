@@ -1,0 +1,49 @@
+<resources>
+    <string name="title_activity_settings">Impostazioni</string>
+
+
+    <string name="delete_message">"La tua cronologia dei calcoli verrà eliminata. Vuoi procedere?"</string>
+
+    <!-- Preference Titles -->
+    <string name="title_appearance">Aspetto</string>
+    <string name="length">Lunghezza</string>
+    <string name="area">Area</string>
+    <string name="mass">Massa</string>
+    <string name="speed">Velocità</string>
+    <string name="angle">Angolo</string>
+    <string name="data">Dati</string>
+    <string name="volume">Volume</string>
+    <string name="time">Tempo</string>
+    <string name="temperature">Temperatura</string>
+    <string name="error_text">Non è un numero</string>
+    <string name="calculator">Calcolatrice</string>
+    <string name="converter">Convertitore</string>
+    <string name="currency">Valuta</string>
+    <string name="title_current_input">Input corrente</string>
+    <string name="flag_image">Immagine della bandiera</string>
+    <string name="interchange">Interscambio</string>
+    <string name="refresh">Ricarica</string>
+    <string name="delete_history">Elimina cronologia</string>
+    <string name="history">Cronologia</string>
+    <string name="delete_title">Elimina cronologia</string>
+    <string name="title_theme">Tema</string>
+    <string name="system_default_theme">Predefinito di sistema</string>
+    <string name="light_theme_name">Chiaro</string>
+    <string name="dark_theme_name">Scuro</string>
+    <string name="title_about">Info</string>
+    <string name="message_currency">API della valuta utilizzata</string>
+    <string name="message_no_history">Cronologia vuota</string>
+    <string name="cancel">Annulla</string>
+    <string-array name="units">
+        <item>Lunghezza</item>
+        <item>Area</item>
+        <item>Massa</item>
+        <item>Velocità</item>
+        <item>Dati</item>
+        <item>Volume</item>
+        <item>Tempo</item>
+        <item>Temperatura</item>
+        <item>Angolo</item>
+    </string-array>
+
+</resources>

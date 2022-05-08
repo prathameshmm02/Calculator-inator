@@ -1,0 +1,3 @@
+<i>Calculator-inator</i> è una calcolatrice e convertitore per Android ispirata all'app Calcolatrice di Google.
+
+<b>L'app dispone di:</b> Calcolatrice base e avanzata con funzioni logaritmiche e trigonometriche. Convertitore di Lunghezza, Area, Massa, Velocità, Dati, Volume, Tempo, Temperatura, Angolo, Valuta in tempo reale.
