@@ -41,6 +41,9 @@ android {
         jvmTarget = "1.8"
     }
 
+    lint {
+        warning 'MissingTranslation'
+    }
 }
 
 dependencies {
