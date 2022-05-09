@@ -1,3 +1,3 @@
 <i>Calkulator-inator</i> to kalkulator i przelicznik dla systemu Android zainspirowany aplikacją Kalkulator Google.
 
-<b>Funkcje aplikacji:</b> Kalkulator podstawowy i zaawansowany z funkcjami logarytmicznymi i trygonometrycznymi. Długość, powierzchnia, masa, prędkość, dane, objętość, czas, temperatura, kąt Przelicznik walut na żywo.
+<b>Funkcje aplikacji:</b> Kalkulator podstawowy i zaawansowany z funkcjami logarytmicznymi i trygonometrycznymi. Długość, powierzchnia, masa, prędkość, dane, objętość, czas, temperatura, kąt, przelicznik walut na żywo.
