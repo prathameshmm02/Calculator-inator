@@ -12,7 +12,7 @@
         <item>"Millimetre"</item>
         <item>"Micrometre"</item>
         <item>"Nanometre"</item>
-        <item>" Picometre"</item>
+        <item>"Picometre"</item>
         <item>"Nautical Mile"</item>
         <item>"Lunar Distance"</item>
         <item>"Astronomical Mile"</item>
@@ -41,7 +41,7 @@
         <item>"Square Mile"</item>
         <item>"Square Yard"</item>
         <item>"Square Foot"</item>
-        "Square Inch"
+        <item>"Square Inch"</item>
     </string-array>
 
     <string-array name="angle_units">

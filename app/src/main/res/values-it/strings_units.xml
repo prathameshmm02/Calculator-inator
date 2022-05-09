@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="length_units">
+        <item>"Metro"</item>
+        <item>"Chilometro"</item>
+        <item>"Centimetro"</item>
+        <item>"Piede"</item>
+        <item>"Miglio"</item>
+        <item>"Pollice"</item>
+        <item>"Iarda"</item>
+        <item>"Decimetro"</item>
+        <item>"Millimetro"</item>
+        <item>"Micrometro"</item>
+        <item>"Nanometro"</item>
+        <item>"Picometro"</item>
+        <item>"Miglio nautico"</item>
+        <item>"Distanza lunare"</item>
+        <item>"Miglio astronomico"</item>
+        <item>"Anno luce"</item>
+    </string-array>
+
+    <string-array name="mass_units">
+        <item>"Chilogrammo"</item>
+        <item>"Grammo"</item>
+        <item>"Tonnellata"</item>
+        <item>"Libbra"</item>
+        <item>"Oncia"</item>
+        <item>"Milligrammo"</item>
+        <item>"Microgrammo"</item>
+        <item>"Tonnellata statunitense"</item>
+        <item>"Quintale"</item>
+        <item>"Tonnellata imperiale"</item>
+        <item>"Stone"</item>
+    </string-array>
+
+    <string-array name="area_units">
+        <item>"Metro quadrato"</item>
+        <item>"Chilometro quadrato"</item>
+        <item>"Acro"</item>
+        <item>"Ettaro"</item>
+        <item>"Miglio quadrato"</item>
+        <item>"Iarda quadrata"</item>
+        <item>"Piede quadrato"</item>
+        <item>"Pollice quadrato"</item>
+    </string-array>
+
+    <string-array name="angle_units">
+        <item>"Grado"</item>
+        <item>"Radiante"</item>
+        <item>"Gradiente"</item>
+        <item>"Millesimo di radiante"</item>
+        <item>"Primo d\'arco"</item>
+        <item>"Secondo d\'arco"</item>
+    </string-array>
+
+    <string-array name="speed_units">
+        <item>"Metro al secondo"</item>
+        <item>"Chilometro orario"</item>
+        <item>"Miglia oraria"</item>
+        <item>"Piede al secondo"</item>
+        <item>"Nodo"</item>
+    </string-array>
+
+    <string-array name="time_units">
+        <item>"Nanosecondo"</item>
+        <item>"Microsecondo"</item>
+        <item>"Millisecondo"</item>
+        <item>"Secondo"</item>
+        <item>"Minuto"</item>
+        <item>"Ora"</item>
+        <item>"Giorno"</item>
+        <item>"Settimana"</item>
+        <item>"Mese"</item>
+        <item>"Anno solare"</item>
+        <item>"Decennio"</item>
+        <item>"Secolo"</item>
+    </string-array>
+
+    <string-array name="volume_units">
+        <item>"Gallone statunitense"</item>
+        <item>"Quarto statunitense"</item>
+        <item>"Pinta statunitense"</item>
+        <item>"Tazza statunitense"</item>
+        <item>"Oncia liquida statunitense"</item>
+        <item>"Cucchiaio da tavola statunitense"</item>
+        <item>"Cucchiaino da tè statunitense"</item>
+        <item>"Metro cubico"</item>
+        <item>"Litro"</item>
+        <item>"Millilitro"</item>
+        <item>"Gallone imperiale"</item>
+        <item>"Quarto imperiale"</item>
+        <item>"Pinta imperiale"</item>
+        <item>"Tazza imperiale"</item>
+        <item>"Oncia liquida imperiale"</item>
+        <item>"Cucchiaio da tavola imperiale"</item>
+        <item>"Cucchiaino da tè imperiale"</item>
+        <item>"Piede cubico"</item>
+        <item>"Pollice cubico"</item>
+    </string-array>
+
+</resources>
