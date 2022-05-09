@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="name_aed">Dirham ZEA</string>
-    <string name="name_afn">Afgański afgański</string>
+    <string name="name_afn">Afgański afgani</string>
     <string name="name_all">Lek albański</string>
     <string name="name_amd">Dramat ormiański</string>
     <string name="name_ang">Gulden Antylski Holenderski</string>
@@ -10,7 +10,7 @@
     <string name="name_aud">Dolar australijski</string>
     <string name="name_awg">Floren arubański</string>
     <string name="name_azn">Manat azerski</string>
-    <string name="name_bam">Znak zamienny Bośni i Hercegowiny</string>
+    <string name="name_bam">Marka zamienna Bośni i Hercegowiny</string>
     <string name="name_bbd">Dolar Barbadosu</string>
     <string name="name_bdt">Bangladeska taka</string>
     <string name="name_bgn">Lew bułgarski</string>
@@ -96,9 +96,9 @@
     <string name="name_vnd">Dong wietnamski</string>
     <string name="name_vuv">Vanuatu vatu</string>
     <string name="name_wst">Tala samoańska</string>
-    <string name="name_xaf">Fran CFA BEAC</string>
+    <string name="name_xaf">Frank CFA BEAC</string>
     <string name="name_xag">Srebrna uncja</string>
-    <string name="name_xau">Uncja złota</string>
+    <string name="name_xau">Złota uncja</string>
     <string name="name_xcd">Dolar wschodniokaraibski</string>
     <string name="name_xdr">Specjalne prawa do rysowania</string>
     <string name="name_xof">Frank CFA BCEAO</string>
@@ -108,5 +108,5 @@
     <string name="name_yer">Rial jemeński</string>
     <string name="name_zar">Rand południowoafrykański</string>
     <string name="name_zmw">Kwacha zambijska</string>
-    <string name="name_zwl">Dolar Zimbabwe</string>
+    <string name="name_zwl">Dolar zimbabweński</string>
 </resources>
