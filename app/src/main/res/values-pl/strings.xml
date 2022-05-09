@@ -37,7 +37,7 @@
     <string name="system_default_theme">Domyślne dla systemu</string>
     <string name="light_theme_name">Jasny</string>
     <string name="dark_theme_name">Ciemny</string>
-    <string name="title_about">O</string>
+    <string name="title_about">O aplikacji</string>
     <string name="message_currency">Używane API walutowe</string>
     <string name="message_no_history">Brak historii</string>
     <string name="cancel">Anuluj</string>
