@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="length_units">
+        <item>"Metr"</item>
+        <item>"Kilometr"</item>
+        <item>"Centymetr"</item>
+        <item>"Stopa"</item>
+        <item>"Mila"</item>
+        <item>"Cal"</item>
+        <item>"Jard"</item>
+        <item>"Decymetr"</item>
+        <item>"Milimetr"</item>
+        <item>"Mikrometr"</item>
+        <item>"Nanometr"</item>
+        <item>"Pikometr"</item>
+        <item>"Mila Morska"</item>
+        <item>"Odległość Księżycowa"</item>
+        <item>"Astronomiczna Mila"</item>
+        <item>"Rok Świetlny"</item>
+    </string-array>
+
+    <string-array name="mass_units">
+        <item>"Kilogram"</item>
+        <item>"Gram"</item>
+        <item>"Tona"</item>
+        <item>"Funt"</item>
+        <item>"Uncja"</item>
+        <item>"Miligram"</item>
+        <item>"Mikrogram"</item>
+        <item>"Tona Amerykańska"</item>
+        <item>"Kwintal"</item>
+        <item>"Imperial Ton"</item>
+        <item>"Kamień"</item>
+    </string-array>
+
+    <string-array name="area_units">
+        <item>"Metr Kwadratowy"</item>
+        <item>"Kilometr Kwadratowy"</item>
+        <item>"Akr"</item>
+        <item>"Hektar"</item>
+        <item>"Mila Kwadratowa"</item>
+        <item>"Jard Kwadratowy"</item>
+        <item>"Stopa Kwadratowa"</item>
+        <item>"Cal Kwadratowy"</item>
+    </string-array>
+
+    <string-array name="angle_units">
+        <item>"Stopnie"</item>
+        <item>"Radiany"</item>
+        <item>"Grad"</item>
+        <item>"Miliradian"</item>
+        <item>"Minuta Łuku"</item>
+        <item>"Sekunda Łuku"</item>
+    </string-array>
+
+    <string-array name="speed_units">
+        <item>"Metr na sekundę"</item>
+        <item>"Kilometr na godzinę"</item>
+        <item>"Mile na godzinę"</item>
+        <item>"Stopy na sekundę"</item>
+        <item>"Węzeł"</item>
+    </string-array>
+
+    <string-array name="storage_units">
+        <item>"Bit"</item>
+        <item>"Kilobit"</item>
+        <item>"Kibibit"</item>
+        <item>"Megabit"</item>
+        <item>"Mebibit"</item>
+        <item>"Gigabit"</item>
+        <item>"Gibibit"</item>
+        <item>"Terabit"</item>
+        <item>"Tebibit"</item>
+        <item>"Petabit"</item>
+        <item>"Pebibit"</item>
+        <item>"Bajt"</item>
+        <item>"Kilobajt"</item>
+        <item>"Kibibajt"</item>
+        <item>"Megabajt"</item>
+        <item>"Mebibajt"</item>
+        <item>"Gigabajt"</item>
+        <item>"Gibibajt"</item>
+        <item>"Terabajt"</item>
+        <item>"Tebibajt"</item>
+        <item>"Petabajt"</item>
+        <item>"Pebibajt"</item>
+    </string-array>
+
+<string-array name="time_units">
+    <item>"Nanosekunda"</item>
+    <item>"Mikrosekunda"</item>
+    <item>"Milisekunda"</item>
+    <item>"Sekunda/item>
+    <item>"Minuta"</item>
+    <item>"Godzina"</item>
+    <item>"Dzień"</item>
+    <item>"Tydzień"</item>
+    <item>"Miesiąc"</item>
+    <item>"Rok Kalendarzowy"</item>
+    <item>"Dekada"</item>
+    <item>"Stulecie"</item>
+</string-array>
+
+    <string-array name="volume_units">
+        <item>"Galon Amerykański"</item>
+        <item>"Amerykańska Kwarta Płynna"</item>
+        <item>"Amerykański Płynny Kufel"</item>
+        <item>"Amerykański legalny kubek"</item>
+        <item>"Płynna Uncja"</item>
+        <item>"Amerykańska Łyżka Stołowa"</item>
+        <item>"Amerykańska Łyżeczka"</item>
+        <item>"Metr Sześcienny"</item>
+        <item>"Litr"</item>
+        <item>"Mililitr"</item>
+        <item>"Galon Imperialny"</item>
+        <item>"Kwarta Imperialna"</item>
+        <item>"Kufel Imperialny"</item>
+        <item>"Imperialny Kubek"</item>
+        <item>"Płynna Uncja"</item>
+        <item>"Imperialna Łyżka Stołowa"</item>
+        <item>"Imperialna Łyżeczka"</item>
+        <item>"Stopa Sześcienna"</item>
+        <item>"Cal Sześcienny"</item>
+    </string-array>
+
+
+    <string-array name="temperature_units">
+        <item>"Celsjusz"</item>
+        <item>"Fahrenheit"</item>
+        <item>"Kelwin"</item>
+    </string-array>
+
+</resources>
