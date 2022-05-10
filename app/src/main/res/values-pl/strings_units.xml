@@ -86,20 +86,20 @@
         <item>"Pebibajt"</item>
     </string-array>
 
-<string-array name="time_units">
-    <item>"Nanosekunda"</item>
-    <item>"Mikrosekunda"</item>
-    <item>"Milisekunda"</item>
-    <item>"Sekunda/item>
-    <item>"Minuta"</item>
-    <item>"Godzina"</item>
-    <item>"Dzień"</item>
-    <item>"Tydzień"</item>
-    <item>"Miesiąc"</item>
-    <item>"Rok Kalendarzowy"</item>
-    <item>"Dekada"</item>
-    <item>"Stulecie"</item>
-</string-array>
+    <string-array name="time_units">
+        <item>"Nanosekunda"</item>
+        <item>"Mikrosekunda"</item>
+        <item>"Milisekunda"</item>
+        <item>"Sekunda"</item>
+        <item>"Minuta"</item>
+        <item>"Godzina"</item>
+        <item>"Dzień"</item>
+        <item>"Tydzień"</item>
+        <item>"Miesiąc"</item>
+        <item>"Rok Kalendarzowy"</item>
+        <item>"Dekada"</item>
+        <item>"Stulecie"</item>
+    </string-array>
 
     <string-array name="volume_units">
         <item>"Galon Amerykański"</item>
