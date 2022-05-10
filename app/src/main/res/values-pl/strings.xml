@@ -1,0 +1,56 @@
+<resources>
+    <string name="title_activity_settings">Ustawienia</string>
+
+
+    <string name="delete_message">"Twoja Historia obliczeń zostanie usunięta. Czy chcesz kontynuować?"</string>
+
+    <!-- Preference Titles -->
+    <string name="title_appearance">Wygląd</string>
+    <string name="length">Długość</string>
+    <string name="area">Obszar</string>
+    <string name="mass">Masa</string>
+    <string name="speed">Prędkość</string>
+    <string name="angle">Kąt</string>
+    <string name="data">Dane</string>
+    <string name="volume">Objętość</string>
+    <string name="time">Czas</string>
+    <string name="temperature">Temperatura</string>
+    <string name="asin">sin⁻¹</string>
+    <string name="acos">cos⁻¹</string>
+    <string name="atan">tan⁻¹</string>
+    <string name="tenRaisedTo">10^</string>
+    <string name="eRaisedTo">e^</string>
+    <string name="square">^2</string>
+    <string name="error_text">To nie jest liczba</string>
+    <string name="backspace">⌫</string>
+    <string name="calculator">Kalkulator</string>
+    <string name="converter">Konwerter</string>
+    <string name="currency">Waluta</string>
+    <string name="title_current_input">Bieżący Input</string>
+    <string name="flag_image">Obraz flagi</string>
+    <string name="interchange">Wymieniać</string>
+    <string name="refresh">Odśwież</string>
+    <string name="delete_history">Usuń historię</string>
+    <string name="history">Historia</string>
+    <string name="delete_title">Usuń historię</string>
+    <string name="title_theme">Motyw</string>
+    <string name="system_default_theme">Domyślne dla systemu</string>
+    <string name="light_theme_name">Jasny</string>
+    <string name="dark_theme_name">Ciemny</string>
+    <string name="title_about">O aplikacji</string>
+    <string name="message_currency">Używane API walutowe</string>
+    <string name="message_no_history">Brak historii</string>
+    <string name="cancel">Anuluj</string>
+    <string-array name="units">
+        <item>Długość</item>
+        <item>Obszar</item>
+        <item>Masa</item>
+        <item>Prędkość</item>
+        <item>Dane</item>
+        <item>Objętość</item>
+        <item>Czas</item>
+        <item>Temperatura</item>
+        <item>Kąt</item>
+    </string-array>
+
+</resources>
