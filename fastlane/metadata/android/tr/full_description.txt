@@ -1,0 +1,3 @@
+<i>Calculator-inator</i> Google'ın hesap makinesi uygulamasından esinlenen Android için bir hesap makinesi ve dönüştürücüdür.
+
+<b>Uygulamanın özellikleri:</b> Logaritmik ve trigonometrik fonksiyonlara sahip temel ve gelişmiş hesap makinesi. Uzunluk, Alan, Kütle, Hız, Veri, Hacim, Zaman, Sıcaklık, Açı Canlı Para Birimi Dönüştürücü.
