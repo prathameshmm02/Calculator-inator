@@ -60,7 +60,7 @@
     <string name="converter">Dönüştürücü</string>
     <string name="currency">Para birimi</string>
     <string name="title_current_input">Mevcut Giriş</string>
-    <string name="flag_image">Flag Image</string>
+    <string name="flag_image">Bayrak Resmi</string>
     <string name="interchange">Değişme</string>
     <string name="refresh">Yenile</string>
     <string name="delete_history">Geçmişi sil</string>
@@ -72,7 +72,7 @@
     <string name="dark_theme_name">Koyu</string>
     <string name="title_about">Hakkında</string>
     <string name="message_currency">Kullanılan Para Birimi API\'si</string>
-    <string name="message_no_history">Geçmiş yok</string>
+    <string name="message_no_history">Geçmiş boş</string>
     <string name="cancel">İptal et</string>
     <string-array name="units">
         <item>Uzunluk</item>
