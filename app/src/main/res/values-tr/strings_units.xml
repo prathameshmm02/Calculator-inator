@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="length_units">
+        <item>"Metre"</item>
+        <item>"Kilometre"</item>
+        <item>"Santimetre"</item>
+        <item>"Fut"</item>
+        <item>"Mil"</item>
+        <item>"İnç"</item>
+        <item>"Yarda"</item>
+        <item>"Desimetre"</item>
+        <item>"Milimetre"</item>
+        <item>"Mikrometre"</item>
+        <item>"Nanometre"</item>
+        <item>"Pikometre"</item>
+        <item>"Deniz Mili"</item>
+        <item>"Ay Uzaklığı"</item>
+        <item>"Astronomik Mil"</item>
+        <item>"Işık Yılı"</item>
+    </string-array>
+
+    <string-array name="mass_units">
+        <item>"Kilogram"</item>
+        <item>"Gram"</item>
+        <item>"Ton"</item>
+        <item>"Libre"</item>
+        <item>"Ons"</item>
+        <item>"Miligram"</item>
+        <item>"Mikrogram"</item>
+        <item>"Amerikan Tonu"</item>
+        <item>"Kental"</item>
+        <item>"İmparatorluk Tonu"</item>
+        <item>"Taş"</item>
+    </string-array>
+
+    <string-array name="area_units">
+        <item>"Metre kare"</item>
+        <item>"Kilometre kare"</item>
+        <item>"Dönüm"</item>
+        <item>"Hektar"</item>
+        <item>"Mil kare"</item>
+        <item>"Yarda kare"</item>
+        <item>"Fut kare"</item>
+        <item>"İnç kare"</item>
+    </string-array>
+
+    <string-array name="angle_units">
+        <item>"Derece"</item>
+        <item>"Radyan"</item>
+        <item>"Gradyan"</item>
+        <item>"Miliradyan"</item>
+        <item>"Ark dakikası"</item>
+        <item>"Arkın ikincisi"</item>
+    </string-array>
+
+    <string-array name="speed_units">
+        <item>"Metre/saniye"</item>
+        <item>"Kilometre/saat"</item>
+        <item>"Mil/saat"</item>
+        <item>"Fut/saniye"</item>
+        <item>"Knot"</item>
+    </string-array>
+
+    <string-array name="storage_units">
+        <item>"Bit"</item>
+        <item>"Kilobit"</item>
+        <item>"Kibibit"</item>
+        <item>"Megabit"</item>
+        <item>"Mebibit"</item>
+        <item>"Gigabit"</item>
+        <item>"Gibibit"</item>
+        <item>"Terabit"</item>
+        <item>"Tebibit"</item>
+        <item>"Petabit"</item>
+        <item>"Pebibit"</item>
+        <item>"Bayt"</item>
+        <item>"Kilobayt"</item>
+        <item>"Kibibayt"</item>
+        <item>"Megabayt"</item>
+        <item>"Mebibayt"</item>
+        <item>"Gigabayt"</item>
+        <item>"Gibibayt"</item>
+        <item>"Terabayt"</item>
+        <item>"Tebibayt"</item>
+        <item>"Petabayt"</item>
+        <item>"Pebibayt"</item>
+    </string-array>
+
+<string-array name="time_units">
+    <item>"Nanosaniye"</item>
+    <item>"Mikrosaniye"</item>
+    <item>"Milisaniye"</item>
+    <item>"Saniye"</item>
+    <item>"Dakika"</item>
+    <item>"Saat"</item>
+    <item>"Gün"</item>
+    <item>"Hafta"</item>
+    <item>"Ay"</item>
+    <item>"Takvim Yılı"</item>
+    <item>"Onyıl"</item>
+    <item>"Yüzyıl"</item>
+</string-array>
+
+    <string-array name="volume_units">
+        <item>"Amerikan galonu"</item>
+        <item>"Amerikan sıvı kuartı"</item>
+        <item>"Amerikan pinti"</item>
+        <item>"US legal cup"</item>
+        <item>"sıvı ons"</item>
+        <item>"Amerikan yemek kaşığı"</item>
+        <item>"Amerikan çay kaşığı"</item>
+        <item>"Metre küp"</item>
+        <item>"Litre"</item>
+        <item>"Mililitre"</item>
+        <item>"İngiliz galonu"</item>
+        <item>"İngiliz çeyreği"</item>
+        <item>"İngiliz pint"</item>
+        <item>"İngiliz kupası"</item>
+        <item>"sıvı ons"</item>
+        <item>"İngiliz yemek kaşığı"</item>
+        <item>"İngiliz çay kaşığı"</item>
+        <item>"Fut küp"</item>
+        <item>"İnç küp"</item>
+    </string-array>
+
+
+    <string-array name="temperature_units">
+        <item>"Santigrat"</item>
+        <item>"Fahrenhayt"</item>
+        <item>"Kelvin"</item>
+    </string-array>
+
+</resources>

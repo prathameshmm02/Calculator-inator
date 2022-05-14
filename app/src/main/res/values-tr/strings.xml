@@ -1,0 +1,89 @@
+<resources>
+    <string name="app_name">Calculator-inator</string>
+    <string name="seven">7</string>
+    <string name="eight">8</string>
+    <string name="nine">9</string>
+    <string name="four">4</string>
+    <string name="five">5</string>
+    <string name="six">6</string>
+    <string name="one">1</string>
+    <string name="two">2</string>
+    <string name="three">3</string>
+    <string name="point">.</string>
+    <string name="zero">0</string>
+    <string name="equal">=</string>
+    <string name="add">+</string>
+    <string name="subtract">-</string>
+    <string name="multiply">×</string>
+    <string name="divide">÷</string>
+    <string name="invert">INV</string>
+    <string name="radian">RAD</string>
+    <string name="degree">DEG</string>
+    <string name="percent">%</string>
+    <string name="sin">sin</string>
+    <string name="cos">cos</string>
+    <string name="tan">tan</string>
+    <string name="log">log</string>
+    <string name="root">√</string>
+    <string name="pi">π</string>
+    <string name="euler_num">e</string>
+    <string name="power">^</string>
+    <string name="open_bracket">(</string>
+    <string name="close_bracket">)</string>
+    <string name="factorial">!</string>
+    <string name="natural_log">ln</string>
+    <string name="title_activity_settings">Ayarlar</string>
+
+
+    <string name="delete_message">"Hesaplama geçmişiniz silinecek. Devam etmek istiyor musunuz?"</string>
+
+    <!-- Preference Titles -->
+    <string name="title_appearance">Görünüm</string>
+    <string name="length">Uzunluk</string>
+    <string name="area">Alan</string>
+    <string name="mass">Kütle</string>
+    <string name="speed">Hız</string>
+    <string name="angle">Açı</string>
+    <string name="data">Veri</string>
+    <string name="volume">Hacim</string>
+    <string name="time">Zaman</string>
+    <string name="temperature">Sıcaklık</string>
+    <string name="asin">sin⁻¹</string>
+    <string name="acos">cos⁻¹</string>
+    <string name="atan">tan⁻¹</string>
+    <string name="tenRaisedTo">10^</string>
+    <string name="eRaisedTo">e^</string>
+    <string name="square">^2</string>
+    <string name="error_text">Bir sayı değil</string>
+    <string name="backspace">⌫</string>
+    <string name="calculator">Hesap makinesi</string>
+    <string name="converter">Dönüştürücü</string>
+    <string name="currency">Para birimi</string>
+    <string name="title_current_input">Mevcut Giriş</string>
+    <string name="flag_image">Flag Image</string>
+    <string name="interchange">Değişme</string>
+    <string name="refresh">Yenile</string>
+    <string name="delete_history">Geçmişi sil</string>
+    <string name="history">Geçmiş</string>
+    <string name="delete_title">Geçmişi sil</string>
+    <string name="title_theme">Tema</string>
+    <string name="system_default_theme">Sistem varsayılanı</string>
+    <string name="light_theme_name">Açık</string>
+    <string name="dark_theme_name">Koyu</string>
+    <string name="title_about">Hakkında</string>
+    <string name="message_currency">Kullanılan Para Birimi API\'si</string>
+    <string name="message_no_history">Geçmiş yok</string>
+    <string name="cancel">İptal et</string>
+    <string-array name="units">
+        <item>Uzunluk</item>
+        <item>Alan</item>
+        <item>Kütle</item>
+        <item>Hız</item>
+        <item>Veri</item>
+        <item>Hacim</item>
+        <item>Zaman</item>
+        <item>Sıcaklık</item>
+        <item>Açı</item>
+    </string-array>
+
+</resources>
