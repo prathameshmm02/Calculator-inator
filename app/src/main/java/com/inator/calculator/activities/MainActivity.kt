@@ -15,7 +15,8 @@ import com.google.android.material.tabs.TabLayoutMediator
 import com.inator.calculator.R
 import com.inator.calculator.adapters.ViewPagerAdapter
 import com.inator.calculator.databinding.ActivityMainBinding
-import com.inator.calculator.extras.ZoomOutPageTransformer
+import com.inator.calculator.extensions.isLandscape
+import com.inator.calculator.extensions.smallestScreenWidthDp
 import com.inator.calculator.fragments.CalculatorFragment
 import com.inator.calculator.fragments.ConverterFragment
 import com.inator.calculator.fragments.CurrencyFragment
@@ -49,8 +50,6 @@ class MainActivity : AppCompatActivity() {
         binding.pager.apply {
             adapter = pagerAdapter
             offscreenPageLimit = 2
-            setPageTransformer(ZoomOutPageTransformer())
-            isUserInputEnabled = false
         }
 
         binding.tabLayout.apply {
@@ -98,6 +97,7 @@ class MainActivity : AppCompatActivity() {
                 override fun onTabReselected(tab: TabLayout.Tab?) {}
             })
         }
+        binding.pager.isUserInputEnabled = smallestScreenWidthDp > 400 || isLandscape
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
