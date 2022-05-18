@@ -17,10 +17,6 @@ fun Double.toSimpleString(): String {
     return toBigDecimal().toSimpleString()
 }
 
-fun Float.toSimpleString(): String {
-    return toBigDecimal().toSimpleString()
-}
-
 fun BigDecimal.toSimpleString(): String {
     return toPlainString().removeSuffix(".0")
 }
