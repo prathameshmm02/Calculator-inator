@@ -6,15 +6,20 @@
 
 Calculator & Converter for Android inspired from Google's Calculator App
 
-Features :
+## Features :
 
 Basic & Advanced Calculator with logarithmic and trigonometric functions.
 Length, Area, Mass, Speed, Data, Volume, Time, Temperature, Angle 
 Live Currency Converter.
 
-Screenshots:
-<br>
-<br>
-<img src="/screenshots/BasicCalculator.png" height="500"/>
-<img src="/screenshots/Advanced Calculator.png" height="500"/>
-<img src="/screenshots/Converter.png" height="500"/>
+## Screenshots:
+<p align="center">
+    <img src="fastlane/metadata/android/en-US/images/phoneScreenshots/01.png" width=200>
+    <img src="fastlane/metadata/android/en-US/images/phoneScreenshots/02.png" width=200>
+    <img src="fastlane/metadata/android/en-US/images/phoneScreenshots/03.png" width=200>
+    <img src="fastlane/metadata/android/en-US/images/phoneScreenshots/04.png" width=200>
+    <img src="fastlane/metadata/android/en-US/images/phoneScreenshots/05.png" width=200>
+    <img src="fastlane/metadata/android/en-US/images/phoneScreenshots/06.png" width=200>
+    <img src="fastlane/metadata/android/en-US/images/phoneScreenshots/07.png" width=200>
+    <img src="fastlane/metadata/android/en-US/images/phoneScreenshots/08.png" width=200>
+</p>
