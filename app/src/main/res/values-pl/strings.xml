@@ -1,10 +1,8 @@
 <resources>
     <string name="title_activity_settings">Ustawienia</string>
 
-
     <string name="delete_message">"Twoja Historia obliczeń zostanie usunięta. Czy chcesz kontynuować?"</string>
 
-    <!-- Preference Titles -->
     <string name="title_appearance">Wygląd</string>
     <string name="length">Długość</string>
     <string name="area">Obszar</string>
@@ -15,14 +13,7 @@
     <string name="volume">Objętość</string>
     <string name="time">Czas</string>
     <string name="temperature">Temperatura</string>
-    <string name="asin">sin⁻¹</string>
-    <string name="acos">cos⁻¹</string>
-    <string name="atan">tan⁻¹</string>
-    <string name="tenRaisedTo">10^</string>
-    <string name="eRaisedTo">e^</string>
-    <string name="square">^2</string>
     <string name="error_text">To nie jest liczba</string>
-    <string name="backspace">⌫</string>
     <string name="calculator">Kalkulator</string>
     <string name="converter">Konwerter</string>
     <string name="currency">Waluta</string>

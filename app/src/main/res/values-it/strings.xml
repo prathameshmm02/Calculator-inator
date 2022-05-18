@@ -1,10 +1,8 @@
 <resources>
     <string name="title_activity_settings">Impostazioni</string>
 
-
     <string name="delete_message">"La tua cronologia dei calcoli verrà eliminata. Vuoi procedere?"</string>
 
-    <!-- Preference Titles -->
     <string name="title_appearance">Aspetto</string>
     <string name="length">Lunghezza</string>
     <string name="area">Area</string>
