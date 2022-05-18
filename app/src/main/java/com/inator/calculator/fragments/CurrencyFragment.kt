@@ -13,6 +13,7 @@ import androidx.fragment.app.viewModels
 import com.inator.calculator.R
 import com.inator.calculator.adapters.SpinnerAdapter
 import com.inator.calculator.databinding.FragmentCurrencyBinding
+import com.inator.calculator.extensions.isLandscape
 import com.inator.calculator.viewmodel.CurrencyInputViewModel
 import com.inator.calculator.viewmodel.ExchangeRatesViewModel
 import java.text.SimpleDateFormat
@@ -83,14 +84,16 @@ class CurrencyFragment : Fragment(R.layout.fragment_currency) {
         binding.change.setOnClickListener {
             binding.run {
                 val otherSelected = currencySpinner1.selectedItemPosition
-                val moveUpAnimation = AnimationUtils.loadAnimation(context, R.anim.move_up)
-                val moveDownAnimation = AnimationUtils.loadAnimation(context, R.anim.move_down)
-                currencySpinner1.startAnimation(moveDownAnimation)
-                currencySpinner2.startAnimation(moveUpAnimation)
+                if (!requireContext().isLandscape) {
+                    val moveUpAnimation = AnimationUtils.loadAnimation(context, R.anim.move_up)
+                    val moveDownAnimation = AnimationUtils.loadAnimation(context, R.anim.move_down)
+                    currencySpinner1.startAnimation(moveDownAnimation)
+                    currencySpinner2.startAnimation(moveUpAnimation)
+                    currencySpinner1.startAnimation(moveUpAnimation)
+                    currencySpinner2.startAnimation(moveDownAnimation)
+                }
                 currencySpinner1.setSelection(currencySpinner2.selectedItemPosition)
                 currencySpinner2.setSelection(otherSelected)
-                currencySpinner1.startAnimation(moveUpAnimation)
-                currencySpinner2.startAnimation(moveDownAnimation)
             }
         }
         binding.refreshButton.setOnClickListener {

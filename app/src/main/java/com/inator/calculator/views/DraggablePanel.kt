@@ -90,7 +90,7 @@ class DraggablePanel(context: Context?, attrs: AttributeSet?) : LinearLayout(con
                 (height - originalHeight).toFloat() / (fullHeight - originalHeight).toFloat()
             dispatchOnPanelSlide(this)
         }
-        performClick()
+        requestDisallowInterceptTouchEvent(true)
         return true
     }
 

@@ -22,6 +22,7 @@
         android:scrollHorizontally="true"
         android:paddingStart="0dp"
         android:paddingEnd="30dp"
+        android:background="@null"
         android:textSize="36sp" />
 
     <com.google.android.material.textview.MaterialTextView
