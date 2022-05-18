@@ -102,8 +102,6 @@ class ConverterFragment : Fragment(R.layout.fragment_converter) {
             override fun onNothingSelected(parent: AdapterView<*>?) {}
         }
 
-
-
         converterInputViewModel.getOutputDirect().observe(viewLifecycleOwner) {
             binding.editText2.apply {
                 removeTextChangedListener(textWatcher2)
@@ -113,9 +111,9 @@ class ConverterFragment : Fragment(R.layout.fragment_converter) {
         }
         converterInputViewModel.getOutputReverse().observe(viewLifecycleOwner) {
             binding.editText1.apply {
-                removeTextChangedListener(textWatcher2)
+                removeTextChangedListener(textWatcher1)
                 setText(it)
-                addTextChangedListener(textWatcher2)
+                addTextChangedListener(textWatcher1)
             }
         }
         converterInputViewModel.getMeasure().observe(
@@ -123,7 +121,6 @@ class ConverterFragment : Fragment(R.layout.fragment_converter) {
         ) {
             setUpSpinnerAdapter(it)
         }
-
     }
 
 

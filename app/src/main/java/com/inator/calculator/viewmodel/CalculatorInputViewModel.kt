@@ -90,7 +90,7 @@ class CalculatorInputViewModel(application: Application) : AndroidViewModel(appl
             if (currentInput.isNotEmpty()) {
                 result =
                     Expression(inputLiveData.value!!.toExpression()).calculate()
-                inputMutableLiveData.value = result.toBigDecimal().toSimpleString()
+                inputMutableLiveData.value = result.toSimpleString()
             }
             outputMutableLiveData.value = ""
             cursorMutableLiveData.value = inputLiveData.value?.length ?: 0
@@ -113,7 +113,7 @@ class CalculatorInputViewModel(application: Application) : AndroidViewModel(appl
                 result =
                     Expression(inputLiveData.value!!.toExpression()).calculate()
                 if (result.toSimpleString() != "NaN") {
-                    outputMutableLiveData.value = result.toBigDecimal().toSimpleString()
+                    outputMutableLiveData.value = result.toSimpleString()
                 }
             } else {
                 outputMutableLiveData.value = ""

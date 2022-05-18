@@ -49,6 +49,7 @@ class SettingsActivity : AppCompatActivity() {
             }
         }
 
+        @Suppress("Deprecation")
         private fun showListPreferenceDialog(preference: ListPreference) {
             val dialogFragment = MaterialListPreferenceDialogFragment.newInstance(preference.key)
             dialogFragment.setTargetFragment(this, 0)

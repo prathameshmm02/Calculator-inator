@@ -83,7 +83,6 @@ class CurrencyInputViewModel(application: Application) : AndroidViewModel(applic
             output = output.substring(0, output.length - 2)
         }
         outputDirect.value = output
-
     }
 
     fun getOutputDirect(): LiveData<String> {
@@ -110,7 +109,8 @@ class CurrencyInputViewModel(application: Application) : AndroidViewModel(applic
         return if (fromRate == null || toRate == null || input.value.isNullOrEmpty()) {
             "0"
         } else {
-            (input.value?.toFloat()!! * toRate / fromRate).toString()
+            // Round to two decimal places
+            String.format("%.2f", input.value?.toDouble()!! * toRate / fromRate)
         }
     }
 

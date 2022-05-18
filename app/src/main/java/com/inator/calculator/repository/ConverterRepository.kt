@@ -71,6 +71,6 @@ class ConverterRepository(context: Context) {
             else -> {
                 toMain + 273.15
             }
-        }.toString()
+        }.toSimpleString()
     }
 }
