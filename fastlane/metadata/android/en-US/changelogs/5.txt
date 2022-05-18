@@ -1,0 +1,5 @@
+New:
+Material3 styles to dialogs.
+Added Italian, Polish, Turkish translations thanks to @gdonisi, @Beventar and @metezd.
+Fixed:
+Fixed Converter bugs
