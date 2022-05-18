@@ -22,13 +22,7 @@ fun Float.toSimpleString(): String {
 }
 
 fun BigDecimal.toSimpleString(): String {
-    var result = toPlainString()
-    result.indexOf(".0").let {
-        if (it != -1) {
-            result = result.substring(0, it)
-        }
-    }
-    return result
+    return toPlainString().removeSuffix(".0")
 }
 
 private fun String.maybeAppendClosedBrackets(): String {

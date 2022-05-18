@@ -85,19 +85,9 @@ class CurrencyInputViewModel(application: Application) : AndroidViewModel(applic
         outputDirect.value = output
     }
 
-    fun getOutputDirect(): LiveData<String> {
-        var output = outputDirect.value
-        if (output!!.endsWith(".0")) output = output.substring(0, output.length - 2)
-        outputDirect.value = output
-        return outputDirect
-    }
+    fun getOutputDirect(): LiveData<String> = outputDirect
 
-    fun getOutputReverse(): LiveData<String> {
-        var output = outputReverse.value
-        if (output!!.endsWith(".0")) output = output.substring(0, output.length - 2)
-        outputReverse.value = output
-        return outputReverse
-    }
+    fun getOutputReverse(): LiveData<String> = outputReverse
 
     private fun evaluateExchangeRate(
         input: LiveData<String>,

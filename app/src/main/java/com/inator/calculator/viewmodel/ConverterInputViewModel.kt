@@ -73,48 +73,28 @@ class ConverterInputViewModel(application: Application) : AndroidViewModel(appli
     }
 
     private fun calculateReverse() {
-        var output = evaluateUnitConversion(
+        outputReverse.value = evaluateUnitConversion(
             currentInput2,
             spinnerTo,
             spinnerFrom,
             measure
         )
-        if (output.endsWith(".0")) {
-            output = output.substring(0, output.length - 2)
-        }
-        outputReverse.value = output
     }
 
     private fun calculateDirect() {
-        var output = evaluateUnitConversion(
+        outputDirect.value = evaluateUnitConversion(
             currentInput1,
             spinnerFrom,
             spinnerTo,
             measure
         )
-        if (output.endsWith(".0")) {
-            output = output.substring(0, output.length - 2)
-        }
-        outputDirect.value = output
     }
 
-    fun getOutputDirect(): LiveData<String> {
-        var output = outputDirect.value
-        if (output!!.endsWith(".0")) output = output.substring(0, output.length - 2)
-        outputDirect.value = output
-        return outputDirect
-    }
+    fun getOutputDirect(): LiveData<String> = outputDirect
 
-    fun getOutputReverse(): LiveData<String> {
-        var output = outputReverse.value
-        if (output!!.endsWith(".0")) output = output.substring(0, output.length - 2)
-        outputReverse.value = output
-        return outputReverse
-    }
+    fun getOutputReverse(): LiveData<String> = outputReverse
 
-    fun getMeasure(): LiveData<String> {
-        return measure
-    }
+    fun getMeasure(): LiveData<String> = measure
 
     private fun evaluateUnitConversion(
         input: LiveData<String>,
@@ -138,8 +118,6 @@ class ConverterInputViewModel(application: Application) : AndroidViewModel(appli
             }
         }
         return "0"
-
-
     }
 
     fun getSavedMeasure(): Int {
@@ -165,5 +143,4 @@ class ConverterInputViewModel(application: Application) : AndroidViewModel(appli
     fun getSavedSpinner2(): Int {
         return preferenceRepository.getConverterSpinner2()
     }
-
 }
