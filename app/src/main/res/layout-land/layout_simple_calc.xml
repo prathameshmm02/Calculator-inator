@@ -15,11 +15,11 @@
     <TableLayout
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:background="@android:color/transparent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/vertical_guideline"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:background="@android:color/transparent">
+        app:layout_constraintTop_toTopOf="parent">
 
         <TableRow
             android:layout_width="match_parent"
@@ -28,28 +28,25 @@
 
             <Button
                 android:id="@+id/button7"
-                style="@style/DefaultButtonLandscape"
+                style="@style/DefaultButton"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                
                 android:layout_weight="1"
                 android:text="@string/seven" />
 
             <Button
                 android:id="@+id/button8"
-                style="@style/DefaultButtonLandscape"
+                style="@style/DefaultButton"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                
                 android:layout_weight="1"
                 android:text="@string/eight" />
 
             <Button
                 android:id="@+id/button9"
-                style="@style/DefaultButtonLandscape"
+                style="@style/DefaultButton"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                
                 android:layout_weight="1"
                 android:text="@string/nine" />
 
@@ -62,28 +59,25 @@
 
             <Button
                 android:id="@+id/button4"
-                style="@style/DefaultButtonLandscape"
+                style="@style/DefaultButton"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                
                 android:layout_weight="1"
                 android:text="@string/four" />
 
             <Button
                 android:id="@+id/button5"
-                style="@style/DefaultButtonLandscape"
+                style="@style/DefaultButton"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                
                 android:layout_weight="1"
                 android:text="@string/five" />
 
             <Button
                 android:id="@+id/button6"
-                style="@style/DefaultButtonLandscape"
+                style="@style/DefaultButton"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                
                 android:layout_weight="1"
                 android:text="@string/six" />
 
@@ -96,28 +90,25 @@
 
             <Button
                 android:id="@+id/button1"
-                style="@style/DefaultButtonLandscape"
+                style="@style/DefaultButton"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                
                 android:layout_weight="1"
                 android:text="@string/one" />
 
             <Button
                 android:id="@+id/button2"
-                style="@style/DefaultButtonLandscape"
+                style="@style/DefaultButton"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                
                 android:layout_weight="1"
                 android:text="@string/two" />
 
             <Button
                 android:id="@+id/button3"
-                style="@style/DefaultButtonLandscape"
+                style="@style/DefaultButton"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                
                 android:layout_weight="1"
                 android:text="@string/three" />
 
@@ -130,7 +121,7 @@
 
             <Button
                 android:id="@+id/decimalButton"
-                style="@style/DefaultButtonLandscape"
+                style="@style/DefaultButton"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
@@ -138,19 +129,17 @@
 
             <Button
                 android:id="@+id/button0"
-                style="@style/DefaultButtonLandscape"
+                style="@style/DefaultButton"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                
                 android:layout_weight="1"
                 android:text="@string/zero" />
 
             <Button
                 android:id="@+id/equalButton"
-                style="@style/DefaultButtonLandscape"
+                style="@style/DefaultButton"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                
                 android:layout_weight="1"
                 android:text="@string/equal" />
 
@@ -217,7 +206,6 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="@string/add" />
-
 
     </LinearLayout>
 

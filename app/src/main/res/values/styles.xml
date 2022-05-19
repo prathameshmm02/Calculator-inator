@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <style name="DefaultButton" parent="Widget.Material3.Button.TextButton">
+
+    <style name="BaseButton" parent="Widget.Material3.Button.TextButton">
         <item name="android:background">?attr/selectableItemBackgroundBorderless</item>
         <item name="android:textSize">@dimen/font_size</item>
         <item name="iconSize">@dimen/font_size</item>
@@ -8,26 +9,24 @@
         <item name="android:textColor">?attr/colorOnBackground</item>
         <item name="iconTint">?attr/colorOnBackground</item>
     </style>
+
+    <style name="DefaultButton" parent="BaseButton" />
+
     <style name="AdvButton" parent="DefaultButton">
         <item name="android:textColor">?attr/colorOnPrimary</item>
         <item name="iconTint">?attr/colorOnPrimary</item>
     </style>
+
+    <style name="AdvButton.Small" parent="AdvButton">
+        <item name="android:textSize">@dimen/font_size_small</item>
+    </style>
+
     <style name="OperationButton" parent="DefaultButton">
         <item name="iconTint">?colorPrimary</item>
         <item name="android:textColor">?colorPrimary</item>
     </style>
 
-    <style name="DefaultButtonLandscape" parent="DefaultButton">
-        <item name="android:textSize">@dimen/font_size_small</item>
-        <item name="android:padding">0dp</item>
-    </style>
-
-    <style name="AdvButtonLandscape" parent="AdvButton">
-        <item name="android:textSize">@dimen/font_size_small</item>
-        <item name="android:padding">0dp</item>
-    </style>
-
-    <style name="SlideButton" parent="DefaultButton">
+    <style name="SlideButton" parent="Widget.Material3.Button.IconButton">
         <item name="android:padding">0dp</item>
         <item name="android:background">?colorPrimary</item>
         <item name="iconTint">?colorSurface</item>

@@ -8,7 +8,7 @@
 
     <Button
         android:id="@+id/slideButton"
-        style="@style/AdvButton"
+        style="@style/AdvButton.Small"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@android:color/transparent"
@@ -32,7 +32,7 @@
 
             <Button
                 android:id="@+id/inverseButton"
-                style="@style/AdvButtonLandscape"
+                style="@style/AdvButton.Small"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_margin="4dp"
@@ -42,7 +42,7 @@
 
             <Button
                 android:id="@+id/angleButton"
-                style="@style/AdvButtonLandscape"
+                style="@style/AdvButton.Small"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
@@ -50,7 +50,7 @@
 
             <Button
                 android:id="@+id/percentButton"
-                style="@style/AdvButtonLandscape"
+                style="@style/AdvButton.Small"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
@@ -58,7 +58,7 @@
 
             <Button
                 android:id="@+id/rootButton"
-                style="@style/AdvButtonLandscape"
+                style="@style/AdvButton.Small"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
@@ -66,7 +66,7 @@
 
             <Button
                 android:id="@+id/powerButton"
-                style="@style/AdvButtonLandscape"
+                style="@style/AdvButton.Small"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
@@ -80,7 +80,7 @@
 
             <Button
                 android:id="@+id/sinButton"
-                style="@style/AdvButtonLandscape"
+                style="@style/AdvButton.Small"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
@@ -88,7 +88,7 @@
 
             <Button
                 android:id="@+id/cosButton"
-                style="@style/AdvButtonLandscape"
+                style="@style/AdvButton.Small"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
@@ -96,7 +96,7 @@
 
             <Button
                 android:id="@+id/tanButton"
-                style="@style/AdvButtonLandscape"
+                style="@style/AdvButton.Small"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
@@ -104,7 +104,7 @@
 
             <Button
                 android:id="@+id/naturalLogButton"
-                style="@style/AdvButtonLandscape"
+                style="@style/AdvButton.Small"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
@@ -112,7 +112,7 @@
 
             <Button
                 android:id="@+id/log10Button"
-                style="@style/AdvButtonLandscape"
+                style="@style/AdvButton.Small"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
@@ -126,7 +126,7 @@
 
             <Button
                 android:id="@+id/piButton"
-                style="@style/AdvButtonLandscape"
+                style="@style/AdvButton.Small"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
@@ -134,7 +134,7 @@
 
             <Button
                 android:id="@+id/eulerNumButton"
-                style="@style/AdvButtonLandscape"
+                style="@style/AdvButton.Small"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
@@ -142,7 +142,7 @@
 
             <Button
                 android:id="@+id/openBracketButton"
-                style="@style/AdvButtonLandscape"
+                style="@style/AdvButton.Small"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
@@ -150,7 +150,7 @@
 
             <Button
                 android:id="@+id/closeBracketButton"
-                style="@style/AdvButtonLandscape"
+                style="@style/AdvButton.Small"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
@@ -158,7 +158,7 @@
 
             <Button
                 android:id="@+id/factorialButton"
-                style="@style/AdvButtonLandscape"
+                style="@style/AdvButton.Small"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
