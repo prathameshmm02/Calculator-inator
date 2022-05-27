@@ -84,7 +84,7 @@ class CalculatorFragment : Fragment() {
 
     private val menuProvider = object : MenuProvider {
         override fun onCreateMenu(menu: Menu, menuInflater: MenuInflater) {
-            menu.findItem(R.id.delete_history).apply{
+            menu.findItem(R.id.delete_history).apply {
                 isVisible = true
                 setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS)
             }
@@ -303,11 +303,7 @@ class CalculatorFragment : Fragment() {
             }
         }
         rootButton.setOnClickListener {
-            if ((it as Button).text.toString() == "√") {
-                calcViewModel.funClicked("sqrt")
-            } else {
-                calcViewModel.otherClicked(it.text)
-            }
+            calcViewModel.otherClicked((it as Button).text)
         }
 
         openBracketButton.setOnClickListener {

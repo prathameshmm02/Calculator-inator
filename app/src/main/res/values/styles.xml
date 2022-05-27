@@ -38,8 +38,6 @@
     </style>
 
     <style name="Toolbar" parent="Widget.Material3.Toolbar">
-        <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_height">48dp</item>
         <item name="layout_collapseMode">pin</item>
         <item name="contentInsetStartWithNavigation">0dp</item>
         <item name="contentInsetStart">0dp</item>

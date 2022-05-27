@@ -70,5 +70,5 @@ dependencies {
     implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
     implementation 'androidx.preference:preference-ktx:1.2.0'
 
-    implementation 'org.mariuszgromada.math:MathParser.org-mXparser:5.0.2'
+    implementation 'org.mariuszgromada.math:MathParser.org-mXparser:5.0.3'
 }
