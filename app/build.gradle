@@ -66,9 +66,13 @@ dependencies {
     implementation "androidx.constraintlayout:constraintlayout:$constraintLayoutVersion"
     implementation "com.google.android.material:material:$materialVersion"
 
+    // Retrofit
     implementation 'com.squareup.retrofit2:retrofit:2.9.0'
     implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
+
+    // Shared preferences
     implementation 'androidx.preference:preference-ktx:1.2.0'
 
-    implementation 'org.mariuszgromada.math:MathParser.org-mXparser:5.0.3'
+    // MxParser
+    implementation 'org.mariuszgromada.math:MathParser.org-mXparser:5.0.6'
 }
