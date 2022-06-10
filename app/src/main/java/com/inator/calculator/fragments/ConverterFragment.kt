@@ -58,6 +58,7 @@ class ConverterFragment : Fragment(R.layout.fragment_converter) {
                     converterInputViewModel.setMeasure("Temperature")
                 }
             }
+            converterInputViewModel.clearSavedSpinners()
         }
         binding.chipGroup.check(converterInputViewModel.getSavedMeasure())
         textWatcher1 = object : TextWatcher {
@@ -147,7 +148,6 @@ class ConverterFragment : Fragment(R.layout.fragment_converter) {
             binding.unit1.adapter = unitAdapter
             binding.unit2.adapter = unitAdapter
             setSavedSpinners()
-
         }
     }
 

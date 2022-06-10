@@ -143,4 +143,8 @@ class ConverterInputViewModel(application: Application) : AndroidViewModel(appli
     fun getSavedSpinner2(): Int {
         return preferenceRepository.getConverterSpinner2()
     }
+
+    fun clearSavedSpinners() {
+        preferenceRepository.clearSpinnerSelections()
+    }
 }

@@ -2,6 +2,8 @@ package com.inator.calculator.repository
 
 import android.content.Context
 import android.content.SharedPreferences
+import androidx.core.content.edit
+import androidx.preference.PreferenceManager
 import com.inator.calculator.model.Rate
 
 class PreferenceRepository(context: Context) {
@@ -19,13 +21,12 @@ class PreferenceRepository(context: Context) {
         }
     }
 
-    private val appPrefs: SharedPreferences =
-        context.getSharedPreferences("app_preferences", Context.MODE_PRIVATE)
+    private val appPrefs: SharedPreferences = PreferenceManager.getDefaultSharedPreferences(context)
 
     fun saveMeasureToPrefs(measure: String) {
         appPrefs.apply {
             val editor = edit()
-            editor.putString("selected_measure", measure)
+            editor.putString(MEASURE, measure)
             editor.apply()
         }
     }
@@ -33,7 +34,7 @@ class PreferenceRepository(context: Context) {
     fun saveCurrencySpinner1Prefs(rate: Rate) {
         appPrefs.apply {
             val editor = edit()
-            editor.putString("currency_spinner_1", rate.code)
+            editor.putString(CURRENCY_SPINNER_1, rate.code)
             editor.apply()
         }
     }
@@ -41,7 +42,7 @@ class PreferenceRepository(context: Context) {
     fun saveCurrencySpinner2Prefs(rate: Rate) {
         appPrefs.apply {
             val editor = edit()
-            editor.putString("currency_spinner_2", rate.code)
+            editor.putString(CURRENCY_SPINNER_2, rate.code)
             editor.apply()
         }
     }
@@ -49,7 +50,7 @@ class PreferenceRepository(context: Context) {
     fun saveConverterSpinner1Prefs(position: Int) {
         appPrefs.apply {
             val editor = edit()
-            editor.putInt("converter_spinner_1", position)
+            editor.putInt(CONVERTER_SPINNER_1, position)
             editor.apply()
         }
     }
@@ -57,28 +58,35 @@ class PreferenceRepository(context: Context) {
     fun saveConverterSpinner2Prefs(position: Int) {
         appPrefs.apply {
             val editor = edit()
-            editor.putInt("converter_spinner_2", position)
+            editor.putInt(CONVERTER_SPINNER_2, position)
             editor.apply()
         }
     }
 
     fun getMeasurePrefs(): String? {
-        return appPrefs.getString("selected_measure", "Length")
+        return appPrefs.getString(MEASURE, "Length")
     }
 
     fun getConverterSpinner1(): Int {
-        return appPrefs.getInt("converter_spinner_1", 0)
+        return appPrefs.getInt(CONVERTER_SPINNER_1, 0)
     }
 
     fun getConverterSpinner2(): Int {
-        return appPrefs.getInt("converter_spinner_2", 1)
+        return appPrefs.getInt(CONVERTER_SPINNER_2, 1)
+    }
+
+    fun clearSpinnerSelections() {
+        appPrefs.edit {
+            remove(CONVERTER_SPINNER_1)
+            remove(CONVERTER_SPINNER_2)
+        }
     }
 
     fun getCurrencySpinner1(): String? {
-        return appPrefs.getString("currency_spinner_1", "AED")
+        return appPrefs.getString(CURRENCY_SPINNER_1, "AED")
     }
 
     fun getCurrencySpinner2(): String? {
-        return appPrefs.getString("currency_spinner_2", "AFN")
+        return appPrefs.getString(CURRENCY_SPINNER_2, "AFN")
     }
 }

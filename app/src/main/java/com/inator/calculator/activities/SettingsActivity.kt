@@ -8,7 +8,7 @@ import androidx.preference.PreferenceFragmentCompat
 import com.inator.calculator.R
 import com.inator.calculator.databinding.ActivitySettingsBinding
 import com.inator.calculator.prefs.dialogs.MaterialListPreferenceDialogFragment
-import com.inator.calculator.repository.Data
+import com.inator.calculator.util.setTheme
 
 class SettingsActivity : AppCompatActivity() {
 
@@ -36,7 +36,7 @@ class SettingsActivity : AppCompatActivity() {
 
             appTheme?.onPreferenceChangeListener =
                 Preference.OnPreferenceChangeListener { _, newValue ->
-                    Data.getInstance(requireContext()).setTheme(newValue.toString())
+                    setTheme(newValue.toString())
                     true
                 }
         }

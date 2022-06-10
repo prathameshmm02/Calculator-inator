@@ -3,7 +3,6 @@ package com.inator.calculator.repository
 import android.content.Context
 import android.content.Context.MODE_PRIVATE
 import android.content.SharedPreferences
-import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.content.edit
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -110,15 +109,4 @@ class Data(context: Context) {
                     .toList()
             )
     }
-
-    fun setTheme(theme: String) {
-        AppCompatDelegate.setDefaultNightMode(
-            when (theme) {
-                "0" -> AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM
-                "1" -> AppCompatDelegate.MODE_NIGHT_NO
-                else -> AppCompatDelegate.MODE_NIGHT_YES
-            }
-        )
-    }
-
 }
