@@ -97,7 +97,15 @@ class MainActivity : AppCompatActivity() {
                 override fun onTabReselected(tab: TabLayout.Tab?) {}
             })
         }
+        enableViewPagerSwipe()
+    }
+
+    fun enableViewPagerSwipe() {
         binding.pager.isUserInputEnabled = smallestScreenWidthDp > 400 || isLandscape
+    }
+
+    fun disableViewPagerSwipe() {
+        binding.pager.isUserInputEnabled = false
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {

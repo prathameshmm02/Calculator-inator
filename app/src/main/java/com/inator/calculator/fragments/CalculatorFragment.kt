@@ -129,6 +129,7 @@ class CalculatorFragment : Fragment() {
                             supportActionBar?.setDisplayHomeAsUpEnabled(true)
                         }
                     }
+                    disableViewPagerSwipe()
 
                     addMenuProvider(menuProvider)
                 }
@@ -146,6 +147,7 @@ class CalculatorFragment : Fragment() {
                         historyBar.isVisible = false
                         supportActionBar?.setDisplayHomeAsUpEnabled(false)
                     }
+                    enableViewPagerSwipe()
 
                     removeMenuProvider(menuProvider)
                 }
