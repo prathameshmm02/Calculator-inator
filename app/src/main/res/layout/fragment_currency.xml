@@ -102,6 +102,7 @@
         android:src="@drawable/ic_refresh"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:contentDescription="@string/refresh" />
+        android:contentDescription="@string/refresh"
+        />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

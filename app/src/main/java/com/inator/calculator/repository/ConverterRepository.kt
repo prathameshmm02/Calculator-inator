@@ -3,6 +3,7 @@ package com.inator.calculator.repository
 import android.content.Context
 import androidx.lifecycle.LiveData
 import com.inator.calculator.R
+import org.mariuszgromada.math.mxparser.Expression
 
 class ConverterRepository(context: Context) {
 
@@ -38,7 +39,7 @@ class ConverterRepository(context: Context) {
         val values = mResources.getStringArray(resValues)
 
         //Converting String Array to Double Array
-        return values.map { it.toDouble() }
+        return values.map { it.evaluate() }
     }
 
     fun evaluateTemperature(
@@ -72,5 +73,12 @@ class ConverterRepository(context: Context) {
                 toMain + 273.15
             }
         }.toSimpleString()
+    }
+}
+
+private fun String.evaluate(): Double {
+    return if (!contains('*') && !contains('/')) toDouble()
+    else {
+        Expression(this).calculate()
     }
 }

@@ -1,133 +1,132 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!-- Length -->
     <string-array name="length_units">
-        <item>"Meter"</item>
-        <item>"Kilometre"</item>
-        <item>"Centimeter"</item>
-        <item>"Foot"</item>
-        <item>"Mile"</item>
-        <item>"Inch"</item>
-        <item>"Yard"</item>
-        <item>"Decimeter"</item>
-        <item>"Millimetre"</item>
-        <item>"Micrometre"</item>
-        <item>"Nanometre"</item>
-        <item>"Picometre"</item>
-        <item>"Nautical Mile"</item>
-        <item>"Lunar Distance"</item>
-        <item>"Astronomical Mile"</item>
-        <item>"Light Year"</item>
+        <item>Meter</item>
+        <item>Kilometre</item>
+        <item>Centimeter</item>
+        <item>Foot</item>
+        <item>Mile</item>
+        <item>Inch</item>
+        <item>Yard</item>
+        <item>Decimeter</item>
+        <item>Millimetre</item>
+        <item>Micrometre</item>
+        <item>Nanometre</item>
+        <item>Nautical Mile</item>
+        <item>Lunar Distance</item>
+        <item>Astronomical Mile</item>
+        <item>Light Year</item>
     </string-array>
 
     <string-array name="mass_units">
-        <item>"Kilogram"</item>
-        <item>"Gram"</item>
-        <item>"Tonne"</item>
-        <item>"Pound"</item>
-        <item>"Ounce"</item>
-        <item>"Milligram"</item>
-        <item>"Microgram"</item>
-        <item>"US Ton"</item>
-        <item>"Quintal"</item>
-        <item>"Imperial Ton"</item>
-        <item>"Stone"</item>
+        <item>Kilogram</item>
+        <item>Gram</item>
+        <item>Tonne</item>
+        <item>Pound</item>
+        <item>Ounce</item>
+        <item>Milligram</item>
+        <item>Microgram</item>
+        <item>US Ton</item>
+        <item>Quintal</item>
+        <item>Imperial Ton</item>
+        <item>Stone</item>
     </string-array>
 
     <string-array name="area_units">
-        <item>"Square Meter"</item>
-        <item>"Square Kilometre"</item>
-        <item>"Acre"</item>
-        <item>"Hectare"</item>
-        <item>"Square Mile"</item>
-        <item>"Square Yard"</item>
-        <item>"Square Foot"</item>
-        <item>"Square Inch"</item>
+        <item>Square Meter</item>
+        <item>Square Kilometre</item>
+        <item>Acre</item>
+        <item>Hectare</item>
+        <item>Square Mile</item>
+        <item>Square Yard</item>
+        <item>Square Foot</item>
+        <item>Square Inch</item>
     </string-array>
 
     <string-array name="angle_units">
-        <item>"Degrees"</item>
-        <item>"Radians"</item>
-        <item>"Gradian"</item>
-        <item>"Milliradian"</item>
-        <item>"Minute of Arc"</item>
-        <item>"Second of Arc"</item>
+        <item>Degrees</item>
+        <item>Radians</item>
+        <item>Gradian</item>
+        <item>Milliradian</item>
+        <item>Minute of Arc</item>
+        <item>Second of Arc</item>
     </string-array>
 
     <string-array name="speed_units">
-        <item>"Meter per second"</item>
-        <item>"Kilometer per hour"</item>
-        <item>"Miles per hour"</item>
-        <item>"Foot per second"</item>
-        <item>"Knot"</item>
+        <item>Meter per second</item>
+        <item>Kilometer per hour</item>
+        <item>Miles per hour</item>
+        <item>Foot per second</item>
+        <item>Knot</item>
     </string-array>
 
     <string-array name="storage_units">
-        <item>"Bit"</item>
-        <item>"Kilobit"</item>
-        <item>"Kibibit"</item>
-        <item>"Megabit"</item>
-        <item>"Mebibit"</item>
-        <item>"Gigabit"</item>
-        <item>"Gibibit"</item>
-        <item>"Terabit"</item>
-        <item>"Tebibit"</item>
-        <item>"Petabit"</item>
-        <item>"Pebibit"</item>
-        <item>"Byte"</item>
-        <item>"Kilobyte"</item>
-        <item>"Kibibyte"</item>
-        <item>"Megabyte"</item>
-        <item>"Mebibyte"</item>
-        <item>"Gigabyte"</item>
-        <item>"Gibibyte"</item>
-        <item>"Terabyte"</item>
-        <item>"Tebibyte"</item>
-        <item>"Petabyte"</item>
-        <item>"Pebibyte"</item>
+        <item>Bit</item>
+        <item>Kilobit</item>
+        <item>Kibibit</item>
+        <item>Megabit</item>
+        <item>Mebibit</item>
+        <item>Gigabit</item>
+        <item>Gibibit</item>
+        <item>Terabit</item>
+        <item>Tebibit</item>
+        <item>Petabit</item>
+        <item>Pebibit</item>
+        <item>Byte</item>
+        <item>Kilobyte</item>
+        <item>Kibibyte</item>
+        <item>Megabyte</item>
+        <item>Mebibyte</item>
+        <item>Gigabyte</item>
+        <item>Gibibyte</item>
+        <item>Terabyte</item>
+        <item>Tebibyte</item>
+        <item>Petabyte</item>
+        <item>Pebibyte</item>
     </string-array>
 
-<string-array name="time_units">
-    <item>"Nanosecond"</item>
-    <item>"Microsecond"</item>
-    <item>"Millisecond"</item>
-    <item>"Second"</item>
-    <item>"Minute"</item>
-    <item>"Hour"</item>
-    <item>"Day"</item>
-    <item>"Week"</item>
-    <item>"Month"</item>
-    <item>"Calendar Year"</item>
-    <item>"Decade"</item>
-    <item>"Century"</item>
-</string-array>
+    <string-array name="time_units">
+        <item>Nanosecond</item>
+        <item>Microsecond</item>
+        <item>Millisecond</item>
+        <item>Second</item>
+        <item>Minute</item>
+        <item>Hour</item>
+        <item>Day</item>
+        <item>Week</item>
+        <item>Month</item>
+        <item>Calendar Year</item>
+        <item>Decade</item>
+        <item>Century</item>
+    </string-array>
 
     <string-array name="volume_units">
-        <item>"US liquid gallon"</item>
-        <item>"US liquid quart"</item>
-        <item>"US liquid pint"</item>
-        <item>"US legal cup"</item>
-        <item>"fluid ounce"</item>
-        <item>"US tablespoon"</item>
-        <item>"US teaspoon"</item>
-        <item>"Cubic meter"</item>
-        <item>"Liter"</item>
-        <item>"Milliliter"</item>
-        <item>"Imperial gallon"</item>
-        <item>"imp. quart"</item>
-        <item>"Imperial pint"</item>
-        <item>"Imperial cup"</item>
-        <item>"fluid ounce"</item>
-        <item>"Imperial tablespoon"</item>
-        <item>"Imperial teaspoon"</item>
-        <item>"Cubic foot"</item>
-        <item>"Cubic inch"</item>
+        <item>US liquid gallon</item>
+        <item>US liquid quart</item>
+        <item>US liquid pint</item>
+        <item>US legal cup</item>
+        <item>fluid ounce</item>
+        <item>US tablespoon</item>
+        <item>US teaspoon</item>
+        <item>Cubic meter</item>
+        <item>Liter</item>
+        <item>Milliliter</item>
+        <item>Imperial gallon</item>
+        <item>Imperial quart</item>
+        <item>Imperial pint</item>
+        <item>Imperial cup</item>
+        <item>fluid ounce</item>
+        <item>Imperial tablespoon</item>
+        <item>Imperial teaspoon</item>
+        <item>Cubic foot</item>
+        <item>Cubic inch</item>
     </string-array>
 
-
     <string-array name="temperature_units">
-        <item>"Celsius"</item>
-        <item>"Fahrenheit"</item>
-        <item>"Kelvin"</item>
+        <item>Celsius</item>
+        <item>Fahrenheit</item>
+        <item>Kelvin</item>
     </string-array>
 
 </resources>

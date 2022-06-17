@@ -7,7 +7,6 @@ import androidx.lifecycle.MutableLiveData
 import com.inator.calculator.R
 import com.inator.calculator.repository.ConverterRepository
 import com.inator.calculator.repository.PreferenceRepository
-import com.inator.calculator.repository.toSimpleString
 
 //This class is similar to CurrencyInputViewModel
 class ConverterInputViewModel(application: Application) : AndroidViewModel(application) {
@@ -114,7 +113,7 @@ class ConverterInputViewModel(application: Application) : AndroidViewModel(appli
                     converterRepository.getConversionValues(measure.value!!)
                 val fromRate = conversionRates[fromSpinnerPosition.value!!]
                 val toRate = conversionRates[toSpinnerPosition.value!!]
-                (input.value?.toDouble()!! * toRate / fromRate).toSimpleString()
+                (input.value?.toDouble()!! * toRate / fromRate).toString()
             }
         }
         return "0"

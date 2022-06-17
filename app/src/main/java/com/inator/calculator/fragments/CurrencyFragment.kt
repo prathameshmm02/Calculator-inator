@@ -7,6 +7,8 @@ import android.text.TextWatcher
 import android.view.View
 import android.view.animation.AnimationUtils
 import android.widget.AdapterView
+import androidx.core.view.ViewCompat
+import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -30,6 +32,9 @@ class CurrencyFragment : Fragment(R.layout.fragment_currency) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         _binding = FragmentCurrencyBinding.bind(view)
 
+        ViewCompat.setOnApplyWindowInsetsListener(binding.refreshButton) { _, _ ->
+            WindowInsetsCompat.CONSUMED
+        }
         val sharedPrefs = context?.getSharedPreferences("Exchange-Rates", Context.MODE_PRIVATE)
         val todayDate = Calendar.getInstance().time
         val lastUpdatedDateString = sharedPrefs?.getString("_date", "null")
@@ -76,7 +81,6 @@ class CurrencyFragment : Fragment(R.layout.fragment_currency) {
         }
 
         setUpViews()
-        super.onViewCreated(view, savedInstanceState)
     }
 
 
