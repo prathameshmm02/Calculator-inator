@@ -1,0 +1,3 @@
+Fixed:
+Fixed wrong conversion values
+Other small improvements and bug fixes
