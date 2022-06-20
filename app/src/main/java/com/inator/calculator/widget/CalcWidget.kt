@@ -6,6 +6,7 @@ import android.appwidget.AppWidgetProvider
 import android.content.ComponentName
 import android.content.Context
 import android.content.Intent
+import android.os.Build
 import android.widget.RemoteViews
 import com.inator.calculator.R
 import com.inator.calculator.repository.toExpression
@@ -102,7 +103,13 @@ class CalcWidget : AppWidgetProvider() {
     private fun setUpIntent(context: Context?, remoteViews: RemoteViews, action: String?, id: Int) {
         val intent = Intent(context, CalcWidget::class.java)
         intent.action = action
-        val pendingIntent = PendingIntent.getBroadcast(context, 0, intent, 0)
+        val pendingIntent = PendingIntent.getBroadcast(
+            context,
+            0,
+            intent,
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) PendingIntent.FLAG_IMMUTABLE
+            else 0
+        )
         remoteViews.setOnClickPendingIntent(id, pendingIntent)
     }
 
