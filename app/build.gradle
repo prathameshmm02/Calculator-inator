@@ -38,7 +38,9 @@ android {
             minifyEnabled true
             shrinkResources true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
-            signingConfig signingConfigs.release
+            if (rootProject.file("secure.properties").exists()) {
+                signingConfig signingConfigs.release
+            }
         }
         debug {
             applicationIdSuffix '.debug'
