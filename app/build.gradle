@@ -13,11 +13,32 @@ android {
         versionName "1.2.0"
     }
 
+    signingConfigs {
+        debug {
+                // Nothing here
+            }
+
+        release {
+            if (rootProject.file("secure.properties").exists()) {
+                Properties props = new Properties()
+                props.load(new FileInputStream(rootProject.file("secure.properties")))
+
+                storeFile file(props['key.store'])
+                keyAlias props['key.alias']
+                storePassword props['key.storepassword']
+                keyPassword props['key.keypassword']
+            } else {
+                // Nothing here
+            }
+        }
+    }
+
     buildTypes {
         release {
             minifyEnabled true
             shrinkResources true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.release
         }
         debug {
             applicationIdSuffix '.debug'
