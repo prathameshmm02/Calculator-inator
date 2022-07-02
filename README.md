@@ -12,6 +12,14 @@ Basic & Advanced Calculator with logarithmic and trigonometric functions.
 Length, Area, Mass, Speed, Data, Volume, Time, Temperature, Angle 
 Live Currency Converter.
 
+## Download
+
+[<img src="https://f-droid.org/badge/get-it-on.png"
+      alt="Get it on F-Droid"
+      height="80">](https://f-droid.org/packages/com.inator.calculator/)
+
+or get it from the [GitHub Releases](https://github.com/prathameshmm02/Calculator-inator/releases).
+
 ## Screenshots:
 <p align="center">
     <img src="fastlane/metadata/android/en-US/images/phoneScreenshots/01.png" width=200>
