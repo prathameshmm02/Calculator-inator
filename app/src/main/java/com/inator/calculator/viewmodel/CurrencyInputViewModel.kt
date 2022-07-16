@@ -33,7 +33,6 @@ class CurrencyInputViewModel(application: Application) : AndroidViewModel(applic
         MutableLiveData()
     }
 
-
     fun setSpinner1(rate: Rate) {
         preferenceRepository.saveCurrencySpinner1Prefs(rate)
         spinnerFrom.value = rate

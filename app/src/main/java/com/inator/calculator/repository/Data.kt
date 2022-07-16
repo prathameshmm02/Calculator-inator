@@ -11,10 +11,7 @@ import com.inator.calculator.model.Currency
 import com.inator.calculator.model.JsonPlaceholderApi
 import com.inator.calculator.model.Rate
 import com.inator.calculator.util.CurrencyDeserializer
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
-import retrofit2.Retrofit
+import retrofit2.*
 import retrofit2.converter.gson.GsonConverterFactory
 import java.text.SimpleDateFormat
 import java.util.*
@@ -63,13 +60,13 @@ class Data(context: Context) {
             .setPrettyPrinting()
             .registerTypeAdapter(Currency::class.java, CurrencyDeserializer())
             .create()
-        val retrofit = Retrofit.Builder()
-            .baseUrl("https://api.exchangerate.host")
+        val jsonPlaceholderApi = Retrofit.Builder()
+            .baseUrl("https://api.exchangerate.host/")
             .addConverterFactory(GsonConverterFactory.create(gson))
             .build()
-        val jsonPlaceholderApi = retrofit.create(JsonPlaceholderApi::class.java)
+            .create<JsonPlaceholderApi>()
 
-        val call = jsonPlaceholderApi.currency
+        val call = jsonPlaceholderApi.getCurrency()
 
         call.enqueue(object : Callback<Currency?> {
             override fun onResponse(call: Call<Currency?>, response: Response<Currency?>) {
@@ -79,8 +76,8 @@ class Data(context: Context) {
             }
 
             override fun onFailure(call: Call<Currency?>, t: Throwable) {
-                isFetching.postValue(false) 
-                doOnComplete (false)
+                isFetching.postValue(false)
+                doOnComplete(false)
             }
         })
     }
