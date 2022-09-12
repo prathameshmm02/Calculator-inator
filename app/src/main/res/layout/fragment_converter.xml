@@ -27,40 +27,44 @@
 
             <com.google.android.material.chip.Chip
                 android:id="@+id/length"
-                style="@style/Widget.Material3.Chip.Filter"
+                style="@style/Widget.Material3.Chip.Assist.Inator"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/length"
+                app:chipIcon="@drawable/length"
                 android:textAlignment="center" />
 
             <com.google.android.material.chip.Chip
                 android:id="@+id/area"
-                style="@style/Widget.Material3.Chip.Filter"
+                style="@style/Widget.Material3.Chip.Assist.Inator"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/area"
+                app:chipIcon="@drawable/area"
                 android:textAlignment="center" />
 
             <com.google.android.material.chip.Chip
                 android:id="@+id/mass"
-                style="@style/Widget.Material3.Chip.Filter"
+                app:chipIcon="@drawable/mass"
+                style="@style/Widget.Material3.Chip.Assist.Inator"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-
                 android:text="@string/mass"
                 android:textAlignment="center" />
 
             <com.google.android.material.chip.Chip
                 android:id="@+id/speed"
-                style="@style/Widget.Material3.Chip.Filter"
+                style="@style/Widget.Material3.Chip.Assist.Inator"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/speed"
+                app:chipIcon="@drawable/speed"
                 android:textAlignment="center" />
 
             <com.google.android.material.chip.Chip
                 android:id="@+id/angle"
-                style="@style/Widget.Material3.Chip.Filter"
+                style="@style/Widget.Material3.Chip.Assist.Inator"
+                app:chipIcon="@drawable/angle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/angle"
@@ -68,34 +72,38 @@
 
             <com.google.android.material.chip.Chip
                 android:id="@+id/data"
-                style="@style/Widget.Material3.Chip.Filter"
+                style="@style/Widget.Material3.Chip.Assist.Inator"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/data"
+                app:chipIcon="@drawable/data"
                 android:textAlignment="center" />
 
             <com.google.android.material.chip.Chip
                 android:id="@+id/volume"
-                style="@style/Widget.Material3.Chip.Filter"
+                style="@style/Widget.Material3.Chip.Assist.Inator"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/volume"
+                app:chipIcon="@drawable/volume"
                 android:textAlignment="center" />
 
             <com.google.android.material.chip.Chip
                 android:id="@+id/time"
-                style="@style/Widget.Material3.Chip.Filter"
+                style="@style/Widget.Material3.Chip.Assist.Inator"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/time"
+                app:chipIcon="@drawable/time"
                 android:textAlignment="center" />
 
             <com.google.android.material.chip.Chip
                 android:id="@+id/temperature"
-                style="@style/Widget.Material3.Chip.Filter"
+                style="@style/Widget.Material3.Chip.Assist.Inator"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/temperature"
+                app:chipIcon="@drawable/temperature"
                 android:textAlignment="center" />
 
         </com.google.android.material.chip.ChipGroup>
