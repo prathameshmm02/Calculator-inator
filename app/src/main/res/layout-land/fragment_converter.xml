@@ -28,76 +28,84 @@
 
             <com.google.android.material.chip.Chip
                 android:id="@+id/length"
-                style="@style/Widget.Material3.Chip.Filter"
+                style="@style/Widget.Material3.Chip.Assist.Inator"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/length"
-                android:textAlignment="center" />
+                android:textAlignment="center"
+                app:chipIcon="@drawable/ic_length" />
 
             <com.google.android.material.chip.Chip
                 android:id="@+id/area"
-                style="@style/Widget.Material3.Chip.Filter"
+                style="@style/Widget.Material3.Chip.Assist.Inator"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/area"
-                android:textAlignment="center" />
+                android:textAlignment="center"
+                app:chipIcon="@drawable/ic_area" />
 
             <com.google.android.material.chip.Chip
                 android:id="@+id/mass"
-                style="@style/Widget.Material3.Chip.Filter"
+                style="@style/Widget.Material3.Chip.Assist.Inator"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-
                 android:text="@string/mass"
-                android:textAlignment="center" />
+                android:textAlignment="center"
+                app:chipIcon="@drawable/ic_mass" />
 
             <com.google.android.material.chip.Chip
                 android:id="@+id/speed"
-                style="@style/Widget.Material3.Chip.Filter"
+                style="@style/Widget.Material3.Chip.Assist.Inator"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/speed"
-                android:textAlignment="center" />
+                android:textAlignment="center"
+                app:chipIcon="@drawable/ic_speed" />
 
             <com.google.android.material.chip.Chip
                 android:id="@+id/angle"
-                style="@style/Widget.Material3.Chip.Filter"
+                style="@style/Widget.Material3.Chip.Assist.Inator"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/angle"
-                android:textAlignment="center" />
+                android:textAlignment="center"
+                app:chipIcon="@drawable/ic_angle" />
 
             <com.google.android.material.chip.Chip
                 android:id="@+id/data"
-                style="@style/Widget.Material3.Chip.Filter"
+                style="@style/Widget.Material3.Chip.Assist.Inator"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/data"
-                android:textAlignment="center" />
+                android:textAlignment="center"
+                app:chipIcon="@drawable/ic_data" />
 
             <com.google.android.material.chip.Chip
                 android:id="@+id/volume"
-                style="@style/Widget.Material3.Chip.Filter"
+                style="@style/Widget.Material3.Chip.Assist.Inator"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/volume"
-                android:textAlignment="center" />
+                android:textAlignment="center"
+                app:chipIcon="@drawable/ic_volume" />
 
             <com.google.android.material.chip.Chip
                 android:id="@+id/time"
-                style="@style/Widget.Material3.Chip.Filter"
+                style="@style/Widget.Material3.Chip.Assist.Inator"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/time"
-                android:textAlignment="center" />
+                android:textAlignment="center"
+                app:chipIcon="@drawable/ic_time" />
 
             <com.google.android.material.chip.Chip
                 android:id="@+id/temperature"
-                style="@style/Widget.Material3.Chip.Filter"
+                style="@style/Widget.Material3.Chip.Assist.Inator"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/temperature"
-                android:textAlignment="center" />
+                android:textAlignment="center"
+                app:chipIcon="@drawable/ic_temperature" />
 
         </com.google.android.material.chip.ChipGroup>
     </HorizontalScrollView>
