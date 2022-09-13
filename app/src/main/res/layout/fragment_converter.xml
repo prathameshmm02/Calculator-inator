@@ -31,8 +31,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/length"
-                app:chipIcon="@drawable/ic_length"
-                android:textAlignment="center" />
+                android:textAlignment="center"
+                app:chipIcon="@drawable/ic_length" />
 
             <com.google.android.material.chip.Chip
                 android:id="@+id/area"
@@ -40,17 +40,17 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/area"
-                app:chipIcon="@drawable/ic_area"
-                android:textAlignment="center" />
+                android:textAlignment="center"
+                app:chipIcon="@drawable/ic_area" />
 
             <com.google.android.material.chip.Chip
                 android:id="@+id/mass"
-                app:chipIcon="@drawable/ic_mass"
                 style="@style/Widget.Material3.Chip.Assist.Inator"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/mass"
-                android:textAlignment="center" />
+                android:textAlignment="center"
+                app:chipIcon="@drawable/ic_mass" />
 
             <com.google.android.material.chip.Chip
                 android:id="@+id/speed"
@@ -58,17 +58,17 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/speed"
-                app:chipIcon="@drawable/ic_speed"
-                android:textAlignment="center" />
+                android:textAlignment="center"
+                app:chipIcon="@drawable/ic_speed" />
 
             <com.google.android.material.chip.Chip
                 android:id="@+id/angle"
                 style="@style/Widget.Material3.Chip.Assist.Inator"
-                app:chipIcon="@drawable/ic_angle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/angle"
-                android:textAlignment="center" />
+                android:textAlignment="center"
+                app:chipIcon="@drawable/ic_angle" />
 
             <com.google.android.material.chip.Chip
                 android:id="@+id/data"
@@ -76,8 +76,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/data"
-                app:chipIcon="@drawable/ic_data"
-                android:textAlignment="center" />
+                android:textAlignment="center"
+                app:chipIcon="@drawable/ic_data" />
 
             <com.google.android.material.chip.Chip
                 android:id="@+id/volume"
@@ -85,8 +85,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/volume"
-                app:chipIcon="@drawable/ic_volume"
-                android:textAlignment="center" />
+                android:textAlignment="center"
+                app:chipIcon="@drawable/ic_volume" />
 
             <com.google.android.material.chip.Chip
                 android:id="@+id/time"
@@ -94,8 +94,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/time"
-                app:chipIcon="@drawable/ic_time"
-                android:textAlignment="center" />
+                android:textAlignment="center"
+                app:chipIcon="@drawable/ic_time" />
 
             <com.google.android.material.chip.Chip
                 android:id="@+id/temperature"
@@ -103,8 +103,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/temperature"
-                app:chipIcon="@drawable/ic_temperature"
-                android:textAlignment="center" />
+                android:textAlignment="center"
+                app:chipIcon="@drawable/ic_temperature" />
 
         </com.google.android.material.chip.ChipGroup>
     </HorizontalScrollView>
@@ -119,63 +119,63 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/horizontalScrollView">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
-
-        <Spinner
-            android:id="@+id/unit1"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:layout_marginBottom="20dp" />
+            android:orientation="vertical">
 
-        <com.google.android.material.textfield.TextInputLayout
-            style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-            android:layout_marginTop="20dp"
-            android:layout_marginBottom="20dp">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/editText1"
-                style="@style/Widget.Material3.TextInputLayout.OutlinedBox.Dense"
+            <Spinner
+                android:id="@+id/unit1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:gravity="end"
-                android:inputType="numberDecimal"
-                android:text="@string/zero"
-                android:textSize="36sp" />
-        </com.google.android.material.textfield.TextInputLayout>
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="20dp" />
 
-        <Spinner
-            android:id="@+id/unit2"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="50dp"
-            android:layout_marginBottom="20dp" />
-
-        <com.google.android.material.textfield.TextInputLayout
-            style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-            android:layout_marginTop="20dp"
-            android:layout_marginBottom="20dp">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/editText2"
-                style="@style/Widget.Material3.TextInputLayout.OutlinedBox.Dense"
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:gravity="end"
-                android:inputType="numberDecimal"
-                android:text="@string/zero"
-                android:textSize="36sp" />
-        </com.google.android.material.textfield.TextInputLayout>
+                android:layout_margin="10dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="20dp">
 
-    </LinearLayout>
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/editText1"
+                    style="@style/Widget.Material3.TextInputLayout.OutlinedBox.Dense"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="end"
+                    android:inputType="numberDecimal"
+                    android:text="@string/zero"
+                    android:textSize="36sp" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <Spinner
+                android:id="@+id/unit2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="50dp"
+                android:layout_marginBottom="20dp" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="20dp">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/editText2"
+                    style="@style/Widget.Material3.TextInputLayout.OutlinedBox.Dense"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="end"
+                    android:inputType="numberDecimal"
+                    android:text="@string/zero"
+                    android:textSize="36sp" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+        </LinearLayout>
     </androidx.core.widget.NestedScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>
