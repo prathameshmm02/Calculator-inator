@@ -61,11 +61,14 @@
     </string-array>
 
     <string-array name="pressure_units">
-        <item>"Metro al secondo"</item>
-        <item>"Chilometro orario"</item>
-        <item>"Miglia oraria"</item>
-        <item>"Piede al secondo"</item>
-        <item>"Nodo"</item>
+        <item>"Pasquale"</item>
+        <item>"Atmosfera"</item>
+        <item>"Barra"</item>
+        <item>"Millibar"</item>
+        <item>"libbre per pollice quadrato"</item>
+        <item>"Torricelli"</item>
+        <item>"Ettopascal"</item>
+        <item>"pollici di mercurio"</item>
     </string-array>
 
     <string-array name="time_units">

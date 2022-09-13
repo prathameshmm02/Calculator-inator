@@ -61,11 +61,14 @@
     </string-array>
 
     <string-array name="pressure_units">
-        <item>"Metr na sekundę"</item>
-        <item>"Kilometr na godzinę"</item>
-        <item>"Mile na godzinę"</item>
-        <item>"Stopy na sekundę"</item>
-        <item>"Węzeł"</item>
+        <item>"Paskali"</item>
+        <item>"Atmosfera"</item>
+        <item>"Bara"</item>
+        <item>"Milibara"</item>
+        <item>"funta na cal kwadratowy"</item>
+        <item>"Torricellego"</item>
+        <item>"Hektopaskali"</item>
+        <item>"cala rtęci"</item>
     </string-array>
 
     <string-array name="storage_units">

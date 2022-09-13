@@ -61,11 +61,14 @@
     </string-array>
 
     <string-array name="pressure_units">
-        <item>"Metre/saniye"</item>
-        <item>"Kilometre/saat"</item>
-        <item>"Mil/saat"</item>
-        <item>"Fut/saniye"</item>
-        <item>"Knot"</item>
+        <item>"Paskal"</item>
+        <item>"Atmosfer"</item>
+        <item>"Bar"</item>
+        <item>"Milibar"</item>
+        <item>"Pound\/inç kare"</item>
+        <item>"Torricelli"</item>
+        <item>"Hektopaskal"</item>
+        <item>"inç cıva"</item>
     </string-array>
 
     <string-array name="storage_units">
