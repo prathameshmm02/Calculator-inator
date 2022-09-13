@@ -9,7 +9,7 @@ Calculator & Converter for Android inspired from Google's Calculator App
 ## Features :
 
 Basic & Advanced Calculator with logarithmic and trigonometric functions.
-Length, Area, Mass, Speed, Data, Volume, Time, Temperature, Angle 
+Length, Area, Mass, Speed, Pressure, Data, Volume, Time, Temperature, Angle 
 Live Currency Converter.
 
 ## Download

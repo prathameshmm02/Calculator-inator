@@ -9,6 +9,7 @@
     <string name="area">Area</string>
     <string name="mass">Mass</string>
     <string name="speed">Speed</string>
+    <string name="pressure">Pressure</string>
     <string name="angle">Angle</string>
     <string name="data">Data</string>
     <string name="volume">Volume</string>
@@ -38,6 +39,7 @@
         <item>Area</item>
         <item>Mass</item>
         <item>Speed</item>
+        <item>Pressure</item>
         <item>Data</item>
         <item>Volume</item>
         <item>Time</item>

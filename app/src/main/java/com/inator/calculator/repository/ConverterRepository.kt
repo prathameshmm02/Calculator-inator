@@ -30,6 +30,7 @@ class ConverterRepository(context: Context) {
             "Area" -> R.array.area_rates
             "Mass" -> R.array.mass_rates
             "Speed" -> R.array.speed_rates
+            "Pressure" -> R.array.pressure_rates
             "Data" -> R.array.storage_rates
             "Volume" -> R.array.volume_rates
             "Time" -> R.array.time_rates

@@ -8,6 +8,7 @@
     <string name="area">Area</string>
     <string name="mass">Massa</string>
     <string name="speed">Velocità</string>
+    <string name="pressure">Pressione</string>
     <string name="angle">Angolo</string>
     <string name="data">Dati</string>
     <string name="volume">Volume</string>
@@ -37,6 +38,7 @@
         <item>Area</item>
         <item>Massa</item>
         <item>Velocità</item>
+        <item>Pressione</item>
         <item>Dati</item>
         <item>Volume</item>
         <item>Tempo</item>

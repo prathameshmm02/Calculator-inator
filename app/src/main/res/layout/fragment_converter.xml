@@ -62,6 +62,15 @@
                 app:chipIcon="@drawable/ic_speed" />
 
             <com.google.android.material.chip.Chip
+                android:id="@+id/pressure"
+                style="@style/Widget.Material3.Chip.Assist.Inator"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/pressure"
+                android:textAlignment="center"
+                app:chipIcon="@drawable/ic_pressure" />
+
+            <com.google.android.material.chip.Chip
                 android:id="@+id/angle"
                 style="@style/Widget.Material3.Chip.Assist.Inator"
                 android:layout_width="wrap_content"
