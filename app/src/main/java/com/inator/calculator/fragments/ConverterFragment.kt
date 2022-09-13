@@ -11,6 +11,8 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.inator.calculator.R
 import com.inator.calculator.databinding.FragmentConverterBinding
+import com.inator.calculator.extensions.handleStartingDecimal
+import com.inator.calculator.extensions.isValidNumber
 import com.inator.calculator.viewmodel.ConverterInputViewModel
 
 class ConverterFragment : Fragment(R.layout.fragment_converter) {
@@ -65,14 +67,22 @@ class ConverterFragment : Fragment(R.layout.fragment_converter) {
             override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {}
             override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {}
             override fun afterTextChanged(s: Editable) {
-                converterInputViewModel.setInput1(s.toString())
+                s.toString().let {
+                    if (it.isValidNumber()) {
+                        converterInputViewModel.setInput1(it.handleStartingDecimal())
+                    }
+                }
             }
         }
         textWatcher2 = object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {}
             override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {}
             override fun afterTextChanged(s: Editable) {
-                converterInputViewModel.setInput2(s.toString())
+                s.toString().let {
+                    if (it.isValidNumber()) {
+                        converterInputViewModel.setInput2(it.handleStartingDecimal())
+                    }
+                }
             }
         }
         binding.editText1.addTextChangedListener(textWatcher1)
