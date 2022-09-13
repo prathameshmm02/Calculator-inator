@@ -43,4 +43,11 @@
         <item name="contentInsetStart">0dp</item>
         <item name="titleMarginStart">16dp</item>
     </style>
+
+    <style name="Widget.Material3.Chip.Assist.Inator" parent="Widget.Material3.Chip.Assist">
+        <item name="android:checkable">true</item>
+        <item name="chipStrokeColor">@color/chip_color</item>
+        <item name="chipIconTint">@color/chip_icon_tint</item>
+
+    </style>
 </resources>
