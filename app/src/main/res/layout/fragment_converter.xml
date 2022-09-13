@@ -31,7 +31,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/length"
-                app:chipIcon="@drawable/length"
+                app:chipIcon="@drawable/ic_length"
                 android:textAlignment="center" />
 
             <com.google.android.material.chip.Chip
@@ -40,12 +40,12 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/area"
-                app:chipIcon="@drawable/area"
+                app:chipIcon="@drawable/ic_area"
                 android:textAlignment="center" />
 
             <com.google.android.material.chip.Chip
                 android:id="@+id/mass"
-                app:chipIcon="@drawable/mass"
+                app:chipIcon="@drawable/ic_mass"
                 style="@style/Widget.Material3.Chip.Assist.Inator"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -58,13 +58,13 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/speed"
-                app:chipIcon="@drawable/speed"
+                app:chipIcon="@drawable/ic_speed"
                 android:textAlignment="center" />
 
             <com.google.android.material.chip.Chip
                 android:id="@+id/angle"
                 style="@style/Widget.Material3.Chip.Assist.Inator"
-                app:chipIcon="@drawable/angle"
+                app:chipIcon="@drawable/ic_angle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/angle"
@@ -76,7 +76,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/data"
-                app:chipIcon="@drawable/data"
+                app:chipIcon="@drawable/ic_data"
                 android:textAlignment="center" />
 
             <com.google.android.material.chip.Chip
@@ -85,7 +85,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/volume"
-                app:chipIcon="@drawable/volume"
+                app:chipIcon="@drawable/ic_volume"
                 android:textAlignment="center" />
 
             <com.google.android.material.chip.Chip
@@ -94,7 +94,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/time"
-                app:chipIcon="@drawable/time"
+                app:chipIcon="@drawable/ic_time"
                 android:textAlignment="center" />
 
             <com.google.android.material.chip.Chip
@@ -103,7 +103,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/temperature"
-                app:chipIcon="@drawable/temperature"
+                app:chipIcon="@drawable/ic_temperature"
                 android:textAlignment="center" />
 
         </com.google.android.material.chip.ChipGroup>
