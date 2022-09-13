@@ -65,6 +65,18 @@
         <item>1.94384</item>
     </string-array>
 
+    <!-- Pressure - Base: Pascal -->
+    <string-array name="pressure_rates">
+        <item>1</item>
+        <item>0.000009869232667</item>
+        <item>0.00000999922256</item>
+        <item>0.00999922256</item>
+        <item>0.0001450377377</item>
+        <item>0.007500616827</item>
+        <item>0.01</item>
+        <item>0.0002952998751</item>
+    </string-array>
+
     <!-- Storage - Base: Megabyte -->
     <string-array name="storage_rates">
         <item>8000000</item>

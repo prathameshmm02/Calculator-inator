@@ -60,6 +60,14 @@
         <item>"Węzeł"</item>
     </string-array>
 
+    <string-array name="pressure_units">
+        <item>"Metr na sekundę"</item>
+        <item>"Kilometr na godzinę"</item>
+        <item>"Mile na godzinę"</item>
+        <item>"Stopy na sekundę"</item>
+        <item>"Węzeł"</item>
+    </string-array>
+
     <string-array name="storage_units">
         <item>"Bit"</item>
         <item>"Kilobit"</item>

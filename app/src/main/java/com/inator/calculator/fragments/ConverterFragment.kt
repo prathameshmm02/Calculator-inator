@@ -44,6 +44,9 @@ class ConverterFragment : Fragment(R.layout.fragment_converter) {
                 R.id.speed -> {
                     converterInputViewModel.setMeasure("Speed")
                 }
+                R.id.pressure -> {
+                    converterInputViewModel.setMeasure("Pressure")
+                }
                 R.id.angle -> {
                     converterInputViewModel.setMeasure("Angle")
                 }
@@ -142,6 +145,7 @@ class ConverterFragment : Fragment(R.layout.fragment_converter) {
             "Area" -> R.array.area_units
             "Mass" -> R.array.mass_units
             "Speed" -> R.array.speed_units
+            "Pressure" -> R.array.pressure_units
             "Data" -> R.array.storage_units
             "Volume" -> R.array.volume_units
             "Time" -> R.array.time_units

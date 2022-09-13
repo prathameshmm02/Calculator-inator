@@ -8,6 +8,7 @@
     <string name="area">Alan</string>
     <string name="mass">Kütle</string>
     <string name="speed">Hız</string>
+    <string name="pressure">Baskı yapmak</string>
     <string name="angle">Açı</string>
     <string name="data">Veri</string>
     <string name="volume">Hacim</string>
@@ -39,6 +40,7 @@
         <item>Alan</item>
         <item>Kütle</item>
         <item>Hız</item>
+        <item>Baskı yapmak</item>
         <item>Veri</item>
         <item>Hacim</item>
         <item>Zaman</item>

@@ -126,6 +126,7 @@ class ConverterInputViewModel(application: Application) : AndroidViewModel(appli
             "Area" -> R.id.area
             "Mass" -> R.id.mass
             "Speed" -> R.id.speed
+            "Pressure" -> R.id.pressure
             "Data" -> R.id.data
             "Volume" -> R.id.volume
             "Time" -> R.id.time

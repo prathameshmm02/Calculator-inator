@@ -61,6 +61,17 @@
         <item>Knot</item>
     </string-array>
 
+    <string-array name="pressure_units">
+        <item>Pascal</item>
+        <item>Atmosphere</item>
+        <item>Bar</item>
+        <item>Millibar</item>
+        <item>Pounds per square inch</item>
+        <item>Torricelli</item>
+        <item>Hectopascal</item>
+        <item>Inches of mercury</item>
+    </string-array>
+
     <string-array name="storage_units">
         <item>Bit</item>
         <item>Kilobit</item>

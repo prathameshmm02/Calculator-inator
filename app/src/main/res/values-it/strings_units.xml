@@ -60,6 +60,14 @@
         <item>"Nodo"</item>
     </string-array>
 
+    <string-array name="pressure_units">
+        <item>"Metro al secondo"</item>
+        <item>"Chilometro orario"</item>
+        <item>"Miglia oraria"</item>
+        <item>"Piede al secondo"</item>
+        <item>"Nodo"</item>
+    </string-array>
+
     <string-array name="time_units">
         <item>"Nanosecondo"</item>
         <item>"Microsecondo"</item>
