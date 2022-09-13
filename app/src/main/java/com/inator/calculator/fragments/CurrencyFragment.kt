@@ -15,7 +15,9 @@ import androidx.fragment.app.viewModels
 import com.inator.calculator.R
 import com.inator.calculator.adapters.SpinnerAdapter
 import com.inator.calculator.databinding.FragmentCurrencyBinding
+import com.inator.calculator.extensions.handleStartingDecimal
 import com.inator.calculator.extensions.isLandscape
+import com.inator.calculator.extensions.isValidNumber
 import com.inator.calculator.viewmodel.CurrencyInputViewModel
 import com.inator.calculator.viewmodel.ExchangeRatesViewModel
 import java.text.SimpleDateFormat
@@ -145,7 +147,11 @@ class CurrencyFragment : Fragment(R.layout.fragment_currency) {
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
 
             override fun afterTextChanged(s: Editable?) {
-                currencyInputViewModel.setInput1(s.toString())
+                s.toString().let {
+                    if (it.isValidNumber()) {
+                        currencyInputViewModel.setInput1(it.handleStartingDecimal())
+                    }
+                }
             }
         }
         val textWatcher2 = object : TextWatcher {
@@ -153,7 +159,11 @@ class CurrencyFragment : Fragment(R.layout.fragment_currency) {
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
 
             override fun afterTextChanged(s: Editable?) {
-                currencyInputViewModel.setInput2(s.toString())
+                s.toString().let {
+                    if (it.isValidNumber()) {
+                        currencyInputViewModel.setInput2(it.handleStartingDecimal())
+                    }
+                }
             }
 
         }
