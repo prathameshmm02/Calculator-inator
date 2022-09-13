@@ -72,6 +72,10 @@ class CalculatorInputViewModel(application: Application) : AndroidViewModel(appl
     }
 
     fun backspaceClicked(expression: String, selectionStart: Int) {
+        val oldExpression  = inputMutableLiveData.value
+        if (oldExpression!!.replace(expression,"") == "."){
+            isDecimal = false
+        }
         inputMutableLiveData.value = expression
         cursorMutableLiveData.value = selectionStart
     }
