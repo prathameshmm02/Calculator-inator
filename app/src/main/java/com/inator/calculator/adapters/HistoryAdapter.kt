@@ -4,55 +4,91 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import androidx.core.content.ContextCompat
 import androidx.core.view.isVisible
 import androidx.recyclerview.widget.RecyclerView
 import com.inator.calculator.R
 import com.inator.calculator.databinding.ItemHistoryBinding
-import com.inator.calculator.fragments.HistoryFragment
+import com.inator.calculator.databinding.ItemSectionBinding
 import com.inator.calculator.helper.SwipeItemTouchHelper
 import com.inator.calculator.model.History
-import com.inator.calculator.repository.HistoryRepository
 import com.inator.calculator.viewmodel.HistoryViewModel
 
 class HistoryAdapter(
     private val context: Context,
-    private val historyItems: ArrayList<History>,
+    historyItems: ArrayList<History>,
     private val listener: HistoryItemClickListener,
     private val viewModel: HistoryViewModel
 ) :
-    RecyclerView.Adapter<HistoryAdapter.ViewHolder>(), SwipeItemTouchHelper.SwipeHelperAdapter {
+    RecyclerView.Adapter<RecyclerView.ViewHolder>(),
+    SwipeItemTouchHelper.SwipeHelperAdapter {
+
+    private val VIEW_CONTENT = 1
+    private val VIEW_SECTION = 0
+
     private var swippableHistoryItemsSwiped: ArrayList<SwippableHistoryItem> = ArrayList()
     private var swippableHistoryItems: ArrayList<SwippableHistoryItem> =
         historyItems.map { SwippableHistoryItem.fromHistory(it) } as ArrayList<SwippableHistoryItem>
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        return ViewHolder(ItemHistoryBinding.inflate(LayoutInflater.from(context), parent, false))
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
+        val vh: RecyclerView.ViewHolder = if (viewType == VIEW_CONTENT) {
+            ContentViewHolder(
+                ItemHistoryBinding.inflate(
+                    LayoutInflater.from(context),
+                    parent,
+                    false
+                )
+            )
+        } else {
+            SectionViewHolder(
+                ItemSectionBinding.inflate(
+                    LayoutInflater.from(context),
+                    parent,
+                    false
+                )
+            )
+        }
+        return vh
+
     }
 
-    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         val history = swippableHistoryItems[position].history
-        holder.binding.run {
-            expression.text = history.expr
-            answer.text = history.answer
-            if (shouldCreateHeader(position)) {
-                dateHeader.text = history.date
-            } else {
+
+        if (holder is ContentViewHolder) {
+            holder.binding.run {
                 dateHeader.isVisible = false
-            }
-            if (shouldCreateDivider(position)) {
-                divider.isVisible = true
-            }
+                expression.text = history.expr
+                answer.text = history.answer
+//                if (shouldCreateHeader(position)) {
+//                    dateHeader.text = history.date
+//                } else {
+//                    dateHeader.isVisible = false
+//                }
+//                if (shouldCreateDivider(position)) {
+//                    divider.isVisible = true
+//                }
 
-            viewMain.visibility =
-                if (swippableHistoryItems[position].swiped) View.GONE else View.VISIBLE
+                viewMain.visibility =
+                    if (swippableHistoryItems[position].swiped) View.GONE else View.VISIBLE
 
+            }
+        } else {
+            (holder as SectionViewHolder).binding.run {
+                titleSection.text = history.date
+            }
         }
+
 
     }
 
     override fun getItemCount(): Int {
         return swippableHistoryItems.size
+    }
+
+    override fun getItemViewType(position: Int): Int {
+        return if (shouldCreateHeader(position)) VIEW_SECTION else VIEW_CONTENT
     }
 
     private fun shouldCreateHeader(position: Int): Boolean {
@@ -82,7 +118,8 @@ class HistoryAdapter(
         notifyDataSetChanged()
     }
 
-    inner class ViewHolder(val binding: ItemHistoryBinding) : RecyclerView.ViewHolder(binding.root),
+    inner class ContentViewHolder(val binding: ItemHistoryBinding) :
+        RecyclerView.ViewHolder(binding.root),
         View.OnClickListener, SwipeItemTouchHelper.TouchViewHolder {
 
         override fun onClick(v: View?) {
@@ -91,16 +128,16 @@ class HistoryAdapter(
                 swippableHistoryItemsSwiped.remove(swippableHistoryItems[adapterPosition])
                 notifyItemChanged(adapterPosition)
             } else {
-                listener.onItemClicked(historyItems[adapterPosition])
+                listener.onItemClicked(swippableHistoryItems[adapterPosition].history)
             }
         }
 
         init {
             binding.run {
-                root.setOnClickListener(this@ViewHolder)
-                answer.setOnClickListener(this@ViewHolder)
-                expression.setOnClickListener(this@ViewHolder)
-                viewUndoSwipe.buttonUndo.setOnClickListener(this@ViewHolder)
+                root.setOnClickListener(this@ContentViewHolder)
+                answer.setOnClickListener(this@ContentViewHolder)
+                expression.setOnClickListener(this@ContentViewHolder)
+                viewUndoSwipe.buttonUndo.setOnClickListener(this@ContentViewHolder)
             }
         }
 
@@ -113,6 +150,18 @@ class HistoryAdapter(
         }
     }
 
+
+    class SectionViewHolder(val binding: ItemSectionBinding) :
+        RecyclerView.ViewHolder(binding.root) {
+        var title_section: TextView
+
+        init {
+            binding.run {
+                title_section = titleSection
+            }
+        }
+    }
+
     override fun onItemDismiss(position: Int) {
         // handle when double swipe
         if (swippableHistoryItems[position].swiped) {
@@ -122,9 +171,12 @@ class HistoryAdapter(
             notifyItemRemoved(position)
             return
         }
-        swippableHistoryItems[position].swiped = true
-        swippableHistoryItemsSwiped.add(swippableHistoryItems[position])
-        notifyItemChanged(position)
+        if (getItemViewType(position) != VIEW_SECTION) {
+            swippableHistoryItems[position].swiped = true
+            swippableHistoryItemsSwiped.add(swippableHistoryItems[position])
+            notifyItemChanged(position)
+        }
+
     }
 }
 

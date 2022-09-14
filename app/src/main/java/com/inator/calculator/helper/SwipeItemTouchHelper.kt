@@ -5,38 +5,30 @@ import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.graphics.drawable.Drawable
 import android.view.View
-import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
+import com.inator.calculator.adapters.HistoryAdapter
 
 
 class SwipeItemTouchHelper(adapter: SwipeHelperAdapter) :
-    ItemTouchHelper.Callback() {
+    ItemTouchHelper.SimpleCallback(0, 0) {
+
     var bgColorCode: Int = Color.rgb(0, 90, 197)
     private val mAdapter: SwipeHelperAdapter
-    override fun isLongPressDragEnabled(): Boolean {
-        return false
-    }
 
-    override fun isItemViewSwipeEnabled(): Boolean {
-        return true
-    }
 
     override fun getMovementFlags(
         recyclerView: RecyclerView,
         viewHolder: RecyclerView.ViewHolder
     ): Int {
-        // Set movement flags based on the layout manager
-        return if (recyclerView.layoutManager is GridLayoutManager) {
-            val dragFlags =
-                ItemTouchHelper.UP or ItemTouchHelper.DOWN or ItemTouchHelper.LEFT or ItemTouchHelper.RIGHT
-            val swipeFlags = 0
+        return if (viewHolder is HistoryAdapter.ContentViewHolder) {
+            val dragFlags = ItemTouchHelper.UP or ItemTouchHelper.DOWN
+            val swipeFlags = ItemTouchHelper.START
             makeMovementFlags(dragFlags, swipeFlags)
         } else {
-            val dragFlags = ItemTouchHelper.UP or ItemTouchHelper.DOWN
-            val swipeFlags = ItemTouchHelper.START or ItemTouchHelper.END
-            makeMovementFlags(dragFlags, swipeFlags)
+            makeMovementFlags(0, 0)
         }
+
     }
 
     override fun onMove(
@@ -45,6 +37,14 @@ class SwipeItemTouchHelper(adapter: SwipeHelperAdapter) :
         target: RecyclerView.ViewHolder
     ): Boolean {
         return source.itemViewType == target.itemViewType
+    }
+
+    override fun getSwipeDirs(
+        recyclerView: RecyclerView,
+        viewHolder: RecyclerView.ViewHolder
+    ): Int {
+        if (viewHolder is HistoryAdapter.ContentViewHolder) return 0
+        return super.getSwipeDirs(recyclerView, viewHolder)
     }
 
     override fun onSwiped(viewHolder: RecyclerView.ViewHolder, i: Int) {
