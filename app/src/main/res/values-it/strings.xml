@@ -32,6 +32,8 @@
     <string name="message_currency">API della valuta utilizzata</string>
     <string name="message_no_history">Cronologia vuota</string>
     <string name="cancel">Annulla</string>
+    <string name="undo">UNDO</string>
+    <string name="removed">Removed</string>
     <string-array name="units">
         <item>Lunghezza</item>
         <item>Area</item>

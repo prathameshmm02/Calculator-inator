@@ -38,4 +38,8 @@
         <item name="appWidgetTextColor">@color/light_blue_200</item>
         <item name="fontFamily">@font/manrope</item>
     </style>
+
+    <style name="HistoryLayout" parent="">
+        <item name="android:background">@color/color_dark_surface</item>
+    </style>
 </resources>

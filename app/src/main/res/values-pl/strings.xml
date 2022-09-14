@@ -32,6 +32,8 @@
     <string name="message_currency">Używane API walutowe</string>
     <string name="message_no_history">Brak historii</string>
     <string name="cancel">Anuluj</string>
+    <string name="undo">UNDO</string>
+    <string name="removed">Removed</string>
     <string-array name="units">
         <item>Długość</item>
         <item>Obszar</item>
