@@ -61,15 +61,6 @@ class HistoryAdapter(
                 dateHeader.isVisible = false
                 expression.text = history.expr
                 answer.text = history.answer
-//                if (shouldCreateHeader(position)) {
-//                    dateHeader.text = history.date
-//                } else {
-//                    dateHeader.isVisible = false
-//                }
-//                if (shouldCreateDivider(position)) {
-//                    divider.isVisible = true
-//                }
-
                 viewMain.visibility =
                     if (swippableHistoryItems[position].swiped) View.GONE else View.VISIBLE
 
@@ -152,15 +143,7 @@ class HistoryAdapter(
 
 
     class SectionViewHolder(val binding: ItemSectionBinding) :
-        RecyclerView.ViewHolder(binding.root) {
-        var title_section: TextView
-
-        init {
-            binding.run {
-                title_section = titleSection
-            }
-        }
-    }
+        RecyclerView.ViewHolder(binding.root)
 
     override fun onItemDismiss(position: Int) {
         // handle when double swipe
