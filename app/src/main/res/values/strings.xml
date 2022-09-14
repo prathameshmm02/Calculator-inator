@@ -33,6 +33,8 @@
     <string name="message_currency">Currency API Used</string>
     <string name="message_no_history">No History</string>
     <string name="cancel">Cancel</string>
+    <string name="undo">UNDO</string>
+    <string name="removed">Removed</string>
     <string-array name="units">
         <item>Length</item>
         <item>Area</item>

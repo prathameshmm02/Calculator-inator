@@ -16,5 +16,7 @@
     <dimen name="height_drag_icon">5dp</dimen>
     <dimen name="height_shadow">10dp</dimen>
     <dimen name="elevation_panel">20dp</dimen>
+    <dimen name="spacing_large">15dp</dimen>
+    <dimen name="spacing_medium">5dp</dimen>
 
 </resources>

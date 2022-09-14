@@ -32,6 +32,10 @@ class HistoryViewModel(application: Application) : AndroidViewModel(application)
         repository.deleteAll()
     }
 
+    fun deleteHistoryById(id: Int) = viewModelScope.launch(Dispatchers.IO) {
+        repository.delete(id)
+    }
+
     fun setClickedExpression(history: History) {
         mutableClickedHistory.value = history
     }

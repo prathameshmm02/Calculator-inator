@@ -1,64 +1,77 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="vertical"
-    android:weightSum="1">
+    android:layout_height="wrap_content">
 
-    <TextView
-        android:id="@+id/date_header"
+    <include
+        android:id="@+id/view_undo_swipe"
+        layout="@layout/item_swipe_undo" />
+
+    <LinearLayout
+        android:id="@+id/view_main"
+        style="@style/HistoryLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingStart="20dp"
-        android:paddingEnd="20dp"
-        android:textColor="@color/text_color"
-        android:textSize="@dimen/font_size_small"
-        tools:text="03-06-2002" />
-
-    <TextView
-        android:id="@+id/expression"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="end"
-        android:layout_marginStart="20dp"
-        android:layout_marginEnd="20dp"
-        android:layout_weight="0.4"
         android:clickable="true"
         android:focusable="true"
-        android:gravity="end|center_vertical"
-        android:paddingStart="10dp"
-        android:paddingEnd="10dp"
-        android:textColor="@color/text_color"
-        android:textIsSelectable="true"
-        android:textSize="24sp"
-        tools:text="2+2" />
+        android:orientation="vertical"
+        android:weightSum="1">
 
-    <TextView
-        android:id="@+id/answer"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="end"
-        android:layout_marginStart="20dp"
-        android:layout_marginEnd="20dp"
-        android:layout_weight="0.4"
-        android:clickable="true"
-        android:focusable="true"
-        android:gravity="end|center_vertical"
-        android:padding="10dp"
-        android:textIsSelectable="true"
-        android:textSize="18sp"
-        tools:text="4" />
+        <TextView
+            android:id="@+id/date_header"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingStart="20dp"
+            android:paddingEnd="20dp"
+            android:textColor="@color/text_color"
+            android:textSize="@dimen/font_size_small"
+            tools:text="03-06-2002" />
 
-    <View
-        android:id="@+id/divider"
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="?android:attr/listDivider"
-        android:visibility="gone" />
+        <TextView
+            android:id="@+id/expression"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:layout_weight="0.4"
+            android:clickable="true"
+            android:focusable="true"
+            android:gravity="end|center_vertical"
+            android:paddingStart="10dp"
+            android:paddingEnd="10dp"
+            android:textColor="@color/text_color"
+            android:textIsSelectable="true"
+            android:textSize="24sp"
+            tools:text="2+2" />
 
-    <Space
-        android:id="@+id/spacer"
-        android:layout_width="match_parent"
-        android:layout_height="20dp" />
-</LinearLayout>
+        <TextView
+            android:id="@+id/answer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:layout_weight="0.4"
+            android:clickable="true"
+            android:focusable="true"
+            android:gravity="end|center_vertical"
+            android:padding="10dp"
+            android:textIsSelectable="true"
+            android:textSize="18sp"
+            tools:text="4" />
+
+        <View
+            android:id="@+id/divider"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="?android:attr/listDivider"
+            android:visibility="gone" />
+
+        <Space
+            android:id="@+id/spacer"
+            android:layout_width="match_parent"
+            android:layout_height="20dp" />
+    </LinearLayout>
+</RelativeLayout>
