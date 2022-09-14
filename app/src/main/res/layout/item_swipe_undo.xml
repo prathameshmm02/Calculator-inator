@@ -27,7 +27,7 @@
             android:layout_weight="1"
             android:text="@string/removed"
             android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-            android:textColor="@android:color/white" />
+            android:textColor="@color/text_color" />
 
         <View
             android:layout_width="@dimen/spacing_large"
@@ -41,7 +41,7 @@
             android:paddingLeft="@dimen/spacing_medium"
             android:paddingRight="@dimen/spacing_medium"
             android:text="@string/undo"
-            android:textColor="@android:color/white" />
+            android:textColor="@color/text_color" />
 
     </LinearLayout>
 

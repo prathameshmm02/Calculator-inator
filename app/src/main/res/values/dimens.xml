@@ -18,5 +18,6 @@
     <dimen name="elevation_panel">20dp</dimen>
     <dimen name="spacing_large">15dp</dimen>
     <dimen name="spacing_medium">5dp</dimen>
+    <dimen name="spacing_smlarge">18dp</dimen>
 
 </resources>

@@ -34,7 +34,7 @@ class HistoryFragment : Fragment(R.layout.fragment_history), HistoryItemClickLis
             }
             historyAdapter = HistoryAdapter(context, historyItems, this@HistoryFragment, viewModel)
             adapter = historyAdapter
-            val callback: ItemTouchHelper.Callback = SwipeItemTouchHelper(historyAdapter!!)
+            val callback: ItemTouchHelper.SimpleCallback = SwipeItemTouchHelper(historyAdapter!!)
             val itemTouchHelper = ItemTouchHelper(callback)
             itemTouchHelper.attachToRecyclerView(this)
         }

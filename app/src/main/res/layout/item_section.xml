@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:paddingBottom="@dimen/spacing_large"
+    android:paddingLeft="@dimen/spacing_smlarge"
+    android:paddingRight="@dimen/spacing_smlarge"
+    android:paddingTop="@dimen/spacing_large">
+
+    <TextView
+        android:id="@+id/title_section"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Section Title"
+        android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
+        android:textStyle="bold" />
+
+</LinearLayout>
