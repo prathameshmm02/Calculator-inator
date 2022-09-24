@@ -73,8 +73,8 @@ class CalculatorInputViewModel(application: Application) : AndroidViewModel(appl
     }
 
     fun backspaceClicked(expression: String, selectionStart: Int) {
-        val oldExpression  = inputMutableLiveData.value
-        if (oldExpression!!.replace(expression,"") == "."){
+        val oldExpression = inputMutableLiveData.value
+        if (oldExpression!!.replace(expression, "") == ".") {
             isDecimal = false
         }
         inputMutableLiveData.value = expression
@@ -113,8 +113,7 @@ class CalculatorInputViewModel(application: Application) : AndroidViewModel(appl
         try {
             if (currentInput.matches(numRegex)) {
                 outputMutableLiveData.value = ""
-            }
-            if (currentInput.isNotEmpty()) {
+            } else if (currentInput.isNotEmpty()) {
                 result =
                     Expression(inputLiveData.value!!.toExpression()).calculate()
                 if (result.toSimpleString() != "NaN") {
