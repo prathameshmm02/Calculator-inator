@@ -66,6 +66,7 @@ class CalculatorInputViewModel(application: Application) : AndroidViewModel(appl
     }
 
     fun clearAll() {
+        isDecimal = false
         inputMutableLiveData.value = ""
         outputMutableLiveData.value = ""
         cursorMutableLiveData.value = 0
