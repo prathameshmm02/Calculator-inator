@@ -3,12 +3,12 @@ apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-kapt'
 
 android {
-    compileSdkVersion 32
+    compileSdk 33
 
     defaultConfig {
         applicationId "com.inator.calculator"
-        minSdkVersion 21
-        targetSdkVersion 32
+        minSdk 21
+        targetSdk 33
         versionCode 6
         versionName "1.2.0"
     }
@@ -67,11 +67,11 @@ android {
     lint {
         warning 'MissingTranslation'
     }
+    namespace 'com.inator.calculator'
 }
 
 dependencies {
     implementation "androidx.appcompat:appcompat:$appCompatVersion"
-    implementation "androidx.activity:activity-ktx:$activityVersion"
 
     // Room components
     implementation "androidx.room:room-ktx:$roomVersion"
@@ -97,5 +97,5 @@ dependencies {
     implementation 'androidx.preference:preference-ktx:1.2.0'
 
     // MxParser
-    implementation 'org.mariuszgromada.math:MathParser.org-mXparser:5.0.6'
+    implementation 'org.mariuszgromada.math:MathParser.org-mXparser:5.0.7'
 }

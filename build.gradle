@@ -1,21 +1,20 @@
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
 buildscript {
     ext {
-        activityVersion = '1.5.0'
-        appCompatVersion = '1.4.2'
+        appCompatVersion = '1.5.1'
         constraintLayoutVersion = '2.1.4'
         coroutinesVersion = '1.6.4'
         kotlin_version = '1.7.10'
-        lifecycleVersion = '2.5.0'
+        lifecycleVersion = '2.5.1'
         materialVersion = '1.6.1'
-        roomVersion = '2.5.0-alpha02'
+        roomVersion = '2.4.3'
     }
     repositories {
         google()
         mavenCentral()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:7.2.1'
+        classpath 'com.android.tools.build:gradle:7.3.0'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
 
         // NOTE: Do not place your application dependencies here; they belong
