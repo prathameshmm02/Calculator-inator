@@ -100,7 +100,7 @@ class CalculatorInputViewModel(application: Application) : AndroidViewModel(appl
             outputMutableLiveData.value = ""
             cursorMutableLiveData.value = inputLiveData.value?.length ?: 0
             if (!currentInput.matches(numRegex)) {
-                saveToHistory(currentInput, result.toString())
+                saveToHistory(currentInput, result.toSimpleString())
             }
         } catch (e: Exception) {
             inputMutableLiveData.value = context.getString(R.string.error_text)
