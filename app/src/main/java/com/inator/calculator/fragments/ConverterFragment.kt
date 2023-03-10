@@ -1,5 +1,6 @@
 package com.inator.calculator.fragments
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
@@ -29,36 +30,46 @@ class ConverterFragment : Fragment(R.layout.fragment_converter) {
         setUpViews()
     }
 
+    @SuppressLint("ClickableViewAccessibility")
     private fun setUpViews() {
         binding.chipGroup.setOnCheckedStateChangeListener { _, checkedIds ->
             when (checkedIds[0]) {
                 R.id.length -> {
                     converterInputViewModel.setMeasure("Length")
                 }
+
                 R.id.mass -> {
                     converterInputViewModel.setMeasure("Mass")
                 }
+
                 R.id.area -> {
                     converterInputViewModel.setMeasure("Area")
                 }
+
                 R.id.speed -> {
                     converterInputViewModel.setMeasure("Speed")
                 }
+
                 R.id.pressure -> {
                     converterInputViewModel.setMeasure("Pressure")
                 }
+
                 R.id.angle -> {
                     converterInputViewModel.setMeasure("Angle")
                 }
+
                 R.id.data -> {
                     converterInputViewModel.setMeasure("Data")
                 }
+
                 R.id.time -> {
                     converterInputViewModel.setMeasure("Time")
                 }
+
                 R.id.volume -> {
                     converterInputViewModel.setMeasure("Volume")
                 }
+
                 R.id.temperature -> {
                     converterInputViewModel.setMeasure("Temperature")
                 }

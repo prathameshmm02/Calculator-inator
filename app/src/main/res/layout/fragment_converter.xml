@@ -1,124 +1,116 @@
 <?xml version="1.0" encoding="utf-8"?>
-
-
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <HorizontalScrollView
-        android:id="@+id/horizontalScrollView"
-        android:layout_width="match_parent"
+    <com.google.android.material.chip.ChipGroup
+        android:id="@+id/chipGroup"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
+        android:padding="5dp"
         android:scrollbars="none"
+        app:checkedChip="@id/length"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        app:selectionRequired="true"
+        app:singleSelection="true">
 
-        <com.google.android.material.chip.ChipGroup
-            android:id="@+id/chipGroup"
-            android:layout_width="0dp"
+        <com.google.android.material.chip.Chip
+            android:id="@+id/length"
+            style="@style/Widget.Material3.Chip.Assist.Inator"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:padding="5dp"
-            app:checkedChip="@id/length"
-            app:selectionRequired="true"
-            app:singleSelection="true">
+            android:text="@string/length"
+            android:textAlignment="center"
+            app:chipIcon="@drawable/ic_length" />
 
-            <com.google.android.material.chip.Chip
-                android:id="@+id/length"
-                style="@style/Widget.Material3.Chip.Assist.Inator"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/length"
-                android:textAlignment="center"
-                app:chipIcon="@drawable/ic_length" />
+        <com.google.android.material.chip.Chip
+            android:id="@+id/area"
+            style="@style/Widget.Material3.Chip.Assist.Inator"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/area"
+            android:textAlignment="center"
+            app:chipIcon="@drawable/ic_area" />
 
-            <com.google.android.material.chip.Chip
-                android:id="@+id/area"
-                style="@style/Widget.Material3.Chip.Assist.Inator"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/area"
-                android:textAlignment="center"
-                app:chipIcon="@drawable/ic_area" />
+        <com.google.android.material.chip.Chip
+            android:id="@+id/mass"
+            style="@style/Widget.Material3.Chip.Assist.Inator"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/mass"
+            android:textAlignment="center"
+            app:chipIcon="@drawable/ic_mass" />
 
-            <com.google.android.material.chip.Chip
-                android:id="@+id/mass"
-                style="@style/Widget.Material3.Chip.Assist.Inator"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/mass"
-                android:textAlignment="center"
-                app:chipIcon="@drawable/ic_mass" />
+        <com.google.android.material.chip.Chip
+            android:id="@+id/speed"
+            style="@style/Widget.Material3.Chip.Assist.Inator"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/speed"
+            android:textAlignment="center"
+            app:chipIcon="@drawable/ic_speed" />
 
-            <com.google.android.material.chip.Chip
-                android:id="@+id/speed"
-                style="@style/Widget.Material3.Chip.Assist.Inator"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/speed"
-                android:textAlignment="center"
-                app:chipIcon="@drawable/ic_speed" />
+        <com.google.android.material.chip.Chip
+            android:id="@+id/pressure"
+            style="@style/Widget.Material3.Chip.Assist.Inator"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/pressure"
+            android:textAlignment="center"
+            app:chipIcon="@drawable/ic_pressure" />
 
-            <com.google.android.material.chip.Chip
-                android:id="@+id/pressure"
-                style="@style/Widget.Material3.Chip.Assist.Inator"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/pressure"
-                android:textAlignment="center"
-                app:chipIcon="@drawable/ic_pressure" />
+        <com.google.android.material.chip.Chip
+            android:id="@+id/angle"
+            style="@style/Widget.Material3.Chip.Assist.Inator"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/angle"
+            android:textAlignment="center"
+            app:chipIcon="@drawable/ic_angle" />
 
-            <com.google.android.material.chip.Chip
-                android:id="@+id/angle"
-                style="@style/Widget.Material3.Chip.Assist.Inator"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/angle"
-                android:textAlignment="center"
-                app:chipIcon="@drawable/ic_angle" />
+        <com.google.android.material.chip.Chip
+            android:id="@+id/data"
+            style="@style/Widget.Material3.Chip.Assist.Inator"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/data"
+            android:textAlignment="center"
+            app:chipIcon="@drawable/ic_data" />
 
-            <com.google.android.material.chip.Chip
-                android:id="@+id/data"
-                style="@style/Widget.Material3.Chip.Assist.Inator"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/data"
-                android:textAlignment="center"
-                app:chipIcon="@drawable/ic_data" />
+        <com.google.android.material.chip.Chip
+            android:id="@+id/volume"
+            style="@style/Widget.Material3.Chip.Assist.Inator"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/volume"
+            android:textAlignment="center"
+            app:chipIcon="@drawable/ic_volume" />
 
-            <com.google.android.material.chip.Chip
-                android:id="@+id/volume"
-                style="@style/Widget.Material3.Chip.Assist.Inator"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/volume"
-                android:textAlignment="center"
-                app:chipIcon="@drawable/ic_volume" />
+        <com.google.android.material.chip.Chip
+            android:id="@+id/time"
+            style="@style/Widget.Material3.Chip.Assist.Inator"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/time"
+            android:textAlignment="center"
+            app:chipIcon="@drawable/ic_time" />
 
-            <com.google.android.material.chip.Chip
-                android:id="@+id/time"
-                style="@style/Widget.Material3.Chip.Assist.Inator"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/time"
-                android:textAlignment="center"
-                app:chipIcon="@drawable/ic_time" />
+        <com.google.android.material.chip.Chip
+            android:id="@+id/temperature"
+            style="@style/Widget.Material3.Chip.Assist.Inator"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/temperature"
+            android:textAlignment="center"
+            app:chipIcon="@drawable/ic_temperature" />
 
-            <com.google.android.material.chip.Chip
-                android:id="@+id/temperature"
-                style="@style/Widget.Material3.Chip.Assist.Inator"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/temperature"
-                android:textAlignment="center"
-                app:chipIcon="@drawable/ic_temperature" />
+    </com.google.android.material.chip.ChipGroup>
 
-        </com.google.android.material.chip.ChipGroup>
-    </HorizontalScrollView>
-
-    <androidx.core.widget.NestedScrollView
+    <ScrollView
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:orientation="vertical"
@@ -126,7 +118,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/horizontalScrollView">
+        app:layout_constraintTop_toBottomOf="@+id/chipGroup">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -186,5 +178,5 @@
             </com.google.android.material.textfield.TextInputLayout>
 
         </LinearLayout>
-    </androidx.core.widget.NestedScrollView>
+    </ScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>
