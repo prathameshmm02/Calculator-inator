@@ -59,19 +59,19 @@ class ConverterInputViewModel(application: Application) : AndroidViewModel(appli
 
     fun setInput1(string: String) {
         currentInput1.value = string
-        if (!currentInput1.value.isNullOrEmpty()) {
-            calculateDirect()
-        }
+        calculateDirect()
     }
 
     fun setInput2(string: String) {
         currentInput2.value = string
-        if (!currentInput2.value.isNullOrEmpty()) {
+        if (!currentInput2.value.isNullOrEmpty() && string != "-") {
             calculateReverse()
         }
     }
 
     private fun calculateReverse() {
+        if (currentInput2.value.isNullOrEmpty()) return
+        if (currentInput2.value == "-") return
         outputReverse.value = evaluateUnitConversion(
             currentInput2,
             spinnerTo,
@@ -81,6 +81,8 @@ class ConverterInputViewModel(application: Application) : AndroidViewModel(appli
     }
 
     private fun calculateDirect() {
+        if (currentInput1.value.isNullOrEmpty()) return
+        if (currentInput1.value == "-") return
         outputDirect.value = evaluateUnitConversion(
             currentInput1,
             spinnerFrom,
