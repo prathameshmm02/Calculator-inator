@@ -1,20 +1,21 @@
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
 buildscript {
     ext {
-        appCompatVersion = '1.5.1'
+        appCompatVersion = '1.6.1'
+        coreVersion = '1.10.0-rc01'
         constraintLayoutVersion = '2.1.4'
         coroutinesVersion = '1.6.4'
         kotlin_version = '1.7.10'
-        lifecycleVersion = '2.5.1'
-        materialVersion = '1.6.1'
-        roomVersion = '2.4.3'
+        lifecycleVersion = '2.6.0'
+        materialVersion = '1.8.0'
+        roomVersion = '2.5.0'
     }
     repositories {
         google()
         mavenCentral()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:7.3.0'
+        classpath 'com.android.tools.build:gradle:7.4.2'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
 
         // NOTE: Do not place your application dependencies here; they belong
@@ -23,7 +24,8 @@ buildscript {
 }
 plugins {
     id "com.github.ben-manes.versions" version "0.42.0"
+    id 'com.google.devtools.ksp' version '1.8.10-1.0.9' apply false
 }
-task clean(type: Delete) {
+tasks.register('clean', Delete) {
     delete rootProject.buildDir
 }

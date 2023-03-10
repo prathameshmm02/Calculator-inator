@@ -1,7 +1,6 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
-apply plugin: 'kotlin-kapt'
-
+apply plugin: 'com.google.devtools.ksp'
 android {
     compileSdk 33
 
@@ -14,10 +13,6 @@ android {
     }
 
     signingConfigs {
-        debug {
-                // Nothing here
-            }
-
         release {
             if (rootProject.file("secure.properties").exists()) {
                 Properties props = new Properties()
@@ -72,10 +67,11 @@ android {
 
 dependencies {
     implementation "androidx.appcompat:appcompat:$appCompatVersion"
+    implementation "androidx.core:core-ktx:$coreVersion"
 
     // Room components
     implementation "androidx.room:room-ktx:$roomVersion"
-    kapt "androidx.room:room-compiler:$roomVersion"
+    ksp "androidx.room:room-compiler:$roomVersion"
 
     // Lifecycle components
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycleVersion"
@@ -97,5 +93,5 @@ dependencies {
     implementation 'androidx.preference:preference-ktx:1.2.0'
 
     // MxParser
-    implementation 'org.mariuszgromada.math:MathParser.org-mXparser:5.0.7'
+    implementation 'org.mariuszgromada.math:MathParser.org-mXparser:5.2.1'
 }
