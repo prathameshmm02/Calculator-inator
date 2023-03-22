@@ -8,7 +8,7 @@ buildscript {
         kotlin_version = '1.8.10'
         lifecycleVersion = '2.6.0'
         materialVersion = '1.8.0'
-        roomVersion = '2.5.0'
+        roomVersion = '2.5.1'
     }
     repositories {
         google()
