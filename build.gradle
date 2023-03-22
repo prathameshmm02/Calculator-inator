@@ -6,7 +6,7 @@ buildscript {
         constraintLayoutVersion = '2.1.4'
         coroutinesVersion = '1.6.4'
         kotlin_version = '1.8.10'
-        lifecycleVersion = '2.6.0'
+        lifecycleVersion = '2.6.1'
         materialVersion = '1.8.0'
         roomVersion = '2.5.1'
     }
