@@ -2,7 +2,7 @@
 buildscript {
     ext {
         appCompatVersion = '1.6.1'
-        coreVersion = '1.10.0-rc01'
+        coreVersion = '1.10.0'
         constraintLayoutVersion = '2.1.4'
         coroutinesVersion = '1.6.4'
         kotlin_version = '1.8.20'
