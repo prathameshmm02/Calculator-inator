@@ -1,4 +1,15 @@
 <resources>
+    <string name="zero">୦</string>
+    <string name="one">୧</string>
+    <string name="two">୨</string>
+    <string name="three">୩</string>
+    <string name="four">୪</string>
+    <string name="five">୫</string>
+    <string name="six">୬</string>
+    <string name="seven">୭</string>
+    <string name="eight">୮</string>
+    <string name="nine">୯</string>
+
     <string name="title_activity_settings">ସେଟିଂ</string>
 
 
@@ -36,7 +47,7 @@
     <string name="cancel">ବାତିଲ୍ କର</string>
     <string name="undo">ପୂର୍ଵଵତ୍</string>
     <string name="removed">କାଢ଼ି ଦିଆଗଲା</string>
-    <string-array name="ଏକକ">
+    <string-array name="units">
         <item>ଦୈର୍ଘ୍ୟ</item>
         <item>କ୍ଷେତ୍ରଫଳ</item>
         <item>ଵସ୍ତୁତ୍ଵ</item>
