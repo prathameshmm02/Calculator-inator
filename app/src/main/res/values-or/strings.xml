@@ -1,0 +1,63 @@
+<resources>
+    <string name="zero">୦</string>
+    <string name="one">୧</string>
+    <string name="two">୨</string>
+    <string name="three">୩</string>
+    <string name="four">୪</string>
+    <string name="five">୫</string>
+    <string name="six">୬</string>
+    <string name="seven">୭</string>
+    <string name="eight">୮</string>
+    <string name="nine">୯</string>
+
+    <string name="title_activity_settings">ସେଟିଂ</string>
+
+
+    <string name="delete_message">"ଆପଣଙ୍କ ଗଣନା ଇତିଵୃତ୍ତି ଵିଲୋପ ହେବ। ଆପଣ ଆଗକୁ ବଢ଼ିବାକୁ ଚାହୁଁଛନ୍ତି ତ?"</string>
+
+    <string name="title_appearance">ରୂପ</string>
+    <string name="length">ଦୈର୍ଘ୍ୟ</string>
+    <string name="area">କ୍ଷେତ୍ରଫଳ</string>
+    <string name="mass">ଵସ୍ତୁତ୍ଵ</string>
+    <string name="speed">ଵେଗ</string>
+    <string name="pressure">ଚାପ</string>
+    <string name="angle">କୋଣ</string>
+    <string name="data">ଡାଟା</string>
+    <string name="volume">ଆୟତନ</string>
+    <string name="time">ସମୟ</string>
+    <string name="temperature">ତାପମାତ୍ରା</string>
+    <string name="error_text">ଏକ ସଂଖ୍ୟା ନୁହେଁ</string>
+    <string name="calculator">କାଲକୁଲେଟର୍</string>
+    <string name="converter">କନଵର୍ଟର୍</string>
+    <string name="currency">ମୁଦ୍ରା</string>
+    <string name="title_current_input">ଚଳିତ ଇନ୍‌ପୁଟ୍</string>
+    <string name="flag_image">ପ୍ରତିଛଵିକୁ ପତାକା ନ୍ୟସ୍ତ କରନ୍ତୁ</string>
+    <string name="interchange">ଅଦଳବଦଳ</string>
+    <string name="refresh">ସତେଜ କର</string>
+    <string name="delete_history">ଇତିଵୃତ୍ତି ଵିଲୋପ କରିବା</string>
+    <string name="history">ଇତିଵୃତ୍ତି</string>
+    <string name="delete_title">ଇତିଵୃତ୍ତି ଵିଲୋପ</string>
+    <string name="title_theme">ଥିମ୍</string>
+    <string name="system_default_theme">ସିଷ୍ଟମ୍ ଡିଫଲ୍ଟ</string>
+    <string name="light_theme_name">ହାଲୁକା</string>
+    <string name="dark_theme_name">ଗାଢ଼</string>
+    <string name="title_about">ଵିଷୟରେ</string>
+    <string name="message_currency">ମୁଦ୍ରା API ଵ୍ୟଵହୃତ</string>
+    <string name="message_no_history">କୌଣସି ଇତିଵୃତ୍ତି ନାହିଁ</string>
+    <string name="cancel">ବାତିଲ୍ କର</string>
+    <string name="undo">ପୂର୍ଵଵତ୍</string>
+    <string name="removed">କାଢ଼ି ଦିଆଗଲା</string>
+    <string-array name="units">
+        <item>ଦୈର୍ଘ୍ୟ</item>
+        <item>କ୍ଷେତ୍ରଫଳ</item>
+        <item>ଵସ୍ତୁତ୍ଵ</item>
+        <item>ଵେଗ</item>
+        <item>ଚାପ</item>
+        <item>ଡାଟା</item>
+        <item>ଆୟତନ</item>
+        <item>ସମୟ</item>
+        <item>ତାପମାତ୍ରା</item>
+        <item>କୋଣ</item>
+    </string-array>
+
+</resources>
