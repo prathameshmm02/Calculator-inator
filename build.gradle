@@ -24,7 +24,7 @@ buildscript {
 }
 plugins {
     id "com.github.ben-manes.versions" version "0.46.0"
-    id 'com.google.devtools.ksp' version '1.8.21-1.0.11' apply false
+    id 'com.google.devtools.ksp' version '1.9.25-1.0.20' apply false
 }
 tasks.register('clean', Delete) {
     delete rootProject.buildDir
